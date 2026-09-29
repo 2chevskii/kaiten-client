@@ -56,7 +56,8 @@
     "lint": "eslint .",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
-    "test": "npm run build && node --test test/*.test.mjs",
+    "test": "npm run build && tsc --noEmit -p samples/kaiten-rest/tsconfig.json && node --test test/*.test.mjs",
+    "sample:kaiten-rest": "npm run build && tsc -p samples/kaiten-rest/tsconfig.json && node samples/kaiten-rest/dist/index.js",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm test"
   },
   "devDependencies": {

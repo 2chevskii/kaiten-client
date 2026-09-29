@@ -51,6 +51,8 @@ The client accepts a token string or an async token provider, an optional `fetch
 
 The [source layout](docs/architecture.md) maps REST resources to their domain modules.
 
+A runnable TypeScript example is in [samples/kaiten-rest](samples/kaiten-rest/README.md).
+
 ### Files
 
 Restricted file access uses UUID paths and `Blob` uploads:
