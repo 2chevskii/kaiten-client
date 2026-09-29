@@ -157,18 +157,34 @@ export interface AddonDialogOptions {
 /** Functions made available to addon capability callbacks and iframes. */
 export interface AddonContext {
   setData(
-    scope: AddonDataScope,
+    scope: "user",
+    visibility: "private",
+    values: Record<string, unknown>,
+  ): Promise<void>;
+  setData(
+    scope: "card",
     visibility: AddonDataVisibility,
     values: Record<string, unknown>,
   ): Promise<void>;
   setData(
-    scope: AddonDataScope,
+    scope: "user",
+    visibility: "private",
+    key: string,
+    value: unknown,
+  ): Promise<void>;
+  setData(
+    scope: "card",
     visibility: AddonDataVisibility,
     key: string,
     value: unknown,
   ): Promise<void>;
   getData<T = unknown>(
-    scope: AddonDataScope,
+    scope: "user",
+    visibility: "private",
+    key: string,
+  ): Promise<T>;
+  getData<T = unknown>(
+    scope: "card",
     visibility: AddonDataVisibility,
     key: string,
   ): Promise<T>;

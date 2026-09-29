@@ -6,534 +6,632 @@
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/api-access",
       "title": "Kaiten API Access",
-      "status": "planned",
-      "beta": true
+      "status": "reference",
+      "beta": true,
+      "implementation": "README and addon contracts",
+      "documented_operations": [
+        {
+          "method": "GET",
+          "endpoint": "/api/v1/addon-oauth/{addon_uid}/tokens/{user_id}/{company_id}",
+          "implementation": "AddonOAuthClient.getToken"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/v1/addon-oauth/{addon_uid}/tokens/{user_id}/{company_id}/refresh",
+          "implementation": "AddonOAuthClient.refreshToken"
+        }
+      ]
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-body-section",
       "title": "card_body_section",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonCapabilities"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-buttons",
       "title": "card_buttons",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonCapabilities"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-facade-badges",
       "title": "card_facade_badges",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonCapabilities"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/introduction",
       "title": "Addon capabilities",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "README and addon contracts"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/settings",
       "title": "Settings",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonCapabilities"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/creating-example-addon",
       "title": "Creating Example addons",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "README and addon contracts"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/error-handling",
       "title": "Error handling",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "README and addon contracts"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/external-authorization/authorize",
       "title": "authorize",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.authorize"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/initialization/addon-initialize",
       "title": "Addon.initialize()",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenAddonSdk"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/initialization/iframe-initialize",
       "title": "Addon.iframe()",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenAddonSdk"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/managing-secrets",
       "title": "Managing secrets",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "README and addon contracts"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/authorize",
       "title": "authorize",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.authorize"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/delete",
       "title": "delete",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.delete"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get",
       "title": "get",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.get"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get-access-token",
       "title": "getAccessToken",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.getAccessToken"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get-api-client",
       "title": "getApiClient",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.getApiClient"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/patch",
       "title": "patch",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.patch"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/post",
       "title": "post",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.post"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/refresh-token",
       "title": "refreshToken",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.refreshToken"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/request",
       "title": "request",
-      "status": "planned",
-      "beta": true
+      "status": "typed",
+      "beta": true,
+      "implementation": "AddonPlatformApiClient.request"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/styling",
       "title": "Styling Addon",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "README and addon contracts"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/clear-secret",
       "title": "clearSecret",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.clearSecret"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-all-data",
       "title": "getAllData",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getAllData"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-card",
       "title": "getCard",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getCard"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-card-properties",
       "title": "getCardProperties",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getCardProperties"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-context",
       "title": "getContext",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getContext"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-current-user",
       "title": "getCurrentUser",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getCurrentUser"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-data",
       "title": "getData",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getData"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-language",
       "title": "getLanguage",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getLanguage"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-locale",
       "title": "getLocale",
-      "status": "planned",
-      "deprecated": true
+      "status": "typed",
+      "deprecated": true,
+      "implementation": "AddonContext.getLocale"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-permissions",
       "title": "getPermissions",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getPermissions"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-secret",
       "title": "getSecret",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getSecret"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-settings",
       "title": "getSettings",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getSettings"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-theme-type",
       "title": "getThemeType",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.getThemeType"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/set-data",
       "title": "setData",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.setData"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/set-settings",
       "title": "setSettings",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.setSettings"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/sign-url",
       "title": "signUrl",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.signUrl"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/store-secret",
       "title": "storeSecret",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.storeSecret"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/close-dialog",
       "title": "closeDialog",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.closeDialog"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/close-popup",
       "title": "closePopup",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.closePopup"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/fit-size",
       "title": "fitSize",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.fitSize"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/open-dialog",
       "title": "openDialog",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.openDialog"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/open-popup",
       "title": "openPopup",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.openPopup"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/render",
       "title": "render",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.render"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/show-snackbar",
       "title": "showSnackbar",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "AddonContext.showSnackbar"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/block/block:add",
       "title": "BLOCK:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/block/block:update",
       "title": "BLOCK:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/board/board:add",
       "title": "BOARD:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/board/board:update",
       "title": "BOARD:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/card-members/card_member:add",
       "title": "CARD_MEMBER:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/card-members/card_member:remove",
       "title": "CARD_MEMBER:REMOVE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/card-members/card_member:update",
       "title": "CARD_MEMBER:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/card/card:add",
       "title": "CARD:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/card/card:update",
       "title": "CARD:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/comment/comment:add",
       "title": "COMMENT:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/comment/comment:remove",
       "title": "COMMENT:REMOVE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/comment/comment:update",
       "title": "COMMENT:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/file/file:add",
       "title": "FILE:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/file/file:remove",
       "title": "FILE:REMOVE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/file/file:update",
       "title": "FILE:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/space/space:update",
       "title": "SPACE:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/tag/tag:add",
       "title": "TAG:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/tag/tag:remove",
       "title": "TAG:REMOVE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/tag/tag:update",
       "title": "TAG:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/timelog/timelog:add",
       "title": "TIMELOG:ADD",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/timelog/timelog:remove",
       "title": "TIMELOG:REMOVE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "external_webhooks",
       "documentation": "https://developers.kaiten.ru/external-webhooks/timelog/timelog:update",
       "title": "TIMELOG:UPDATE",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "KaitenWebhookEvent"
     },
     {
       "section": "file_migration",
       "documentation": "https://developers.kaiten.ru/restricted-access-files-migration",
       "title": "Migrating to restricted access files",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "Restricted file methods and README"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/appendix/colors",
       "title": "Colors",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/boards",
       "title": "Boards data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/card-timers",
       "title": "Card tracking timer data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/cards",
       "title": "Cards data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/columns",
       "title": "Columns data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/columns-mapping",
       "title": "Columns mapping",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/comments",
       "title": "Comments data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/custom-fields",
       "title": "Custom fields data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/document-files",
       "title": "Document files",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/documents",
       "title": "Documents data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/files",
       "title": "Files data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/folders",
       "title": "Folders data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/meta-data",
       "title": "Metadata file",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/properties-mapping",
       "title": "Properties mapping",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/spaces",
       "title": "Spaces data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/users",
       "title": "Users data",
-      "status": "planned"
+      "status": "typed",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/examples",
       "title": "Kaiten Developers",
-      "status": "planned"
+      "status": "reference",
+      "implementation": "src/imports.ts"
     },
     {
       "section": "incoming_webhook",
       "documentation": "https://developers.kaiten.ru/webhooks",
       "title": "Kaiten Webhooks",
-      "status": "planned",
+      "status": "implemented",
       "request_body": {
         "fields": [
           {
@@ -650,13 +748,16 @@
           "files",
           "checklists"
         ]
-      }
+      },
+      "implementation": "sendCardWebhook",
+      "method": "POST",
+      "endpoint": "User-configured webhook URL"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/audit-logs/retrieve-audit-log-events",
       "title": "Retrieve audit log events",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/audit-logs",
       "query_parameters": [
@@ -723,13 +824,14 @@
           "details",
           "created"
         ]
-      }
+      },
+      "implementation": "KaitenClient.auditLogs.retrieveAuditLogEvents"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/automations/create-automation",
       "title": "Create automation",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_id}/automations",
       "path_parameters": [
@@ -756,13 +858,14 @@
           "type",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.automations.createAutomation"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/automations/delete-automation",
       "title": "Delete automation",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_id}/automations/{automation_uid}",
       "path_parameters": [
@@ -782,13 +885,14 @@
         "fields": [
           "message"
         ]
-      }
+      },
+      "implementation": "KaitenClient.automations.deleteAutomation"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/automations/get-list-of-automations",
       "title": "Get list of automations",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}/automations",
       "path_parameters": [
@@ -815,13 +919,14 @@
           "type",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.automations.getListOfAutomations"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/automations/update-automation",
       "title": "Update automation",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_id}/automations/{automation_uid}",
       "path_parameters": [
@@ -853,13 +958,14 @@
           "type",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.automations.updateAutomation"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/boards/get-board",
       "title": "Get board",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/boards/{id}",
       "path_parameters": [
@@ -895,13 +1001,14 @@
           "lanes",
           "cards"
         ]
-      }
+      },
+      "implementation": "KaitenClient.boards.getBoard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-allowed-users/retrieve-users-list",
       "title": "Retrieve users list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/allowed-users",
       "path_parameters": [
@@ -962,13 +1069,14 @@
           "activated",
           "ui_version"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardAllowedUsers.retrieveUsersList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-categories/add-blocker-category",
       "title": "Add blocker category",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/blockers/{blocker_id}/categories",
       "path_parameters": [
@@ -1002,13 +1110,14 @@
           "name",
           "color"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerCategories.addBlockerCategory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-categories/remove-category",
       "title": "Remove category",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/blockers/{blocker_id}/categories/{category_uuid}",
       "path_parameters": [
@@ -1028,13 +1137,14 @@
         "fields": [
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerCategories.removeCategory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-categories/retrieve-list-of-categories",
       "title": "Retrieve list of categories",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/categories",
       "response": {
@@ -1044,13 +1154,14 @@
           "name",
           "color"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerCategories.retrieveListOfCategories"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-users/add-user-to-the-card-blocker",
       "title": "Add user to the card blocker",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/blockers/{blocker_id}/users",
       "path_parameters": [
@@ -1099,13 +1210,14 @@
           "email_blocked_reason",
           "delete_requested_at"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerUsers.addUserToTheCardBlocker"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-users/remove-user",
       "title": "Remove user",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/blockers/{blocker_id}/users/{user_id}",
       "path_parameters": [
@@ -1125,13 +1237,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerUsers.removeUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user",
       "title": "Retrieve blockers cards list on current user",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/users/current/blockers",
       "response": {
@@ -1140,13 +1253,14 @@
           "blocked_cards",
           "summary"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerUsers.retrieveBlockersCardsListOnCurrentUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blocker-users/retrieve-list-of-users",
       "title": "Retrieve list of users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/blockers/{blocker_id}/users",
       "path_parameters": [
@@ -1190,13 +1304,14 @@
           "block_uid",
           "user_uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockerUsers.retrieveListOfUsers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blockers/block-card",
       "title": "Block card",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/blockers",
       "path_parameters": [
@@ -1255,13 +1370,14 @@
           "blocker",
           "card"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockers.blockCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blockers/delete-card-blockers",
       "title": "Delete card blockers",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/blockers/{id}",
       "path_parameters": [
@@ -1294,13 +1410,14 @@
           "blocked_card",
           "card"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockers.deleteCardBlockers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list",
       "title": "Retrieve card blockers list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/blockers",
       "path_parameters": [
@@ -1329,13 +1446,14 @@
           "blocker",
           "card"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockers.retrieveCardBlockersList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-blockers/update-card-blockers",
       "title": "Update card blockers",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/blockers/{id}",
       "path_parameters": [
@@ -1421,13 +1539,14 @@
           "due_date",
           "due_date_time_present"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardBlockers.updateCardBlockers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklist-items/add-item-to-checklist",
       "title": "Add item to checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{checklist_id}/items",
       "path_parameters": [
@@ -1502,13 +1621,14 @@
           "deleted",
           "due_date"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklistItems.addItemToChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklist-items/remove-checklist-item",
       "title": "Remove checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{checklist_id}/items/{id}",
       "path_parameters": [
@@ -1533,13 +1653,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklistItems.removeChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklist-items/update-checklist-item",
       "title": "Update checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{checklist_id}/items/{id}",
       "path_parameters": [
@@ -1667,13 +1788,14 @@
           "deleted",
           "due_date"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklistItems.updateChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklists/add-checklist-to-card",
       "title": "Add checklist to card",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/checklists",
       "path_parameters": [
@@ -1745,13 +1867,14 @@
           "deleted",
           "items"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklists.addChecklistToCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklists/remove-checklist-from-card",
       "title": "Remove checklist from card",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{id}",
       "path_parameters": [
@@ -1771,13 +1894,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklists.removeChecklistFromCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklists/retrieve-card-checklist",
       "title": "Retrieve card checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{id}",
       "path_parameters": [
@@ -1804,13 +1928,14 @@
           "policy_id",
           "items"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklists.retrieveCardChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-checklists/update-checklist",
       "title": "Update checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/checklists/{id}",
       "path_parameters": [
@@ -1874,13 +1999,14 @@
           "name",
           "policy_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChecklists.updateChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-children/add-children",
       "title": "Add children",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/children",
       "path_parameters": [
@@ -1976,13 +2102,14 @@
           "type",
           "owner"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChildren.addChildren"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-children/remove-children",
       "title": "Remove children",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/children/{id}",
       "path_parameters": [
@@ -2002,13 +2129,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChildren.removeChildren"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-children/retrieve-card-children-list",
       "title": "Retrieve card children list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/children",
       "path_parameters": [
@@ -2091,13 +2219,14 @@
           "card_id",
           "depends_on_card_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardChildren.retrieveCardChildrenList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-comments/add-comment",
       "title": "Add comment",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/comments",
       "path_parameters": [
@@ -2141,13 +2270,14 @@
           "notification_sent",
           "attacments"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardComments.addComment"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-comments/remove-comment",
       "title": "Remove comment",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/comments/{comment_id}",
       "path_parameters": [
@@ -2167,13 +2297,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardComments.removeComment"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-comments/retrieve-card-comments",
       "title": "Retrieve card comments",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/comments",
       "path_parameters": [
@@ -2204,13 +2335,14 @@
           "sd_description",
           "author"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardComments.retrieveCardComments"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-comments/update-comment",
       "title": "Update comment",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/comments/{comment_id}",
       "path_parameters": [
@@ -2259,13 +2391,14 @@
           "notification_sent",
           "attacments"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardComments.updateComment"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-external-links/add-external-link",
       "title": "Add external link",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/external-links",
       "path_parameters": [
@@ -2315,13 +2448,14 @@
           "id",
           "description"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardExternalLinks.addExternalLink"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-external-links/remove-external-link",
       "title": "Remove external link",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/external-links/{id}",
       "path_parameters": [
@@ -2341,13 +2475,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardExternalLinks.removeExternalLink"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-external-links/retrieve-card-external-links",
       "title": "Retrieve card external links",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/external-links",
       "path_parameters": [
@@ -2368,13 +2503,14 @@
           "card_id",
           "external_link_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardExternalLinks.retrieveCardExternalLinks"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-external-links/update-external-link",
       "title": "Update external link",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/external-links/{id}",
       "path_parameters": [
@@ -2438,13 +2574,14 @@
           "id",
           "description"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardExternalLinks.updateExternalLink"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-files/attach-file-to-card",
       "title": "Attach file to card Deprecated",
-      "status": "planned",
+      "status": "implemented",
       "method": "PUT",
       "endpoint": "/api/latest/cards/{card_id}/files",
       "path_parameters": [
@@ -2484,13 +2621,14 @@
           "url"
         ]
       },
-      "deprecated": true
+      "deprecated": true,
+      "implementation": "KaitenClient.cardFiles.attachFileToCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-files/detach-file-from-card",
       "title": "Detach file from card",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/files/{id}",
       "path_parameters": [
@@ -2510,13 +2648,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardFiles.detachFileFromCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-files/update-file",
       "title": "Update file",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/files/{id}",
       "path_parameters": [
@@ -2543,13 +2682,14 @@
       "response": {
         "kind": "object",
         "fields": []
-      }
+      },
+      "implementation": "KaitenClient.cardFiles.updateFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-members/add-member-to-card",
       "title": "Add member to card",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/members",
       "path_parameters": [
@@ -2591,13 +2731,14 @@
           "updated",
           "type"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardMembers.addMemberToCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-members/remove-member-from-card",
       "title": "Remove member from card",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/members/{id}",
       "path_parameters": [
@@ -2617,13 +2758,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardMembers.removeMemberFromCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-members/retrieve-list-of-card-members",
       "title": "Retrieve list of card members",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/members",
       "path_parameters": [
@@ -2656,13 +2798,14 @@
           "user_id",
           "type"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardMembers.retrieveListOfCardMembers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-members/update-member-role",
       "title": "Update member role",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/members/{id}",
       "path_parameters": [
@@ -2703,13 +2846,14 @@
           "user_id",
           "type"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardMembers.updateMemberRole"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-service-desk-external-recipients/add-new-recipient",
       "title": "Add new recipient",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/sd-external-recipients",
       "path_parameters": [
@@ -2747,13 +2891,14 @@
           "unsubscribed",
           "updater_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardServiceDeskExternalRecipients.addNewRecipient"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-service-desk-external-recipients/remove-recipient",
       "title": "Remove recipient",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/sd-external-recipients/{email}",
       "path_parameters": [
@@ -2780,13 +2925,14 @@
           "updater_id",
           "company_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardServiceDeskExternalRecipients.removeRecipient"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-sla/retrieve-card-sla-measurements",
       "title": "Retrieve card SLA measurements",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/sla-rules-measurements",
       "path_parameters": [
@@ -2802,13 +2948,14 @@
           "calendars",
           "rulesTimeData"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardSla.retrieveCardSlaMeasurements"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-tags/add-tag",
       "title": "Add tag",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/tags",
       "path_parameters": [
@@ -2846,13 +2993,14 @@
           "company_id",
           "color"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTags.addTag"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-tags/remove-tag-from-card",
       "title": "Remove tag from card",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/tags/{tag_id}",
       "path_parameters": [
@@ -2872,13 +3020,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTags.removeTagFromCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-tags/rertrieve-list-of-tags",
       "title": "Rertrieve list of tags",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/tags",
       "path_parameters": [
@@ -2897,13 +3046,14 @@
           "card_id",
           "tag_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTags.rertrieveListOfTags"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-time-logs/add-time-log",
       "title": "Add time log",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/time-logs",
       "path_parameters": [
@@ -2959,13 +3109,14 @@
           "for_date",
           "comment"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTimeLogs.addTimeLog"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-time-logs/get-time-logs",
       "title": "Get time logs",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/time-logs",
       "path_parameters": [
@@ -3005,13 +3156,14 @@
           "user",
           "author"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTimeLogs.getTimeLogs"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-time-logs/remove-time-log",
       "title": "Remove time log",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/time-logs/{id}",
       "path_parameters": [
@@ -3031,13 +3183,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTimeLogs.removeTimeLog"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-time-logs/update-log-record",
       "title": "Update log record",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/time-logs/{id}",
       "path_parameters": [
@@ -3115,13 +3268,14 @@
           "for_date",
           "comment"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTimeLogs.updateLogRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-type-tree-entities/add-tree-entity-to-card-type",
       "title": "Add tree entity to card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/card-types/{type_id}/tree-entities",
       "path_parameters": [
@@ -3152,13 +3306,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypeTreeEntities.addTreeEntityToCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-type-tree-entities/delete-tree-entity-from-card-type",
       "title": "Delete tree entity from card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/card-types/{type_id}/tree-entities/{uid}",
       "path_parameters": [
@@ -3174,14 +3329,15 @@
         }
       ],
       "response": {
-        "kind": "text"
-      }
+        "kind": "void"
+      },
+      "implementation": "KaitenClient.cardTypeTreeEntities.deleteTreeEntityFromCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-type-tree-entities/get-list-of-type-tree-entities",
       "title": "Get list of type tree entities",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/card-types/{type_id}/tree-entities",
       "path_parameters": [
@@ -3206,13 +3362,14 @@
           "for_everyone_access_role_id",
           "protected"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypeTreeEntities.getListOfTypeTreeEntities"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-types/create-new-card-type",
       "title": "Create new card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/card-types",
       "request_body": {
@@ -3331,13 +3488,14 @@
           "card_properties",
           "suggest_fields"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypes.createNewCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-types/get-card-type",
       "title": "Get card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/card-types/{id}",
       "path_parameters": [
@@ -3363,13 +3521,14 @@
           "card_properties",
           "suggest_fields"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypes.getCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-types/get-list-of-card-types",
       "title": "Get list of card types",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/card-types",
       "query_parameters": [
@@ -3400,13 +3559,14 @@
           "card_properties",
           "suggest_fields"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypes.getListOfCardTypes"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-types/remove-card-type",
       "title": "Remove card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/card-types/{id}",
       "path_parameters": [
@@ -3447,13 +3607,14 @@
           "card_properties",
           "suggest_fields"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypes.removeCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/card-types/update-card-type",
       "title": "Update card type",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/card-types/{id}",
       "path_parameters": [
@@ -3598,13 +3759,14 @@
           "card_properties",
           "suggest_fields"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cardTypes.updateCardType"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/batch-update-for-cards",
       "title": "Batch update for cards",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards",
       "request_body": {
@@ -3895,13 +4057,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.batchUpdateForCards"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/create-new-card",
       "title": "Create new card",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards",
       "request_body": {
@@ -4130,13 +4293,14 @@
           "files",
           "checklists"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.createNewCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/delete-card",
       "title": "Delete card",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}",
       "path_parameters": [
@@ -4218,13 +4382,14 @@
           "owner",
           "members"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.deleteCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/retrieve-card",
       "title": "Retrieve card",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}",
       "path_parameters": [
@@ -4332,13 +4497,14 @@
           "cardRole",
           "email"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.retrieveCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/retrieve-card-baselines",
       "title": "Retrieve card baselines",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/baselines",
       "path_parameters": [
@@ -4357,13 +4523,14 @@
           "planned_start",
           "planned_end"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.retrieveCardBaselines"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/retrieve-card-list",
       "title": "Retrieve card list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards",
       "query_parameters": [
@@ -4588,7 +4755,7 @@
           "required": false
         },
         {
-          "name": "filter BETA",
+          "name": "filter",
           "type": "string Schema",
           "required": false
         },
@@ -4702,13 +4869,14 @@
           "type",
           "path_data"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.retrieveCardList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/retrieve-card-location-history",
       "title": "Retrieve card location history",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/location-history",
       "path_parameters": [
@@ -4733,13 +4901,14 @@
           "condition",
           "changed"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.retrieveCardLocationHistory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/cards/update-card",
       "title": "Update card",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}",
       "path_parameters": [
@@ -4992,13 +5161,14 @@
           "owner",
           "members"
         ]
-      }
+      },
+      "implementation": "KaitenClient.cards.updateCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/checklist-items/add-item-to-checklist",
       "title": "Add item to checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/checklists/{checklist_id}/items",
       "path_parameters": [
@@ -5068,13 +5238,14 @@
           "deleted",
           "due_date"
         ]
-      }
+      },
+      "implementation": "KaitenClient.checklistItems.addItemToChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/checklist-items/remove-checklist-item",
       "title": "Remove checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/checklists/{checklist_id}/items/{id}",
       "path_parameters": [
@@ -5094,13 +5265,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.checklistItems.removeChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/checklist-items/update-checklist-item",
       "title": "Update checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/checklists/{checklist_id}/items/{id}",
       "path_parameters": [
@@ -5223,13 +5395,14 @@
           "deleted",
           "due_date"
         ]
-      }
+      },
+      "implementation": "KaitenClient.checklistItems.updateChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/checklists/retrieve-cards-with-checklist",
       "title": "Retrieve cards with checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/checklists/{id}",
       "path_parameters": [
@@ -5322,13 +5495,14 @@
           "path_data",
           "space_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.checklists.retrieveCardsWithChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/columns/create-new-column",
       "title": "Create new column",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/boards/{board_id}/columns",
       "path_parameters": [
@@ -5458,13 +5632,14 @@
           "months_to_hide_cards",
           "card_hide_after_days"
         ]
-      }
+      },
+      "implementation": "KaitenClient.columns.createNewColumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/columns/get-list-of-columns",
       "title": "Get list of columns",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/boards/{board_id}/columns",
       "path_parameters": [
@@ -5500,13 +5675,14 @@
           "pause_sla",
           "subcolumns"
         ]
-      }
+      },
+      "implementation": "KaitenClient.columns.getListOfColumns"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/columns/remove-column",
       "title": "Remove column",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/boards/{board_id}/columns/{id}",
       "path_parameters": [
@@ -5538,13 +5714,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.columns.removeColumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/columns/update-column",
       "title": "Update column",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/boards/{board_id}/columns/{id}",
       "path_parameters": [
@@ -5810,13 +5987,14 @@
           "months_to_hide_cards",
           "card_hide_after_days"
         ]
-      }
+      },
+      "implementation": "KaitenClient.columns.updateColumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/company-users/get-list-of-users",
       "title": "Get list of users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/users",
       "query_parameters": [
@@ -5950,13 +6128,14 @@
           "locked",
           "take_licence"
         ]
-      }
+      },
+      "implementation": "KaitenClient.companyUsers.getListOfUsers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/company-users/remove-virtual-user",
       "title": "Remove virtual user",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/users/{id}",
       "path_parameters": [
@@ -5971,13 +6150,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.companyUsers.removeVirtualUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/company-users/update-user",
       "title": "Update user",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/users/{id}",
       "path_parameters": [
@@ -6047,13 +6227,14 @@
           "locked",
           "temporarily_inactive"
         ]
-      }
+      },
+      "implementation": "KaitenClient.companyUsers.updateUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directories/create-custom-directory",
       "title": "Create custom directory",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-directories",
       "request_body": {
@@ -6187,13 +6368,14 @@
           "fields"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectories.createCustomDirectory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directories/delete-custom-directory",
       "title": "Delete custom directory",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}",
       "path_parameters": [
@@ -6212,13 +6394,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectories.deleteCustomDirectory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directories/get-custom-directory",
       "title": "Get custom directory",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}",
       "path_parameters": [
@@ -6244,13 +6427,14 @@
           "fields"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectories.getCustomDirectory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directories/get-list-of-custom-directories",
       "title": "Get list of custom directories",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories",
       "query_parameters": [
@@ -6303,13 +6487,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectories.getListOfCustomDirectories"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directories/update-custom-directory",
       "title": "Update custom directory",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}",
       "path_parameters": [
@@ -6453,13 +6638,14 @@
           "fields"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectories.updateCustomDirectory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-fields/create-field",
       "title": "Create field",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/fields",
       "path_parameters": [
@@ -6540,13 +6726,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryFields.createField"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-fields/delete-field",
       "title": "Delete field",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/fields/{field_id}",
       "path_parameters": [
@@ -6572,13 +6759,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryFields.deleteField"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-fields/get-field",
       "title": "Get field",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/fields/{field_id}",
       "path_parameters": [
@@ -6617,13 +6805,14 @@
           "customProperty"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryFields.getField"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-fields/get-list-of-fields",
       "title": "Get list of fields",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/fields",
       "path_parameters": [
@@ -6658,13 +6847,14 @@
           "condition"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryFields.getListOfFields"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-fields/update-field",
       "title": "Update field",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/fields/{field_id}",
       "path_parameters": [
@@ -6735,13 +6925,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryFields.updateField"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/create-record",
       "title": "Create record",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records",
       "path_parameters": [
@@ -6790,13 +6981,14 @@
           "values"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.createRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/delete-record",
       "title": "Delete record",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records/{record_id}",
       "path_parameters": [
@@ -6820,13 +7012,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.deleteRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/get-cards-linked-to-record",
       "title": "Get cards linked to record",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records/{record_id}/cards",
       "path_parameters": [
@@ -6866,13 +7059,14 @@
           "title"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.getCardsLinkedToRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/get-list-of-records",
       "title": "Get list of records",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records",
       "path_parameters": [
@@ -6941,13 +7135,14 @@
           "values"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.getListOfRecords"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/get-record",
       "title": "Get record",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records/{record_id}",
       "path_parameters": [
@@ -6986,13 +7181,14 @@
           "values"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.getRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-directory-records/update-record",
       "title": "Update record",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-directories/{directory_id}/records/{record_id}",
       "path_parameters": [
@@ -7051,13 +7247,14 @@
           "values"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.customDirectoryRecords.updateRecord"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-properties/create-new-property",
       "title": "Create new property",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-properties",
       "request_body": {
@@ -7456,13 +7653,14 @@
           "color",
           "external_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customProperties.createNewProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-properties/get-list-of-properties",
       "title": "Get list of properties",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties",
       "query_parameters": [
@@ -7542,13 +7740,14 @@
           "color",
           "external_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customProperties.getListOfProperties"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-properties/get-property",
       "title": "Get property",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{id}",
       "path_parameters": [
@@ -7583,13 +7782,14 @@
           "color",
           "external_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customProperties.getProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-properties/remove-property",
       "title": "Remove property",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-properties/{id}",
       "path_parameters": [
@@ -7622,13 +7822,14 @@
           "fields_settings",
           "color"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customProperties.removeProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-properties/update-property",
       "title": "Update property",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-properties/{id}",
       "path_parameters": [
@@ -7980,13 +8181,14 @@
           "color",
           "external_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customProperties.updateProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-catalog-values/create-new-catalog-value",
       "title": "Create new catalog value",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/catalog-values",
       "path_parameters": [
@@ -8024,13 +8226,14 @@
           "updater_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCatalogValues.createNewCatalogValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-catalog-values/get-catalog-value",
       "title": "Get catalog value",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/catalog-values/{id}",
       "path_parameters": [
@@ -8058,13 +8261,14 @@
           "updater_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCatalogValues.getCatalogValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-catalog-values/get-list-of-catalog-values",
       "title": "Get list of catalog values",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/catalog-values",
       "path_parameters": [
@@ -8109,13 +8313,14 @@
           "updater_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCatalogValues.getListOfCatalogValues"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-catalog-values/remove-property",
       "title": "Remove property",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/catalog-values/{id}",
       "path_parameters": [
@@ -8143,13 +8348,14 @@
           "updater_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCatalogValues.removeProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-catalog-values/update-catalog-value",
       "title": "Update catalog value",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/catalog-values/{id}",
       "path_parameters": [
@@ -8212,13 +8418,14 @@
           "updater_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCatalogValues.updateCatalogValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-score-values/create-new-score-value",
       "title": "Create new score value",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-score-values",
       "path_parameters": [
@@ -8263,13 +8470,14 @@
           "company_id",
           "card_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveScoreValues.createNewScoreValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-score-values/get-list-of-score-values",
       "title": "Get list of score values",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-score-values",
       "path_parameters": [
@@ -8294,13 +8502,14 @@
           "author_id",
           "author"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveScoreValues.getListOfScoreValues"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-score-values/update-score-value",
       "title": "Update score value",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-score-values/{id}",
       "path_parameters": [
@@ -8362,13 +8571,14 @@
           "company_id",
           "card_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveScoreValues.updateScoreValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-vote-values/create-new-vote-value",
       "title": "Create new vote value",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-vote-values",
       "path_parameters": [
@@ -8426,13 +8636,14 @@
           "company_id",
           "card_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveVoteValues.createNewVoteValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-vote-values/get-list-of-vote-values",
       "title": "Get list of vote values",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-vote-values",
       "path_parameters": [
@@ -8458,13 +8669,14 @@
           "author_id",
           "author"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveVoteValues.getListOfVoteValues"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-vote-values/remove-vote-value",
       "title": "Remove vote value",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-vote-values/{id}",
       "path_parameters": [
@@ -8515,13 +8727,14 @@
           "card_id",
           "author_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveVoteValues.removeVoteValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-collective-vote-values/update-vote-value",
       "title": "Update vote value",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_id}/custom-properties/{property_id}/collective-vote-values/{id}",
       "path_parameters": [
@@ -8574,13 +8787,14 @@
           "company_id",
           "card_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyCollectiveVoteValues.updateVoteValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-select-values/create-new-select-value",
       "title": "Create new select value",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/select-values",
       "path_parameters": [
@@ -8636,13 +8850,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertySelectValues.createNewSelectValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-select-values/get-list-of-select-values",
       "title": "Get list of select values",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/select-values",
       "path_parameters": [
@@ -8701,13 +8916,14 @@
           "updated",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertySelectValues.getListOfSelectValues"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-select-values/get-select-value",
       "title": "Get select value",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/select-values/{id}",
       "path_parameters": [
@@ -8737,13 +8953,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertySelectValues.getSelectValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-select-values/remove-property",
       "title": "Remove property",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/select-values/{id}",
       "path_parameters": [
@@ -8773,13 +8990,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertySelectValues.removeProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-select-values/update-select-value",
       "title": "Update select value",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/select-values/{id}",
       "path_parameters": [
@@ -8879,13 +9097,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertySelectValues.updateSelectValue"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-tree-entities/add-tree-entity-to-custom-property",
       "title": "Add tree entity to custom property",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/tree-entities",
       "path_parameters": [
@@ -8916,13 +9135,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyTreeEntities.addTreeEntityToCustomProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-tree-entities/delete-tree-entity-from-custom-property",
       "title": "Delete tree entity from custom property",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/tree-entities/{uid}",
       "path_parameters": [
@@ -8938,14 +9158,15 @@
         }
       ],
       "response": {
-        "kind": "text"
-      }
+        "kind": "void"
+      },
+      "implementation": "KaitenClient.customPropertyTreeEntities.deleteTreeEntityFromCustomProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/custom-property-tree-entities/get-list-of-custom-property-tree-entities",
       "title": "Get list of custom property tree entities",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/custom-properties/{property_id}/tree-entities",
       "path_parameters": [
@@ -8970,13 +9191,14 @@
           "for_everyone_access_role_id",
           "protected"
         ]
-      }
+      },
+      "implementation": "KaitenClient.customPropertyTreeEntities.getListOfCustomPropertyTreeEntities"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-groups/create-new-document-group",
       "title": "Create new document group",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/document-groups",
       "request_body": {
@@ -9055,13 +9277,14 @@
           "index_document_uid",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentGroups.createNewDocumentGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-groups/remove-document-group",
       "title": "Remove document group",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/document-groups/{document_group_uid}",
       "path_parameters": [
@@ -9100,13 +9323,14 @@
           "path",
           "index_document_uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentGroups.removeDocumentGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-groups/retrieve-document-group",
       "title": "Retrieve document group",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/document-groups/{document_group_uid}",
       "path_parameters": [
@@ -9146,13 +9370,14 @@
           "index_document_uid",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentGroups.retrieveDocumentGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups",
       "title": "Retrieve list of document groups",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/document-groups",
       "query_parameters": [
@@ -9221,13 +9446,14 @@
           "path",
           "index_document_uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentGroups.retrieveListOfDocumentGroups"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-groups/update-document-group",
       "title": "Update document group",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/document-groups/{document_group_uid}",
       "path_parameters": [
@@ -9425,13 +9651,14 @@
           "index_document_uid",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentGroups.updateDocumentGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/document-schemas/get-document-data-schema",
       "title": "Get document data schema",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/document-schemas/{id}",
       "path_parameters": [
@@ -12232,13 +12459,14 @@
           "version",
           "definitions"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documentSchemas.getDocumentDataSchema"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/documents/create-new-document",
       "title": "Create new document",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/documents",
       "request_body": {
@@ -12334,13 +12562,14 @@
           "group_id",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documents.createNewDocument"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/documents/remove-document",
       "title": "Remove document",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/documents/{document_uid}",
       "path_parameters": [
@@ -12383,13 +12612,14 @@
           "notification_period_end",
           "group_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documents.removeDocument"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/documents/retrieve-document",
       "title": "Retrieve document",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/documents/{document_uid}",
       "path_parameters": [
@@ -12434,13 +12664,14 @@
           "group_id",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documents.retrieveDocument"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/documents/retrieve-list-of-documents",
       "title": "Retrieve list of documents",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/documents",
       "query_parameters": [
@@ -12518,13 +12749,14 @@
           "notification_period_end",
           "group_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documents.retrieveListOfDocuments"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/documents/update-document",
       "title": "Update document",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/documents/{document_uid}",
       "path_parameters": [
@@ -12864,13 +13096,14 @@
           "group_id",
           "access_record"
         ]
-      }
+      },
+      "implementation": "KaitenClient.documents.updateDocument"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-admins/add-admin-to-group",
       "title": "Add admin to group",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/groups/{group_uid}/admins",
       "path_parameters": [
@@ -12920,13 +13153,14 @@
           "delete_requested_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupAdmins.addAdminToGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-admins/get-list-of-group-admins",
       "title": "Get list of group admins",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/groups/{group_uid}/admins",
       "path_parameters": [
@@ -12964,13 +13198,14 @@
           "delete_confirmation_sent_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupAdmins.getListOfGroupAdmins"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-admins/remove-admin-from-group",
       "title": "Remove admin from group",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/groups/{group_uid}/admins/{user_id}",
       "path_parameters": [
@@ -13010,13 +13245,14 @@
           "delete_requested_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupAdmins.removeAdminFromGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-entities/add-entity",
       "title": "Add entity",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/groups/{group_uid}/entities",
       "path_parameters": [
@@ -13064,13 +13300,14 @@
           "role_ids"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupEntities.addEntity"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-entities/get-list-of-group-entities",
       "title": "Get list of group entities",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/groups/{group_uid}/entities",
       "path_parameters": [
@@ -13090,13 +13327,14 @@
           "own_role_ids"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupEntities.getListOfGroupEntities"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-entities/remove-entity",
       "title": "Remove entity",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/groups/{group_uid}/entities/{uid}",
       "path_parameters": [
@@ -13125,13 +13363,14 @@
           "own_role"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupEntities.removeEntity"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-entities/update-group-entity",
       "title": "Update group entity",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/groups/{group_uid}/entities/{uid}",
       "path_parameters": [
@@ -13182,13 +13421,14 @@
           "role_ids"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupEntities.updateGroupEntity"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-users/add-user-to-group",
       "title": "Add user to group",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/groups/{group_uid}/users",
       "path_parameters": [
@@ -13255,13 +13495,14 @@
           "delete_requested_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupUsers.addUserToGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-users/get-list-of-group-users",
       "title": "Get list of group users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/groups/{group_uid}/users",
       "path_parameters": [
@@ -13299,13 +13540,14 @@
           "delete_confirmation_sent_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupUsers.getListOfGroupUsers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/group-users/remove-user-from-group",
       "title": "Remove user from group",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/groups/{group_uid}/users/{user_id}",
       "path_parameters": [
@@ -13345,13 +13587,14 @@
           "delete_requested_at"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groupUsers.removeUserFromGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/groups/create-group",
       "title": "Create group",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/company/groups",
       "request_body": {
@@ -13391,13 +13634,14 @@
           "uid"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groups.createGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/groups/get-group",
       "title": "Get group",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/groups/{uid}",
       "path_parameters": [
@@ -13419,13 +13663,14 @@
           "uid"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groups.getGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/groups/get-list-of-groups",
       "title": "Get list of groups",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/company/groups",
       "query_parameters": [
@@ -13477,13 +13722,14 @@
           "uid"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groups.getListOfGroups"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/groups/remove-group",
       "title": "Remove Group",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/company/groups/{uid}",
       "path_parameters": [
@@ -13505,13 +13751,14 @@
           "uid"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groups.removeGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/groups/update-group",
       "title": "Update group",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/company/groups/{uid}",
       "path_parameters": [
@@ -13555,13 +13802,14 @@
           "uid"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.groups.updateGroup"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/add-card-to-iteration",
       "title": "Add card to iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{iteration_id}/cards",
       "path_parameters": [
@@ -13605,13 +13853,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.addCardToIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/create-iteration",
       "title": "Create iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations",
       "path_parameters": [
@@ -13680,13 +13929,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.createIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/delete-iteration",
       "title": "Delete iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{id}",
       "path_parameters": [
@@ -13736,13 +13986,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.deleteIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/get-card-iterations-history",
       "title": "Get card iterations history",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_uid}/iterations-history",
       "path_parameters": [
@@ -13772,13 +14023,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.getCardIterationsHistory"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/get-iteration",
       "title": "Get iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{id}",
       "path_parameters": [
@@ -13812,13 +14064,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.getIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/remove-card-from-iteration",
       "title": "Remove card from iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{iteration_id}/cards/{uid}",
       "path_parameters": [
@@ -13851,13 +14104,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.removeCardFromIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/retrieve-cards-in-iteration",
       "title": "Retrieve cards in iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{iteration_id}/cards",
       "path_parameters": [
@@ -13893,13 +14147,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.retrieveCardsInIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/retrieve-list-of-iterations",
       "title": "Retrieve list of iterations",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations",
       "path_parameters": [
@@ -13955,13 +14210,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.retrieveListOfIterations"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/iterations/update-iteration",
       "title": "Update iteration",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_uid}/iterations/{id}",
       "path_parameters": [
@@ -14082,13 +14338,14 @@
           "updated"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.iterations.updateIteration"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/lanes/create-new-lane",
       "title": "Create new lane",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/boards/{board_id}/lanes",
       "path_parameters": [
@@ -14167,13 +14424,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.lanes.createNewLane"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/lanes/get-list-of-lanes",
       "title": "Get list of lanes",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/boards/{board_id}/lanes",
       "path_parameters": [
@@ -14210,13 +14468,14 @@
           "condition",
           "last_moved_warning_after_minutes"
         ]
-      }
+      },
+      "implementation": "KaitenClient.lanes.getListOfLanes"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/lanes/remove-lane",
       "title": "Remove lane",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/boards/{board_id}/lanes/{id}",
       "path_parameters": [
@@ -14248,13 +14507,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.lanes.removeLane"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/lanes/update-lane",
       "title": "Update lane",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/boards/{board_id}/lanes/{id}",
       "path_parameters": [
@@ -14421,13 +14681,14 @@
           "external_id",
           "condition"
         ]
-      }
+      },
+      "implementation": "KaitenClient.lanes.updateLane"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-card-files/attach-file-to-card",
       "title": "Attach file to card",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_uid}/files",
       "path_parameters": [
@@ -14452,13 +14713,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCardFiles.attachFileToCard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-card-files/delete-card-file",
       "title": "Delete card file",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_uid}/files/{id}",
       "path_parameters": [
@@ -14478,13 +14740,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCardFiles.deleteCardFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-card-files/get-card-file",
       "title": "Get card file",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_uid}/files/{id}",
       "path_parameters": [
@@ -14526,13 +14789,14 @@
           "card_cover",
           "url"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCardFiles.getCardFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-card-files/update-card-file",
       "title": "Update card file",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_uid}/files/{id}",
       "path_parameters": [
@@ -14571,13 +14835,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCardFiles.updateCardFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-comment-files/attach-file-to-comment",
       "title": "Attach file to comment",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_uid}/comments/{comment_uid}/files",
       "path_parameters": [
@@ -14608,13 +14873,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCommentFiles.attachFileToComment"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-comment-files/delete-comment-file",
       "title": "Delete comment file",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_uid}/comments/{comment_uid}/files/{id}",
       "path_parameters": [
@@ -14639,13 +14905,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCommentFiles.deleteCommentFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-comment-files/get-comment-file",
       "title": "Get comment file",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_uid}/comments/{comment_uid}/files/{id}",
       "path_parameters": [
@@ -14693,13 +14960,14 @@
           "card_cover",
           "url"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCommentFiles.getCommentFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-comment-files/update-comment-file",
       "title": "Update comment file",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_uid}/comments/{comment_uid}/files/{id}",
       "path_parameters": [
@@ -14744,13 +15012,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCommentFiles.updateCommentFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-custom-property-files/attach-file-to-custom-property",
       "title": "Attach file to custom property",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/cards/{card_uid}/custom-properties/{property_uid}/files",
       "path_parameters": [
@@ -14781,13 +15050,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCustomPropertyFiles.attachFileToCustomProperty"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-custom-property-files/delete-custom-property-file",
       "title": "Delete custom property file",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/cards/{card_uid}/custom-properties/{property_uid}/files/{id}",
       "path_parameters": [
@@ -14812,13 +15082,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCustomPropertyFiles.deleteCustomPropertyFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-custom-property-files/get-custom-property-file",
       "title": "Get custom property file",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/cards/{card_uid}/custom-properties/{property_uid}/files/{id}",
       "path_parameters": [
@@ -14866,13 +15137,14 @@
           "card_cover",
           "url"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCustomPropertyFiles.getCustomPropertyFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/restricted-access-custom-property-files/update-custom-property-file",
       "title": "Update custom property file",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/cards/{card_uid}/custom-properties/{property_uid}/files/{id}",
       "path_parameters": [
@@ -14917,13 +15189,14 @@
           "updated",
           "card_cover"
         ]
-      }
+      },
+      "implementation": "KaitenClient.restrictedAccessCustomPropertyFiles.updateCustomPropertyFile"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/service-desk-services/retrieve-services-list",
       "title": "Retrieve services list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/service-desk/services",
       "response": {
@@ -14949,13 +15222,14 @@
           "lane",
           "voteCustomProperty"
         ]
-      }
+      },
+      "implementation": "KaitenClient.serviceDeskServices.retrieveServicesList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-boards/create-new-board",
       "title": "Create new board",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_id}/boards",
       "path_parameters": [
@@ -15206,13 +15480,14 @@
           "left",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceBoards.createNewBoard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-boards/get-board",
       "title": "Get board",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}/boards/{id}",
       "path_parameters": [
@@ -15258,13 +15533,14 @@
           "left",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceBoards.getBoard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-boards/get-list-of-boards",
       "title": "Get list of boards",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}/boards",
       "path_parameters": [
@@ -15305,13 +15581,14 @@
           "sort_order",
           "type"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceBoards.getListOfBoards"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-boards/remove-board",
       "title": "Remove board",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_id}/boards/{id}",
       "path_parameters": [
@@ -15343,13 +15620,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceBoards.removeBoard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-boards/update-board",
       "title": "Update board",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_id}/boards/{id}",
       "path_parameters": [
@@ -15662,13 +15940,14 @@
           "left",
           "sort_order"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceBoards.updateBoard"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist-items/create-new-space-template-checklist-item",
       "title": "Create new space template checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists/{template_checklist_uid}/items",
       "path_parameters": [
@@ -15715,13 +15994,14 @@
           "created",
           "updated"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklistItems.createNewSpaceTemplateChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist-items/remove-space-template-checklist-item",
       "title": "Remove space template checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists/{template_checklist_uid}/items/{item_uid}",
       "path_parameters": [
@@ -15746,13 +16026,14 @@
         "fields": [
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklistItems.removeSpaceTemplateChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist-items/update-space-template-checklist-item",
       "title": "Update space template checklist item",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists/{template_checklist_uid}/items/{item_uid}",
       "path_parameters": [
@@ -15813,13 +16094,14 @@
           "created",
           "updated"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklistItems.updateSpaceTemplateChecklistItem"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist/create-new-space-template-checklist",
       "title": "Create new space template checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists",
       "path_parameters": [
@@ -15865,13 +16147,14 @@
           "created",
           "updated"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklist.createNewSpaceTemplateChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist/get-list-of-space-template-checklists",
       "title": "Get list of space template checklists",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists",
       "path_parameters": [
@@ -15892,13 +16175,14 @@
           "updated",
           "items"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklist.getListOfSpaceTemplateChecklists"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist/remove-space-template-checklist",
       "title": "Remove space template checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists/{template_checklist_uid}",
       "path_parameters": [
@@ -15918,13 +16202,14 @@
         "fields": [
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklist.removeSpaceTemplateChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-template-checklist/update-space-template-checklist",
       "title": "Update space template checklist",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_uid}/template-checklists/{template_checklist_uid}",
       "path_parameters": [
@@ -15984,13 +16269,14 @@
           "created",
           "updated"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceTemplateChecklist.updateSpaceTemplateChecklist"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-users/change-user-role-and-notification-settings",
       "title": "Change user role and notification settings",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_id}/users/{id}",
       "path_parameters": [
@@ -16059,13 +16345,14 @@
           "user_id",
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceUsers.changeUserRoleAndNotificationSettings"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-users/get-list-of-users",
       "title": "Get list of users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}/users",
       "path_parameters": [
@@ -16124,13 +16411,14 @@
           "own_role",
           "current"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceUsers.getListOfUsers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-users/get-user",
       "title": "Get user",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}/users/{id}",
       "path_parameters": [
@@ -16168,13 +16456,14 @@
           "user_id",
           "access_mod"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceUsers.getUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-users/invite-user-to-space",
       "title": "Invite user to space",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces/{space_id}/users",
       "path_parameters": [
@@ -16222,13 +16511,14 @@
           "access_record",
           "message"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceUsers.inviteUserToSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/space-users/remove-user-from-space",
       "title": "Remove user from space",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_id}/users/{id}",
       "path_parameters": [
@@ -16253,13 +16543,14 @@
           "own_role",
           "user_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaceUsers.removeUserFromSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/spaces/create-new-space",
       "title": "Create new space",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/spaces",
       "request_body": {
@@ -16340,13 +16631,14 @@
           "settings",
           "users"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaces.createNewSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/spaces/remove-space",
       "title": "Remove space",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/spaces/{space_id}",
       "path_parameters": [
@@ -16361,13 +16653,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaces.removeSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/spaces/retrieve-list-of-spaces",
       "title": "Retrieve list of spaces",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces",
       "query_parameters": [
@@ -16407,13 +16700,14 @@
           "entity_uid",
           "access_mod"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaces.retrieveListOfSpaces"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/spaces/retrieve-space",
       "title": "Retrieve space",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/spaces/{space_id}",
       "path_parameters": [
@@ -16444,13 +16738,14 @@
           "external_id",
           "settings"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaces.retrieveSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/spaces/update-space",
       "title": "Update space",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/spaces/{space_id}",
       "path_parameters": [
@@ -16564,13 +16859,14 @@
           "external_id",
           "settings"
         ]
-      }
+      },
+      "implementation": "KaitenClient.spaces.updateSpace"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/sprints/get-sprint-summary",
       "title": "Get sprint summary",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/sprints/{id}",
       "path_parameters": [
@@ -16614,13 +16910,14 @@
           "cardUpdates",
           "customProperties"
         ]
-      }
+      },
+      "implementation": "KaitenClient.sprints.getSprintSummary"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/sprints/get-sprints-list",
       "title": "Get sprints list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/sprints",
       "query_parameters": [
@@ -16664,13 +16961,14 @@
           "updated",
           "archived"
         ]
-      }
+      },
+      "implementation": "KaitenClient.sprints.getSprintsList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/subcolumn/create-new-subcolumn",
       "title": "Create new subcolumn",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/columns/{column_id}/subcolumns",
       "path_parameters": [
@@ -16789,13 +17087,14 @@
           "months_to_hide_cards",
           "card_hide_after_days"
         ]
-      }
+      },
+      "implementation": "KaitenClient.subcolumn.createNewSubcolumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/subcolumn/get-list-of-subcolumns",
       "title": "Get list of subcolumns",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/columns/{column_id}/subcolumns",
       "path_parameters": [
@@ -16829,13 +17128,14 @@
           "last_moved_warning_after_hours",
           "last_moved_warning_after_minutes"
         ]
-      }
+      },
+      "implementation": "KaitenClient.subcolumn.getListOfSubcolumns"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/subcolumn/remove-subcolumn",
       "title": "Remove subcolumn",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/columns/{column_id}/subcolumns/{id}",
       "path_parameters": [
@@ -16867,13 +17167,14 @@
         "fields": [
           "id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.subcolumn.removeSubcolumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/subcolumn/update-subcolumn",
       "title": "Update subcolumn",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/columns/{column_id}/subcolumns/{id}",
       "path_parameters": [
@@ -17110,13 +17411,14 @@
           "months_to_hide_cards",
           "card_hide_after_days"
         ]
-      }
+      },
+      "implementation": "KaitenClient.subcolumn.updateSubcolumn"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/tags/add-tag",
       "title": "Add tag",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/tags",
       "query_parameters": [
@@ -17174,13 +17476,14 @@
           "color",
           "archived"
         ]
-      }
+      },
+      "implementation": "KaitenClient.tags.addTag"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/tags/retrieve-list-of-tags",
       "title": "Retrieve list of tags",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/tags",
       "query_parameters": [
@@ -17221,13 +17524,14 @@
           "color",
           "archived"
         ]
-      }
+      },
+      "implementation": "KaitenClient.tags.retrieveListOfTags"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/timesheet/get-list",
       "title": "Get list",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/time-logs",
       "query_parameters": [
@@ -17340,13 +17644,14 @@
           "user",
           "role"
         ]
-      }
+      },
+      "implementation": "KaitenClient.timesheet.getList"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/tree-entities/get-list-of-entities",
       "title": "Get list of entities",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/tree-entities",
       "query_parameters": [
@@ -17388,13 +17693,14 @@
           "for_everyone_access_role_id"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.treeEntities.getListOfEntities"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/tree-entity-roles/get-list-of-tree-entity-roles",
       "title": "Get list of tree entity roles",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/tree-entity-roles",
       "response": {
@@ -17409,13 +17715,14 @@
           "created"
         ]
       },
-      "beta": true
+      "beta": true,
+      "implementation": "KaitenClient.treeEntityRoles.getListOfTreeEntityRoles"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/user-roles/create-user-role",
       "title": "Create user role",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/api/latest/user-roles",
       "request_body": {
@@ -17445,13 +17752,14 @@
           "id",
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.userRoles.createUserRole"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/user-roles/get-list-of-user-roles",
       "title": "Get list of user roles",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/user-roles",
       "response": {
@@ -17464,13 +17772,14 @@
           "name",
           "company_id"
         ]
-      }
+      },
+      "implementation": "KaitenClient.userRoles.getListOfUserRoles"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/user-roles/get-user-role",
       "title": "Get user role",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/user-roles/{role_id}",
       "path_parameters": [
@@ -17490,13 +17799,14 @@
           "id",
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.userRoles.getUserRole"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/user-roles/remove-user-role",
       "title": "Remove user role",
-      "status": "planned",
+      "status": "implemented",
       "method": "DELETE",
       "endpoint": "/api/latest/user-roles/{role_id}",
       "path_parameters": [
@@ -17531,13 +17841,14 @@
           "id",
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.userRoles.removeUserRole"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/user-roles/update-user-role",
       "title": "Update user role",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/user-roles/{role_id}",
       "path_parameters": [
@@ -17574,13 +17885,14 @@
           "id",
           "uid"
         ]
-      }
+      },
+      "implementation": "KaitenClient.userRoles.updateUserRole"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/users/retrieve-current-user",
       "title": "Retrieve current user",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/users/current",
       "response": {
@@ -17623,13 +17935,14 @@
           "last_request_method",
           "has_password"
         ]
-      }
+      },
+      "implementation": "KaitenClient.users.retrieveCurrentUser"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/users/retrieve-list-of-users",
       "title": "Retrieve list of users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/api/latest/users",
       "query_parameters": [
@@ -17711,13 +18024,14 @@
           "last_request_date",
           "last_request_method"
         ]
-      }
+      },
+      "implementation": "KaitenClient.users.retrieveListOfUsers"
     },
     {
       "section": "rest",
       "documentation": "https://developers.kaiten.ru/users/update-user",
       "title": "Update user",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/api/latest/users/{id}",
       "path_parameters": [
@@ -17972,13 +18286,14 @@
           "telegram_settings",
           "has_password"
         ]
-      }
+      },
+      "implementation": "KaitenClient.users.updateUser"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/groups/add-group",
       "title": "Add group",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/scim/v2/Groups",
       "request_body": {
@@ -17998,13 +18313,14 @@
           "displayName",
           "meta"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.groups.addGroup"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/groups/get-group",
       "title": "Get group",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/scim/v2/Groups/{group_id}",
       "response": {
@@ -18016,13 +18332,14 @@
           "meta",
           "members"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.groups.getGroup"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/groups/get-groups",
       "title": "Get groups",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/scim/v2/Groups",
       "query_parameters": [
@@ -18046,13 +18363,14 @@
           "itemsPerPage",
           "startIndex"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.groups.getGroups"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/groups/update-group",
       "title": "Update group",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/scim/v2/Groups/{group_id}",
       "request_body": {
@@ -18073,13 +18391,14 @@
           "meta",
           "members"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.groups.updateGroup"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/users/add-user",
       "title": "Add user",
-      "status": "planned",
+      "status": "implemented",
       "method": "POST",
       "endpoint": "/scim/v2/Users",
       "request_body": {
@@ -18107,13 +18426,14 @@
           "active",
           "emails"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.users.addUser"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/users/get-user",
       "title": "Get user",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/scim/v2/Users/{user_id}",
       "response": {
@@ -18128,13 +18448,14 @@
           "emails",
           "groups"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.users.getUser"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/users/get-users",
       "title": "Get users",
-      "status": "planned",
+      "status": "implemented",
       "method": "GET",
       "endpoint": "/scim/v2/Users",
       "query_parameters": [
@@ -18163,13 +18484,14 @@
           "itemsPerPage",
           "startIndex"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.users.getUsers"
     },
     {
       "section": "scim",
       "documentation": "https://developers.kaiten.ru/scim/users/update-user",
       "title": "Update user",
-      "status": "planned",
+      "status": "implemented",
       "method": "PATCH",
       "endpoint": "/scim/v2/Users/{user_id}",
       "request_body": {
@@ -18193,13 +18515,14 @@
           "emails",
           "groups"
         ]
-      }
+      },
+      "implementation": "KaitenScimClient.users.updateUser"
     },
     {
       "section": "user_metadata",
       "documentation": "https://developers.kaiten.ru/user-metadata",
       "title": "User Metadata Integration",
-      "status": "planned",
+      "status": "typed",
       "method": "POST",
       "request_body": {
         "schema": {
@@ -18235,7 +18558,9 @@
           "id_321",
           "description"
         ]
-      }
+      },
+      "implementation": "UserMetadataRequest, UserMetadataResponse, UserMetadataHandler",
+      "endpoint": "User-configured metadata URL"
     }
   ]
 }

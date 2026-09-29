@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Fully typed TypeScript client for Kaiten integrations",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2chevskii/kaiten-client.git"
+  },
+  "homepage": "https://github.com/2chevskii/kaiten-client#readme",
+  "bugs": "https://github.com/2chevskii/kaiten-client/issues",
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -45,6 +51,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.types.json",
     "lint": "eslint .",
     "format:check": "prettier . --check",
