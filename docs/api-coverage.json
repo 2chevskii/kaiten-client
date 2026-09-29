@@ -568,16 +568,6 @@
             "required": false
           },
           {
-            "name": "url",
-            "type": "string",
-            "required": false
-          },
-          {
-            "name": "description",
-            "type": "string | null",
-            "required": false
-          },
-          {
             "name": "members",
             "type": "array",
             "required": false
@@ -18072,21 +18062,6 @@
             "name": "Operations",
             "type": "array of objects Schema Name Type Constraints Description 0 enum [add,remove,replace] 'add', 'remove' - for 'members' path. 'add', 'replace' - for 'displayName' path. 1 enum [members,displayName] 'members' - to update groups's members. 'displayName' - to rename group. 2 number - for path 'members'.\n string  - for path 'displayName'.",
             "required": false
-          },
-          {
-            "name": "0",
-            "type": "enum",
-            "required": false
-          },
-          {
-            "name": "1",
-            "type": "enum",
-            "required": false
-          },
-          {
-            "name": "2",
-            "type": "number - for path 'members'.\n string  - for path 'displayName'.",
-            "required": false
           }
         ]
       },
@@ -18116,29 +18091,9 @@
             "required": false
           },
           {
-            "name": "0",
-            "type": "string",
-            "required": false
-          },
-          {
-            "name": "1",
-            "type": "strind",
-            "required": false
-          },
-          {
             "name": "emails",
             "type": "object Schema Name Type Constraints Description 0 string 1 string",
             "required": true
-          },
-          {
-            "name": "0",
-            "type": "string",
-            "required": false
-          },
-          {
-            "name": "1",
-            "type": "string",
-            "required": false
           }
         ]
       },
@@ -18223,21 +18178,6 @@
           {
             "name": "Operations",
             "type": "array of objects Schema Name Type Constraints Description 0 string 'add' - add value, 'replace' - replace value, 'remove' - remove value. For path 'active' only 'replace' op is available. 1 string 'active' - activate or deactivate user. 'name' - change user's fullname or part of it. 'name.givenName - change user's first name. 'name.familyName' - change user's surname. 2 boolean  - for path 'active', object - for path 'name', 'string' - for paths name.givenName and name.familyName",
-            "required": false
-          },
-          {
-            "name": "0",
-            "type": "string",
-            "required": false
-          },
-          {
-            "name": "1",
-            "type": "string",
-            "required": false
-          },
-          {
-            "name": "2",
-            "type": "boolean  - for path 'active', object - for path 'name', 'string' - for paths name.givenName and name.familyName",
             "required": false
           }
         ]
