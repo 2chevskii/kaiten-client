@@ -1,6 +1,7 @@
 /** Generated from the Kaiten developer documentation audit. */
 import type { HttpTransport, OperationOptions } from '../http.js';
 import { pathSegment } from '../http.js';
+import type { AutomationBody, AutomationUpdateBody } from '../automation.js';
 
 export type AuditLogsRetrieveAuditLogEventsQuery = {
   from?: string;
@@ -35,7 +36,7 @@ export interface AuditLogsRetrieveAuditLogEventsParams extends OperationOptions 
   signal?: AbortSignal;
 }
 
-export type AutomationsCreateAutomationBody = unknown;
+export type AutomationsCreateAutomationBody = AutomationBody;
 
 export type AutomationsCreateAutomationResponse = {
   created: string;
@@ -108,7 +109,7 @@ export interface AutomationsGetListOfAutomationsParams extends OperationOptions 
   signal?: AbortSignal;
 }
 
-export type AutomationsUpdateAutomationBody = unknown;
+export type AutomationsUpdateAutomationBody = AutomationUpdateBody;
 
 export type AutomationsUpdateAutomationResponse = {
   created: string;
@@ -165,6 +166,7 @@ export type BoardsGetBoardResponse = {
   columns: string | number;
   lanes: string | number;
   cards: unknown[];
+  cards_deprecation_message?: string;
 };
 
 export interface BoardsGetBoardParams extends OperationOptions {
@@ -353,6 +355,7 @@ export type CardBlockersBlockCardResponse = {
   blocked_card: string | number;
   blocker: string | number;
   card: string | number;
+  uid?: string;
 };
 
 export interface CardBlockersBlockCardParams extends OperationOptions {
@@ -376,6 +379,8 @@ export type CardBlockersDeleteCardBlockersResponse = {
   due_date_time_present: boolean;
   blocked_card: string | number;
   card: string | number;
+  uid?: string;
+  blocker?: string | number;
 };
 
 export interface CardBlockersDeleteCardBlockersParams extends OperationOptions {
@@ -400,6 +405,7 @@ export type CardBlockersRetrieveCardBlockersListResponse = Array<({
   blocked_card: string | number;
   blocker: string | number;
   card: string | number;
+  uid?: string;
 })>;
 
 export interface CardBlockersRetrieveCardBlockersListParams extends OperationOptions {
@@ -422,6 +428,7 @@ export type CardBlockersUpdateCardBlockersResponse = {
   released_by_id: number | null;
   due_date: string | null;
   due_date_time_present: boolean;
+  uid?: string;
 };
 
 export interface CardBlockersUpdateCardBlockersParams extends OperationOptions {
@@ -660,6 +667,8 @@ export type CardChildrenAddChildrenResponse = {
   space_id: number;
   type: string | number;
   owner: string | number;
+  description?: string | null;
+  counters_recalculated_at?: string;
 };
 
 export interface CardChildrenAddChildrenParams extends OperationOptions {
@@ -748,6 +757,8 @@ export type CardChildrenRetrieveCardChildrenListResponse = Array<({
   column: string | number;
   card_id: number;
   depends_on_card_id: number;
+  description?: string | null;
+  counters_recalculated_at?: string;
 })>;
 
 export interface CardChildrenRetrieveCardChildrenListParams extends OperationOptions {
@@ -812,6 +823,7 @@ export type CardCommentsRetrieveCardCommentsResponse = Array<({
   sent_slack_messages_data: null;
   sd_description: boolean;
   author: string | number;
+  updated?: string;
 })>;
 
 export interface CardCommentsRetrieveCardCommentsParams extends OperationOptions {
@@ -1559,6 +1571,9 @@ export type CardsCreateNewCardResponse = {
   external_links: unknown[];
   files: string | number;
   checklists: string | number;
+  calculated_planned_start?: string | null;
+  calculated_planned_end?: string | null;
+  source?: string | null;
 };
 
 export interface CardsCreateNewCardParams extends OperationOptions {
@@ -1635,6 +1650,7 @@ export type CardsDeleteCardResponse = {
   import_id: number | null;
   owner: string | number;
   members: string | number;
+  source?: string | null;
 };
 
 export interface CardsDeleteCardParams extends OperationOptions {
@@ -1734,6 +1750,7 @@ export type CardsRetrieveCardResponse = {
   external_links: unknown[];
   cardRole: number;
   email: string;
+  source?: string | null;
 };
 
 export interface CardsRetrieveCardParams extends OperationOptions {
@@ -1748,6 +1765,7 @@ export type CardsRetrieveCardBaselinesResponse = Array<({
   baseline_id: string;
   planned_start: string;
   planned_end: string | null;
+  project_id?: string;
 }) | ({
   id: number;
   project_id: string;
@@ -1946,6 +1964,11 @@ export type CardsRetrieveCardListResponse = Array<({
 };
   subcolumn: null;
 };
+  description?: string | null;
+  counters_recalculated_at?: string;
+  children?: string | number;
+  parents?: string | number;
+  source?: string | null;
 })>;
 
 export interface CardsRetrieveCardListParams extends OperationOptions {
@@ -2068,6 +2091,8 @@ export type CardsUpdateCardResponse = {
   import_id: number | null;
   owner: string | number;
   members: string | number;
+  tags?: string | number;
+  source?: string | null;
 };
 
 export interface CardsUpdateCardParams extends OperationOptions {
@@ -2237,6 +2262,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = Array<({
 };
 };
   space_id: number;
+  tags_ids?: unknown[];
 })>;
 
 export interface ChecklistsRetrieveCardsWithChecklistParams extends OperationOptions {
@@ -2283,6 +2309,8 @@ export type ColumnsCreateNewColumnResponse = {
   last_moved_warning_after_hours: number;
   months_to_hide_cards: number | null;
   card_hide_after_days: number | null;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface ColumnsCreateNewColumnParams extends OperationOptions {
@@ -2314,6 +2342,8 @@ export type ColumnsGetListOfColumnsResponse = Array<({
   card_hide_after_days: number | null;
   pause_sla: boolean;
   subcolumns: string | number;
+  uid?: string;
+  locked?: string | null;
 })>;
 
 export interface ColumnsGetListOfColumnsParams extends OperationOptions {
@@ -2359,6 +2389,8 @@ export type ColumnsUpdateColumnResponse = {
   last_moved_warning_after_hours: number;
   months_to_hide_cards: number | null;
   card_hide_after_days: number | null;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface ColumnsUpdateColumnParams extends OperationOptions {
@@ -2670,6 +2702,8 @@ export type CustomDirectoriesGetListOfCustomDirectoriesResponse = Array<({
   records_count: number;
   created: string;
   updated: string;
+  fields?: unknown[];
+  author?: Record<string, unknown>;
 })>;
 
 export interface CustomDirectoriesGetListOfCustomDirectoriesParams extends OperationOptions {
@@ -3207,6 +3241,7 @@ export type CustomPropertiesRemovePropertyResponse = {
   protected: boolean;
   fields_settings: Record<string, unknown> | null;
   color: number | null;
+  external_id?: string | null;
 };
 
 export interface CustomPropertiesRemovePropertyParams extends OperationOptions {
@@ -3510,6 +3545,7 @@ export type CustomPropertyCollectiveVoteValuesRemoveVoteValueResponse = {
   emoji_vote: string;
   card_id: number;
   author_id: number;
+  company_id?: number;
 };
 
 export interface CustomPropertyCollectiveVoteValuesRemoveVoteValueParams extends OperationOptions {
@@ -3848,6 +3884,10 @@ export type DocumentGroupsRetrieveDocumentGroupResponse = {
 };
 };
 };
+  documents?: unknown[] | null;
+  groups?: unknown[] | null;
+  parent?: Record<string, unknown> | null;
+  author?: Record<string, unknown> | null;
 };
 
 export interface DocumentGroupsRetrieveDocumentGroupParams extends OperationOptions {
@@ -6774,6 +6814,7 @@ export type IterationsRetrieveListOfIterationsResponse = Array<({
   data: number;
   created: string;
   updated: string;
+  cards?: string | number;
 })>;
 
 export interface IterationsRetrieveListOfIterationsParams extends OperationOptions {
@@ -6799,6 +6840,7 @@ export type IterationsUpdateIterationResponse = {
   data: number;
   created: string;
   updated: string;
+  moved_cards?: string | number;
 };
 
 export interface IterationsUpdateIterationParams extends OperationOptions {
@@ -6836,6 +6878,8 @@ export type LanesCreateNewLaneResponse = {
   default_tags: string | null;
   external_id: string | null;
   condition: number;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface LanesCreateNewLaneParams extends OperationOptions {
@@ -6865,6 +6909,8 @@ export type LanesGetListOfLanesResponse = Array<({
   last_moved_warning_after_hours: number;
   condition: number;
   last_moved_warning_after_minutes: number;
+  uid?: string;
+  locked?: string | null;
 })>;
 
 export interface LanesGetListOfLanesParams extends OperationOptions {
@@ -6907,6 +6953,8 @@ export type LanesUpdateLaneResponse = {
   default_tags: string | null;
   external_id: string | null;
   condition: number;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface LanesUpdateLaneParams extends OperationOptions {
@@ -7398,6 +7446,7 @@ export type SpaceBoardsGetBoardResponse = {
   top: number;
   left: number;
   sort_order: number;
+  cards_deprecation_message?: string;
 };
 
 export interface SpaceBoardsGetBoardParams extends OperationOptions {
@@ -8013,6 +8062,8 @@ export type SubcolumnCreateNewSubcolumnResponse = {
   default_tags: string | null;
   months_to_hide_cards: number | null;
   card_hide_after_days: number | null;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface SubcolumnCreateNewSubcolumnParams extends OperationOptions {
@@ -8042,6 +8093,8 @@ export type SubcolumnGetListOfSubcolumnsResponse = Array<({
   card_hide_after_days: number | null;
   last_moved_warning_after_hours: number;
   last_moved_warning_after_minutes: number;
+  uid?: string;
+  locked?: string | null;
 })>;
 
 export interface SubcolumnGetListOfSubcolumnsParams extends OperationOptions {
@@ -8087,6 +8140,8 @@ export type SubcolumnUpdateSubcolumnResponse = {
   default_tags: string | null;
   months_to_hide_cards: number | null;
   card_hide_after_days: number | null;
+  uid?: string;
+  locked?: string | null;
 };
 
 export interface SubcolumnUpdateSubcolumnParams extends OperationOptions {
@@ -8489,6 +8544,7 @@ export type TreeEntityRolesGetListOfTreeEntityRolesResponse = Array<({
   new_permissions_default_value: boolean;
   updated: string;
   created: string;
+  role_permissions?: Record<string, unknown>;
 })>;
 
 export interface TreeEntityRolesGetListOfTreeEntityRolesParams extends OperationOptions {
@@ -8669,6 +8725,7 @@ export type UsersRetrieveListOfUsersResponse = Array<({
   external: boolean;
   last_request_date: string | null;
   last_request_method: string | null;
+  include_inactive?: boolean;
 })>;
 
 export interface UsersRetrieveListOfUsersParams extends OperationOptions {
@@ -8714,6 +8771,8 @@ export interface UsersUpdateUserParams extends OperationOptions {
   body: UsersUpdateUserBody;
   signal?: AbortSignal;
 }
+
+export type SearchResponseV2<Result extends readonly unknown[]> = { result: Result; position: string };
 
 export const createRestResources = (transport: HttpTransport) => ({
   auditLogs: {
@@ -9323,8 +9382,8 @@ export const createRestResources = (transport: HttpTransport) => ({
       });
     },
     /** @see https://developers.kaiten.ru/cards/retrieve-card-list */
-    retrieveCardList: (params: CardsRetrieveCardListParams = {}) => {
-      return transport.request<CardsRetrieveCardListResponse>({
+    retrieveCardList: <Version extends 1 | 2 = 1>(params: Omit<CardsRetrieveCardListParams, 'query'> & { query?: Omit<CardsRetrieveCardListQuery, 'version'> & { version?: Version } } = {}) => {
+      return transport.request<Version extends 2 ? SearchResponseV2<CardsRetrieveCardListResponse> : CardsRetrieveCardListResponse>({
         method: 'GET',
         path: "/cards",
         query: params.query,
@@ -9877,8 +9936,8 @@ export const createRestResources = (transport: HttpTransport) => ({
       });
     },
     /** @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups */
-    retrieveListOfDocumentGroups: (params: DocumentGroupsRetrieveListOfDocumentGroupsParams = {}) => {
-      return transport.request<DocumentGroupsRetrieveListOfDocumentGroupsResponse>({
+    retrieveListOfDocumentGroups: <Version extends 1 | 2 = 1>(params: Omit<DocumentGroupsRetrieveListOfDocumentGroupsParams, 'query'> & { query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, 'version'> & { version?: Version } } = {}) => {
+      return transport.request<Version extends 2 ? SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse> : DocumentGroupsRetrieveListOfDocumentGroupsResponse>({
         method: 'GET',
         path: "/document-groups",
         query: params.query,
@@ -9934,8 +9993,8 @@ export const createRestResources = (transport: HttpTransport) => ({
       });
     },
     /** @see https://developers.kaiten.ru/documents/retrieve-list-of-documents */
-    retrieveListOfDocuments: (params: DocumentsRetrieveListOfDocumentsParams = {}) => {
-      return transport.request<DocumentsRetrieveListOfDocumentsResponse>({
+    retrieveListOfDocuments: <Version extends 1 | 2 = 1>(params: Omit<DocumentsRetrieveListOfDocumentsParams, 'query'> & { query?: Omit<DocumentsRetrieveListOfDocumentsQuery, 'version'> & { version?: Version } } = {}) => {
+      return transport.request<Version extends 2 ? SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse> : DocumentsRetrieveListOfDocumentsResponse>({
         method: 'GET',
         path: "/documents",
         query: params.query,
@@ -10964,3 +11023,5 @@ export const REST_OPERATION_METADATA = [
   {"documentation": "/users/retrieve-list-of-users", "resource": "users", "operation": "retrieveListOfUsers", "method": "GET", "path": "/users", "pathParameters": [], "hasBody": false},
   {"documentation": "/users/update-user", "resource": "users", "operation": "updateUser", "method": "PATCH", "path": "/users/{id}", "pathParameters": ["id"], "hasBody": true},
 ] as const;
+
+

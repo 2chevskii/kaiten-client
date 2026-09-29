@@ -5,288 +5,288 @@
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/api-access",
-      "title": "Kaiten Developers",
+      "title": "Kaiten API Access",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-body-section",
-      "title": "Kaiten Developers",
+      "title": "card_body_section",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-buttons",
-      "title": "Kaiten Developers",
+      "title": "card_buttons",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/card-facade-badges",
-      "title": "Kaiten Developers",
+      "title": "card_facade_badges",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/introduction",
-      "title": "Kaiten Developers",
+      "title": "Addon capabilities",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/capabilities/settings",
-      "title": "Kaiten Developers",
+      "title": "Settings",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/creating-example-addon",
-      "title": "Kaiten Developers",
+      "title": "Creating Example addons",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/error-handling",
-      "title": "Kaiten Developers",
+      "title": "Error handling",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/external-authorization/authorize",
-      "title": "Kaiten Developers",
+      "title": "authorize",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/initialization/addon-initialize",
-      "title": "Kaiten Developers",
+      "title": "Addon.initialize()",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/initialization/iframe-initialize",
-      "title": "Kaiten Developers",
+      "title": "Addon.iframe()",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/managing-secrets",
-      "title": "Kaiten Developers",
+      "title": "Managing secrets",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/authorize",
-      "title": "Kaiten Developers",
+      "title": "authorize",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/delete",
-      "title": "Kaiten Developers",
+      "title": "delete",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get",
-      "title": "Kaiten Developers",
+      "title": "get",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get-access-token",
-      "title": "Kaiten Developers",
+      "title": "getAccessToken",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/get-api-client",
-      "title": "Kaiten Developers",
+      "title": "getApiClient",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/patch",
-      "title": "Kaiten Developers",
+      "title": "patch",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/post",
-      "title": "Kaiten Developers",
+      "title": "post",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/refresh-token",
-      "title": "Kaiten Developers",
+      "title": "refreshToken",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/platform-api-access/request",
-      "title": "Kaiten Developers",
+      "title": "request",
       "status": "planned",
       "beta": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/styling",
-      "title": "Kaiten Developers",
+      "title": "Styling Addon",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/clear-secret",
-      "title": "Kaiten Developers",
+      "title": "clearSecret",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-all-data",
-      "title": "Kaiten Developers",
+      "title": "getAllData",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-card",
-      "title": "Kaiten Developers",
+      "title": "getCard",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-card-properties",
-      "title": "Kaiten Developers",
+      "title": "getCardProperties",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-context",
-      "title": "Kaiten Developers",
+      "title": "getContext",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-current-user",
-      "title": "Kaiten Developers",
+      "title": "getCurrentUser",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-data",
-      "title": "Kaiten Developers",
+      "title": "getData",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-language",
-      "title": "Kaiten Developers",
+      "title": "getLanguage",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-locale",
-      "title": "Kaiten Developers",
+      "title": "getLocale",
       "status": "planned",
       "deprecated": true
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-permissions",
-      "title": "Kaiten Developers",
+      "title": "getPermissions",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-secret",
-      "title": "Kaiten Developers",
+      "title": "getSecret",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-settings",
-      "title": "Kaiten Developers",
+      "title": "getSettings",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/get-theme-type",
-      "title": "Kaiten Developers",
+      "title": "getThemeType",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/set-data",
-      "title": "Kaiten Developers",
+      "title": "setData",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/set-settings",
-      "title": "Kaiten Developers",
+      "title": "setSettings",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/sign-url",
-      "title": "Kaiten Developers",
+      "title": "signUrl",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-data-related-function/store-secret",
-      "title": "Kaiten Developers",
+      "title": "storeSecret",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/close-dialog",
-      "title": "Kaiten Developers",
+      "title": "closeDialog",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/close-popup",
-      "title": "Kaiten Developers",
+      "title": "closePopup",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/fit-size",
-      "title": "Kaiten Developers",
+      "title": "fitSize",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/open-dialog",
-      "title": "Kaiten Developers",
+      "title": "openDialog",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/open-popup",
-      "title": "Kaiten Developers",
+      "title": "openPopup",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/render",
-      "title": "Kaiten Developers",
+      "title": "render",
       "status": "planned"
     },
     {
       "section": "addons",
       "documentation": "https://developers.kaiten.ru/addons/web-sdk-ui-functions/show-snackbar",
-      "title": "Kaiten Developers",
+      "title": "showSnackbar",
       "status": "planned"
     },
     {
@@ -424,104 +424,103 @@
     {
       "section": "file_migration",
       "documentation": "https://developers.kaiten.ru/restricted-access-files-migration",
-      "title": "Kaiten Developers",
-      "status": "planned",
-      "method": "POST"
+      "title": "Migrating to restricted access files",
+      "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/appendix/colors",
-      "title": "Kaiten Developers",
+      "title": "Colors",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/boards",
-      "title": "Kaiten Developers",
+      "title": "Boards data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/card-timers",
-      "title": "Kaiten Developers",
+      "title": "Card tracking timer data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/cards",
-      "title": "Kaiten Developers",
+      "title": "Cards data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/columns",
-      "title": "Kaiten Developers",
+      "title": "Columns data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/columns-mapping",
-      "title": "Kaiten Developers",
+      "title": "Columns mapping",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/comments",
-      "title": "Kaiten Developers",
+      "title": "Comments data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/custom-fields",
-      "title": "Kaiten Developers",
+      "title": "Custom fields data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/document-files",
-      "title": "Kaiten Developers",
+      "title": "Document files",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/documents",
-      "title": "Kaiten Developers",
+      "title": "Documents data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/files",
-      "title": "Kaiten Developers",
+      "title": "Files data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/folders",
-      "title": "Kaiten Developers",
+      "title": "Folders data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/meta-data",
-      "title": "Kaiten Developers",
+      "title": "Metadata file",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/properties-mapping",
-      "title": "Kaiten Developers",
+      "title": "Properties mapping",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/spaces",
-      "title": "Kaiten Developers",
+      "title": "Spaces data",
       "status": "planned"
     },
     {
       "section": "imports",
       "documentation": "https://developers.kaiten.ru/imports/entities/users",
-      "title": "Kaiten Developers",
+      "title": "Users data",
       "status": "planned"
     },
     {
@@ -533,7 +532,7 @@
     {
       "section": "incoming_webhook",
       "documentation": "https://developers.kaiten.ru/webhooks",
-      "title": "Kaiten Developers",
+      "title": "Kaiten Webhooks",
       "status": "planned",
       "request_body": {
         "fields": [
@@ -18199,7 +18198,7 @@
     {
       "section": "user_metadata",
       "documentation": "https://developers.kaiten.ru/user-metadata",
-      "title": "Kaiten Developers",
+      "title": "User Metadata Integration",
       "status": "planned",
       "method": "POST",
       "request_body": {

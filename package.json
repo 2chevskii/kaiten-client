@@ -45,7 +45,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.types.json",
     "lint": "eslint .",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
@@ -57,6 +57,7 @@
     "@types/node": "^26.6.3",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.12.0",
     "prettier": "3.9.9",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0"
