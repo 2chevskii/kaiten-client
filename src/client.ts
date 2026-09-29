@@ -1,6 +1,6 @@
 import { HttpTransport } from "./http.js";
-import type { RestResources } from "./generated/rest.js";
-import { createRestResources } from "./generated/rest.js";
+import type { RestResources } from "./rest/index.js";
+import { createRestResources } from "./rest/index.js";
 import type { RestClientOptions } from "./http.js";
 
 export class KaitenClient {

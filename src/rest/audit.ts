@@ -1,8 +1,6 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
-
-export type AuditLogsRetrieveAuditLogEventsQuery = {
+export interface AuditLogsRetrieveAuditLogEventsQuery {
   from?: string;
   to?: string;
   author_id?: number;
@@ -12,9 +10,9 @@ export type AuditLogsRetrieveAuditLogEventsQuery = {
   id?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type AuditLogsRetrieveAuditLogEventsResponse = Array<{
+export type AuditLogsRetrieveAuditLogEventsResponse = {
   id: string;
   app_name: string | null;
   company_uid: string | null;
@@ -28,7 +26,7 @@ export type AuditLogsRetrieveAuditLogEventsResponse = Array<{
   message: string;
   details: Record<string, unknown> | null;
   created: string;
-}>;
+}[];
 
 export interface AuditLogsRetrieveAuditLogEventsParams extends OperationOptions {
   query?: AuditLogsRetrieveAuditLogEventsQuery;

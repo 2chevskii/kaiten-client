@@ -1,17 +1,15 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardTimeLogsAddTimeLogBody = {
+export interface CardTimeLogsAddTimeLogBody {
   role_id: number;
   time_spent: number;
   for_date: string;
   comment?: string;
-};
+}
 
-export type CardTimeLogsAddTimeLogResponse = {
+export interface CardTimeLogsAddTimeLogResponse {
   created: string;
   updated: string;
   id: number;
@@ -23,7 +21,7 @@ export type CardTimeLogsAddTimeLogResponse = {
   time_spent: number;
   for_date: string;
   comment: string | null;
-};
+}
 
 export interface CardTimeLogsAddTimeLogParams extends OperationOptions {
   card_id: number;
@@ -31,12 +29,12 @@ export interface CardTimeLogsAddTimeLogParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTimeLogsGetTimeLogsQuery = {
+export interface CardTimeLogsGetTimeLogsQuery {
   for_date?: string;
   personal?: boolean;
-};
+}
 
-export type CardTimeLogsGetTimeLogsResponse = Array<{
+export type CardTimeLogsGetTimeLogsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -51,7 +49,7 @@ export type CardTimeLogsGetTimeLogsResponse = Array<{
   role: string | number;
   user: string | number;
   author: string | number;
-}>;
+}[];
 
 export interface CardTimeLogsGetTimeLogsParams extends OperationOptions {
   card_id: number;
@@ -59,9 +57,9 @@ export interface CardTimeLogsGetTimeLogsParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTimeLogsRemoveTimeLogResponse = {
+export interface CardTimeLogsRemoveTimeLogResponse {
   id: number;
-};
+}
 
 export interface CardTimeLogsRemoveTimeLogParams extends OperationOptions {
   card_id: number;
@@ -69,10 +67,9 @@ export interface CardTimeLogsRemoveTimeLogParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTimeLogsUpdateLogRecordBody =
-  unknown | unknown | unknown | unknown;
+export type CardTimeLogsUpdateLogRecordBody = unknown;
 
-export type CardTimeLogsUpdateLogRecordResponse = {
+export interface CardTimeLogsUpdateLogRecordResponse {
   created: string;
   updated: string;
   id: number;
@@ -84,7 +81,7 @@ export type CardTimeLogsUpdateLogRecordResponse = {
   time_spent: number;
   for_date: string;
   comment: string | null;
-};
+}
 
 export interface CardTimeLogsUpdateLogRecordParams extends OperationOptions {
   card_id: number;
@@ -93,11 +90,11 @@ export interface CardTimeLogsUpdateLogRecordParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type IterationsAddCardToIterationBody = {
+export interface IterationsAddCardToIterationBody {
   card_uid: string;
-};
+}
 
-export type IterationsAddCardToIterationResponse = {
+export interface IterationsAddCardToIterationResponse {
   iteration_id: string;
   card_uid: string;
   added_by_uid: string;
@@ -106,7 +103,7 @@ export type IterationsAddCardToIterationResponse = {
   sort_order: number;
   created: string;
   updated: string;
-};
+}
 
 export interface IterationsAddCardToIterationParams extends OperationOptions {
   space_uid: string;
@@ -115,14 +112,14 @@ export interface IterationsAddCardToIterationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type IterationsCreateIterationBody = {
+export interface IterationsCreateIterationBody {
   title: string;
   goal?: string | null;
   start_date?: string | null;
   finish_date?: string | null;
-};
+}
 
-export type IterationsCreateIterationResponse = {
+export interface IterationsCreateIterationResponse {
   id: string;
   space_uid: string;
   title: string;
@@ -137,7 +134,7 @@ export type IterationsCreateIterationResponse = {
   data: Record<string, unknown> | null;
   created: string;
   updated: string;
-};
+}
 
 export interface IterationsCreateIterationParams extends OperationOptions {
   space_uid: string;
@@ -145,11 +142,11 @@ export interface IterationsCreateIterationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type IterationsDeleteIterationBody = {
+export interface IterationsDeleteIterationBody {
   new_iteration_id?: string | null;
-};
+}
 
-export type IterationsDeleteIterationResponse = {
+export interface IterationsDeleteIterationResponse {
   id: string;
   space_uid: string;
   title: string;
@@ -165,7 +162,7 @@ export type IterationsDeleteIterationResponse = {
   moved_cards: string | number;
   created: string;
   updated: string;
-};
+}
 
 export interface IterationsDeleteIterationParams extends OperationOptions {
   space_uid: string;
@@ -174,11 +171,11 @@ export interface IterationsDeleteIterationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type IterationsGetCardIterationsHistoryQuery = {
+export interface IterationsGetCardIterationsHistoryQuery {
   with_details?: boolean;
-};
+}
 
-export type IterationsGetCardIterationsHistoryResponse = Array<{
+export type IterationsGetCardIterationsHistoryResponse = {
   iteration_id: string;
   card_uid: string;
   added_by_uid: string;
@@ -187,7 +184,7 @@ export type IterationsGetCardIterationsHistoryResponse = Array<{
   sort_order: number;
   created: string;
   updated: string;
-}>;
+}[];
 
 export interface IterationsGetCardIterationsHistoryParams extends OperationOptions {
   card_uid: string;
@@ -195,7 +192,7 @@ export interface IterationsGetCardIterationsHistoryParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type IterationsGetIterationResponse = {
+export interface IterationsGetIterationResponse {
   id: string;
   space_uid: string;
   title: string;
@@ -210,7 +207,7 @@ export type IterationsGetIterationResponse = {
   data: number;
   created: string;
   updated: string;
-};
+}
 
 export interface IterationsGetIterationParams extends OperationOptions {
   space_uid: string;
@@ -218,7 +215,7 @@ export interface IterationsGetIterationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type IterationsRemoveCardFromIterationResponse = {
+export interface IterationsRemoveCardFromIterationResponse {
   iteration_id: string;
   card_uid: string;
   added_by_uid: string;
@@ -227,7 +224,7 @@ export type IterationsRemoveCardFromIterationResponse = {
   sort_order: number;
   created: string;
   updated: string;
-};
+}
 
 export interface IterationsRemoveCardFromIterationParams extends OperationOptions {
   space_uid: string;
@@ -236,11 +233,11 @@ export interface IterationsRemoveCardFromIterationParams extends OperationOption
   signal?: AbortSignal;
 }
 
-export type IterationsRetrieveCardsInIterationQuery = {
+export interface IterationsRetrieveCardsInIterationQuery {
   status?: string;
-};
+}
 
-export type IterationsRetrieveCardsInIterationResponse = Array<{
+export type IterationsRetrieveCardsInIterationResponse = {
   iteration_id: string;
   card_uid: string;
   card_id: number;
@@ -250,7 +247,7 @@ export type IterationsRetrieveCardsInIterationResponse = Array<{
   sort_order: number;
   created: string;
   updated: string;
-}>;
+}[];
 
 export interface IterationsRetrieveCardsInIterationParams extends OperationOptions {
   space_uid: string;
@@ -259,15 +256,15 @@ export interface IterationsRetrieveCardsInIterationParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type IterationsRetrieveListOfIterationsQuery = {
+export interface IterationsRetrieveListOfIterationsQuery {
   status?: string;
   with_data?: string;
   limit?: number;
   offset?: number;
   order?: string;
-};
+}
 
-export type IterationsRetrieveListOfIterationsResponse = Array<{
+export type IterationsRetrieveListOfIterationsResponse = {
   id: string;
   space_uid: string;
   title: string;
@@ -283,7 +280,7 @@ export type IterationsRetrieveListOfIterationsResponse = Array<{
   created: string;
   updated: string;
   cards?: string | number;
-}>;
+}[];
 
 export interface IterationsRetrieveListOfIterationsParams extends OperationOptions {
   space_uid: string;
@@ -291,10 +288,9 @@ export interface IterationsRetrieveListOfIterationsParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type IterationsUpdateIterationBody =
-  unknown | unknown | unknown | unknown | unknown;
+export type IterationsUpdateIterationBody = unknown;
 
-export type IterationsUpdateIterationResponse = {
+export interface IterationsUpdateIterationResponse {
   id: string;
   space_uid: string;
   title: string;
@@ -310,7 +306,7 @@ export type IterationsUpdateIterationResponse = {
   created: string;
   updated: string;
   moved_cards?: string | number;
-};
+}
 
 export interface IterationsUpdateIterationParams extends OperationOptions {
   space_uid: string;
@@ -319,11 +315,11 @@ export interface IterationsUpdateIterationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SprintsGetSprintSummaryQuery = {
+export interface SprintsGetSprintSummaryQuery {
   exclude_deleted_cards?: boolean;
-};
+}
 
-export type SprintsGetSprintSummaryResponse = {
+export interface SprintsGetSprintSummaryResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -337,10 +333,10 @@ export type SprintsGetSprintSummaryResponse = {
   children_committed: number;
   velocity: number;
   velocity_details: {
-    by_members: Array<{
+    by_members: {
       user_id: number;
       velocity: number;
-    }>;
+    }[];
   };
   children_velocity: number;
   children_velocity_details: {
@@ -354,7 +350,7 @@ export type SprintsGetSprintSummaryResponse = {
   cards: string | number;
   cardUpdates: string | number;
   customProperties: unknown[];
-};
+}
 
 export interface SprintsGetSprintSummaryParams extends OperationOptions {
   id: number;
@@ -362,13 +358,13 @@ export interface SprintsGetSprintSummaryParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SprintsGetSprintsListQuery = {
+export interface SprintsGetSprintsListQuery {
   active?: boolean;
   limit?: number;
   offset?: number;
-};
+}
 
-export type SprintsGetSprintsListResponse = Array<{
+export type SprintsGetSprintsListResponse = {
   id: number;
   uid: string;
   board_id: number;
@@ -379,10 +375,10 @@ export type SprintsGetSprintsListResponse = Array<{
   children_committed: number;
   velocity: number;
   velocity_details: {
-    by_members: Array<{
+    by_members: {
       user_id: number;
       velocity: number;
-    }>;
+    }[];
   };
   children_velocity: number;
   children_velocity_details: {
@@ -396,14 +392,14 @@ export type SprintsGetSprintsListResponse = Array<{
   created: string;
   updated: string;
   archived: boolean;
-}>;
+}[];
 
 export interface SprintsGetSprintsListParams extends OperationOptions {
   query?: SprintsGetSprintsListQuery;
   signal?: AbortSignal;
 }
 
-export type TimesheetGetListQuery = {
+export interface TimesheetGetListQuery {
   from: string;
   to: string;
   tag_ids?: string;
@@ -422,9 +418,9 @@ export type TimesheetGetListQuery = {
   time_unit?: number;
   with_daily_distribution?: number;
   only_general_sum?: number;
-};
+}
 
-export type TimesheetGetListResponse = Array<{
+export type TimesheetGetListResponse = {
   created: string;
   updated: string;
   id: number;
@@ -491,11 +487,11 @@ export type TimesheetGetListResponse = Array<{
     properties: {
       id_44: number;
       id_50: number;
-      id_74: Array<{
+      id_74: {
         count: number;
         emoji: string;
-        userIds: Array<number>;
-      }>;
+        userIds: number[];
+      }[];
       id_79: {
         date: string;
         time: string;
@@ -526,13 +522,13 @@ export type TimesheetGetListResponse = Array<{
       id: number;
       title: string;
       external_id: null;
-      card_properties: Array<{
+      card_properties: {
         key: string;
         laneIds: unknown[];
         required: boolean;
         cardTypeIds: unknown[];
-      }>;
-      spaces: Array<{
+      }[];
+      spaces: {
         id: number;
         title: string;
         external_id: null;
@@ -543,7 +539,7 @@ export type TimesheetGetListResponse = Array<{
         sort_order: number;
         type: number;
         primary_path: boolean;
-      }>;
+      }[];
     };
     lane: {
       id: number;
@@ -583,7 +579,7 @@ export type TimesheetGetListResponse = Array<{
   };
   user: string | number;
   role: string | number;
-}>;
+}[];
 
 export interface TimesheetGetListParams extends OperationOptions {
   query?: TimesheetGetListQuery;

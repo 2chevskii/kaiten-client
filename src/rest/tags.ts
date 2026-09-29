@@ -1,14 +1,12 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardTagsAddTagBody = {
+export interface CardTagsAddTagBody {
   name: string;
-};
+}
 
-export type CardTagsAddTagResponse = {
+export interface CardTagsAddTagResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -16,7 +14,7 @@ export type CardTagsAddTagResponse = {
   name: string;
   company_id: number;
   color: number;
-};
+}
 
 export interface CardTagsAddTagParams extends OperationOptions {
   card_id: number;
@@ -24,9 +22,9 @@ export interface CardTagsAddTagParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTagsRemoveTagFromCardResponse = {
+export interface CardTagsRemoveTagFromCardResponse {
   id: number;
-};
+}
 
 export interface CardTagsRemoveTagFromCardParams extends OperationOptions {
   card_id: number;
@@ -34,32 +32,32 @@ export interface CardTagsRemoveTagFromCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTagsRertrieveListOfTagsResponse = Array<{
+export type CardTagsRertrieveListOfTagsResponse = {
   id: number;
   name: string;
   color: number;
   card_id: number;
   tag_id: number;
-}>;
+}[];
 
 export interface CardTagsRertrieveListOfTagsParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type TagsAddTagQuery = {
+export interface TagsAddTagQuery {
   ids?: string;
   query?: string;
   space_id?: number;
   limit?: number;
   offset?: number;
-};
+}
 
-export type TagsAddTagBody = {
+export interface TagsAddTagBody {
   name: string;
-};
+}
 
-export type TagsAddTagResponse = {
+export interface TagsAddTagResponse {
   created: string;
   updated: string;
   id: number;
@@ -67,7 +65,7 @@ export type TagsAddTagResponse = {
   company_id: number;
   color: number;
   archived: boolean;
-};
+}
 
 export interface TagsAddTagParams extends OperationOptions {
   query?: TagsAddTagQuery;
@@ -75,15 +73,15 @@ export interface TagsAddTagParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type TagsRetrieveListOfTagsQuery = {
+export interface TagsRetrieveListOfTagsQuery {
   limit?: number;
   offset?: number;
   space_id?: number;
   ids?: string;
   query?: string;
-};
+}
 
-export type TagsRetrieveListOfTagsResponse = Array<{
+export type TagsRetrieveListOfTagsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -91,7 +89,7 @@ export type TagsRetrieveListOfTagsResponse = Array<{
   company_id: number;
   color: number;
   archived: boolean;
-}>;
+}[];
 
 export interface TagsRetrieveListOfTagsParams extends OperationOptions {
   query?: TagsRetrieveListOfTagsQuery;

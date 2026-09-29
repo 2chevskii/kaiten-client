@@ -1,20 +1,18 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
-
-import { pathSegment } from "../../http.js";
+import { pathSegment } from "../http.js";
 
 import type { SearchResponseV2 } from "./search.js";
 
-export type DocumentGroupsCreateNewDocumentGroupBody = {
+export interface DocumentGroupsCreateNewDocumentGroupBody {
   title: string;
   parent_entity_uid?: string | null;
   for_everyone_access_role_id?: string | null;
   sort_order?: number;
   key?: string | null;
-};
+}
 
-export type DocumentGroupsCreateNewDocumentGroupResponse = {
+export interface DocumentGroupsCreateNewDocumentGroupResponse {
   uid: string;
   id: number;
   title: string;
@@ -52,14 +50,14 @@ export type DocumentGroupsCreateNewDocumentGroupResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentGroupsCreateNewDocumentGroupParams extends OperationOptions {
   body: DocumentGroupsCreateNewDocumentGroupBody;
   signal?: AbortSignal;
 }
 
-export type DocumentGroupsRemoveDocumentGroupResponse = {
+export interface DocumentGroupsRemoveDocumentGroupResponse {
   uid: string;
   id: number;
   title: string;
@@ -85,14 +83,14 @@ export type DocumentGroupsRemoveDocumentGroupResponse = {
   hidden_on_public_site: boolean;
   path: string;
   index_document_uid: null;
-};
+}
 
 export interface DocumentGroupsRemoveDocumentGroupParams extends OperationOptions {
   document_group_uid: string;
   signal?: AbortSignal;
 }
 
-export type DocumentGroupsRetrieveDocumentGroupResponse = {
+export interface DocumentGroupsRetrieveDocumentGroupResponse {
   uid: string;
   id: number;
   title: string;
@@ -134,14 +132,14 @@ export type DocumentGroupsRetrieveDocumentGroupResponse = {
   groups?: unknown[] | null;
   parent?: Record<string, unknown> | null;
   author?: Record<string, unknown> | null;
-};
+}
 
 export interface DocumentGroupsRetrieveDocumentGroupParams extends OperationOptions {
   document_group_uid: string;
   signal?: AbortSignal;
 }
 
-export type DocumentGroupsRetrieveListOfDocumentGroupsQuery = {
+export interface DocumentGroupsRetrieveListOfDocumentGroupsQuery {
   query?: string;
   offset?: number;
   limit?: number;
@@ -149,9 +147,9 @@ export type DocumentGroupsRetrieveListOfDocumentGroupsQuery = {
   condition?: number;
   start_position?: string;
   role?: number;
-};
+}
 
-export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = Array<
+export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = (
   | {
       uid: string;
       id: number;
@@ -206,26 +204,16 @@ export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = Array<
       path: string;
       index_document_uid: string | null;
     }
->;
+)[];
 
 export interface DocumentGroupsRetrieveListOfDocumentGroupsParams extends OperationOptions {
   query?: DocumentGroupsRetrieveListOfDocumentGroupsQuery;
   signal?: AbortSignal;
 }
 
-export type DocumentGroupsUpdateDocumentGroupBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type DocumentGroupsUpdateDocumentGroupBody = unknown;
 
-export type DocumentGroupsUpdateDocumentGroupResponse = {
+export interface DocumentGroupsUpdateDocumentGroupResponse {
   uid: string;
   id: number;
   title: string;
@@ -263,7 +251,7 @@ export type DocumentGroupsUpdateDocumentGroupResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentGroupsUpdateDocumentGroupParams extends OperationOptions {
   document_group_uid: string;
@@ -271,27 +259,27 @@ export interface DocumentGroupsUpdateDocumentGroupParams extends OperationOption
   signal?: AbortSignal;
 }
 
-export type DocumentSchemasGetDocumentDataSchemaQuery = {
+export interface DocumentSchemasGetDocumentDataSchemaQuery {
   format?: string;
-};
+}
 
 export type DocumentSchemasGetDocumentDataSchemaBody = unknown;
 
-export type DocumentSchemasGetDocumentDataSchemaResponse = {
+export interface DocumentSchemasGetDocumentDataSchemaResponse {
   $schema: string;
   $id: string;
   title: string;
   description: string;
-  allOf: Array<{
+  allOf: {
     $ref: string;
-  }>;
+  }[];
   version: string;
   definitions: {
     nodes: {
       doc: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -299,9 +287,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -313,7 +301,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       text: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -329,7 +317,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       hard_break: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -344,7 +332,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       paragraph: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -354,14 +342,14 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               textAlign: {
                 type: string;
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -369,9 +357,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -392,7 +380,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       horizontal_rule: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -402,7 +390,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -420,7 +408,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       heading: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -434,7 +422,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: number;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -442,9 +430,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -465,7 +453,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       heading1: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -475,14 +463,14 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               textAlign: {
                 type: string;
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -490,9 +478,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -514,7 +502,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       heading2: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -524,14 +512,14 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               textAlign: {
                 type: string;
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -539,9 +527,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -563,7 +551,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       heading3: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -573,14 +561,14 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               textAlign: {
                 type: string;
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -588,9 +576,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -612,7 +600,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       blockquote: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -622,7 +610,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -630,9 +618,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -650,7 +638,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       code_block: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -668,7 +656,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: boolean;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -676,9 +664,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -705,7 +693,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       image: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -715,18 +703,18 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               src: {
                 type: string;
                 default: string;
               };
               alt: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               title: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               size: {
@@ -734,24 +722,24 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               loading: {
-                type: Array<string>;
+                type: string[];
               };
               width: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               height: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               plantuml: {
-                type: Array<string>;
+                type: string[];
               };
               plantumlEncodedMD: {
-                type: Array<string>;
+                type: string[];
               };
               fileId: {
-                type: Array<string>;
+                type: string[];
               };
             };
           };
@@ -790,7 +778,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       embed: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -808,7 +796,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -835,7 +823,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       ordered_list: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -849,7 +837,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: number;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -857,9 +845,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -881,7 +869,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       bullet_list: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -891,7 +879,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -899,9 +887,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -919,7 +907,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       list_item: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -927,9 +915,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -942,7 +930,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       table: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -956,7 +944,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -964,9 +952,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -989,7 +977,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       table_row: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -997,9 +985,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -1011,7 +999,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       table_cell: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1029,15 +1017,15 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: number;
               };
               colwidth: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               background: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               color: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1045,9 +1033,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1080,7 +1068,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       table_header: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1098,15 +1086,15 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: number;
               };
               colwidth: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               background: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               color: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1114,9 +1102,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1149,7 +1137,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       alert: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1163,7 +1151,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1171,9 +1159,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1196,7 +1184,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       file: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1206,7 +1194,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               url: {
                 type: string;
@@ -1217,19 +1205,19 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               size: {
-                type: Array<string>;
+                type: string[];
               };
               type: {
-                type: Array<string>;
+                type: string[];
               };
               fileId: {
-                type: Array<string>;
+                type: string[];
               };
               loadingByClientID: {
-                type: Array<string>;
+                type: string[];
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1261,7 +1249,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       inline_card_link: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1271,15 +1259,15 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               type: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               resourceId: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               url: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               linkId: {
@@ -1314,7 +1302,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       block_card_link: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1324,15 +1312,15 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               type: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               resourceId: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               url: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               linkId: {
@@ -1340,7 +1328,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1374,7 +1362,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       cards_collection: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1384,7 +1372,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               filter: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               linkId: {
@@ -1400,7 +1388,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: unknown[];
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1434,7 +1422,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       diagram: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1444,11 +1432,11 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               diagramId: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               src: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               alt: {
@@ -1464,7 +1452,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1500,7 +1488,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       check_list: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1510,7 +1498,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1518,9 +1506,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1538,7 +1526,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       check_list_item: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1556,9 +1544,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1576,7 +1564,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       columns: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1590,7 +1578,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: string;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1598,9 +1586,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1622,7 +1610,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       column: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1640,9 +1628,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1660,7 +1648,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       toggle: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1674,7 +1662,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
                 default: boolean;
               };
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1682,9 +1670,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1706,7 +1694,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       toggle_heading: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1714,9 +1702,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -1727,7 +1715,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       toggle_content: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1735,9 +1723,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1749,7 +1737,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       table_of_contents: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1759,7 +1747,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1780,7 +1768,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       imageBlock: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1790,7 +1778,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               "data-block-id": {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1798,9 +1786,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
             minItems: number;
           };
@@ -1821,7 +1809,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       imageCaption: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1829,9 +1817,9 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
           content: {
             type: string;
             items: {
-              anyOf: Array<{
+              anyOf: {
                 $ref: string;
-              }>;
+              }[];
             };
           };
         };
@@ -1846,7 +1834,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       annotation: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1856,7 +1844,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               id: {
-                type: Array<string>;
+                type: string[];
               };
               resolved: {
                 type: string;
@@ -1880,7 +1868,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       color: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1890,7 +1878,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               color: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1908,7 +1896,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       highlight: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1918,7 +1906,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               color: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
             };
@@ -1936,7 +1924,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       underline: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1949,7 +1937,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       strong: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1962,7 +1950,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       strike: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1975,7 +1963,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       em: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -1988,7 +1976,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       code: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -2002,7 +1990,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       link: {
         type: string;
         additionalProperties: boolean;
-        required: Array<string>;
+        required: string[];
         properties: {
           type: {
             const: string;
@@ -2012,10 +2000,10 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
             additionalProperties: boolean;
             properties: {
               href: {
-                type: Array<string>;
+                type: string[];
               };
               title: {
-                type: Array<string>;
+                type: string[];
                 default: null;
               };
               target: {
@@ -2048,7 +2036,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentSchemasGetDocumentDataSchemaParams extends OperationOptions {
   id: string;
@@ -2057,7 +2045,7 @@ export interface DocumentSchemasGetDocumentDataSchemaParams extends OperationOpt
   signal?: AbortSignal;
 }
 
-export type DocumentsCreateNewDocumentBody = {
+export interface DocumentsCreateNewDocumentBody {
   title?: string;
   sort_order: number;
   parent_entity_uid?: string | null;
@@ -2065,9 +2053,9 @@ export type DocumentsCreateNewDocumentBody = {
   clone_uid?: string;
   clone_version?: number;
   key?: string | null;
-};
+}
 
-export type DocumentsCreateNewDocumentResponse = {
+export interface DocumentsCreateNewDocumentResponse {
   uid: string;
   id: number;
   title: string;
@@ -2083,9 +2071,9 @@ export type DocumentsCreateNewDocumentResponse = {
   for_everyone_access_role_id: string | null;
   data: {
     type: string;
-    content: Array<{
+    content: {
       type: string;
-    }>;
+    }[];
   };
   version: number;
   published_version: number | null;
@@ -2114,14 +2102,14 @@ export type DocumentsCreateNewDocumentResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentsCreateNewDocumentParams extends OperationOptions {
   body: DocumentsCreateNewDocumentBody;
   signal?: AbortSignal;
 }
 
-export type DocumentsRemoveDocumentResponse = {
+export interface DocumentsRemoveDocumentResponse {
   uid: string;
   id: number;
   title: string;
@@ -2151,14 +2139,14 @@ export type DocumentsRemoveDocumentResponse = {
   notification_period_start: null;
   notification_period_end: null;
   group_id: null;
-};
+}
 
 export interface DocumentsRemoveDocumentParams extends OperationOptions {
   document_uid: string;
   signal?: AbortSignal;
 }
 
-export type DocumentsRetrieveDocumentResponse = {
+export interface DocumentsRetrieveDocumentResponse {
   uid: string;
   id: number;
   title: string;
@@ -2174,13 +2162,13 @@ export type DocumentsRetrieveDocumentResponse = {
   for_everyone_access_role_id: string | null;
   data: {
     type: string;
-    content: Array<{
+    content: {
       type: string;
-      content: Array<{
+      content: {
         type: string;
         text: string;
-      }>;
-    }>;
+      }[];
+    }[];
   };
   version: number;
   published_version: number | null;
@@ -2209,14 +2197,14 @@ export type DocumentsRetrieveDocumentResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentsRetrieveDocumentParams extends OperationOptions {
   document_uid: string;
   signal?: AbortSignal;
 }
 
-export type DocumentsRetrieveListOfDocumentsQuery = {
+export interface DocumentsRetrieveListOfDocumentsQuery {
   query?: string;
   offset?: number;
   limit?: number;
@@ -2225,9 +2213,9 @@ export type DocumentsRetrieveListOfDocumentsQuery = {
   fields?: string;
   start_position?: string;
   include_search_preview?: boolean;
-};
+}
 
-export type DocumentsRetrieveListOfDocumentsResponse = Array<
+export type DocumentsRetrieveListOfDocumentsResponse = (
   | {
       uid: string;
       id: number;
@@ -2290,36 +2278,16 @@ export type DocumentsRetrieveListOfDocumentsResponse = Array<
       notification_period_end: string | null;
       group_id: string;
     }
->;
+)[];
 
 export interface DocumentsRetrieveListOfDocumentsParams extends OperationOptions {
   query?: DocumentsRetrieveListOfDocumentsQuery;
   signal?: AbortSignal;
 }
 
-export type DocumentsUpdateDocumentBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type DocumentsUpdateDocumentBody = unknown;
 
-export type DocumentsUpdateDocumentResponse = {
+export interface DocumentsUpdateDocumentResponse {
   uid: string;
   id: number;
   title: string;
@@ -2335,13 +2303,13 @@ export type DocumentsUpdateDocumentResponse = {
   for_everyone_access_role_id: string | null;
   data: {
     type: string;
-    content: Array<{
+    content: {
       type: string;
-      content: Array<{
+      content: {
         type: string;
         text: string;
-      }>;
-    }>;
+      }[];
+    }[];
   };
   version: number;
   published_version: number | null;
@@ -2370,7 +2338,7 @@ export type DocumentsUpdateDocumentResponse = {
       };
     };
   };
-};
+}
 
 export interface DocumentsUpdateDocumentParams extends OperationOptions {
   document_uid: string;

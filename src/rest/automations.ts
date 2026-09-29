@@ -1,14 +1,12 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-import type { AutomationBody, AutomationUpdateBody } from "../../automation.js";
+import type { AutomationBody, AutomationUpdateBody } from "../automation.js";
 
 export type AutomationsCreateAutomationBody = AutomationBody;
 
-export type AutomationsCreateAutomationResponse = {
+export interface AutomationsCreateAutomationResponse {
   created: string;
   updated: string;
   id: string;
@@ -21,17 +19,17 @@ export type AutomationsCreateAutomationResponse = {
     type: string;
     hasToFireOnCardCreation: boolean;
   };
-  actions: Array<{
+  actions: {
     data: {
-      slaIds: Array<string>;
+      slaIds: string[];
     };
     type: string;
     created: string;
-  }>;
+  }[];
   conditions: Record<string, unknown>;
   type: string;
   sort_order: number;
-};
+}
 
 export interface AutomationsCreateAutomationParams extends OperationOptions {
   space_id: number;
@@ -39,9 +37,9 @@ export interface AutomationsCreateAutomationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type AutomationsDeleteAutomationResponse = {
+export interface AutomationsDeleteAutomationResponse {
   message: string;
-};
+}
 
 export interface AutomationsDeleteAutomationParams extends OperationOptions {
   space_id: number;
@@ -49,7 +47,7 @@ export interface AutomationsDeleteAutomationParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type AutomationsGetListOfAutomationsResponse = Array<{
+export type AutomationsGetListOfAutomationsResponse = {
   created: string;
   updated: string;
   id: string;
@@ -62,17 +60,17 @@ export type AutomationsGetListOfAutomationsResponse = Array<{
     type: string;
     hasToFireOnCardCreation: boolean;
   };
-  actions: Array<{
+  actions: {
     data: {
-      slaIds: Array<string>;
+      slaIds: string[];
     };
     type: string;
     created: string;
-  }>;
+  }[];
   conditions: Record<string, unknown>;
   type: string;
   sort_order: number;
-}>;
+}[];
 
 export interface AutomationsGetListOfAutomationsParams extends OperationOptions {
   space_id: number;
@@ -81,7 +79,7 @@ export interface AutomationsGetListOfAutomationsParams extends OperationOptions 
 
 export type AutomationsUpdateAutomationBody = AutomationUpdateBody;
 
-export type AutomationsUpdateAutomationResponse = {
+export interface AutomationsUpdateAutomationResponse {
   created: string;
   updated: string;
   id: string;
@@ -94,17 +92,17 @@ export type AutomationsUpdateAutomationResponse = {
     type: string;
     hasToFireOnCardCreation: boolean;
   };
-  actions: Array<{
+  actions: {
     data: {
-      slaIds: Array<string>;
+      slaIds: string[];
     };
     type: string;
     created: string;
-  }>;
+  }[];
   conditions: Record<string, unknown>;
   type: string;
   sort_order: number;
-};
+}
 
 export interface AutomationsUpdateAutomationParams extends OperationOptions {
   space_id: number;

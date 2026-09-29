@@ -1,21 +1,19 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
-
-import { pathSegment } from "../../http.js";
+import { pathSegment } from "../http.js";
 
 import type { SearchResponseV2 } from "./search.js";
 
-export type CardAllowedUsersRetrieveUsersListQuery = {
+export interface CardAllowedUsersRetrieveUsersListQuery {
   type?: string;
   search?: string;
   orderBy?: string;
   role?: number;
   limit?: number;
   offset?: number;
-};
+}
 
-export type CardAllowedUsersRetrieveUsersListResponse = Array<{
+export type CardAllowedUsersRetrieveUsersListResponse = {
   id: number;
   full_name: string;
   email: string;
@@ -31,7 +29,7 @@ export type CardAllowedUsersRetrieveUsersListResponse = Array<{
   updated: string;
   activated: boolean;
   ui_version: number;
-}>;
+}[];
 
 export interface CardAllowedUsersRetrieveUsersListParams extends OperationOptions {
   card_id: number;
@@ -39,15 +37,15 @@ export interface CardAllowedUsersRetrieveUsersListParams extends OperationOption
   signal?: AbortSignal;
 }
 
-export type CardBlockerCategoriesAddBlockerCategoryBody = {
+export interface CardBlockerCategoriesAddBlockerCategoryBody {
   name: string;
-};
+}
 
-export type CardBlockerCategoriesAddBlockerCategoryResponse = {
+export interface CardBlockerCategoriesAddBlockerCategoryResponse {
   uid: string;
   name: string;
   color: number;
-};
+}
 
 export interface CardBlockerCategoriesAddBlockerCategoryParams extends OperationOptions {
   blocker_id: number;
@@ -55,9 +53,9 @@ export interface CardBlockerCategoriesAddBlockerCategoryParams extends Operation
   signal?: AbortSignal;
 }
 
-export type CardBlockerCategoriesRemoveCategoryResponse = {
+export interface CardBlockerCategoriesRemoveCategoryResponse {
   uid: string;
-};
+}
 
 export interface CardBlockerCategoriesRemoveCategoryParams extends OperationOptions {
   blocker_id: number;
@@ -65,21 +63,21 @@ export interface CardBlockerCategoriesRemoveCategoryParams extends OperationOpti
   signal?: AbortSignal;
 }
 
-export type CardBlockerCategoriesRetrieveListOfCategoriesResponse = Array<{
+export type CardBlockerCategoriesRetrieveListOfCategoriesResponse = {
   uid: string;
   name: string;
   color: number;
-}>;
+}[];
 
 export interface CardBlockerCategoriesRetrieveListOfCategoriesParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardBlockerUsersAddUserToTheCardBlockerBody = {
+export interface CardBlockerUsersAddUserToTheCardBlockerBody {
   user_id: number;
-};
+}
 
-export type CardBlockerUsersAddUserToTheCardBlockerResponse = {
+export interface CardBlockerUsersAddUserToTheCardBlockerResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -100,7 +98,7 @@ export type CardBlockerUsersAddUserToTheCardBlockerResponse = {
   email_blocked: string | null;
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
-};
+}
 
 export interface CardBlockerUsersAddUserToTheCardBlockerParams extends OperationOptions {
   blocker_id: number;
@@ -108,9 +106,9 @@ export interface CardBlockerUsersAddUserToTheCardBlockerParams extends Operation
   signal?: AbortSignal;
 }
 
-export type CardBlockerUsersRemoveUserResponse = {
+export interface CardBlockerUsersRemoveUserResponse {
   id: number;
-};
+}
 
 export interface CardBlockerUsersRemoveUserParams extends OperationOptions {
   blocker_id: number;
@@ -118,20 +116,20 @@ export interface CardBlockerUsersRemoveUserParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse = {
+export interface CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse {
   blocked_cards: string | number;
   summary: {
     total_blocked: number;
     blocked_by_user: string;
     cards_without_reason: number;
   };
-};
+}
 
 export interface CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardBlockerUsersRetrieveListOfUsersResponse = Array<{
+export type CardBlockerUsersRetrieveListOfUsersResponse = {
   created: string;
   updated: string;
   id: number;
@@ -162,16 +160,16 @@ export type CardBlockerUsersRetrieveListOfUsersResponse = Array<{
   privacy_policy_accepted_at: string | null;
   block_uid: string;
   user_uid: string;
-}>;
+}[];
 
 export interface CardBlockerUsersRetrieveListOfUsersParams extends OperationOptions {
   blocker_id: number;
   signal?: AbortSignal;
 }
 
-export type CardBlockersBlockCardBody = unknown | unknown;
+export type CardBlockersBlockCardBody = unknown;
 
-export type CardBlockersBlockCardResponse = {
+export interface CardBlockersBlockCardResponse {
   created: string;
   updated: string;
   id: number;
@@ -188,7 +186,7 @@ export type CardBlockersBlockCardResponse = {
   blocker: string | number;
   card: string | number;
   uid?: string;
-};
+}
 
 export interface CardBlockersBlockCardParams extends OperationOptions {
   card_id: number;
@@ -196,7 +194,7 @@ export interface CardBlockersBlockCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardBlockersDeleteCardBlockersResponse = {
+export interface CardBlockersDeleteCardBlockersResponse {
   created: string;
   updated: string;
   id: number;
@@ -213,7 +211,7 @@ export type CardBlockersDeleteCardBlockersResponse = {
   card: string | number;
   uid?: string;
   blocker?: string | number;
-};
+}
 
 export interface CardBlockersDeleteCardBlockersParams extends OperationOptions {
   card_id: number;
@@ -221,7 +219,7 @@ export interface CardBlockersDeleteCardBlockersParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardBlockersRetrieveCardBlockersListResponse = Array<{
+export type CardBlockersRetrieveCardBlockersListResponse = {
   created: string;
   updated: string;
   id: number;
@@ -238,16 +236,16 @@ export type CardBlockersRetrieveCardBlockersListResponse = Array<{
   blocker: string | number;
   card: string | number;
   uid?: string;
-}>;
+}[];
 
 export interface CardBlockersRetrieveCardBlockersListParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardBlockersUpdateCardBlockersBody = unknown | unknown;
+export type CardBlockersUpdateCardBlockersBody = unknown;
 
-export type CardBlockersUpdateCardBlockersResponse = {
+export interface CardBlockersUpdateCardBlockersResponse {
   created: string;
   updated: string;
   id: number;
@@ -261,7 +259,7 @@ export type CardBlockersUpdateCardBlockersResponse = {
   due_date: string | null;
   due_date_time_present: boolean;
   uid?: string;
-};
+}
 
 export interface CardBlockersUpdateCardBlockersParams extends OperationOptions {
   card_id: number;
@@ -270,11 +268,11 @@ export interface CardBlockersUpdateCardBlockersParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardChildrenAddChildrenBody = {
+export interface CardChildrenAddChildrenBody {
   card_id: number;
-};
+}
 
-export type CardChildrenAddChildrenResponse = {
+export interface CardChildrenAddChildrenResponse {
   id: number;
   created: string;
   updated: string;
@@ -300,7 +298,7 @@ export type CardChildrenAddChildrenResponse = {
   calculated_planned_end: null;
   parent_checklist_ids: unknown[] | null;
   children_ids: null;
-  parents_ids: Array<number>;
+  parents_ids: number[];
   blocking_card: boolean;
   blocked: boolean;
   size: number | null;
@@ -368,7 +366,7 @@ export type CardChildrenAddChildrenResponse = {
   owner: string | number;
   description?: string | null;
   counters_recalculated_at?: string;
-};
+}
 
 export interface CardChildrenAddChildrenParams extends OperationOptions {
   card_id: number;
@@ -376,9 +374,9 @@ export interface CardChildrenAddChildrenParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardChildrenRemoveChildrenResponse = {
+export interface CardChildrenRemoveChildrenResponse {
   id: number;
-};
+}
 
 export interface CardChildrenRemoveChildrenParams extends OperationOptions {
   card_id: number;
@@ -386,7 +384,7 @@ export interface CardChildrenRemoveChildrenParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardChildrenRetrieveCardChildrenListResponse = Array<{
+export type CardChildrenRetrieveCardChildrenListResponse = {
   id: number;
   created: string;
   updated: string;
@@ -412,7 +410,7 @@ export type CardChildrenRetrieveCardChildrenListResponse = Array<{
   calculated_planned_end: null;
   parent_checklist_ids: unknown[] | null;
   children_ids: null;
-  parents_ids: Array<number>;
+  parents_ids: number[];
   blocking_card: boolean;
   blocked: boolean;
   size: number | null;
@@ -458,18 +456,18 @@ export type CardChildrenRetrieveCardChildrenListResponse = Array<{
   depends_on_card_id: number;
   description?: string | null;
   counters_recalculated_at?: string;
-}>;
+}[];
 
 export interface CardChildrenRetrieveCardChildrenListParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardCommentsAddCommentBody = {
+export interface CardCommentsAddCommentBody {
   text: string;
-};
+}
 
-export type CardCommentsAddCommentResponse = {
+export interface CardCommentsAddCommentResponse {
   created: string;
   updated: string;
   id: number;
@@ -486,7 +484,7 @@ export type CardCommentsAddCommentResponse = {
   sd_description: boolean;
   notification_sent: string | null;
   attacments: string | number;
-};
+}
 
 export interface CardCommentsAddCommentParams extends OperationOptions {
   card_id: number;
@@ -494,9 +492,9 @@ export interface CardCommentsAddCommentParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardCommentsRemoveCommentResponse = {
+export interface CardCommentsRemoveCommentResponse {
   id: number;
-};
+}
 
 export interface CardCommentsRemoveCommentParams extends OperationOptions {
   card_id: number;
@@ -504,7 +502,7 @@ export interface CardCommentsRemoveCommentParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardCommentsRetrieveCardCommentsResponse = Array<{
+export type CardCommentsRetrieveCardCommentsResponse = {
   created: string;
   update: string;
   id: number;
@@ -523,18 +521,18 @@ export type CardCommentsRetrieveCardCommentsResponse = Array<{
   sd_description: boolean;
   author: string | number;
   updated?: string;
-}>;
+}[];
 
 export interface CardCommentsRetrieveCardCommentsParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardCommentsUpdateCommentBody = {
+export interface CardCommentsUpdateCommentBody {
   text?: string;
-};
+}
 
-export type CardCommentsUpdateCommentResponse = {
+export interface CardCommentsUpdateCommentResponse {
   created: string;
   updated: string;
   id: number;
@@ -551,7 +549,7 @@ export type CardCommentsUpdateCommentResponse = {
   sd_description: boolean;
   notification_sent: string | null;
   attacments: string | number;
-};
+}
 
 export interface CardCommentsUpdateCommentParams extends OperationOptions {
   card_id: number;
@@ -560,18 +558,18 @@ export interface CardCommentsUpdateCommentParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardExternalLinksAddExternalLinkBody = {
+export interface CardExternalLinksAddExternalLinkBody {
   url: string;
   description?: string | null;
-};
+}
 
-export type CardExternalLinksAddExternalLinkResponse = {
+export interface CardExternalLinksAddExternalLinkResponse {
   url: string;
   updated: string;
   created: string;
   id: number;
   description: string;
-};
+}
 
 export interface CardExternalLinksAddExternalLinkParams extends OperationOptions {
   card_id: number;
@@ -579,9 +577,9 @@ export interface CardExternalLinksAddExternalLinkParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type CardExternalLinksRemoveExternalLinkResponse = {
+export interface CardExternalLinksRemoveExternalLinkResponse {
   id: number;
-};
+}
 
 export interface CardExternalLinksRemoveExternalLinkParams extends OperationOptions {
   card_id: number;
@@ -589,7 +587,7 @@ export interface CardExternalLinksRemoveExternalLinkParams extends OperationOpti
   signal?: AbortSignal;
 }
 
-export type CardExternalLinksRetrieveCardExternalLinksResponse = Array<{
+export type CardExternalLinksRetrieveCardExternalLinksResponse = {
   url: string;
   updated: string;
   created: string;
@@ -597,22 +595,22 @@ export type CardExternalLinksRetrieveCardExternalLinksResponse = Array<{
   description: string;
   card_id: number;
   external_link_id: number;
-}>;
+}[];
 
 export interface CardExternalLinksRetrieveCardExternalLinksParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardExternalLinksUpdateExternalLinkBody = unknown | unknown;
+export type CardExternalLinksUpdateExternalLinkBody = unknown;
 
-export type CardExternalLinksUpdateExternalLinkResponse = {
+export interface CardExternalLinksUpdateExternalLinkResponse {
   url: string;
   updated: string;
   created: string;
   id: number;
   description: string;
-};
+}
 
 export interface CardExternalLinksUpdateExternalLinkParams extends OperationOptions {
   card_id: number;
@@ -621,11 +619,11 @@ export interface CardExternalLinksUpdateExternalLinkParams extends OperationOpti
   signal?: AbortSignal;
 }
 
-export type CardMembersAddMemberToCardBody = {
+export interface CardMembersAddMemberToCardBody {
   user_id: number;
-};
+}
 
-export type CardMembersAddMemberToCardResponse = {
+export interface CardMembersAddMemberToCardResponse {
   id: number;
   full_name: string;
   email: string;
@@ -639,7 +637,7 @@ export type CardMembersAddMemberToCardResponse = {
   theme: string;
   updated: string;
   type: number;
-};
+}
 
 export interface CardMembersAddMemberToCardParams extends OperationOptions {
   card_id: number;
@@ -647,9 +645,9 @@ export interface CardMembersAddMemberToCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardMembersRemoveMemberFromCardResponse = {
+export interface CardMembersRemoveMemberFromCardResponse {
   id: number;
-};
+}
 
 export interface CardMembersRemoveMemberFromCardParams extends OperationOptions {
   card_id: number;
@@ -657,7 +655,7 @@ export interface CardMembersRemoveMemberFromCardParams extends OperationOptions 
   signal?: AbortSignal;
 }
 
-export type CardMembersRetrieveListOfCardMembersResponse = Array<{
+export type CardMembersRetrieveListOfCardMembersResponse = {
   id: number;
   full_name: string;
   email: string;
@@ -677,24 +675,24 @@ export type CardMembersRetrieveListOfCardMembersResponse = Array<{
   card_id: number;
   user_id: number;
   type: number;
-}>;
+}[];
 
 export interface CardMembersRetrieveListOfCardMembersParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardMembersUpdateMemberRoleBody = {
+export interface CardMembersUpdateMemberRoleBody {
   type: number;
-};
+}
 
-export type CardMembersUpdateMemberRoleResponse = {
+export interface CardMembersUpdateMemberRoleResponse {
   created: string;
   updated: string;
   card_id: number;
   user_id: number;
   type: number;
-};
+}
 
 export interface CardMembersUpdateMemberRoleParams extends OperationOptions {
   card_id: number;
@@ -703,19 +701,18 @@ export interface CardMembersUpdateMemberRoleParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardsBatchUpdateForCardsBody =
-  unknown | unknown | unknown | unknown | unknown | unknown | unknown;
+export type CardsBatchUpdateForCardsBody = unknown;
 
-export type CardsBatchUpdateForCardsResponse = {
+export interface CardsBatchUpdateForCardsResponse {
   id: string;
-};
+}
 
 export interface CardsBatchUpdateForCardsParams extends OperationOptions {
   body: CardsBatchUpdateForCardsBody;
   signal?: AbortSignal;
 }
 
-export type CardsCreateNewCardBody = {
+export interface CardsCreateNewCardBody {
   title: number | string;
   board_id: number;
   asap?: boolean;
@@ -736,9 +733,9 @@ export type CardsCreateNewCardBody = {
   external_id?: (number | string) | null;
   text_format_type_id?: 1 | 2 | 3;
   properties?: Record<string, unknown>;
-};
+}
 
-export type CardsCreateNewCardResponse = {
+export interface CardsCreateNewCardResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -806,14 +803,14 @@ export type CardsCreateNewCardResponse = {
   calculated_planned_start?: string | null;
   calculated_planned_end?: string | null;
   source?: string | null;
-};
+}
 
 export interface CardsCreateNewCardParams extends OperationOptions {
   body: CardsCreateNewCardBody;
   signal?: AbortSignal;
 }
 
-export type CardsDeleteCardResponse = {
+export interface CardsDeleteCardResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -883,18 +880,18 @@ export type CardsDeleteCardResponse = {
   owner: string | number;
   members: string | number;
   source?: string | null;
-};
+}
 
 export interface CardsDeleteCardParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardsRetrieveCardQuery = {
+export interface CardsRetrieveCardQuery {
   broken_api?: boolean;
-};
+}
 
-export type CardsRetrieveCardResponse = {
+export interface CardsRetrieveCardResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -983,7 +980,7 @@ export type CardsRetrieveCardResponse = {
   cardRole: number;
   email: string;
   source?: string | null;
-};
+}
 
 export interface CardsRetrieveCardParams extends OperationOptions {
   card_id: number;
@@ -991,7 +988,7 @@ export interface CardsRetrieveCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardsRetrieveCardBaselinesResponse = Array<
+export type CardsRetrieveCardBaselinesResponse = (
   | {
       id: number;
       uid: string;
@@ -1007,14 +1004,14 @@ export type CardsRetrieveCardBaselinesResponse = Array<
       planned_start: string;
       planned_end: string | null;
     }
->;
+)[];
 
 export interface CardsRetrieveCardBaselinesParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardsRetrieveCardListQuery = {
+export interface CardsRetrieveCardListQuery {
   created_before?: string;
   created_after?: string;
   updated_before?: string;
@@ -1067,9 +1064,9 @@ export type CardsRetrieveCardListQuery = {
   exclude_card_ids?: string;
   organizations_ids?: string;
   broken_api?: boolean;
-};
+}
 
-export type CardsRetrieveCardListResponse = Array<{
+export type CardsRetrieveCardListResponse = {
   id: number;
   uid: string;
   created: string;
@@ -1161,7 +1158,7 @@ export type CardsRetrieveCardListResponse = Array<{
       title: string;
       external_id: null;
       card_properties: null;
-      spaces: Array<{
+      spaces: {
         id: number;
         uid: string;
         title: string;
@@ -1176,7 +1173,7 @@ export type CardsRetrieveCardListResponse = Array<{
         left: number;
         type: number;
         primary_path: boolean;
-      }>;
+      }[];
     };
     lane: {
       id: number;
@@ -1204,14 +1201,14 @@ export type CardsRetrieveCardListResponse = Array<{
   children?: string | number;
   parents?: string | number;
   source?: string | null;
-}>;
+}[];
 
 export interface CardsRetrieveCardListParams extends OperationOptions {
   query?: CardsRetrieveCardListQuery;
   signal?: AbortSignal;
 }
 
-export type CardsRetrieveCardLocationHistoryResponse = Array<{
+export type CardsRetrieveCardLocationHistoryResponse = {
   id: string;
   card_id: number;
   board_id: number;
@@ -1223,14 +1220,14 @@ export type CardsRetrieveCardLocationHistoryResponse = Array<{
   author: string | number;
   condition: number;
   changed: string;
-}>;
+}[];
 
 export interface CardsRetrieveCardLocationHistoryParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type CardsUpdateCardBody = {
+export interface CardsUpdateCardBody {
   title?: number | string;
   asap?: boolean;
   due_date?: string | null;
@@ -1255,9 +1252,9 @@ export type CardsUpdateCardBody = {
   estimate_workload?: number;
   ignore_planned_dates_recalculation?: boolean;
   properties?: Record<string, unknown>;
-};
+}
 
-export type CardsUpdateCardResponse = {
+export interface CardsUpdateCardResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -1328,7 +1325,7 @@ export type CardsUpdateCardResponse = {
   members: string | number;
   tags?: string | number;
   source?: string | null;
-};
+}
 
 export interface CardsUpdateCardParams extends OperationOptions {
   card_id: number;

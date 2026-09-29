@@ -1,16 +1,14 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CustomDirectoriesCreateCustomDirectoryBody = {
+export interface CustomDirectoriesCreateCustomDirectoryBody {
   name: string;
   description?: null | string;
   multi_select?: boolean;
   allow_editing?: boolean;
   display_field_index?: number;
-  fields?: Array<{
+  fields?: {
     name: string;
     type:
       | "string"
@@ -29,10 +27,10 @@ export type CustomDirectoriesCreateCustomDirectoryBody = {
     sort_order?: number;
     custom_property_uid?: null | string;
     linked_directory_id?: null | string;
-  }>;
-};
+  }[];
+}
 
-export type CustomDirectoriesCreateCustomDirectoryResponse = {
+export interface CustomDirectoriesCreateCustomDirectoryResponse {
   id: string;
   name: string;
   description: string | null;
@@ -46,26 +44,26 @@ export type CustomDirectoriesCreateCustomDirectoryResponse = {
   created: string;
   updated: string;
   fields: string | number;
-};
+}
 
 export interface CustomDirectoriesCreateCustomDirectoryParams extends OperationOptions {
   body: CustomDirectoriesCreateCustomDirectoryBody;
   signal?: AbortSignal;
 }
 
-export type CustomDirectoriesDeleteCustomDirectoryResponse = {
+export interface CustomDirectoriesDeleteCustomDirectoryResponse {
   id: string;
   name: string;
   condition: string;
   updated: string;
-};
+}
 
 export interface CustomDirectoriesDeleteCustomDirectoryParams extends OperationOptions {
   directory_id: string;
   signal?: AbortSignal;
 }
 
-export type CustomDirectoriesGetCustomDirectoryResponse = {
+export interface CustomDirectoriesGetCustomDirectoryResponse {
   id: string;
   name: string;
   description: string | null;
@@ -85,7 +83,7 @@ export type CustomDirectoriesGetCustomDirectoryResponse = {
     email: string;
     username: string;
   };
-  fields: Array<{
+  fields: {
     id: string;
     custom_directory_id: string;
     name: string;
@@ -98,15 +96,15 @@ export type CustomDirectoriesGetCustomDirectoryResponse = {
     condition: string;
     created: string;
     updated: string;
-  }>;
-};
+  }[];
+}
 
 export interface CustomDirectoriesGetCustomDirectoryParams extends OperationOptions {
   directory_id: string;
   signal?: AbortSignal;
 }
 
-export type CustomDirectoriesGetListOfCustomDirectoriesQuery = {
+export interface CustomDirectoriesGetListOfCustomDirectoriesQuery {
   include_fields?: boolean;
   include_author?: boolean;
   include_records_count?: boolean;
@@ -114,9 +112,9 @@ export type CustomDirectoriesGetListOfCustomDirectoriesQuery = {
   offset?: number;
   query?: string;
   conditions?: unknown[];
-};
+}
 
-export type CustomDirectoriesGetListOfCustomDirectoriesResponse = Array<{
+export type CustomDirectoriesGetListOfCustomDirectoriesResponse = {
   id: string;
   name: string;
   description: string | null;
@@ -130,20 +128,20 @@ export type CustomDirectoriesGetListOfCustomDirectoriesResponse = Array<{
   updated: string;
   fields?: unknown[];
   author?: Record<string, unknown>;
-}>;
+}[];
 
 export interface CustomDirectoriesGetListOfCustomDirectoriesParams extends OperationOptions {
   query?: CustomDirectoriesGetListOfCustomDirectoriesQuery;
   signal?: AbortSignal;
 }
 
-export type CustomDirectoriesUpdateCustomDirectoryBody = {
+export interface CustomDirectoriesUpdateCustomDirectoryBody {
   name?: string;
   description?: null | string;
   condition?: "active" | "inactive" | "removed";
   multi_select?: boolean;
   allow_editing?: boolean;
-  fields?: Array<{
+  fields?: {
     id?: string;
     name?: string;
     type?:
@@ -164,10 +162,10 @@ export type CustomDirectoriesUpdateCustomDirectoryBody = {
     sort_order?: number;
     custom_property_uid?: null | string;
     linked_directory_id?: null | string;
-  }>;
-};
+  }[];
+}
 
-export type CustomDirectoriesUpdateCustomDirectoryResponse = {
+export interface CustomDirectoriesUpdateCustomDirectoryResponse {
   id: string;
   name: string;
   description: string | null;
@@ -187,7 +185,7 @@ export type CustomDirectoriesUpdateCustomDirectoryResponse = {
     email: string;
     username: string;
   };
-  fields: Array<{
+  fields: {
     id: string;
     custom_directory_id: string;
     name: string;
@@ -200,8 +198,8 @@ export type CustomDirectoriesUpdateCustomDirectoryResponse = {
     condition: string;
     created: string;
     updated: string;
-  }>;
-};
+  }[];
+}
 
 export interface CustomDirectoriesUpdateCustomDirectoryParams extends OperationOptions {
   directory_id: string;
@@ -209,7 +207,7 @@ export interface CustomDirectoriesUpdateCustomDirectoryParams extends OperationO
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryFieldsCreateFieldBody = {
+export interface CustomDirectoryFieldsCreateFieldBody {
   name: string;
   type:
     | "string"
@@ -227,9 +225,9 @@ export type CustomDirectoryFieldsCreateFieldBody = {
   sort_order?: number;
   required?: boolean;
   is_display?: boolean;
-};
+}
 
-export type CustomDirectoryFieldsCreateFieldResponse = {
+export interface CustomDirectoryFieldsCreateFieldResponse {
   id: string;
   custom_directory_id: string;
   name: string;
@@ -246,7 +244,7 @@ export type CustomDirectoryFieldsCreateFieldResponse = {
   company_uid: string;
   created: string;
   updated: string;
-};
+}
 
 export interface CustomDirectoryFieldsCreateFieldParams extends OperationOptions {
   directory_id: string;
@@ -254,14 +252,14 @@ export interface CustomDirectoryFieldsCreateFieldParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryFieldsDeleteFieldResponse = {
+export interface CustomDirectoryFieldsDeleteFieldResponse {
   id: string;
   custom_directory_id: string;
   name: string;
   type: string;
   condition: string;
   updated: string;
-};
+}
 
 export interface CustomDirectoryFieldsDeleteFieldParams extends OperationOptions {
   directory_id: string;
@@ -269,7 +267,7 @@ export interface CustomDirectoryFieldsDeleteFieldParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryFieldsGetFieldResponse = {
+export interface CustomDirectoryFieldsGetFieldResponse {
   id: string;
   custom_directory_id: string;
   name: string;
@@ -295,7 +293,7 @@ export type CustomDirectoryFieldsGetFieldResponse = {
   };
   linkedDirectory: Record<string, unknown>;
   customProperty: Record<string, unknown>;
-};
+}
 
 export interface CustomDirectoryFieldsGetFieldParams extends OperationOptions {
   directory_id: string;
@@ -303,12 +301,12 @@ export interface CustomDirectoryFieldsGetFieldParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryFieldsGetListOfFieldsQuery = {
+export interface CustomDirectoryFieldsGetListOfFieldsQuery {
   include_author?: boolean;
   conditions?: unknown[];
-};
+}
 
-export type CustomDirectoryFieldsGetListOfFieldsResponse = Array<{
+export type CustomDirectoryFieldsGetListOfFieldsResponse = {
   id: string;
   custom_directory_id: string;
   name: string;
@@ -317,7 +315,7 @@ export type CustomDirectoryFieldsGetListOfFieldsResponse = Array<{
   is_display: boolean;
   sort_order: number;
   condition: string;
-}>;
+}[];
 
 export interface CustomDirectoryFieldsGetListOfFieldsParams extends OperationOptions {
   directory_id: string;
@@ -325,15 +323,15 @@ export interface CustomDirectoryFieldsGetListOfFieldsParams extends OperationOpt
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryFieldsUpdateFieldBody = {
+export interface CustomDirectoryFieldsUpdateFieldBody {
   name?: string;
   condition?: "active" | "inactive" | "removed";
   sort_order?: number;
   required?: boolean;
   is_display?: boolean;
-};
+}
 
-export type CustomDirectoryFieldsUpdateFieldResponse = {
+export interface CustomDirectoryFieldsUpdateFieldResponse {
   id: string;
   custom_directory_id: string;
   name: string;
@@ -350,7 +348,7 @@ export type CustomDirectoryFieldsUpdateFieldResponse = {
   company_uid: string;
   created: string;
   updated: string;
-};
+}
 
 export interface CustomDirectoryFieldsUpdateFieldParams extends OperationOptions {
   directory_id: string;
@@ -359,15 +357,15 @@ export interface CustomDirectoryFieldsUpdateFieldParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsCreateRecordQuery = {
+export interface CustomDirectoryRecordsCreateRecordQuery {
   response_profile?: string;
-};
+}
 
-export type CustomDirectoryRecordsCreateRecordBody = {
+export interface CustomDirectoryRecordsCreateRecordBody {
   values: Record<string, unknown>;
-};
+}
 
-export type CustomDirectoryRecordsCreateRecordResponse = {
+export interface CustomDirectoryRecordsCreateRecordResponse {
   id: string;
   custom_directory_id: string;
   display_value: string | null;
@@ -392,7 +390,7 @@ export type CustomDirectoryRecordsCreateRecordResponse = {
     username: string;
   };
   values: string | number;
-};
+}
 
 export interface CustomDirectoryRecordsCreateRecordParams extends OperationOptions {
   directory_id: string;
@@ -401,12 +399,12 @@ export interface CustomDirectoryRecordsCreateRecordParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsDeleteRecordResponse = {
+export interface CustomDirectoryRecordsDeleteRecordResponse {
   id: string;
   custom_directory_id: string;
   condition: string;
   updated: string;
-};
+}
 
 export interface CustomDirectoryRecordsDeleteRecordParams extends OperationOptions {
   directory_id: string;
@@ -414,17 +412,17 @@ export interface CustomDirectoryRecordsDeleteRecordParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsGetCardsLinkedToRecordQuery = {
+export interface CustomDirectoryRecordsGetCardsLinkedToRecordQuery {
   limit?: number;
   offset?: number;
   filter?: string;
-};
+}
 
-export type CustomDirectoryRecordsGetCardsLinkedToRecordResponse = Array<{
+export type CustomDirectoryRecordsGetCardsLinkedToRecordResponse = {
   id: number;
   uid: string;
   title: string;
-}>;
+}[];
 
 export interface CustomDirectoryRecordsGetCardsLinkedToRecordParams extends OperationOptions {
   directory_id: string;
@@ -433,7 +431,7 @@ export interface CustomDirectoryRecordsGetCardsLinkedToRecordParams extends Oper
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsGetListOfRecordsQuery = {
+export interface CustomDirectoryRecordsGetListOfRecordsQuery {
   limit?: number;
   offset?: number;
   query?: string;
@@ -443,20 +441,20 @@ export type CustomDirectoryRecordsGetListOfRecordsQuery = {
   conditions?: unknown[];
   filters?: Record<string, unknown>;
   filter_operator?: string;
-};
+}
 
-export type CustomDirectoryRecordsGetListOfRecordsResponse = Array<{
+export type CustomDirectoryRecordsGetListOfRecordsResponse = {
   id: string;
   custom_directory_id: string;
   display_value: string | null;
   condition: string;
   created: string;
   updated: string;
-  values: Array<{
+  values: {
     field_id: string;
     value_text: string;
-  }>;
-}>;
+  }[];
+}[];
 
 export interface CustomDirectoryRecordsGetListOfRecordsParams extends OperationOptions {
   directory_id: string;
@@ -464,11 +462,11 @@ export interface CustomDirectoryRecordsGetListOfRecordsParams extends OperationO
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsGetRecordQuery = {
+export interface CustomDirectoryRecordsGetRecordQuery {
   profile?: string;
-};
+}
 
-export type CustomDirectoryRecordsGetRecordResponse = {
+export interface CustomDirectoryRecordsGetRecordResponse {
   id: string;
   custom_directory_id: string;
   display_value: string | null;
@@ -492,7 +490,7 @@ export type CustomDirectoryRecordsGetRecordResponse = {
     email: string;
     username: string;
   };
-  values: Array<{
+  values: {
     id: string;
     record_id: string;
     field_id: string;
@@ -504,8 +502,8 @@ export type CustomDirectoryRecordsGetRecordResponse = {
     user_uid: null;
     directory_record_id: null;
     sort_order: number;
-  }>;
-};
+  }[];
+}
 
 export interface CustomDirectoryRecordsGetRecordParams extends OperationOptions {
   directory_id: string;
@@ -514,16 +512,16 @@ export interface CustomDirectoryRecordsGetRecordParams extends OperationOptions 
   signal?: AbortSignal;
 }
 
-export type CustomDirectoryRecordsUpdateRecordQuery = {
+export interface CustomDirectoryRecordsUpdateRecordQuery {
   response_profile?: string;
-};
+}
 
-export type CustomDirectoryRecordsUpdateRecordBody = {
+export interface CustomDirectoryRecordsUpdateRecordBody {
   condition?: "active" | "inactive" | "removed";
   values?: Record<string, unknown>;
-};
+}
 
-export type CustomDirectoryRecordsUpdateRecordResponse = {
+export interface CustomDirectoryRecordsUpdateRecordResponse {
   id: string;
   custom_directory_id: string;
   display_value: string | null;
@@ -547,7 +545,7 @@ export type CustomDirectoryRecordsUpdateRecordResponse = {
     email: string;
     username: string;
   };
-  values: Array<{
+  values: {
     id: string;
     record_id: string;
     field_id: string;
@@ -559,8 +557,8 @@ export type CustomDirectoryRecordsUpdateRecordResponse = {
     user_uid: null;
     directory_record_id: null;
     sort_order: number;
-  }>;
-};
+  }[];
+}
 
 export interface CustomDirectoryRecordsUpdateRecordParams extends OperationOptions {
   directory_id: string;
@@ -570,9 +568,9 @@ export interface CustomDirectoryRecordsUpdateRecordParams extends OperationOptio
   signal?: AbortSignal;
 }
 
-export type CustomPropertiesCreateNewPropertyBody = unknown | unknown;
+export type CustomPropertiesCreateNewPropertyBody = unknown;
 
-export type CustomPropertiesCreateNewPropertyResponse = {
+export interface CustomPropertiesCreateNewPropertyResponse {
   name: string;
   type: string;
   show_on_facade: boolean;
@@ -593,14 +591,14 @@ export type CustomPropertiesCreateNewPropertyResponse = {
   protected: boolean;
   color: number | null;
   external_id: string | null;
-};
+}
 
 export interface CustomPropertiesCreateNewPropertyParams extends OperationOptions {
   body: CustomPropertiesCreateNewPropertyBody;
   signal?: AbortSignal;
 }
 
-export type CustomPropertiesGetListOfPropertiesQuery = {
+export interface CustomPropertiesGetListOfPropertiesQuery {
   include_values?: boolean;
   include_author?: boolean;
   compact?: boolean;
@@ -611,9 +609,9 @@ export type CustomPropertiesGetListOfPropertiesQuery = {
   order_by?: string;
   order_direction?: string;
   query?: string;
-};
+}
 
-export type CustomPropertiesGetListOfPropertiesResponse = Array<{
+export type CustomPropertiesGetListOfPropertiesResponse = {
   created: string;
   updated: string;
   id: number;
@@ -635,14 +633,14 @@ export type CustomPropertiesGetListOfPropertiesResponse = Array<{
   fields_settings: Record<string, unknown> | null;
   color: number | null;
   external_id: string | null;
-}>;
+}[];
 
 export interface CustomPropertiesGetListOfPropertiesParams extends OperationOptions {
   query?: CustomPropertiesGetListOfPropertiesQuery;
   signal?: AbortSignal;
 }
 
-export type CustomPropertiesGetPropertyResponse = {
+export interface CustomPropertiesGetPropertyResponse {
   created: string;
   updated: string;
   id: number;
@@ -664,14 +662,14 @@ export type CustomPropertiesGetPropertyResponse = {
   fields_settings: Record<string, unknown> | null;
   color: number | null;
   external_id: string | null;
-};
+}
 
 export interface CustomPropertiesGetPropertyParams extends OperationOptions {
   id: number;
   signal?: AbortSignal;
 }
 
-export type CustomPropertiesRemovePropertyResponse = {
+export interface CustomPropertiesRemovePropertyResponse {
   created: string;
   updated: string;
   id: number;
@@ -692,14 +690,14 @@ export type CustomPropertiesRemovePropertyResponse = {
   fields_settings: Record<string, unknown> | null;
   color: number | null;
   external_id?: string | null;
-};
+}
 
 export interface CustomPropertiesRemovePropertyParams extends OperationOptions {
   id: number;
   signal?: AbortSignal;
 }
 
-export type CustomPropertiesUpdatePropertyBody = {
+export interface CustomPropertiesUpdatePropertyBody {
   name?: string;
   show_on_facade?: boolean;
   multiline?: boolean;
@@ -707,13 +705,13 @@ export type CustomPropertiesUpdatePropertyBody = {
   colorful?: boolean | null;
   multi_select?: boolean | null;
   values_creatable_by_users?: boolean | null;
-  data?: unknown | unknown | unknown | unknown | unknown;
+  data?: unknown;
   color?: number | null;
   fields_settings?: Record<string, unknown> | null;
   is_used_as_progress?: boolean;
-};
+}
 
-export type CustomPropertiesUpdatePropertyResponse = {
+export interface CustomPropertiesUpdatePropertyResponse {
   created: string;
   updated: string;
   id: number;
@@ -735,7 +733,7 @@ export type CustomPropertiesUpdatePropertyResponse = {
   fields_settings: Record<string, unknown> | null;
   color: number | null;
   external_id: string | null;
-};
+}
 
 export interface CustomPropertiesUpdatePropertyParams extends OperationOptions {
   id: number;
@@ -743,11 +741,11 @@ export interface CustomPropertiesUpdatePropertyParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCatalogValuesCreateNewCatalogValueBody = {
+export interface CustomPropertyCatalogValuesCreateNewCatalogValueBody {
   value: Record<string, unknown>;
-};
+}
 
-export type CustomPropertyCatalogValuesCreateNewCatalogValueResponse = {
+export interface CustomPropertyCatalogValuesCreateNewCatalogValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -759,7 +757,7 @@ export type CustomPropertyCatalogValuesCreateNewCatalogValueResponse = {
   author_id: number;
   updater_id: number;
   condition: string;
-};
+}
 
 export interface CustomPropertyCatalogValuesCreateNewCatalogValueParams extends OperationOptions {
   property_id: number;
@@ -767,7 +765,7 @@ export interface CustomPropertyCatalogValuesCreateNewCatalogValueParams extends 
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCatalogValuesGetCatalogValueResponse = {
+export interface CustomPropertyCatalogValuesGetCatalogValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -779,7 +777,7 @@ export type CustomPropertyCatalogValuesGetCatalogValueResponse = {
   author_id: number;
   updater_id: number;
   condition: string;
-};
+}
 
 export interface CustomPropertyCatalogValuesGetCatalogValueParams extends OperationOptions {
   property_id: number;
@@ -787,14 +785,14 @@ export interface CustomPropertyCatalogValuesGetCatalogValueParams extends Operat
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCatalogValuesGetListOfCatalogValuesQuery = {
+export interface CustomPropertyCatalogValuesGetListOfCatalogValuesQuery {
   query?: string;
   conditions?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type CustomPropertyCatalogValuesGetListOfCatalogValuesResponse = Array<{
+export type CustomPropertyCatalogValuesGetListOfCatalogValuesResponse = {
   created: string;
   updated: string;
   id: number;
@@ -806,7 +804,7 @@ export type CustomPropertyCatalogValuesGetListOfCatalogValuesResponse = Array<{
   author_id: number;
   updater_id: number | null;
   condition: string;
-}>;
+}[];
 
 export interface CustomPropertyCatalogValuesGetListOfCatalogValuesParams extends OperationOptions {
   property_id: number;
@@ -814,7 +812,7 @@ export interface CustomPropertyCatalogValuesGetListOfCatalogValuesParams extends
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCatalogValuesRemovePropertyResponse = {
+export interface CustomPropertyCatalogValuesRemovePropertyResponse {
   created: string;
   updated: string;
   id: number;
@@ -826,7 +824,7 @@ export type CustomPropertyCatalogValuesRemovePropertyResponse = {
   author_id: number;
   updater_id: number;
   condition: string;
-};
+}
 
 export interface CustomPropertyCatalogValuesRemovePropertyParams extends OperationOptions {
   property_id: number;
@@ -834,10 +832,9 @@ export interface CustomPropertyCatalogValuesRemovePropertyParams extends Operati
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCatalogValuesUpdateCatalogValueBody =
-  unknown | unknown;
+export type CustomPropertyCatalogValuesUpdateCatalogValueBody = unknown;
 
-export type CustomPropertyCatalogValuesUpdateCatalogValueResponse = {
+export interface CustomPropertyCatalogValuesUpdateCatalogValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -849,7 +846,7 @@ export type CustomPropertyCatalogValuesUpdateCatalogValueResponse = {
   author_id: number;
   updater_id: number;
   condition: string;
-};
+}
 
 export interface CustomPropertyCatalogValuesUpdateCatalogValueParams extends OperationOptions {
   property_id: number;
@@ -858,11 +855,11 @@ export interface CustomPropertyCatalogValuesUpdateCatalogValueParams extends Ope
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCollectiveScoreValuesCreateNewScoreValueBody = {
+export interface CustomPropertyCollectiveScoreValuesCreateNewScoreValueBody {
   value: string;
-};
+}
 
-export type CustomPropertyCollectiveScoreValuesCreateNewScoreValueResponse = {
+export interface CustomPropertyCollectiveScoreValuesCreateNewScoreValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -872,7 +869,7 @@ export type CustomPropertyCollectiveScoreValuesCreateNewScoreValueResponse = {
   updater_id: number;
   company_id: number;
   card_id: number;
-};
+}
 
 export interface CustomPropertyCollectiveScoreValuesCreateNewScoreValueParams extends OperationOptions {
   card_id: number;
@@ -881,31 +878,30 @@ export interface CustomPropertyCollectiveScoreValuesCreateNewScoreValueParams ex
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCollectiveScoreValuesGetListOfScoreValuesResponse =
-  Array<{
+export type CustomPropertyCollectiveScoreValuesGetListOfScoreValuesResponse = {
+  id: number;
+  custom_property_id: number;
+  value: string;
+  card_id: number;
+  author_id: number;
+  author: {
     id: number;
-    custom_property_id: number;
-    value: string;
-    card_id: number;
-    author_id: number;
-    author: {
-      id: number;
-      full_name: string;
-      email: string;
-      username: string;
-      avatar_initials_url: string;
-      avatar_uploaded_url: null;
-      initials: string;
-      avatar_type: number;
-      lng: string;
-      timezone: string;
-      theme: string;
-      created: string;
-      updated: string;
-      activated: boolean;
-      ui_version: number;
-    };
-  }>;
+    full_name: string;
+    email: string;
+    username: string;
+    avatar_initials_url: string;
+    avatar_uploaded_url: null;
+    initials: string;
+    avatar_type: number;
+    lng: string;
+    timezone: string;
+    theme: string;
+    created: string;
+    updated: string;
+    activated: boolean;
+    ui_version: number;
+  };
+}[];
 
 export interface CustomPropertyCollectiveScoreValuesGetListOfScoreValuesParams extends OperationOptions {
   card_id: number;
@@ -915,7 +911,7 @@ export interface CustomPropertyCollectiveScoreValuesGetListOfScoreValuesParams e
 
 export type CustomPropertyCollectiveScoreValuesUpdateScoreValueBody = unknown;
 
-export type CustomPropertyCollectiveScoreValuesUpdateScoreValueResponse = {
+export interface CustomPropertyCollectiveScoreValuesUpdateScoreValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -925,7 +921,7 @@ export type CustomPropertyCollectiveScoreValuesUpdateScoreValueResponse = {
   updater_id: number;
   company_id: number;
   card_id: number;
-};
+}
 
 export interface CustomPropertyCollectiveScoreValuesUpdateScoreValueParams extends OperationOptions {
   card_id: number;
@@ -935,10 +931,9 @@ export interface CustomPropertyCollectiveScoreValuesUpdateScoreValueParams exten
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueBody =
-  unknown | unknown;
+export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueBody = unknown;
 
-export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueResponse = {
+export interface CustomPropertyCollectiveVoteValuesCreateNewVoteValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -948,7 +943,7 @@ export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueResponse = {
   author_id: number;
   company_id: number;
   card_id: number;
-};
+}
 
 export interface CustomPropertyCollectiveVoteValuesCreateNewVoteValueParams extends OperationOptions {
   card_id: number;
@@ -957,32 +952,31 @@ export interface CustomPropertyCollectiveVoteValuesCreateNewVoteValueParams exte
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCollectiveVoteValuesGetListOfVoteValuesResponse =
-  Array<{
+export type CustomPropertyCollectiveVoteValuesGetListOfVoteValuesResponse = {
+  id: number;
+  custom_property_id: number;
+  number_vote: number;
+  emoji_vote: string;
+  card_id: number;
+  author_id: number;
+  author: {
     id: number;
-    custom_property_id: number;
-    number_vote: number;
-    emoji_vote: string;
-    card_id: number;
-    author_id: number;
-    author: {
-      id: number;
-      full_name: string;
-      email: string;
-      username: string;
-      avatar_initials_url: string;
-      avatar_uploaded_url: null;
-      initials: string;
-      avatar_type: number;
-      lng: string;
-      timezone: string;
-      theme: string;
-      created: string;
-      updated: string;
-      activated: boolean;
-      ui_version: number;
-    };
-  }>;
+    full_name: string;
+    email: string;
+    username: string;
+    avatar_initials_url: string;
+    avatar_uploaded_url: null;
+    initials: string;
+    avatar_type: number;
+    lng: string;
+    timezone: string;
+    theme: string;
+    created: string;
+    updated: string;
+    activated: boolean;
+    ui_version: number;
+  };
+}[];
 
 export interface CustomPropertyCollectiveVoteValuesGetListOfVoteValuesParams extends OperationOptions {
   card_id: number;
@@ -992,7 +986,7 @@ export interface CustomPropertyCollectiveVoteValuesGetListOfVoteValuesParams ext
 
 export type CustomPropertyCollectiveVoteValuesRemoveVoteValueBody = unknown;
 
-export type CustomPropertyCollectiveVoteValuesRemoveVoteValueResponse = {
+export interface CustomPropertyCollectiveVoteValuesRemoveVoteValueResponse {
   id: number;
   custom_property_id: number;
   number_vote: number;
@@ -1000,7 +994,7 @@ export type CustomPropertyCollectiveVoteValuesRemoveVoteValueResponse = {
   card_id: number;
   author_id: number;
   company_id?: number;
-};
+}
 
 export interface CustomPropertyCollectiveVoteValuesRemoveVoteValueParams extends OperationOptions {
   card_id: number;
@@ -1010,11 +1004,11 @@ export interface CustomPropertyCollectiveVoteValuesRemoveVoteValueParams extends
   signal?: AbortSignal;
 }
 
-export type CustomPropertyCollectiveVoteValuesUpdateVoteValueBody = {
+export interface CustomPropertyCollectiveVoteValuesUpdateVoteValueBody {
   number_vote?: number | null;
-};
+}
 
-export type CustomPropertyCollectiveVoteValuesUpdateVoteValueResponse = {
+export interface CustomPropertyCollectiveVoteValuesUpdateVoteValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -1024,7 +1018,7 @@ export type CustomPropertyCollectiveVoteValuesUpdateVoteValueResponse = {
   author_id: number;
   company_id: number;
   card_id: number;
-};
+}
 
 export interface CustomPropertyCollectiveVoteValuesUpdateVoteValueParams extends OperationOptions {
   card_id: number;
@@ -1034,12 +1028,12 @@ export interface CustomPropertyCollectiveVoteValuesUpdateVoteValueParams extends
   signal?: AbortSignal;
 }
 
-export type CustomPropertySelectValuesCreateNewSelectValueBody = {
+export interface CustomPropertySelectValuesCreateNewSelectValueBody {
   value: string;
   color?: number | null;
-};
+}
 
-export type CustomPropertySelectValuesCreateNewSelectValueResponse = {
+export interface CustomPropertySelectValuesCreateNewSelectValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -1051,7 +1045,7 @@ export type CustomPropertySelectValuesCreateNewSelectValueResponse = {
   sort_order: number;
   external_id: string | null;
   condition: string;
-};
+}
 
 export interface CustomPropertySelectValuesCreateNewSelectValueParams extends OperationOptions {
   property_id: number;
@@ -1059,7 +1053,7 @@ export interface CustomPropertySelectValuesCreateNewSelectValueParams extends Op
   signal?: AbortSignal;
 }
 
-export type CustomPropertySelectValuesGetListOfSelectValuesQuery = {
+export interface CustomPropertySelectValuesGetListOfSelectValuesQuery {
   v2_select_search?: boolean;
   query?: string;
   order_by?: string;
@@ -1067,9 +1061,9 @@ export type CustomPropertySelectValuesGetListOfSelectValuesQuery = {
   conditions?: unknown[];
   offset?: number;
   limit?: number;
-};
+}
 
-export type CustomPropertySelectValuesGetListOfSelectValuesResponse = Array<{
+export type CustomPropertySelectValuesGetListOfSelectValuesResponse = {
   id: number;
   custom_property_id: number;
   value: string;
@@ -1078,7 +1072,7 @@ export type CustomPropertySelectValuesGetListOfSelectValuesResponse = Array<{
   external_id: string | null;
   updated: string;
   condition: string;
-}>;
+}[];
 
 export interface CustomPropertySelectValuesGetListOfSelectValuesParams extends OperationOptions {
   property_id: number;
@@ -1086,7 +1080,7 @@ export interface CustomPropertySelectValuesGetListOfSelectValuesParams extends O
   signal?: AbortSignal;
 }
 
-export type CustomPropertySelectValuesGetSelectValueResponse = {
+export interface CustomPropertySelectValuesGetSelectValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -1098,7 +1092,7 @@ export type CustomPropertySelectValuesGetSelectValueResponse = {
   sort_order: number;
   external_id: string | null;
   condition: string;
-};
+}
 
 export interface CustomPropertySelectValuesGetSelectValueParams extends OperationOptions {
   property_id: number;
@@ -1106,7 +1100,7 @@ export interface CustomPropertySelectValuesGetSelectValueParams extends Operatio
   signal?: AbortSignal;
 }
 
-export type CustomPropertySelectValuesRemovePropertyResponse = {
+export interface CustomPropertySelectValuesRemovePropertyResponse {
   created: string;
   updated: string;
   id: number;
@@ -1118,7 +1112,7 @@ export type CustomPropertySelectValuesRemovePropertyResponse = {
   sort_order: number;
   external_id: string | null;
   condition: string;
-};
+}
 
 export interface CustomPropertySelectValuesRemovePropertyParams extends OperationOptions {
   property_id: number;
@@ -1126,10 +1120,9 @@ export interface CustomPropertySelectValuesRemovePropertyParams extends Operatio
   signal?: AbortSignal;
 }
 
-export type CustomPropertySelectValuesUpdateSelectValueBody =
-  unknown | unknown | unknown | unknown | unknown;
+export type CustomPropertySelectValuesUpdateSelectValueBody = unknown;
 
-export type CustomPropertySelectValuesUpdateSelectValueResponse = {
+export interface CustomPropertySelectValuesUpdateSelectValueResponse {
   created: string;
   updated: string;
   id: number;
@@ -1141,7 +1134,7 @@ export type CustomPropertySelectValuesUpdateSelectValueResponse = {
   sort_order: number;
   external_id: string | null;
   condition: string;
-};
+}
 
 export interface CustomPropertySelectValuesUpdateSelectValueParams extends OperationOptions {
   property_id: number;
@@ -1150,13 +1143,13 @@ export interface CustomPropertySelectValuesUpdateSelectValueParams extends Opera
   signal?: AbortSignal;
 }
 
-export type CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyBody = {
+export interface CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyBody {
   tree_entity_uid: string;
-};
+}
 
-export type CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyResponse = {
+export interface CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyResponse {
   id: number;
-};
+}
 
 export interface CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyParams extends OperationOptions {
   property_id: number;
@@ -1174,7 +1167,7 @@ export interface CustomPropertyTreeEntitiesDeleteTreeEntityFromCustomPropertyPar
 }
 
 export type CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesResponse =
-  Array<
+  (
     | {
         uid: string;
         title: string;
@@ -1214,7 +1207,7 @@ export type CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesRespons
         company_id: number;
         protected: boolean;
       }
-  >;
+  )[];
 
 export interface CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesParams extends OperationOptions {
   property_id: number;

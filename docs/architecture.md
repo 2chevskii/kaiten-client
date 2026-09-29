@@ -7,8 +7,8 @@ depending on internal paths.
 
 `src/http.ts` owns authenticated request transport, URL construction, response
 handling, and HTTP errors. `src/client.ts` composes REST resources. The REST
-resource index in `src/generated/rest.ts` assembles the domain modules under
-`src/generated/rest/`:
+resource index in `src/rest/index.ts` assembles the domain modules under
+`src/rest/`:
 
 | Module          | Related resources                                      |
 | --------------- | ------------------------------------------------------ |
@@ -27,11 +27,14 @@ resource index in `src/generated/rest.ts` assembles the domain modules under
 | `tags`          | Tags and card tags                                     |
 
 Each domain module contains the documented request and response types beside
-the methods that use them. `metadata.ts` holds the REST operation registry, and
-`search.ts` holds the shared search response type. SCIM operations and outgoing
-webhook event contracts remain in their own generated modules. The incoming
-card webhook sender lives in `src/webhooks/incoming.ts` and is re-exported from
-the existing `src/webhooks.ts` entry point.
+the methods that use them. `src/rest/metadata.ts` holds the REST operation
+registry, and `src/rest/search.ts` holds the shared search response type. SCIM
+request and response types and methods live in `src/scim/operations.ts`.
+Outgoing webhook event contracts live in `src/webhooks/events.ts`, while the
+incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
+`src/scim.ts` and `src/webhooks.ts` entry points re-export these modules.
 
 The documentation audit in `docs/api-coverage.json` is the contract inventory.
 `test/operations.test.mjs` checks every REST and SCIM method against it.
+Contracts are maintained in source code alongside their operations. The audit
+and tests validate coverage; no code generation step is required for a build.

@@ -1,18 +1,16 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardChecklistItemsAddItemToChecklistBody = {
+export interface CardChecklistItemsAddItemToChecklistBody {
   text: string;
   sort_order?: number;
   checked?: boolean;
   due_date?: string | null;
   responsible_id?: number;
-};
+}
 
-export type CardChecklistItemsAddItemToChecklistResponse = {
+export interface CardChecklistItemsAddItemToChecklistResponse {
   created: string;
   updated: string;
   id: number;
@@ -26,7 +24,7 @@ export type CardChecklistItemsAddItemToChecklistResponse = {
   responsible_id: number | null;
   deleted: boolean;
   due_date: string | null;
-};
+}
 
 export interface CardChecklistItemsAddItemToChecklistParams extends OperationOptions {
   card_id: number;
@@ -35,9 +33,9 @@ export interface CardChecklistItemsAddItemToChecklistParams extends OperationOpt
   signal?: AbortSignal;
 }
 
-export type CardChecklistItemsRemoveChecklistItemResponse = {
+export interface CardChecklistItemsRemoveChecklistItemResponse {
   id: number;
-};
+}
 
 export interface CardChecklistItemsRemoveChecklistItemParams extends OperationOptions {
   card_id: number;
@@ -46,10 +44,9 @@ export interface CardChecklistItemsRemoveChecklistItemParams extends OperationOp
   signal?: AbortSignal;
 }
 
-export type CardChecklistItemsUpdateChecklistItemBody =
-  unknown | unknown | unknown | unknown | unknown | unknown;
+export type CardChecklistItemsUpdateChecklistItemBody = unknown;
 
-export type CardChecklistItemsUpdateChecklistItemResponse = {
+export interface CardChecklistItemsUpdateChecklistItemResponse {
   created: string;
   updated: string;
   id: number;
@@ -63,7 +60,7 @@ export type CardChecklistItemsUpdateChecklistItemResponse = {
   responsible_id: number | null;
   deleted: boolean;
   due_date: string | null;
-};
+}
 
 export interface CardChecklistItemsUpdateChecklistItemParams extends OperationOptions {
   card_id: number;
@@ -73,9 +70,9 @@ export interface CardChecklistItemsUpdateChecklistItemParams extends OperationOp
   signal?: AbortSignal;
 }
 
-export type CardChecklistsAddChecklistToCardBody = unknown | unknown;
+export type CardChecklistsAddChecklistToCardBody = unknown;
 
-export type CardChecklistsAddChecklistToCardResponse = {
+export interface CardChecklistsAddChecklistToCardResponse {
   created: string;
   updated: string;
   id: number;
@@ -86,7 +83,7 @@ export type CardChecklistsAddChecklistToCardResponse = {
   sort_order: number;
   deleted: boolean;
   items: string | number;
-};
+}
 
 export interface CardChecklistsAddChecklistToCardParams extends OperationOptions {
   card_id: number;
@@ -94,9 +91,9 @@ export interface CardChecklistsAddChecklistToCardParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type CardChecklistsRemoveChecklistFromCardResponse = {
+export interface CardChecklistsRemoveChecklistFromCardResponse {
   id: number;
-};
+}
 
 export interface CardChecklistsRemoveChecklistFromCardParams extends OperationOptions {
   card_id: number;
@@ -104,7 +101,7 @@ export interface CardChecklistsRemoveChecklistFromCardParams extends OperationOp
   signal?: AbortSignal;
 }
 
-export type CardChecklistsRetrieveCardChecklistResponse = {
+export interface CardChecklistsRetrieveCardChecklistResponse {
   created: string;
   updated: string;
   id: number;
@@ -113,7 +110,7 @@ export type CardChecklistsRetrieveCardChecklistResponse = {
   name: string;
   policy_id: number | null;
   items: string | number;
-};
+}
 
 export interface CardChecklistsRetrieveCardChecklistParams extends OperationOptions {
   card_id: number;
@@ -121,15 +118,15 @@ export interface CardChecklistsRetrieveCardChecklistParams extends OperationOpti
   signal?: AbortSignal;
 }
 
-export type CardChecklistsUpdateChecklistBody = unknown | unknown | unknown;
+export type CardChecklistsUpdateChecklistBody = unknown;
 
-export type CardChecklistsUpdateChecklistResponse = {
+export interface CardChecklistsUpdateChecklistResponse {
   created: string;
   updated: string;
   id: number;
   name: string;
   policy_id: number | null;
-};
+}
 
 export interface CardChecklistsUpdateChecklistParams extends OperationOptions {
   card_id: number;
@@ -138,15 +135,15 @@ export interface CardChecklistsUpdateChecklistParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type ChecklistItemsAddItemToChecklistBody = {
+export interface ChecklistItemsAddItemToChecklistBody {
   text: string;
   sort_order?: number;
   checked?: boolean;
   due_date?: string | null;
   responsible_id?: number;
-};
+}
 
-export type ChecklistItemsAddItemToChecklistResponse = {
+export interface ChecklistItemsAddItemToChecklistResponse {
   created: string;
   updated: string;
   id: number;
@@ -160,7 +157,7 @@ export type ChecklistItemsAddItemToChecklistResponse = {
   responsible_id: number | null;
   deleted: boolean;
   due_date: string | null;
-};
+}
 
 export interface ChecklistItemsAddItemToChecklistParams extends OperationOptions {
   checklist_id: number;
@@ -168,9 +165,9 @@ export interface ChecklistItemsAddItemToChecklistParams extends OperationOptions
   signal?: AbortSignal;
 }
 
-export type ChecklistItemsRemoveChecklistItemResponse = {
+export interface ChecklistItemsRemoveChecklistItemResponse {
   id: number;
-};
+}
 
 export interface ChecklistItemsRemoveChecklistItemParams extends OperationOptions {
   checklist_id: number;
@@ -178,10 +175,9 @@ export interface ChecklistItemsRemoveChecklistItemParams extends OperationOption
   signal?: AbortSignal;
 }
 
-export type ChecklistItemsUpdateChecklistItemBody =
-  unknown | unknown | unknown | unknown | unknown | unknown;
+export type ChecklistItemsUpdateChecklistItemBody = unknown;
 
-export type ChecklistItemsUpdateChecklistItemResponse = {
+export interface ChecklistItemsUpdateChecklistItemResponse {
   created: string;
   updated: string;
   id: number;
@@ -195,7 +191,7 @@ export type ChecklistItemsUpdateChecklistItemResponse = {
   responsible_id: number | null;
   deleted: boolean;
   due_date: string | null;
-};
+}
 
 export interface ChecklistItemsUpdateChecklistItemParams extends OperationOptions {
   checklist_id: number;
@@ -204,11 +200,11 @@ export interface ChecklistItemsUpdateChecklistItemParams extends OperationOption
   signal?: AbortSignal;
 }
 
-export type ChecklistsRetrieveCardsWithChecklistQuery = {
+export interface ChecklistsRetrieveCardsWithChecklistQuery {
   only_shared_cards: boolean;
-};
+}
 
-export type ChecklistsRetrieveCardsWithChecklistResponse = Array<{
+export type ChecklistsRetrieveCardsWithChecklistResponse = {
   created: string;
   updated: string;
   archived: boolean;
@@ -277,7 +273,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = Array<{
   children_number_properties_sum: Record<string, unknown> | null;
   description_filled: boolean;
   import_id: number | null;
-  tag_ids: Array<number>;
+  tag_ids: number[];
   has_access_to_space: boolean;
   path_data: {
     lane: {
@@ -301,7 +297,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = Array<{
   };
   space_id: number;
   tags_ids?: unknown[];
-}>;
+}[];
 
 export interface ChecklistsRetrieveCardsWithChecklistParams extends OperationOptions {
   id: number;
@@ -309,21 +305,19 @@ export interface ChecklistsRetrieveCardsWithChecklistParams extends OperationOpt
   signal?: AbortSignal;
 }
 
-export type SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemBody =
-  {
-    text: string;
-    sort_order?: number;
-  };
+export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemBody {
+  text: string;
+  sort_order?: number;
+}
 
-export type SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemResponse =
-  {
-    uid: string;
-    text: string;
-    sort_order: number;
-    user_id: number;
-    created: string;
-    updated: string;
-  };
+export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemResponse {
+  uid: string;
+  text: string;
+  sort_order: number;
+  user_id: number;
+  created: string;
+  updated: string;
+}
 
 export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemParams extends OperationOptions {
   space_uid: string;
@@ -332,10 +326,9 @@ export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemP
   signal?: AbortSignal;
 }
 
-export type SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse =
-  {
-    uid: string;
-  };
+export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse {
+  uid: string;
+}
 
 export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemParams extends OperationOptions {
   space_uid: string;
@@ -345,17 +338,16 @@ export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemPara
 }
 
 export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody =
-  unknown | unknown;
+  unknown;
 
-export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse =
-  {
-    uid: string;
-    text: string;
-    sort_order: number;
-    user_id: number;
-    created: string;
-    updated: string;
-  };
+export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse {
+  uid: string;
+  text: string;
+  sort_order: number;
+  user_id: number;
+  created: string;
+  updated: string;
+}
 
 export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemParams extends OperationOptions {
   space_uid: string;
@@ -367,14 +359,14 @@ export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemPara
 
 export type SpaceTemplateChecklistCreateNewSpaceTemplateChecklistBody = unknown;
 
-export type SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse = {
+export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse {
   uid: string;
   name: string;
   sort_order: number;
   space_uid: string;
   created: string;
   updated: string;
-};
+}
 
 export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams extends OperationOptions {
   space_uid: string;
@@ -382,32 +374,31 @@ export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams ext
   signal?: AbortSignal;
 }
 
-export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse =
-  Array<{
+export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse = {
+  uid: string;
+  name: string;
+  sort_order: number;
+  space_uid: string;
+  created: string;
+  updated: string;
+  items: {
     uid: string;
-    name: string;
+    text: string;
     sort_order: number;
-    space_uid: string;
+    user_id: number;
     created: string;
     updated: string;
-    items: Array<{
-      uid: string;
-      text: string;
-      sort_order: number;
-      user_id: number;
-      created: string;
-      updated: string;
-    }>;
-  }>;
+  }[];
+}[];
 
 export interface SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsParams extends OperationOptions {
   space_uid: string;
   signal?: AbortSignal;
 }
 
-export type SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse = {
+export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse {
   uid: string;
-};
+}
 
 export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams extends OperationOptions {
   space_uid: string;
@@ -415,17 +406,16 @@ export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams extend
   signal?: AbortSignal;
 }
 
-export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody =
-  unknown | unknown;
+export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody = unknown;
 
-export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse = {
+export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse {
   uid: string;
   name: string;
   sort_order: number;
   space_uid: string;
   created: string;
   updated: string;
-};
+}
 
 export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistParams extends OperationOptions {
   space_uid: string;

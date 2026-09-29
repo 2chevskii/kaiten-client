@@ -1,14 +1,12 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardServiceDeskExternalRecipientsAddNewRecipientBody = {
+export interface CardServiceDeskExternalRecipientsAddNewRecipientBody {
   email: string;
-};
+}
 
-export type CardServiceDeskExternalRecipientsAddNewRecipientResponse = {
+export interface CardServiceDeskExternalRecipientsAddNewRecipientResponse {
   created: string;
   updated: string;
   card_id: number;
@@ -16,7 +14,7 @@ export type CardServiceDeskExternalRecipientsAddNewRecipientResponse = {
   email: string;
   unsubscribed: boolean;
   updater_id: number;
-};
+}
 
 export interface CardServiceDeskExternalRecipientsAddNewRecipientParams extends OperationOptions {
   card_id: number;
@@ -24,7 +22,7 @@ export interface CardServiceDeskExternalRecipientsAddNewRecipientParams extends 
   signal?: AbortSignal;
 }
 
-export type CardServiceDeskExternalRecipientsRemoveRecipientResponse = {
+export interface CardServiceDeskExternalRecipientsRemoveRecipientResponse {
   created: string;
   updated: string;
   card_id: number;
@@ -33,7 +31,7 @@ export type CardServiceDeskExternalRecipientsRemoveRecipientResponse = {
   unsubscribed: boolean;
   updater_id: number;
   company_id: number;
-};
+}
 
 export interface CardServiceDeskExternalRecipientsRemoveRecipientParams extends OperationOptions {
   card_id: number;
@@ -41,11 +39,11 @@ export interface CardServiceDeskExternalRecipientsRemoveRecipientParams extends 
   signal?: AbortSignal;
 }
 
-export type CardSlaRetrieveCardSlaMeasurementsResponse = {
-  calendars: Array<{
+export interface CardSlaRetrieveCardSlaMeasurementsResponse {
+  calendars: {
     id: string;
     timezone: string;
-    work_days: Array<
+    work_days: (
       | {
           created: string;
           updated: string;
@@ -68,8 +66,8 @@ export type CardSlaRetrieveCardSlaMeasurementsResponse = {
           period_start: number;
           period_finish: number;
         }
-    >;
-    holidays: Array<{
+    )[];
+    holidays: {
       created: string;
       updated: string;
       id: string;
@@ -78,9 +76,9 @@ export type CardSlaRetrieveCardSlaMeasurementsResponse = {
       month: number;
       year: number;
       description: string;
-    }>;
-  }>;
-  rulesTimeData: Array<{
+    }[];
+  }[];
+  rulesTimeData: {
     rule_id: string;
     card_id: number;
     actual_time: number;
@@ -88,15 +86,15 @@ export type CardSlaRetrieveCardSlaMeasurementsResponse = {
     completed: boolean;
     last_calculated_at: string;
     is_last_calculated_at_work_time: boolean;
-  }>;
-};
+  }[];
+}
 
 export interface CardSlaRetrieveCardSlaMeasurementsParams extends OperationOptions {
   card_id: number;
   signal?: AbortSignal;
 }
 
-export type ServiceDeskServicesRetrieveServicesListResponse = Array<{
+export type ServiceDeskServicesRetrieveServicesListResponse = {
   id: number;
   name: string;
   fields_settings: Record<string, unknown> | null;
@@ -124,7 +122,7 @@ export type ServiceDeskServicesRetrieveServicesListResponse = Array<{
     custom_property_id: number;
     author_id: number;
   };
-}>;
+}[];
 
 export interface ServiceDeskServicesRetrieveServicesListParams extends OperationOptions {
   signal?: AbortSignal;

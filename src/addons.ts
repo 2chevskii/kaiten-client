@@ -1,7 +1,7 @@
 import type {
   CardsRetrieveCardResponse,
   UsersRetrieveCurrentUserResponse,
-} from "./generated/rest.js";
+} from "./rest/index.js";
 
 export interface AddonTokenResponse {
   access_token: string;

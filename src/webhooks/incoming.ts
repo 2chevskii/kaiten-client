@@ -1,4 +1,4 @@
-import type { CardsCreateNewCardResponse } from "../generated/rest.js";
+import type { CardsCreateNewCardResponse } from "../rest/index.js";
 import { KaitenHttpError } from "../http.js";
 
 export interface CardWebhookLink {

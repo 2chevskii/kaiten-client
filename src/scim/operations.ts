@@ -1,13 +1,12 @@
-/** Generated from the Kaiten developer documentation audit. */
 import type { HttpTransport, OperationOptions } from "../http.js";
 import { pathSegment } from "../http.js";
 
-export type GroupsAddGroupBody = {
+export interface GroupsAddGroupBody {
   displayName: string;
-};
+}
 
-export type GroupsAddGroupResponse = {
-  schemas: Array<string>;
+export interface GroupsAddGroupResponse {
+  schemas: string[];
   id: string;
   displayName: string;
   meta: {
@@ -16,15 +15,15 @@ export type GroupsAddGroupResponse = {
     lastModified: string;
     location: string;
   };
-};
+}
 
 export interface GroupsAddGroupParams extends OperationOptions {
   body: GroupsAddGroupBody;
   signal?: AbortSignal;
 }
 
-export type GroupsGetGroupResponse = {
-  schemas: Array<string>;
+export interface GroupsGetGroupResponse {
+  schemas: string[];
   id: string;
   displayName: string;
   meta: {
@@ -33,27 +32,27 @@ export type GroupsGetGroupResponse = {
     lastModified: string;
     location: string;
   };
-  members: Array<{
+  members: {
     value: number;
     $ref: string;
     display: string;
-  }>;
-};
+  }[];
+}
 
 export interface GroupsGetGroupParams extends OperationOptions {
   group_id: number;
   signal?: AbortSignal;
 }
 
-export type GroupsGetGroupsQuery = {
+export interface GroupsGetGroupsQuery {
   startIndex?: number;
   count?: number;
-};
+}
 
-export type GroupsGetGroupsResponse = {
-  schemas: Array<string>;
-  Resources: Array<{
-    schemas: Array<string>;
+export interface GroupsGetGroupsResponse {
+  schemas: string[];
+  Resources: {
+    schemas: string[];
     id: string;
     displayName: string;
     meta: {
@@ -62,28 +61,28 @@ export type GroupsGetGroupsResponse = {
       lastModified: string;
       location: string;
     };
-    members: Array<{
+    members: {
       value: number;
       $ref: string;
       display: string;
-    }>;
-  }>;
+    }[];
+  }[];
   totalResults: number;
   itemsPerPage: number;
   startIndex: number;
-};
+}
 
 export interface GroupsGetGroupsParams extends OperationOptions {
   query?: GroupsGetGroupsQuery;
   signal?: AbortSignal;
 }
 
-export type GroupsUpdateGroupBody = {
+export interface GroupsUpdateGroupBody {
   Operations?: string | number;
-};
+}
 
-export type GroupsUpdateGroupResponse = {
-  schemas: Array<string>;
+export interface GroupsUpdateGroupResponse {
+  schemas: string[];
   id: string;
   displayName: string;
   meta: {
@@ -92,12 +91,12 @@ export type GroupsUpdateGroupResponse = {
     lastModified: string;
     location: string;
   };
-  members: Array<{
+  members: {
     value: number;
     $ref: string;
     display: string;
-  }>;
-};
+  }[];
+}
 
 export interface GroupsUpdateGroupParams extends OperationOptions {
   group_id: number;
@@ -105,14 +104,14 @@ export interface GroupsUpdateGroupParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UsersAddUserBody = {
+export interface UsersAddUserBody {
   userName?: string;
   name?: Record<string, unknown>;
   emails: Record<string, unknown>;
-};
+}
 
-export type UsersAddUserResponse = {
-  schemas: Array<string>;
+export interface UsersAddUserResponse {
+  schemas: string[];
   meta: {
     resourceType: string;
     created: string;
@@ -126,20 +125,20 @@ export type UsersAddUserResponse = {
   };
   userName: string;
   active: boolean;
-  emails: Array<{
+  emails: {
     value: string;
     type: string;
     primary: boolean;
-  }>;
-};
+  }[];
+}
 
 export interface UsersAddUserParams extends OperationOptions {
   body: UsersAddUserBody;
   signal?: AbortSignal;
 }
 
-export type UsersGetUserResponse = {
-  schemas: Array<string>;
+export interface UsersGetUserResponse {
+  schemas: string[];
   meta: {
     resourceType: string;
     created: string;
@@ -153,33 +152,33 @@ export type UsersGetUserResponse = {
   };
   userName: string;
   active: boolean;
-  emails: Array<{
+  emails: {
     value: string;
     type: string;
     primary: boolean;
-  }>;
-  groups: Array<{
+  }[];
+  groups: {
     value: number;
     display: string;
     $ref: string;
-  }>;
-};
+  }[];
+}
 
 export interface UsersGetUserParams extends OperationOptions {
   user_id: number;
   signal?: AbortSignal;
 }
 
-export type UsersGetUsersQuery = {
+export interface UsersGetUsersQuery {
   startIndex?: number;
   count?: number;
   filter?: string;
-};
+}
 
-export type UsersGetUsersResponse = {
-  schemas: Array<string>;
-  Resources: Array<{
-    schemas: Array<string>;
+export interface UsersGetUsersResponse {
+  schemas: string[];
+  Resources: {
+    schemas: string[];
     meta: {
       resourceType: string;
       created: string;
@@ -193,28 +192,28 @@ export type UsersGetUsersResponse = {
     };
     userName: string;
     active: boolean;
-    emails: Array<{
+    emails: {
       value: string;
       type: string;
       primary: boolean;
-    }>;
-  }>;
+    }[];
+  }[];
   totalResults: number;
   itemsPerPage: number;
   startIndex: number;
-};
+}
 
 export interface UsersGetUsersParams extends OperationOptions {
   query?: UsersGetUsersQuery;
   signal?: AbortSignal;
 }
 
-export type UsersUpdateUserBody = {
+export interface UsersUpdateUserBody {
   Operations?: boolean;
-};
+}
 
-export type UsersUpdateUserResponse = {
-  schemas: Array<string>;
+export interface UsersUpdateUserResponse {
+  schemas: string[];
   meta: {
     resourceType: string;
     created: string;
@@ -228,13 +227,13 @@ export type UsersUpdateUserResponse = {
   };
   userName: string;
   active: boolean;
-  emails: Array<{
+  emails: {
     value: string;
     type: string;
     primary: boolean;
-  }>;
+  }[];
   groups: unknown[];
-};
+}
 
 export interface UsersUpdateUserParams extends OperationOptions {
   user_id: number;

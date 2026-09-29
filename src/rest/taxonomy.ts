@@ -1,16 +1,14 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardTypeTreeEntitiesAddTreeEntityToCardTypeBody = {
+export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeBody {
   tree_entity_uid: string;
-};
+}
 
-export type CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse = {
+export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse {
   id: number;
-};
+}
 
 export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeParams extends OperationOptions {
   type_id: number;
@@ -26,7 +24,7 @@ export interface CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeParams extends 
   signal?: AbortSignal;
 }
 
-export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = Array<
+export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
   | {
       uid: string;
       title: string;
@@ -66,23 +64,23 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = Array<
       company_id: number;
       protected: boolean;
     }
->;
+)[];
 
 export interface CardTypeTreeEntitiesGetListOfTypeTreeEntitiesParams extends OperationOptions {
   type_id: number;
   signal?: AbortSignal;
 }
 
-export type CardTypesCreateNewCardTypeBody = {
+export interface CardTypesCreateNewCardTypeBody {
   letter: string;
   name: string;
   color: number;
   properties?: Record<string, unknown>;
-  card_properties?: Array<unknown | unknown>;
+  card_properties?: unknown[];
   suggest_fields?: boolean;
-};
+}
 
-export type CardTypesCreateNewCardTypeResponse = {
+export interface CardTypesCreateNewCardTypeResponse {
   company_id: number;
   letter: string;
   name: string;
@@ -98,14 +96,14 @@ export type CardTypesCreateNewCardTypeResponse = {
   };
   card_properties: string | number;
   suggest_fields: boolean;
-};
+}
 
 export interface CardTypesCreateNewCardTypeParams extends OperationOptions {
   body: CardTypesCreateNewCardTypeBody;
   signal?: AbortSignal;
 }
 
-export type CardTypesGetCardTypeResponse = {
+export interface CardTypesGetCardTypeResponse {
   company_id: number;
   letter: string;
   name: string;
@@ -121,19 +119,19 @@ export type CardTypesGetCardTypeResponse = {
   };
   card_properties: string | number;
   suggest_fields: boolean;
-};
+}
 
 export interface CardTypesGetCardTypeParams extends OperationOptions {
   id: number;
   signal?: AbortSignal;
 }
 
-export type CardTypesGetListOfCardTypesQuery = {
+export interface CardTypesGetListOfCardTypesQuery {
   limit?: number;
   offset?: number;
-};
+}
 
-export type CardTypesGetListOfCardTypesResponse = Array<{
+export type CardTypesGetListOfCardTypesResponse = {
   company_id: number;
   letter: string;
   name: string;
@@ -146,18 +144,18 @@ export type CardTypesGetListOfCardTypesResponse = Array<{
   properties: null;
   card_properties: string | number;
   suggest_fields: boolean;
-}>;
+}[];
 
 export interface CardTypesGetListOfCardTypesParams extends OperationOptions {
   query?: CardTypesGetListOfCardTypesQuery;
   signal?: AbortSignal;
 }
 
-export type CardTypesRemoveCardTypeBody = {
+export interface CardTypesRemoveCardTypeBody {
   replace_type_id: number;
-};
+}
 
-export type CardTypesRemoveCardTypeResponse = {
+export interface CardTypesRemoveCardTypeResponse {
   company_id: number;
   letter: string;
   name: string;
@@ -173,7 +171,7 @@ export type CardTypesRemoveCardTypeResponse = {
   };
   card_properties: string | number;
   suggest_fields: boolean;
-};
+}
 
 export interface CardTypesRemoveCardTypeParams extends OperationOptions {
   id: number;
@@ -181,9 +179,9 @@ export interface CardTypesRemoveCardTypeParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardTypesUpdateCardTypeBody = unknown | unknown | unknown | unknown;
+export type CardTypesUpdateCardTypeBody = unknown;
 
-export type CardTypesUpdateCardTypeResponse = {
+export interface CardTypesUpdateCardTypeResponse {
   company_id: number;
   letter: string;
   name: string;
@@ -199,7 +197,7 @@ export type CardTypesUpdateCardTypeResponse = {
   };
   card_properties: string | number;
   suggest_fields: boolean;
-};
+}
 
 export interface CardTypesUpdateCardTypeParams extends OperationOptions {
   id: number;
@@ -207,14 +205,14 @@ export interface CardTypesUpdateCardTypeParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type TreeEntitiesGetListOfEntitiesQuery = {
+export interface TreeEntitiesGetListOfEntitiesQuery {
   limit?: number;
   offset?: number;
   parent_entity_uid?: string;
   levels_count?: number;
-};
+}
 
-export type TreeEntitiesGetListOfEntitiesResponse = Array<
+export type TreeEntitiesGetListOfEntitiesResponse = (
   | {
       id: number;
       uid: string;
@@ -265,14 +263,14 @@ export type TreeEntitiesGetListOfEntitiesResponse = Array<
       for_everyone_access_role_id: string;
       company_id: number;
     }
->;
+)[];
 
 export interface TreeEntitiesGetListOfEntitiesParams extends OperationOptions {
   query?: TreeEntitiesGetListOfEntitiesQuery;
   signal?: AbortSignal;
 }
 
-export type TreeEntityRolesGetListOfTreeEntityRolesResponse = Array<{
+export type TreeEntityRolesGetListOfTreeEntityRolesResponse = {
   id: string;
   name: string;
   permissions: {
@@ -367,7 +365,7 @@ export type TreeEntityRolesGetListOfTreeEntityRolesResponse = Array<{
   updated: string;
   created: string;
   role_permissions?: Record<string, unknown>;
-}>;
+}[];
 
 export interface TreeEntityRolesGetListOfTreeEntityRolesParams extends OperationOptions {
   signal?: AbortSignal;

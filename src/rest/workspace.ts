@@ -1,10 +1,8 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type BoardsGetBoardResponse = {
+export interface BoardsGetBoardResponse {
   created: string;
   updated: string;
   id: number;
@@ -28,14 +26,14 @@ export type BoardsGetBoardResponse = {
   lanes: string | number;
   cards: unknown[];
   cards_deprecation_message?: string;
-};
+}
 
 export interface BoardsGetBoardParams extends OperationOptions {
   id: number;
   signal?: AbortSignal;
 }
 
-export type ColumnsCreateNewColumnBody = {
+export interface ColumnsCreateNewColumnBody {
   external_id?: (number | string) | null;
   title: string;
   sort_order?: number;
@@ -50,9 +48,9 @@ export type ColumnsCreateNewColumnBody = {
   months_to_hide_cards?: number | null;
   card_hide_after_days?: number | null;
   rules?: number;
-};
+}
 
-export type ColumnsCreateNewColumnResponse = {
+export interface ColumnsCreateNewColumnResponse {
   created: string;
   updated: string;
   id: number;
@@ -75,7 +73,7 @@ export type ColumnsCreateNewColumnResponse = {
   card_hide_after_days: number | null;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface ColumnsCreateNewColumnParams extends OperationOptions {
   board_id: number;
@@ -83,7 +81,7 @@ export interface ColumnsCreateNewColumnParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type ColumnsGetListOfColumnsResponse = Array<{
+export type ColumnsGetListOfColumnsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -108,20 +106,20 @@ export type ColumnsGetListOfColumnsResponse = Array<{
   subcolumns: string | number;
   uid?: string;
   locked?: string | null;
-}>;
+}[];
 
 export interface ColumnsGetListOfColumnsParams extends OperationOptions {
   board_id: number;
   signal?: AbortSignal;
 }
 
-export type ColumnsRemoveColumnBody = {
+export interface ColumnsRemoveColumnBody {
   force?: boolean;
-};
+}
 
-export type ColumnsRemoveColumnResponse = {
+export interface ColumnsRemoveColumnResponse {
   id: number;
-};
+}
 
 export interface ColumnsRemoveColumnParams extends OperationOptions {
   board_id: number;
@@ -130,27 +128,9 @@ export interface ColumnsRemoveColumnParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type ColumnsUpdateColumnBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type ColumnsUpdateColumnBody = unknown;
 
-export type ColumnsUpdateColumnResponse = {
+export interface ColumnsUpdateColumnResponse {
   created: string;
   updated: string;
   id: number;
@@ -173,7 +153,7 @@ export type ColumnsUpdateColumnResponse = {
   card_hide_after_days: number | null;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface ColumnsUpdateColumnParams extends OperationOptions {
   board_id: number;
@@ -182,7 +162,7 @@ export interface ColumnsUpdateColumnParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type LanesCreateNewLaneBody = {
+export interface LanesCreateNewLaneBody {
   title: string;
   sort_order?: number;
   wip_limit?: number;
@@ -191,9 +171,9 @@ export type LanesCreateNewLaneBody = {
   last_moved_warning_after_hours?: number;
   last_moved_warning_after_minutes?: number;
   row_count?: number;
-};
+}
 
-export type LanesCreateNewLaneResponse = {
+export interface LanesCreateNewLaneResponse {
   created: string;
   updated: string;
   id: number;
@@ -212,7 +192,7 @@ export type LanesCreateNewLaneResponse = {
   condition: number;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface LanesCreateNewLaneParams extends OperationOptions {
   board_id: number;
@@ -220,11 +200,11 @@ export interface LanesCreateNewLaneParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type LanesGetListOfLanesQuery = {
+export interface LanesGetListOfLanesQuery {
   condition?: string;
-};
+}
 
-export type LanesGetListOfLanesResponse = Array<{
+export type LanesGetListOfLanesResponse = {
   created: string;
   updated: string;
   id: number;
@@ -243,7 +223,7 @@ export type LanesGetListOfLanesResponse = Array<{
   last_moved_warning_after_minutes: number;
   uid?: string;
   locked?: string | null;
-}>;
+}[];
 
 export interface LanesGetListOfLanesParams extends OperationOptions {
   board_id: number;
@@ -251,13 +231,13 @@ export interface LanesGetListOfLanesParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type LanesRemoveLaneBody = {
+export interface LanesRemoveLaneBody {
   force?: boolean;
-};
+}
 
-export type LanesRemoveLaneResponse = {
+export interface LanesRemoveLaneResponse {
   id: number;
-};
+}
 
 export interface LanesRemoveLaneParams extends OperationOptions {
   board_id: number;
@@ -266,20 +246,9 @@ export interface LanesRemoveLaneParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type LanesUpdateLaneBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type LanesUpdateLaneBody = unknown;
 
-export type LanesUpdateLaneResponse = {
+export interface LanesUpdateLaneResponse {
   created: string;
   updated: string;
   id: number;
@@ -298,7 +267,7 @@ export type LanesUpdateLaneResponse = {
   condition: number;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface LanesUpdateLaneParams extends OperationOptions {
   board_id: number;
@@ -307,9 +276,9 @@ export interface LanesUpdateLaneParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceBoardsCreateNewBoardBody = {
+export interface SpaceBoardsCreateNewBoardBody {
   title: string | number;
-  columns?: Array<{
+  columns?: {
     title: string;
     sort_order?: number;
     type: 1 | 2 | 3;
@@ -321,14 +290,14 @@ export type SpaceBoardsCreateNewBoardBody = {
     rules?: number;
     external_id?: (number | string) | null;
     default_tags?: string | null;
-  }>;
-  lanes?: Array<{
+  }[];
+  lanes?: {
     title: string;
     sort_order?: number;
     wip_limit?: number;
     row_count?: number;
     default_tags?: string | null;
-  }>;
+  }[];
   description?: string | null;
   top?: number;
   left?: number;
@@ -340,9 +309,9 @@ export type SpaceBoardsCreateNewBoardBody = {
   auto_assign_enabled?: boolean;
   sort_order?: number;
   external_id?: (number | string) | null;
-};
+}
 
-export type SpaceBoardsCreateNewBoardResponse = {
+export interface SpaceBoardsCreateNewBoardResponse {
   created: string;
   updated: string;
   id: number;
@@ -367,7 +336,7 @@ export type SpaceBoardsCreateNewBoardResponse = {
   top: number;
   left: number;
   sort_order: number;
-};
+}
 
 export interface SpaceBoardsCreateNewBoardParams extends OperationOptions {
   space_id: number;
@@ -375,7 +344,7 @@ export interface SpaceBoardsCreateNewBoardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceBoardsGetBoardResponse = {
+export interface SpaceBoardsGetBoardResponse {
   created: string;
   updated: string;
   id: number;
@@ -493,7 +462,7 @@ export type SpaceBoardsGetBoardResponse = {
   left: number;
   sort_order: number;
   cards_deprecation_message?: string;
-};
+}
 
 export interface SpaceBoardsGetBoardParams extends OperationOptions {
   space_id: number;
@@ -501,7 +470,7 @@ export interface SpaceBoardsGetBoardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceBoardsGetListOfBoardsResponse = Array<{
+export type SpaceBoardsGetListOfBoardsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -529,20 +498,20 @@ export type SpaceBoardsGetListOfBoardsResponse = Array<{
   left: number;
   sort_order: number;
   type: number;
-}>;
+}[];
 
 export interface SpaceBoardsGetListOfBoardsParams extends OperationOptions {
   space_id: number;
   signal?: AbortSignal;
 }
 
-export type SpaceBoardsRemoveBoardBody = {
+export interface SpaceBoardsRemoveBoardBody {
   force?: boolean;
-};
+}
 
-export type SpaceBoardsRemoveBoardResponse = {
+export interface SpaceBoardsRemoveBoardResponse {
   id: number;
-};
+}
 
 export interface SpaceBoardsRemoveBoardParams extends OperationOptions {
   space_id: number;
@@ -551,28 +520,9 @@ export interface SpaceBoardsRemoveBoardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceBoardsUpdateBoardBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type SpaceBoardsUpdateBoardBody = unknown;
 
-export type SpaceBoardsUpdateBoardResponse = {
+export interface SpaceBoardsUpdateBoardResponse {
   created: string;
   updated: string;
   id: number;
@@ -597,7 +547,7 @@ export type SpaceBoardsUpdateBoardResponse = {
   top: number;
   left: number;
   sort_order: number;
-};
+}
 
 export interface SpaceBoardsUpdateBoardParams extends OperationOptions {
   space_id: number;
@@ -606,18 +556,17 @@ export interface SpaceBoardsUpdateBoardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceUsersChangeUserRoleAndNotificationSettingsBody =
-  unknown | unknown;
+export type SpaceUsersChangeUserRoleAndNotificationSettingsBody = unknown;
 
-export type SpaceUsersChangeUserRoleAndNotificationSettingsResponse = {
+export interface SpaceUsersChangeUserRoleAndNotificationSettingsResponse {
   entity_uid: string;
   access_mod: string;
-  own_role_ids: Array<string>;
+  own_role_ids: string[];
   own_access_mod: string;
   own_role: number;
   user_id: number;
   id: number;
-};
+}
 
 export interface SpaceUsersChangeUserRoleAndNotificationSettingsParams extends OperationOptions {
   space_id: number;
@@ -626,14 +575,14 @@ export interface SpaceUsersChangeUserRoleAndNotificationSettingsParams extends O
   signal?: AbortSignal;
 }
 
-export type SpaceUsersGetListOfUsersQuery = {
+export interface SpaceUsersGetListOfUsersQuery {
   include_inherited_access?: boolean;
   inactive?: boolean;
   limit?: number;
   last_user_id?: number;
-};
+}
 
-export type SpaceUsersGetListOfUsersResponse = Array<{
+export type SpaceUsersGetListOfUsersResponse = {
   id: number;
   full_name: string | null;
   email: string;
@@ -653,11 +602,11 @@ export type SpaceUsersGetListOfUsersResponse = Array<{
   apps_permissions: number;
   temporarily_inactive: boolean;
   access_mod: string;
-  own_role_ids: Array<string>;
+  own_role_ids: string[];
   own_access_mod: string;
   own_role: number;
   current: boolean;
-}>;
+}[];
 
 export interface SpaceUsersGetListOfUsersParams extends OperationOptions {
   space_id: number;
@@ -665,7 +614,7 @@ export interface SpaceUsersGetListOfUsersParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceUsersGetUserResponse = {
+export interface SpaceUsersGetUserResponse {
   id: number;
   full_name: string;
   email: string;
@@ -685,7 +634,7 @@ export type SpaceUsersGetUserResponse = {
   entity_uid: string;
   user_id: number;
   access_mod: string;
-};
+}
 
 export interface SpaceUsersGetUserParams extends OperationOptions {
   space_id: number;
@@ -693,26 +642,26 @@ export interface SpaceUsersGetUserParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceUsersInviteUserToSpaceBody = {
+export interface SpaceUsersInviteUserToSpaceBody {
   email: string;
   role_id?: string;
   guest?: boolean;
   operator_comment?: string;
   send_email?: boolean;
-};
+}
 
-export type SpaceUsersInviteUserToSpaceResponse = {
+export interface SpaceUsersInviteUserToSpaceResponse {
   user: string | number;
   access_record: {
     access_mod: string;
     entity_uid: string;
     user_id: number;
-    own_role_ids: Array<string>;
+    own_role_ids: string[];
     own_access_mod: string;
     own_role: number;
   };
   message: string;
-};
+}
 
 export interface SpaceUsersInviteUserToSpaceParams extends OperationOptions {
   space_id: number;
@@ -720,14 +669,14 @@ export interface SpaceUsersInviteUserToSpaceParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpaceUsersRemoveUserFromSpaceResponse = {
+export interface SpaceUsersRemoveUserFromSpaceResponse {
   entity_uid: string;
   access_mod: string;
-  own_role_ids: unknown | null;
+  own_role_ids: unknown;
   own_access_mod: string;
   own_role: null;
   user_id: number;
-};
+}
 
 export interface SpaceUsersRemoveUserFromSpaceParams extends OperationOptions {
   space_id: number;
@@ -735,16 +684,16 @@ export interface SpaceUsersRemoveUserFromSpaceParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SpacesCreateNewSpaceBody = {
+export interface SpacesCreateNewSpaceBody {
   title: string | number;
   external_id?: (number | string) | null;
   parent_entity_uid?: string;
   for_everyone_access_role_id?: string;
   sort_order?: number;
   work_calendar_id?: string;
-};
+}
 
-export type SpacesCreateNewSpaceResponse = {
+export interface SpacesCreateNewSpaceResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -764,35 +713,35 @@ export type SpacesCreateNewSpaceResponse = {
   settings: {
     timeline: {
       endHour: number;
-      workDays: Array<number>;
+      workDays: number[];
       startHour: number;
       planningUnits: number;
       calculateResourcesBy: number;
     };
   };
   users: string | number;
-};
+}
 
 export interface SpacesCreateNewSpaceParams extends OperationOptions {
   body: SpacesCreateNewSpaceBody;
   signal?: AbortSignal;
 }
 
-export type SpacesRemoveSpaceResponse = {
+export interface SpacesRemoveSpaceResponse {
   id: number;
-};
+}
 
 export interface SpacesRemoveSpaceParams extends OperationOptions {
   space_id: number;
   signal?: AbortSignal;
 }
 
-export type SpacesRetrieveListOfSpacesQuery = {
+export interface SpacesRetrieveListOfSpacesQuery {
   limit?: number;
   offset?: number;
-};
+}
 
-export type SpacesRetrieveListOfSpacesResponse = Array<{
+export type SpacesRetrieveListOfSpacesResponse = {
   created: string;
   updated: string;
   archived: boolean;
@@ -812,7 +761,7 @@ export type SpacesRetrieveListOfSpacesResponse = Array<{
   settings: {
     timeline: {
       endHour: number;
-      workDays: Array<number>;
+      workDays: number[];
       startHour: number;
       planningUnits: number;
       calculateResourcesBy: number;
@@ -822,14 +771,14 @@ export type SpacesRetrieveListOfSpacesResponse = Array<{
   user_id: number;
   entity_uid: string;
   access_mod: string;
-}>;
+}[];
 
 export interface SpacesRetrieveListOfSpacesParams extends OperationOptions {
   query?: SpacesRetrieveListOfSpacesQuery;
   signal?: AbortSignal;
 }
 
-export type SpacesRetrieveSpaceResponse = {
+export interface SpacesRetrieveSpaceResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -849,22 +798,22 @@ export type SpacesRetrieveSpaceResponse = {
   settings: {
     timeline: {
       endHour: number;
-      workDays: Array<number>;
+      workDays: number[];
       startHour: number;
       planningUnits: number;
       calculateResourcesBy: number;
     };
   };
-};
+}
 
 export interface SpacesRetrieveSpaceParams extends OperationOptions {
   space_id: number;
   signal?: AbortSignal;
 }
 
-export type SpacesUpdateSpaceBody = unknown | unknown | unknown;
+export type SpacesUpdateSpaceBody = unknown;
 
-export type SpacesUpdateSpaceResponse = {
+export interface SpacesUpdateSpaceResponse {
   created: string;
   updated: string;
   archived: boolean;
@@ -882,7 +831,7 @@ export type SpacesUpdateSpaceResponse = {
   hidden_card_type_uids: unknown[] | null;
   external_id: string | null;
   settings: Record<string, unknown> | null;
-};
+}
 
 export interface SpacesUpdateSpaceParams extends OperationOptions {
   space_id: number;
@@ -890,7 +839,7 @@ export interface SpacesUpdateSpaceParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SubcolumnCreateNewSubcolumnBody = {
+export interface SubcolumnCreateNewSubcolumnBody {
   external_id?: (number | string) | null;
   title: string;
   sort_order?: number;
@@ -903,9 +852,9 @@ export type SubcolumnCreateNewSubcolumnBody = {
   last_moved_warning_after_minutes?: number;
   last_moved_warning_after_hours?: number;
   last_moved_warning_after_days?: number;
-};
+}
 
-export type SubcolumnCreateNewSubcolumnResponse = {
+export interface SubcolumnCreateNewSubcolumnResponse {
   created: string;
   updated: string;
   id: number;
@@ -928,7 +877,7 @@ export type SubcolumnCreateNewSubcolumnResponse = {
   card_hide_after_days: number | null;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface SubcolumnCreateNewSubcolumnParams extends OperationOptions {
   column_id: number;
@@ -936,7 +885,7 @@ export interface SubcolumnCreateNewSubcolumnParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SubcolumnGetListOfSubcolumnsResponse = Array<{
+export type SubcolumnGetListOfSubcolumnsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -959,20 +908,20 @@ export type SubcolumnGetListOfSubcolumnsResponse = Array<{
   last_moved_warning_after_minutes: number;
   uid?: string;
   locked?: string | null;
-}>;
+}[];
 
 export interface SubcolumnGetListOfSubcolumnsParams extends OperationOptions {
   column_id: number;
   signal?: AbortSignal;
 }
 
-export type SubcolumnRemoveSubcolumnBody = {
+export interface SubcolumnRemoveSubcolumnBody {
   force?: boolean;
-};
+}
 
-export type SubcolumnRemoveSubcolumnResponse = {
+export interface SubcolumnRemoveSubcolumnResponse {
   id: number;
-};
+}
 
 export interface SubcolumnRemoveSubcolumnParams extends OperationOptions {
   column_id: number;
@@ -981,25 +930,9 @@ export interface SubcolumnRemoveSubcolumnParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type SubcolumnUpdateSubcolumnBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type SubcolumnUpdateSubcolumnBody = unknown;
 
-export type SubcolumnUpdateSubcolumnResponse = {
+export interface SubcolumnUpdateSubcolumnResponse {
   created: string;
   updated: string;
   id: number;
@@ -1022,7 +955,7 @@ export type SubcolumnUpdateSubcolumnResponse = {
   card_hide_after_days: number | null;
   uid?: string;
   locked?: string | null;
-};
+}
 
 export interface SubcolumnUpdateSubcolumnParams extends OperationOptions {
   column_id: number;

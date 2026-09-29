@@ -1,10 +1,8 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CardFilesAttachFileToCardResponse = {
+export interface CardFilesAttachFileToCardResponse {
   author_id: number;
   card_cover: boolean;
   card_id: number;
@@ -21,7 +19,7 @@ export type CardFilesAttachFileToCardResponse = {
   type: number;
   updated: string;
   url: string;
-};
+}
 
 export interface CardFilesAttachFileToCardParams extends OperationOptions {
   card_id: number;
@@ -30,9 +28,9 @@ export interface CardFilesAttachFileToCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardFilesDetachFileFromCardResponse = {
+export interface CardFilesDetachFileFromCardResponse {
   id: number;
-};
+}
 
 export interface CardFilesDetachFileFromCardParams extends OperationOptions {
   card_id: number;
@@ -40,9 +38,9 @@ export interface CardFilesDetachFileFromCardParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type CardFilesUpdateFileBody = {
+export interface CardFilesUpdateFileBody {
   card_cover?: boolean;
-};
+}
 
 export type CardFilesUpdateFileResponse = Record<string, unknown>;
 
@@ -53,7 +51,7 @@ export interface CardFilesUpdateFileParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCardFilesAttachFileToCardResponse = {
+export interface RestrictedAccessCardFilesAttachFileToCardResponse {
   id: string;
   name: string;
   size: string | null;
@@ -65,7 +63,7 @@ export type RestrictedAccessCardFilesAttachFileToCardResponse = {
   created: string;
   updated: string;
   card_cover: boolean;
-};
+}
 
 export interface RestrictedAccessCardFilesAttachFileToCardParams extends OperationOptions {
   card_uid: string;
@@ -74,9 +72,9 @@ export interface RestrictedAccessCardFilesAttachFileToCardParams extends Operati
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCardFilesDeleteCardFileResponse = {
+export interface RestrictedAccessCardFilesDeleteCardFileResponse {
   id: string;
-};
+}
 
 export interface RestrictedAccessCardFilesDeleteCardFileParams extends OperationOptions {
   card_uid: string;
@@ -84,12 +82,12 @@ export interface RestrictedAccessCardFilesDeleteCardFileParams extends Operation
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCardFilesGetCardFileQuery = {
+export interface RestrictedAccessCardFilesGetCardFileQuery {
   redirect?: boolean;
   download?: boolean;
-};
+}
 
-export type RestrictedAccessCardFilesGetCardFileResponse = {
+export interface RestrictedAccessCardFilesGetCardFileResponse {
   id: string;
   name: string;
   size: string | null;
@@ -101,7 +99,7 @@ export type RestrictedAccessCardFilesGetCardFileResponse = {
   author_uid: string;
   card_cover: boolean;
   url: string;
-};
+}
 
 export interface RestrictedAccessCardFilesGetCardFileParams extends OperationOptions {
   card_uid: string;
@@ -110,12 +108,12 @@ export interface RestrictedAccessCardFilesGetCardFileParams extends OperationOpt
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCardFilesUpdateCardFileBody = {
+export interface RestrictedAccessCardFilesUpdateCardFileBody {
   name?: string;
   card_cover?: boolean;
-};
+}
 
-export type RestrictedAccessCardFilesUpdateCardFileResponse = {
+export interface RestrictedAccessCardFilesUpdateCardFileResponse {
   id: string;
   name: string;
   size: string | null;
@@ -127,7 +125,7 @@ export type RestrictedAccessCardFilesUpdateCardFileResponse = {
   created: string;
   updated: string;
   card_cover: boolean;
-};
+}
 
 export interface RestrictedAccessCardFilesUpdateCardFileParams extends OperationOptions {
   card_uid: string;
@@ -136,7 +134,7 @@ export interface RestrictedAccessCardFilesUpdateCardFileParams extends Operation
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCommentFilesAttachFileToCommentResponse = {
+export interface RestrictedAccessCommentFilesAttachFileToCommentResponse {
   id: string;
   name: string;
   size: string | null;
@@ -149,7 +147,7 @@ export type RestrictedAccessCommentFilesAttachFileToCommentResponse = {
   created: string;
   updated: string;
   card_cover: boolean;
-};
+}
 
 export interface RestrictedAccessCommentFilesAttachFileToCommentParams extends OperationOptions {
   card_uid: string;
@@ -159,9 +157,9 @@ export interface RestrictedAccessCommentFilesAttachFileToCommentParams extends O
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCommentFilesDeleteCommentFileResponse = {
+export interface RestrictedAccessCommentFilesDeleteCommentFileResponse {
   id: string;
-};
+}
 
 export interface RestrictedAccessCommentFilesDeleteCommentFileParams extends OperationOptions {
   card_uid: string;
@@ -170,12 +168,12 @@ export interface RestrictedAccessCommentFilesDeleteCommentFileParams extends Ope
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCommentFilesGetCommentFileQuery = {
+export interface RestrictedAccessCommentFilesGetCommentFileQuery {
   redirect?: boolean;
   download?: boolean;
-};
+}
 
-export type RestrictedAccessCommentFilesGetCommentFileResponse = {
+export interface RestrictedAccessCommentFilesGetCommentFileResponse {
   id: string;
   name: string;
   size: string | null;
@@ -188,7 +186,7 @@ export type RestrictedAccessCommentFilesGetCommentFileResponse = {
   author_uid: string;
   card_cover: boolean;
   url: string;
-};
+}
 
 export interface RestrictedAccessCommentFilesGetCommentFileParams extends OperationOptions {
   card_uid: string;
@@ -198,12 +196,12 @@ export interface RestrictedAccessCommentFilesGetCommentFileParams extends Operat
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCommentFilesUpdateCommentFileBody = {
+export interface RestrictedAccessCommentFilesUpdateCommentFileBody {
   name?: string;
   card_cover?: boolean;
-};
+}
 
-export type RestrictedAccessCommentFilesUpdateCommentFileResponse = {
+export interface RestrictedAccessCommentFilesUpdateCommentFileResponse {
   id: string;
   name: string;
   size: string | null;
@@ -216,7 +214,7 @@ export type RestrictedAccessCommentFilesUpdateCommentFileResponse = {
   created: string;
   updated: string;
   card_cover: boolean;
-};
+}
 
 export interface RestrictedAccessCommentFilesUpdateCommentFileParams extends OperationOptions {
   card_uid: string;
@@ -226,21 +224,20 @@ export interface RestrictedAccessCommentFilesUpdateCommentFileParams extends Ope
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyResponse =
-  {
-    id: string;
-    name: string;
-    size: string | null;
-    mime_type: string;
-    author_uid: string;
-    card_uid: string;
-    custom_property_uid: string;
-    company_uid: string;
-    entity_type: string;
-    created: string;
-    updated: string;
-    card_cover: boolean;
-  };
+export interface RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyResponse {
+  id: string;
+  name: string;
+  size: string | null;
+  mime_type: string;
+  author_uid: string;
+  card_uid: string;
+  custom_property_uid: string;
+  company_uid: string;
+  entity_type: string;
+  created: string;
+  updated: string;
+  card_cover: boolean;
+}
 
 export interface RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyParams extends OperationOptions {
   card_uid: string;
@@ -250,10 +247,9 @@ export interface RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyPa
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileResponse =
-  {
-    id: string;
-  };
+export interface RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileResponse {
+  id: string;
+}
 
 export interface RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileParams extends OperationOptions {
   card_uid: string;
@@ -262,12 +258,12 @@ export interface RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFilePara
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCustomPropertyFilesGetCustomPropertyFileQuery = {
+export interface RestrictedAccessCustomPropertyFilesGetCustomPropertyFileQuery {
   redirect?: boolean;
   download?: boolean;
-};
+}
 
-export type RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse = {
+export interface RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse {
   id: string;
   name: string;
   size: string | null;
@@ -280,7 +276,7 @@ export type RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse = {
   author_uid: string;
   card_cover: boolean;
   url: string;
-};
+}
 
 export interface RestrictedAccessCustomPropertyFilesGetCustomPropertyFileParams extends OperationOptions {
   card_uid: string;
@@ -290,26 +286,25 @@ export interface RestrictedAccessCustomPropertyFilesGetCustomPropertyFileParams 
   signal?: AbortSignal;
 }
 
-export type RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileBody = {
+export interface RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileBody {
   name?: string;
   card_cover?: boolean;
-};
+}
 
-export type RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileResponse =
-  {
-    id: string;
-    name: string;
-    size: string | null;
-    mime_type: string;
-    author_uid: string;
-    card_uid: string;
-    custom_property_uid: string;
-    company_uid: string;
-    entity_type: string;
-    created: string;
-    updated: string;
-    card_cover: boolean;
-  };
+export interface RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileResponse {
+  id: string;
+  name: string;
+  size: string | null;
+  mime_type: string;
+  author_uid: string;
+  card_uid: string;
+  custom_property_uid: string;
+  company_uid: string;
+  entity_type: string;
+  created: string;
+  updated: string;
+  card_cover: boolean;
+}
 
 export interface RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileParams extends OperationOptions {
   card_uid: string;

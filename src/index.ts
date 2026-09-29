@@ -7,6 +7,6 @@ export type {
   RestClientOptions,
   TokenProvider,
 } from "./http.js";
-export { REST_OPERATION_METADATA } from "./generated/rest.js";
-export type * from "./generated/rest.js";
+export { REST_OPERATION_METADATA } from "./rest/index.js";
+export type * from "./rest/index.js";
 export type * from "./automation.js";

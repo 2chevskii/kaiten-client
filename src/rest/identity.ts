@@ -1,10 +1,8 @@
-/** Generated from the Kaiten developer documentation audit. */
+import type { HttpTransport, OperationOptions } from "../http.js";
 
-import type { HttpTransport, OperationOptions } from "../../http.js";
+import { pathSegment } from "../http.js";
 
-import { pathSegment } from "../../http.js";
-
-export type CompanyUsersGetListOfUsersQuery = {
+export interface CompanyUsersGetListOfUsersQuery {
   invitesOnly?: boolean;
   withTransferAccessStatus?: boolean;
   for_members_section?: boolean;
@@ -21,9 +19,9 @@ export type CompanyUsersGetListOfUsersQuery = {
   temporarily_inactive_status?: string;
   group_ids?: unknown[];
   permissions?: unknown[];
-};
+}
 
-export type CompanyUsersGetListOfUsersResponse = Array<{
+export type CompanyUsersGetListOfUsersResponse = {
   id: number;
   uid: string;
   full_name: string;
@@ -47,7 +45,7 @@ export type CompanyUsersGetListOfUsersResponse = Array<{
   permissions: number;
   own_permissions: number;
   spaces: string | number;
-  groups: Array<{
+  groups: {
     created: string;
     updated: string;
     id: number;
@@ -56,7 +54,7 @@ export type CompanyUsersGetListOfUsersResponse = Array<{
     company_id: number;
     permissions: number;
     add_to_cards_and_spaces_enabled: boolean;
-    spaces: Array<{
+    spaces: {
       archived: boolean;
       uid: string;
       access: string;
@@ -75,10 +73,10 @@ export type CompanyUsersGetListOfUsersResponse = Array<{
       settings: null;
       group_id: number;
       entity_uid: string;
-    }>;
+    }[];
     user_id: number;
     group_id: number;
-  }>;
+  }[];
   company_id: number;
   user_id: number;
   default_space_id: number | null;
@@ -88,15 +86,15 @@ export type CompanyUsersGetListOfUsersResponse = Array<{
   slack_id: number | null;
   slack_settings: Record<string, unknown> | null;
   notification_settings: {
-    card_unblock: Array<string>;
-    card_block_add: Array<string>;
-    card_member_add: Array<string>;
-    due_date_reminder: Array<string>;
-    card_member_remove: Array<string>;
-    card_comment_mention: Array<string>;
-    card_member_become_responsible: Array<string>;
+    card_unblock: string[];
+    card_block_add: string[];
+    card_member_add: string[];
+    due_date_reminder: string[];
+    card_member_remove: string[];
+    card_comment_mention: string[];
+    card_member_become_responsible: string[];
   };
-  notification_enabled_channels: Array<string>;
+  notification_enabled_channels: string[];
   slack_private_channel_id: number | null;
   telegram_sd_bot_enabled: boolean;
   invite_last_sent_at: string | null;
@@ -105,34 +103,34 @@ export type CompanyUsersGetListOfUsersResponse = Array<{
   last_request_date: string | null;
   last_request_method: string | null;
   work_time_settings: {
-    work_days: Array<number>;
+    work_days: number[];
     hours_count: number;
   };
   personal_settings: Record<string, unknown> | null;
   locked: boolean;
   take_licence: boolean;
-}>;
+}[];
 
 export interface CompanyUsersGetListOfUsersParams extends OperationOptions {
   query?: CompanyUsersGetListOfUsersQuery;
   signal?: AbortSignal;
 }
 
-export type CompanyUsersRemoveVirtualUserResponse = {
+export interface CompanyUsersRemoveVirtualUserResponse {
   id: number;
-};
+}
 
 export interface CompanyUsersRemoveVirtualUserParams extends OperationOptions {
   id: number;
   signal?: AbortSignal;
 }
 
-export type CompanyUsersUpdateUserBody = {
+export interface CompanyUsersUpdateUserBody {
   apps_permissions?: number;
   temporarily_inactive?: boolean;
-};
+}
 
-export type CompanyUsersUpdateUserResponse = {
+export interface CompanyUsersUpdateUserResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -167,26 +165,26 @@ export type CompanyUsersUpdateUserResponse = {
   telegram_sd_bot_enabled: boolean;
   external: boolean;
   notification_settings: {
-    card_unblock: Array<string>;
-    card_block_add: Array<string>;
-    card_member_add: Array<string>;
-    due_date_reminder: Array<string>;
-    card_member_remove: Array<string>;
-    card_comment_mention: Array<string>;
-    card_member_become_responsible: Array<string>;
+    card_unblock: string[];
+    card_block_add: string[];
+    card_member_add: string[];
+    due_date_reminder: string[];
+    card_member_remove: string[];
+    card_comment_mention: string[];
+    card_member_become_responsible: string[];
   };
   work_time_settings: {
-    work_days: Array<number>;
+    work_days: number[];
     hours_count: number;
   };
   invite_last_sent_at: string;
   last_request_date: string | null;
   last_request_method: string | null;
-  notification_enabled_channels: Array<string>;
+  notification_enabled_channels: string[];
   personal_settings: Record<string, unknown>;
   locked: boolean;
   temporarily_inactive: boolean;
-};
+}
 
 export interface CompanyUsersUpdateUserParams extends OperationOptions {
   id: number;
@@ -194,11 +192,11 @@ export interface CompanyUsersUpdateUserParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupAdminsAddAdminToGroupBody = {
+export interface GroupAdminsAddAdminToGroupBody {
   user_id: number;
-};
+}
 
-export type GroupAdminsAddAdminToGroupResponse = {
+export interface GroupAdminsAddAdminToGroupResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -219,7 +217,7 @@ export type GroupAdminsAddAdminToGroupResponse = {
   email_blocked: string | null;
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
-};
+}
 
 export interface GroupAdminsAddAdminToGroupParams extends OperationOptions {
   group_uid: string;
@@ -227,7 +225,7 @@ export interface GroupAdminsAddAdminToGroupParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupAdminsGetListOfGroupAdminsResponse = Array<{
+export type GroupAdminsGetListOfGroupAdminsResponse = {
   created: string;
   updated: string;
   id: number;
@@ -251,14 +249,14 @@ export type GroupAdminsGetListOfGroupAdminsResponse = Array<{
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
   delete_confirmation_sent_at: string | null;
-}>;
+}[];
 
 export interface GroupAdminsGetListOfGroupAdminsParams extends OperationOptions {
   group_uid: string;
   signal?: AbortSignal;
 }
 
-export type GroupAdminsRemoveAdminFromGroupResponse = {
+export interface GroupAdminsRemoveAdminFromGroupResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -279,7 +277,7 @@ export type GroupAdminsRemoveAdminFromGroupResponse = {
   email_blocked: string | null;
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
-};
+}
 
 export interface GroupAdminsRemoveAdminFromGroupParams extends OperationOptions {
   group_uid: string;
@@ -287,12 +285,12 @@ export interface GroupAdminsRemoveAdminFromGroupParams extends OperationOptions 
   signal?: AbortSignal;
 }
 
-export type GroupEntitiesAddEntityBody = {
+export interface GroupEntitiesAddEntityBody {
   entity_uid: string;
-  role_ids: Array<string>;
-};
+  role_ids: string[];
+}
 
-export type GroupEntitiesAddEntityResponse = {
+export interface GroupEntitiesAddEntityResponse {
   group_id: number;
   entity_uid: string;
   role_permissions: {
@@ -383,10 +381,10 @@ export type GroupEntitiesAddEntityResponse = {
     };
   };
   access_mod: string | null;
-  own_role_ids: Array<string>;
+  own_role_ids: string[];
   own_access_mod: string | null;
-  role_ids: Array<string>;
-};
+  role_ids: string[];
+}
 
 export interface GroupEntitiesAddEntityParams extends OperationOptions {
   group_uid: string;
@@ -394,30 +392,30 @@ export interface GroupEntitiesAddEntityParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupEntitiesGetListOfGroupEntitiesResponse = Array<{
+export type GroupEntitiesGetListOfGroupEntitiesResponse = {
   uid: string;
   path: string;
   title: string;
   entity_type: string;
-  own_role_ids: Array<string>;
-}>;
+  own_role_ids: string[];
+}[];
 
 export interface GroupEntitiesGetListOfGroupEntitiesParams extends OperationOptions {
   group_uid: string;
   signal?: AbortSignal;
 }
 
-export type GroupEntitiesRemoveEntityResponse = {
+export interface GroupEntitiesRemoveEntityResponse {
   group_id: number;
   entity_uid: string;
-  role_permissions: unknown | null;
+  role_permissions: unknown;
   access_mod: string | null;
   role: null;
   own_role_ids: unknown[] | null;
   own_access_mod: string | null;
   role_ids: unknown[];
   own_role: null;
-};
+}
 
 export interface GroupEntitiesRemoveEntityParams extends OperationOptions {
   group_uid: string;
@@ -427,7 +425,7 @@ export interface GroupEntitiesRemoveEntityParams extends OperationOptions {
 
 export type GroupEntitiesUpdateGroupEntityBody = unknown;
 
-export type GroupEntitiesUpdateGroupEntityResponse = {
+export interface GroupEntitiesUpdateGroupEntityResponse {
   group_id: number;
   entity_uid: string;
   role_permissions: {
@@ -518,10 +516,10 @@ export type GroupEntitiesUpdateGroupEntityResponse = {
     };
   };
   access_mod: string | null;
-  own_role_ids: Array<string>;
+  own_role_ids: string[];
   own_access_mod: string | null;
-  role_ids: Array<string>;
-};
+  role_ids: string[];
+}
 
 export interface GroupEntitiesUpdateGroupEntityParams extends OperationOptions {
   group_uid: string;
@@ -530,13 +528,13 @@ export interface GroupEntitiesUpdateGroupEntityParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupUsersAddUserToGroupBody = {
+export interface GroupUsersAddUserToGroupBody {
   user_id: number;
   request_id?: string;
   operator_comment?: string | null;
-};
+}
 
-export type GroupUsersAddUserToGroupResponse = {
+export interface GroupUsersAddUserToGroupResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -557,7 +555,7 @@ export type GroupUsersAddUserToGroupResponse = {
   email_blocked: string | null;
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
-};
+}
 
 export interface GroupUsersAddUserToGroupParams extends OperationOptions {
   group_uid: string;
@@ -565,7 +563,7 @@ export interface GroupUsersAddUserToGroupParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupUsersGetListOfGroupUsersResponse = Array<{
+export type GroupUsersGetListOfGroupUsersResponse = {
   created: string;
   updated: string;
   id: number;
@@ -589,14 +587,14 @@ export type GroupUsersGetListOfGroupUsersResponse = Array<{
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
   delete_confirmation_sent_at: string | null;
-}>;
+}[];
 
 export interface GroupUsersGetListOfGroupUsersParams extends OperationOptions {
   group_uid: string;
   signal?: AbortSignal;
 }
 
-export type GroupUsersRemoveUserFromGroupResponse = {
+export interface GroupUsersRemoveUserFromGroupResponse {
   id: number;
   uid: string;
   full_name: string;
@@ -617,7 +615,7 @@ export type GroupUsersRemoveUserFromGroupResponse = {
   email_blocked: string | null;
   email_blocked_reason: string | null;
   delete_requested_at: string | null;
-};
+}
 
 export interface GroupUsersRemoveUserFromGroupParams extends OperationOptions {
   group_uid: string;
@@ -625,13 +623,13 @@ export interface GroupUsersRemoveUserFromGroupParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type GroupsCreateGroupBody = {
+export interface GroupsCreateGroupBody {
   name: string;
   permissions?: number;
   add_to_cards_and_spaces_enabled?: boolean;
-};
+}
 
-export type GroupsCreateGroupResponse = {
+export interface GroupsCreateGroupResponse {
   name: string;
   permissions: number;
   add_to_cards_and_spaces_enabled: boolean;
@@ -639,14 +637,14 @@ export type GroupsCreateGroupResponse = {
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface GroupsCreateGroupParams extends OperationOptions {
   body: GroupsCreateGroupBody;
   signal?: AbortSignal;
 }
 
-export type GroupsGetGroupResponse = {
+export interface GroupsGetGroupResponse {
   name: string;
   permissions: number;
   add_to_cards_and_spaces_enabled: boolean;
@@ -654,14 +652,14 @@ export type GroupsGetGroupResponse = {
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface GroupsGetGroupParams extends OperationOptions {
   uid: string;
   signal?: AbortSignal;
 }
 
-export type GroupsGetListOfGroupsQuery = {
+export interface GroupsGetListOfGroupsQuery {
   with_tree_entities?: boolean;
   with_users_count?: boolean;
   with_sync_group_attribute?: boolean;
@@ -669,9 +667,9 @@ export type GroupsGetListOfGroupsQuery = {
   query?: string;
   limit?: number;
   offset?: number;
-};
+}
 
-export type GroupsGetListOfGroupsResponse = Array<{
+export type GroupsGetListOfGroupsResponse = {
   name: string;
   permissions: number;
   add_to_cards_and_spaces_enabled: boolean;
@@ -679,14 +677,14 @@ export type GroupsGetListOfGroupsResponse = Array<{
   created: string;
   id: number;
   uid: string;
-}>;
+}[];
 
 export interface GroupsGetListOfGroupsParams extends OperationOptions {
   query?: GroupsGetListOfGroupsQuery;
   signal?: AbortSignal;
 }
 
-export type GroupsRemoveGroupResponse = {
+export interface GroupsRemoveGroupResponse {
   name: string;
   permissions: number;
   add_to_cards_and_spaces_enabled: boolean;
@@ -694,20 +692,20 @@ export type GroupsRemoveGroupResponse = {
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface GroupsRemoveGroupParams extends OperationOptions {
   uid: string;
   signal?: AbortSignal;
 }
 
-export type GroupsUpdateGroupBody = {
+export interface GroupsUpdateGroupBody {
   name?: string;
   permissions?: number;
   add_to_cards_and_spaces_enabled?: boolean;
-};
+}
 
-export type GroupsUpdateGroupResponse = {
+export interface GroupsUpdateGroupResponse {
   name: string;
   permissions: number;
   add_to_cards_and_spaces_enabled: boolean;
@@ -715,7 +713,7 @@ export type GroupsUpdateGroupResponse = {
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface GroupsUpdateGroupParams extends OperationOptions {
   uid: string;
@@ -723,63 +721,63 @@ export interface GroupsUpdateGroupParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UserRolesCreateUserRoleBody = {
+export interface UserRolesCreateUserRoleBody {
   name: string;
-};
+}
 
-export type UserRolesCreateUserRoleResponse = {
+export interface UserRolesCreateUserRoleResponse {
   name: string;
   company_id: number;
   updated: string;
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface UserRolesCreateUserRoleParams extends OperationOptions {
   body: UserRolesCreateUserRoleBody;
   signal?: AbortSignal;
 }
 
-export type UserRolesGetListOfUserRolesResponse = Array<{
+export type UserRolesGetListOfUserRolesResponse = {
   created: string;
   updated: string;
   id: number;
   uid: string;
   name: string;
   company_id: number;
-}>;
+}[];
 
 export interface UserRolesGetListOfUserRolesParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UserRolesGetUserRoleResponse = {
+export interface UserRolesGetUserRoleResponse {
   name: string;
   company_id: number;
   updated: string;
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface UserRolesGetUserRoleParams extends OperationOptions {
   role_id: number;
   signal?: AbortSignal;
 }
 
-export type UserRolesRemoveUserRoleBody = {
+export interface UserRolesRemoveUserRoleBody {
   replace_role_id: number;
-};
+}
 
-export type UserRolesRemoveUserRoleResponse = {
+export interface UserRolesRemoveUserRoleResponse {
   name: string;
   company_id: number;
   updated: string;
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface UserRolesRemoveUserRoleParams extends OperationOptions {
   role_id: number;
@@ -787,18 +785,18 @@ export interface UserRolesRemoveUserRoleParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UserRolesUpdateUserRoleBody = {
+export interface UserRolesUpdateUserRoleBody {
   name: string;
-};
+}
 
-export type UserRolesUpdateUserRoleResponse = {
+export interface UserRolesUpdateUserRoleResponse {
   name: string;
   company_id: number;
   updated: string;
   created: string;
   id: number;
   uid: string;
-};
+}
 
 export interface UserRolesUpdateUserRoleParams extends OperationOptions {
   role_id: number;
@@ -806,7 +804,7 @@ export interface UserRolesUpdateUserRoleParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UsersRetrieveCurrentUserResponse = {
+export interface UsersRetrieveCurrentUserResponse {
   id: number;
   full_name: string;
   email: string;
@@ -837,7 +835,7 @@ export type UsersRetrieveCurrentUserResponse = {
   slack_id: number | null;
   slack_settings: Record<string, unknown> | null;
   notification_settings: unknown[] | null;
-  notification_enabled_channels: Array<string>;
+  notification_enabled_channels: string[];
   slack_private_channel_id: number | null;
   telegram_sd_bot_enabled: boolean;
   invite_last_sent_at: string;
@@ -846,13 +844,13 @@ export type UsersRetrieveCurrentUserResponse = {
   last_request_date: string | null;
   last_request_method: string | null;
   has_password: boolean;
-};
+}
 
 export interface UsersRetrieveCurrentUserParams extends OperationOptions {
   signal?: AbortSignal;
 }
 
-export type UsersRetrieveListOfUsersQuery = {
+export interface UsersRetrieveListOfUsersQuery {
   type?: string;
   query?: string;
   access_type_permissions?: string;
@@ -861,9 +859,9 @@ export type UsersRetrieveListOfUsersQuery = {
   offset?: number;
   include_inactive?: boolean;
   exclude_directly_added_members_by_entity_uid?: string;
-};
+}
 
-export type UsersRetrieveListOfUsersResponse = Array<{
+export type UsersRetrieveListOfUsersResponse = {
   id: number;
   full_name: string;
   email: string;
@@ -889,7 +887,7 @@ export type UsersRetrieveListOfUsersResponse = Array<{
   slack_id: number | null;
   slack_settings: Record<string, unknown> | null;
   notification_settings: unknown[] | null;
-  notification_enabled_channels: Array<string>;
+  notification_enabled_channels: string[];
   slack_private_channel_id: number | null;
   telegram_sd_bot_enabled: boolean;
   invite_last_sent_at: string;
@@ -898,33 +896,16 @@ export type UsersRetrieveListOfUsersResponse = Array<{
   last_request_date: string | null;
   last_request_method: string | null;
   include_inactive?: boolean;
-}>;
+}[];
 
 export interface UsersRetrieveListOfUsersParams extends OperationOptions {
   query?: UsersRetrieveListOfUsersQuery;
   signal?: AbortSignal;
 }
 
-export type UsersUpdateUserBody =
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown
-  | unknown;
+export type UsersUpdateUserBody = unknown;
 
-export type UsersUpdateUserResponse = {
+export interface UsersUpdateUserResponse {
   created: string;
   updated: string;
   id: number;
@@ -947,13 +928,13 @@ export type UsersUpdateUserResponse = {
   email_frequency: number;
   email_settings: boolean;
   work_time_settings: {
-    work_days: Array<number>;
+    work_days: number[];
     hours_count: number;
   };
   telegram_id: number;
   telegram_settings: Record<string, unknown>;
   has_password: boolean;
-};
+}
 
 export interface UsersUpdateUserParams extends OperationOptions {
   id: number;
