@@ -8,6 +8,10 @@ import { KaitenScimClient } from "../src/scim.js";
 import type { AddonContext, AddonPlatformApiClient } from "../src/addons.js";
 import type { ImportCardsRecord } from "../src/imports.js";
 import type { UserMetadataResponse } from "../src/metadata.js";
+import type {
+  CardWebhookRequest,
+  KaitenWebhookEvent,
+} from "../src/webhooks.js";
 
 const client = new KaitenClient({
   origin: "https://acme.kaiten.ru",
@@ -55,6 +59,9 @@ const importCard: ImportCardsRecord = {
   title: "Imported",
 };
 const metadata: UserMetadataResponse = { id_42: "value" };
+const webhookRequest: CardWebhookRequest = { title: "Imported card" };
+declare const outgoingWebhook: KaitenWebhookEvent;
+const webhookEventName: string = outgoingWebhook.event;
 
 void versionOne;
 void versionTwo;
@@ -62,3 +69,5 @@ void documentsV2;
 void addonToken;
 void importCard;
 void metadata;
+void webhookRequest;
+void webhookEventName;

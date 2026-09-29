@@ -49,6 +49,8 @@ Methods are grouped by the sections in Kaiten's REST documentation. For example,
 
 The client accepts a token string or an async token provider, an optional `fetch` implementation, and `apiVersion: 'v1' | 'latest'` (default: `v1`). Pass `signal` on any operation to cancel it. HTTP errors expose status, headers, body, method, and URL. Requests are not automatically retried.
 
+The [source layout](docs/architecture.md) maps REST resources to their domain modules.
+
 ### Files
 
 Restricted file access uses UUID paths and `Blob` uploads:
