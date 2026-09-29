@@ -10,6 +10,8 @@ npm install github:2chevskii/kaiten-client#v1.0.0
 
 Node.js 20 or newer is required. The package is ESM only.
 
+The bilingual [documentation site](docs/index.md) has Russian and English guides, plus a reference for every REST and SCIM operation. Run it locally with `npm run docs:dev` or build it with `npm run docs:build`.
+
 ## REST client
 
 ```ts

@@ -9,7 +9,7 @@ export default defineConfig(
     ignores: ["dist/**", "node_modules/**"],
   },
   {
-    files: ["src/**/*.ts", "samples/**/*.ts"],
+    files: ["src/**/*.ts", "samples/**/*.ts", "docs/.vitepress/**/*.ts"],
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
