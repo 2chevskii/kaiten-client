@@ -8,16 +8,16 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-| Job         | Command                | Scope                                                               |
-| ----------- | ---------------------- | ------------------------------------------------------------------- |
-| `typecheck` | `npm run typecheck`    | Library, consumer type tests, and documentation configuration types |
-| `lint`      | `npm run lint`         | ESLint                                                              |
-| `format`    | `npm run format:check` | Prettier                                                            |
-| `test`      | `npm test`             | Library build, sample type checks, contract and HTTP tests          |
-| `package`   | `npm run test:package` | Build and installed-package verification                            |
-| `docs`      | `npm run docs:check`   | Generated-reference freshness and bilingual VitePress build         |
+| Job         | Command                          | Scope                                                               |
+| ----------- | -------------------------------- | ------------------------------------------------------------------- |
+| `typecheck` | `npm run typecheck`              | Library, consumer type tests, and documentation configuration types |
+| `lint`      | `npm run build` → `npm run lint` | ESLint                                                              |
+| `format`    | `npm run format:check`           | Prettier                                                            |
+| `test`      | `npm test`                       | Library build, sample type checks, contract and HTTP tests          |
+| `package`   | `npm run test:package`           | Build and installed-package verification                            |
+| `docs`      | `npm run docs:check`             | Generated-reference freshness and bilingual VitePress build         |
 
-Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` and `package` scripts explicitly build the library. `npm run check` remains the aggregate command for local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` and `package` scripts explicitly build the library. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
 
 - `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
 - The `package` and `docs` jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
