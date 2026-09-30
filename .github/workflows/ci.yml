@@ -3,21 +3,49 @@ name: CI
 on:
   push:
     branches: [develop]
-    tags: ["v*"]
   pull_request:
+  merge_group:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [20, 22, 24]
+  checks:
+    uses: ./.github/workflows/checks.yml
+
+  deploy-docs:
+    name: Deploy documentation
+    needs: checks
+    if: github.ref == 'refs/heads/develop' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+      - name: Download checked documentation
+        uses: actions/download-artifact@v8
         with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - run: npm ci
-      - run: npm run check
-      - run: npm pack --dry-run
+          name: documentation
+          path: site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

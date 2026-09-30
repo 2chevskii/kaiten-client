@@ -1,0 +1,88 @@
+name: Finish release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to ${{ matrix.registry }}
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        registry: [npm, github]
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+      - name: Setup Node.js and registry
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          registry-url: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
+          scope: "@2chevskii"
+      - name: Validate published release
+        id: version
+        run: |
+          gh release view "$RELEASE_TAG" --json isDraft,isPrerelease > release.json
+          node -e 'const release = JSON.parse(require("fs").readFileSync("release.json")); if (release.isDraft || release.isPrerelease) throw new Error("A published stable release is required");'
+          node scripts/validate-release.mjs "$RELEASE_TAG"
+      - name: Download and verify original release package
+        env:
+          PACKAGE: ${{ steps.version.outputs.package }}
+        run: |
+          gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS
+          sha256sum --check SHA256SUMS
+          tar -xOf "$PACKAGE" package/package.json | node scripts/validate-release.mjs "$RELEASE_TAG" --stdin
+      - name: Publish exact release asset
+        env:
+          NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
+          GITHUB_PACKAGES_TOKEN: ${{ github.token }}
+          REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
+          PACKAGE: ${{ steps.version.outputs.package }}
+        run: |
+          if [ '${{ matrix.registry }}' = npm ]; then
+            if [ -z "$NODE_AUTH_TOKEN" ]; then
+              echo 'Repository secret NPM_TOKEN is required for npm publication.' >&2
+              exit 1
+            fi
+          else
+            export NODE_AUTH_TOKEN="$GITHUB_PACKAGES_TOKEN"
+          fi
+          expected=$(node --input-type=module -e 'import { createHash } from "node:crypto"; import { readFileSync } from "node:fs"; console.log("sha512-" + createHash("sha512").update(readFileSync(process.env.PACKAGE)).digest("base64"));')
+          if npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json; then
+            actual=$(node -p '(value => Array.isArray(value) ? value[0] : value)(JSON.parse(require("fs").readFileSync("integrity.json", "utf8")))')
+            if [ "$actual" != "$expected" ]; then
+              echo 'This version already exists with different package contents.' >&2
+              exit 1
+            fi
+            echo 'Identical package is already published.'
+            exit 0
+          fi
+          if [ '${{ matrix.registry }}' = npm ]; then
+            npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance --ignore-scripts
+          else
+            npm publish "$PACKAGE" --registry "$REGISTRY" --ignore-scripts
+          fi
+          npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json
+          actual=$(node -p '(value => Array.isArray(value) ? value[0] : value)(JSON.parse(require("fs").readFileSync("integrity.json", "utf8")))')
+          test "$actual" = "$expected"

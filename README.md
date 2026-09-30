@@ -191,9 +191,12 @@ const token = await oauth.getToken({
 
 ## Development and verification
 
+The [CI/CD guide](.github/CI-CD.md) describes required checks, GitHub Pages setup, draft releases, and publication to npm and GitHub Packages.
+
 ```sh
 npm ci
 npm run check
+npm run test:package
 npm pack --dry-run
 ```
 
