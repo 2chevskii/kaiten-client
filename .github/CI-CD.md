@@ -6,12 +6,11 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 `CI` runs on pull requests, merge queues, pushes to `develop`, and manual dispatch. `Start release` calls the same `CI` workflow for release tags.
 
-- The quality job uses Node.js 24 and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
-- Compatibility jobs run type checks, tests, and installed-package checks on Node.js 24 on Ubuntu 26.04, Windows 2025, and macOS 26.
+- The quality job runs on Ubuntu 26.04 with Node.js 24 and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
 - `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
 - Successful quality jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
 
-Configure branch protection for `develop` to require `Quality and documentation` and each of the three compatibility checks. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+Configure branch protection for `develop` to require `Quality and documentation`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 
@@ -34,7 +33,7 @@ The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with
    git push origin v1.0.1
    ```
 
-3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same quality and compatibility checks as CI. Only after every job succeeds does it create a draft GitHub release containing the tested `.tgz` and `SHA256SUMS`.
+3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same quality and package checks as CI. Only after every job succeeds does it create a draft GitHub release containing the tested `.tgz` and `SHA256SUMS`.
 4. Review the draft's generated release notes and publish it through GitHub. Publish manually so the `release: published` event starts `Finish release`; events created with a workflow's `GITHUB_TOKEN` do not generally start another workflow.
 5. `Finish release` independently publishes the original asset to npm and GitHub Packages. It validates the published stable release, package metadata and SHA-256 checksum, and compares each registry's SHA-512 integrity with the uploaded tarball. It does not rebuild the package.
 
@@ -76,4 +75,4 @@ npm run test:package
 node scripts/validate-release.mjs v1.0.0
 ```
 
-Use the current package version in the last command. Local checks exercise the package and documentation; hosted runner compatibility, Pages deployment, and registry publication are verified by the corresponding Actions runs after the workflows are pushed and their external settings are configured.
+Use the current package version in the last command. Local checks exercise the package and documentation; the hosted CI run, Pages deployment, and registry publication are verified by the corresponding Actions runs after the workflows are pushed and their external settings are configured.
