@@ -6,11 +6,23 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 `ci.yml` runs on pushes and pull requests. `Start release` calls the same `CI` workflow for release tags.
 
-- The quality job runs on Ubuntu 26.04 with Node.js 24 and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
-- `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
-- Successful quality jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
+All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-Configure branch protection for `develop` to require `quality`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+| Job         | Command                | Scope                                                               |
+| ----------- | ---------------------- | ------------------------------------------------------------------- |
+| `typecheck` | `npm run typecheck`    | Library, consumer type tests, and documentation configuration types |
+| `lint`      | `npm run lint`         | ESLint                                                              |
+| `format`    | `npm run format:check` | Prettier                                                            |
+| `test`      | `npm test`             | Library build, sample type checks, contract and HTTP tests          |
+| `package`   | `npm run test:package` | Build and installed-package verification                            |
+| `docs`      | `npm run docs:check`   | Generated-reference freshness and bilingual VitePress build         |
+
+Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` and `package` scripts explicitly build the library. `npm run check` remains the aggregate command for local verification.
+
+- `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
+- The `package` and `docs` jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
+
+Configure branch protection for `develop` to require `typecheck`, `lint`, `format`, `test`, `package`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 
@@ -21,7 +33,7 @@ One-time repository setup:
 1. In **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source.
 2. Ensure the `github-pages` environment permits deployments from `develop`. Optional environment reviewers can provide a deployment approval gate.
 
-The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with `VITEPRESS_BASE=/kaiten-client/`; local builds use `/`. Deployment uses the artifact produced by the successful quality job. See the [VitePress deployment guide](https://vitepress.dev/guide/deploy).
+The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with `VITEPRESS_BASE=/kaiten-client/`; local builds use `/`. Deployment uses the artifact produced by the successful `docs` job. See the [VitePress deployment guide](https://vitepress.dev/guide/deploy).
 
 ## Release process
 
