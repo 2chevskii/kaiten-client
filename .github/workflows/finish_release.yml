@@ -29,32 +29,27 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
     steps:
-      - name: Checkout release tag
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.release.tag_name }}
           persist-credentials: false
-      - name: Setup Node.js and registry
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           registry-url: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
           scope: "@2chevskii"
-      - name: Validate published release
-        id: version
+      - id: version
         run: |
           gh release view "$RELEASE_TAG" --json isDraft,isPrerelease > release.json
           node -e 'const release = JSON.parse(require("fs").readFileSync("release.json")); if (release.isDraft || release.isPrerelease) throw new Error("A published stable release is required");'
           node scripts/validate-release.mjs "$RELEASE_TAG"
-      - name: Download and verify original release package
-        env:
+      - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
           gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS
           sha256sum --check SHA256SUMS
           tar -xOf "$PACKAGE" package/package.json | node scripts/validate-release.mjs "$RELEASE_TAG" --stdin
-      - name: Publish exact release asset
-        env:
+      - env:
           NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
           REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
