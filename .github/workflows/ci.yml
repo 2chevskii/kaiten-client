@@ -1,25 +1,11 @@
-name: CI
-
 on:
   push:
-    branches: [develop]
   pull_request:
-  merge_group:
-  workflow_dispatch:
   workflow_call:
-
-permissions:
-  contents: read
-
-concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   quality:
-    name: Quality and documentation
     runs-on: ubuntu-26.04
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
         with:

@@ -4,17 +4,17 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 ## Continuous integration
 
-`CI` runs on pull requests, merge queues, pushes to `develop`, and manual dispatch. `Start release` calls the same `CI` workflow for release tags.
+`ci.yml` runs on pushes and pull requests. `Start release` calls the same `CI` workflow for release tags.
 
 - The quality job runs on Ubuntu 26.04 with Node.js 24 and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
 - `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
 - Successful quality jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
 
-Configure branch protection for `develop` to require `Quality and documentation`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+Configure branch protection for `develop` to require `quality`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 
-After all CI jobs succeed on a push to `develop` (or a manual CI run on `develop`), the checked documentation artifact deploys to GitHub Pages. Pull requests and release tags only build documentation.
+After all CI jobs succeed on a push to `develop`, the checked documentation artifact deploys to GitHub Pages. Pull requests and release tags only build documentation.
 
 One-time repository setup:
 
