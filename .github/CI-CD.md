@@ -4,15 +4,14 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 ## Continuous integration
 
-`CI` runs on pull requests, merge queues, pushes to `develop`, and manual dispatch. The reusable `Checks` workflow also runs for release tags.
+`CI` runs on pull requests, merge queues, pushes to `develop`, and manual dispatch. `Start release` calls the same `CI` workflow for release tags.
 
-- `Workflow syntax` validates all workflows with actionlint and ShellCheck on the hosted Linux runner.
-- The quality job uses `.node-version` and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
-- Compatibility jobs run type checks, tests, and installed-package checks on Node 20/22/24 on Ubuntu 26.04, and Node 22 on Windows 2025 and macOS 26.
+- The quality job uses Node.js 24 and runs `npm run check`: TypeScript, ESLint, Prettier, contract and HTTP tests, sample compilation, generated-reference freshness, and the Russian/English VitePress build.
+- Compatibility jobs run type checks, tests, and installed-package checks on Node.js 24 on Ubuntu 26.04, Windows 2025, and macOS 26.
 - `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
 - Successful quality jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
 
-Configure branch protection for `develop` to require `Workflow syntax`, `Quality and documentation` and each of the five compatibility checks. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+Configure branch protection for `develop` to require `Quality and documentation` and each of the three compatibility checks. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 
@@ -77,4 +76,4 @@ npm run test:package
 node scripts/validate-release.mjs v1.0.0
 ```
 
-Use the current package version in the last command. Validate workflow syntax with `actionlint` when changing YAML. Local checks exercise the package and documentation; hosted runner compatibility, Pages deployment, and registry publication are verified by the corresponding Actions runs after the workflows are pushed and their external settings are configured.
+Use the current package version in the last command. Local checks exercise the package and documentation; hosted runner compatibility, Pages deployment, and registry publication are verified by the corresponding Actions runs after the workflows are pushed and their external settings are configured.
