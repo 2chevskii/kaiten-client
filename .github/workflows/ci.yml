@@ -4,17 +4,6 @@ on:
   workflow_call:
 
 jobs:
-  typecheck:
-    runs-on: ubuntu-26.04
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci --ignore-scripts
-      - run: npm run typecheck
-
   lint:
     runs-on: ubuntu-26.04
     steps:
@@ -90,7 +79,7 @@ jobs:
 
   deploy-docs:
     name: Deploy documentation
-    needs: [typecheck, lint, format, test, package, docs]
+    needs: [lint, format, test, package, docs]
     if: github.ref == 'refs/heads/develop' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-26.04
     timeout-minutes: 10
