@@ -20,8 +20,6 @@ jobs:
       package: ${{ steps.version.outputs.package }}
     steps:
       - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 24
