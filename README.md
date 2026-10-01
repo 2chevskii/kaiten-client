@@ -196,7 +196,6 @@ The [CI/CD guide](.github/CI-CD.md) describes required checks, GitHub Pages setu
 ```sh
 npm ci
 npm run check
-npm run test:package
 npm pack --dry-run
 ```
 

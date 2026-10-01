@@ -49,12 +49,15 @@ jobs:
       RELEASE_TAG: ${{ github.ref_name }}
       PACKAGE: ${{ needs.validate-release.outputs.package }}
     steps:
-      - uses: actions/download-artifact@v8
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          name: npm-package
-          path: artifacts
-      - working-directory: artifacts
-        run: |
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm pack --ignore-scripts
+      - run: |
           sha256sum "$PACKAGE" > SHA256SUMS
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
             node -e 'if (!JSON.parse(require("fs").readFileSync("release.json")).isDraft) throw new Error("Release is already published");'

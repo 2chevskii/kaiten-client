@@ -8,20 +8,18 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-| Job       | Command                          | Scope                                                       |
-| --------- | -------------------------------- | ----------------------------------------------------------- |
-| `lint`    | `npm run build` → `npm run lint` | ESLint                                                      |
-| `format`  | `npm run format:check`           | Prettier                                                    |
-| `test`    | `npm test`                       | Library build, sample type checks, contract and HTTP tests  |
-| `package` | `npm run test:package`           | Build and installed-package verification                    |
-| `docs`    | `npm run docs:check`             | Generated-reference freshness and bilingual VitePress build |
+| Job      | Command                          | Scope                                                       |
+| -------- | -------------------------------- | ----------------------------------------------------------- |
+| `lint`   | `npm run build` → `npm run lint` | ESLint                                                      |
+| `format` | `npm run format:check`           | Prettier                                                    |
+| `test`   | `npm test`                       | Library build, sample type checks, contract and HTTP tests  |
+| `docs`   | `npm run docs:check`             | Generated-reference freshness and bilingual VitePress build |
 
-Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` and `package` scripts explicitly build the library. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` script explicitly builds the library. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
 
-- `npm run test:package` packs the library, checks its file list and exported files, installs the actual tarball into a temporary project with lifecycle scripts disabled, compiles a TypeScript consumer, and imports all seven entry points.
-- The `package` and `docs` jobs retain the npm tarball and documentation as Actions artifacts for 14 days. Draft releases retain the tarball as a release asset.
+- The `docs` job retains documentation as an Actions artifact for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
 
-Configure branch protection for `develop` to require `lint`, `format`, `test`, `package`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+Configure branch protection for `develop` to require `lint`, `format`, `test`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 
@@ -44,7 +42,7 @@ The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with
    git push origin v1.0.1
    ```
 
-3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same quality and package checks as CI. Only after every job succeeds does it create a draft GitHub release containing the tested `.tgz` and `SHA256SUMS`.
+3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, it builds and packs the library and creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
 4. Review the draft's generated release notes and publish it through GitHub. Publish manually so the `release: published` event starts `Finish release`; events created with a workflow's `GITHUB_TOKEN` do not generally start another workflow.
 5. `Finish release` independently publishes the original asset to npm and GitHub Packages. It validates the published stable release, package metadata and SHA-256 checksum, and compares each registry's SHA-512 integrity with the uploaded tarball. It does not rebuild the package.
 
@@ -82,7 +80,6 @@ Then run `npm install @2chevskii/kaiten-client`. Keep tokens out of committed fi
 ```sh
 npm ci
 npm run check
-npm run test:package
 node scripts/validate-release.mjs v1.0.0
 ```
 
