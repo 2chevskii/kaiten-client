@@ -6,7 +6,8 @@ The package keeps its public entry points at `src/index.ts`, `src/scim.ts`,
 depending on internal paths.
 
 `src/http.ts` owns authenticated request transport, URL construction, response
-handling, and HTTP errors. `src/client.ts` composes REST resources. The REST
+handling, and path validation. `src/http-response.ts` parses JSON responses and
+`src/errors.ts` defines HTTP and response errors. `src/client.ts` composes REST resources. The REST
 resource index in `src/rest/index.ts` assembles the domain modules under
 `src/rest/`:
 
@@ -36,3 +37,7 @@ incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 
 The documentation audit in `docs/api-coverage.json` is the contract inventory.
 Contracts are maintained in source code alongside their operations. No code generation step is required for a build.
+
+`src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
+
+The reference generator reads actual public signatures through TypeScript and metadata constants through its AST. `contracts:check` verifies inventory coverage and request forwarding. `verify` covers HTTP and typing regressions, and `package:check` verifies the installed npm artifact.

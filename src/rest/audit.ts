@@ -28,22 +28,22 @@ export type AuditLogsRetrieveAuditLogEventsResponse = {
   created: string;
 }[];
 
-export interface AuditLogsRetrieveAuditLogEventsParams extends OperationOptions {
-  query?: AuditLogsRetrieveAuditLogEventsQuery;
-  signal?: AbortSignal;
-}
+export type AuditLogsRetrieveAuditLogEventsParams = Parameters<
+  ReturnType<typeof createAuditResources>["auditLogs"]["retrieveAuditLogEvents"]
+>;
 
 export const createAuditResources = (transport: HttpTransport) => ({
   auditLogs: {
     /** @see https://developers.kaiten.ru/audit-logs/retrieve-audit-log-events */
     retrieveAuditLogEvents: (
-      params: AuditLogsRetrieveAuditLogEventsParams = {},
+      query?: AuditLogsRetrieveAuditLogEventsQuery,
+      options?: OperationOptions,
     ) => {
       return transport.request<AuditLogsRetrieveAuditLogEventsResponse>({
         method: "GET",
         path: "/audit-logs",
-        query: params.query,
-        signal: params.signal,
+        query,
+        signal: options?.signal,
       });
     },
   },

@@ -14,7 +14,14 @@
 
 Add group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/add-group).
 
-`GroupsAddGroupParams` → `Promise<GroupsAddGroupResponse>`
+`...args: GroupsAddGroupParams`
+
+```ts
+declare const addGroup: (
+  displayName: string,
+  options?: OperationOptions,
+) => Promise<GroupsAddGroupResponse>;
+```
 
 **Параметры пути**
 
@@ -38,13 +45,20 @@ Add group. [Документация Kaiten](https://developers.kaiten.ru/scim/g
 
 Get group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-group).
 
-`GroupsGetGroupParams` → `Promise<GroupsGetGroupResponse>`
+`...args: GroupsGetGroupParams`
+
+```ts
+declare const getGroup: (
+  groupId: string | number,
+  options?: OperationOptions,
+) => Promise<GroupsGetGroupResponse>;
+```
 
 **Параметры пути**
 
-| Поле       | Тип     | Обязательность |
-| ---------- | ------- | -------------- |
-| `group_id` | integer | Обязательно    |
+| Поле       | Тип              | Обязательность |
+| ---------- | ---------------- | -------------- |
+| `group_id` | string \| number | Обязательно    |
 
 **Параметры запроса**
 
@@ -58,7 +72,15 @@ Get group. [Документация Kaiten](https://developers.kaiten.ru/scim/g
 
 Get groups. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-groups).
 
-`GroupsGetGroupsParams` → `Promise<GroupsGetGroupsResponse>`
+`...args: GroupsGetGroupsParams`
+
+```ts
+declare const getGroups: (
+  startIndex?: number,
+  count?: number,
+  options?: OperationOptions,
+) => Promise<GroupsGetGroupsResponse>;
+```
 
 **Параметры пути**
 
@@ -79,13 +101,21 @@ Get groups. [Документация Kaiten](https://developers.kaiten.ru/scim/
 
 Update group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/update-group).
 
-`GroupsUpdateGroupParams` → `Promise<GroupsUpdateGroupResponse>`
+`...args: GroupsUpdateGroupParams`
+
+```ts
+declare const updateGroup: (
+  groupId: string | number,
+  operations: ScimGroupPatchOperation[],
+  options?: OperationOptions,
+) => Promise<GroupsUpdateGroupResponse>;
+```
 
 **Параметры пути**
 
-| Поле       | Тип     | Обязательность |
-| ---------- | ------- | -------------- |
-| `group_id` | integer | Обязательно    |
+| Поле       | Тип              | Обязательность |
+| ---------- | ---------------- | -------------- |
+| `group_id` | string \| number | Обязательно    |
 
 **Параметры запроса**
 
@@ -93,9 +123,9 @@ Update group. [Документация Kaiten](https://developers.kaiten.ru/sci
 
 **Тело запроса**
 
-| Поле         | Тип                                                                                                                                                                                                                                                                                                                                          | Обязательность |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Operations` | array of objects Schema Name Type Constraints Description 0 enum [add,remove,replace] 'add', 'remove' - for 'members' path. 'add', 'replace' - for 'displayName' path. 1 enum [members,displayName] 'members' - to update groups's members. 'displayName' - to rename group. 2 number - for path 'members'. string - for path 'displayName'. | Необязательно  |
+| Поле         | Тип              | Обязательность |
+| ------------ | ---------------- | -------------- |
+| `Operations` | array of objects | Обязательно    |
 
 **Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`, `members`.
 
@@ -107,7 +137,14 @@ Update group. [Документация Kaiten](https://developers.kaiten.ru/sci
 
 Add user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/add-user).
 
-`UsersAddUserParams` → `Promise<UsersAddUserResponse>`
+`...args: UsersAddUserParams`
+
+```ts
+declare const addUser: (
+  body: UsersAddUserBody,
+  options?: OperationOptions,
+) => Promise<UsersAddUserResponse>;
+```
 
 **Параметры пути**
 
@@ -132,13 +169,20 @@ Add user. [Документация Kaiten](https://developers.kaiten.ru/scim/us
 
 Get user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-user).
 
-`UsersGetUserParams` → `Promise<UsersGetUserResponse>`
+`...args: UsersGetUserParams`
+
+```ts
+declare const getUser: (
+  userId: number,
+  options?: OperationOptions,
+) => Promise<UsersGetUserResponse>;
+```
 
 **Параметры пути**
 
-| Поле      | Тип     | Обязательность |
-| --------- | ------- | -------------- |
-| `user_id` | integer | Обязательно    |
+| Поле      | Тип    | Обязательность |
+| --------- | ------ | -------------- |
+| `user_id` | number | Обязательно    |
 
 **Параметры запроса**
 
@@ -152,7 +196,16 @@ Get user. [Документация Kaiten](https://developers.kaiten.ru/scim/us
 
 Get users. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-users).
 
-`UsersGetUsersParams` → `Promise<UsersGetUsersResponse>`
+`...args: UsersGetUsersParams`
+
+```ts
+declare const getUsers: (
+  startIndex?: number,
+  count?: number,
+  filter?: string,
+  options?: OperationOptions,
+) => Promise<UsersGetUsersResponse>;
+```
 
 **Параметры пути**
 
@@ -174,13 +227,21 @@ Get users. [Документация Kaiten](https://developers.kaiten.ru/scim/u
 
 Update user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/update-user).
 
-`UsersUpdateUserParams` → `Promise<UsersUpdateUserResponse>`
+`...args: UsersUpdateUserParams`
+
+```ts
+declare const updateUser: (
+  userId: number,
+  operations: ScimUserPatchOperation[],
+  options?: OperationOptions,
+) => Promise<UsersUpdateUserResponse>;
+```
 
 **Параметры пути**
 
-| Поле      | Тип     | Обязательность |
-| --------- | ------- | -------------- |
-| `user_id` | integer | Обязательно    |
+| Поле      | Тип    | Обязательность |
+| --------- | ------ | -------------- |
+| `user_id` | number | Обязательно    |
 
 **Параметры запроса**
 
@@ -188,8 +249,8 @@ Update user. [Документация Kaiten](https://developers.kaiten.ru/scim
 
 **Тело запроса**
 
-| Поле         | Тип                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Обязательность |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| `Operations` | array of objects Schema Name Type Constraints Description 0 string 'add' - add value, 'replace' - replace value, 'remove' - remove value. For path 'active' only 'replace' op is available. 1 string 'active' - activate or deactivate user. 'name' - change user's fullname or part of it. 'name.givenName - change user's first name. 'name.familyName' - change user's surname. 2 boolean - for path 'active', object - for path 'name', 'string' - for paths name.givenName and name.familyName | Необязательно  |
+| Поле         | Тип              | Обязательность |
+| ------------ | ---------------- | -------------- |
+| `Operations` | array of objects | Обязательно    |
 
 **Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.

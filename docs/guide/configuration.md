@@ -21,10 +21,10 @@ const client = new KaitenClient({
 
 ```ts
 const controller = new AbortController();
-const request = client.cards.retrieveCardList({
-  query: { limit: 50 },
-  signal: controller.signal,
-});
+const request = client.cards.retrieveCardList(
+  { limit: 50 },
+  { signal: controller.signal },
+);
 
 controller.abort();
 await request; // Отклоняется ошибкой отмены fetch.
@@ -36,7 +36,7 @@ await request; // Отклоняется ошибкой отмены fetch.
 import { KaitenHttpError } from "@2chevskii/kaiten-client";
 
 try {
-  await client.cards.retrieveCard({ card_id: 123 });
+  await client.cards.retrieveCard(123);
 } catch (error) {
   if (error instanceof KaitenHttpError) {
     console.error(error.status, error.method, error.url);
@@ -49,3 +49,5 @@ try {
 ```
 
 `body` имеет тип `unknown`: это JSON, текст или `undefined` для пустого ответа. Ошибки сети и отмены приходят от `fetch`. Автоматических повторных запросов нет; если они нужны, управляйте ими в приложении с учётом метода и ограничений Kaiten.
+
+Для успешного ответа с повреждённым JSON или неожиданно пустым телом клиент выбрасывает `KaitenResponseError`. Ошибка содержит `status`, `headers`, `method`, `url`, исходный текст `body` и причину ошибки парсинга в `cause`. Операции с документированным пустым ответом возвращают `undefined`.

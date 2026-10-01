@@ -8,13 +8,13 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-| Job      | Command                          | Scope                                                       |
-| -------- | -------------------------------- | ----------------------------------------------------------- |
-| `lint`   | `npm run build` → `npm run lint` | ESLint                                                      |
-| `format` | `npm run format:check`           | Prettier                                                    |
-| `docs`   | `npm run docs:check`             | Generated-reference freshness and bilingual VitePress build |
+| Job      | Command                                            | Scope                                                                                         |
+| -------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `lint`   | build, typecheck, lint, contracts, verify, package | Source types, ESLint, all operation contracts, local HTTP verification, and installed tarball |
+| `format` | `npm run format:check`                             | Prettier                                                                                      |
+| `docs`   | `npm run docs:check`                               | Generated-reference freshness and bilingual VitePress build                                   |
 
-Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`. The `lint` job builds before checking the REST sample, which imports public declarations from `dist`. `contracts:check` compares all 222 operations with the inventory and verifies request forwarding. `verify` checks reviewed regressions through a local HTTP server and the TypeScript compiler. `package:check` installs the actual tarball in an isolated directory and checks all exports and declarations. `npm run check` runs the complete local verification.
 
 - The `docs` job retains documentation as an Actions artifact for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
 
@@ -41,7 +41,7 @@ The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with
    git push origin v1.0.1
    ```
 
-3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, it builds and packs the library and creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
+3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, it builds, verifies the installed package, packs the library, and creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
 4. Review the draft's generated release notes and publish it through GitHub. Publish manually so the `release: published` event starts `Finish release`; events created with a workflow's `GITHUB_TOKEN` do not generally start another workflow.
 5. `Finish release` independently publishes the original asset to npm and GitHub Packages. It validates the published stable release, package metadata and SHA-256 checksum, and compares each registry's SHA-512 integrity with the uploaded tarball. It does not rebuild the package.
 
@@ -52,6 +52,8 @@ Tags and package versions are immutable release identifiers. Re-running `Start r
 ### npm
 
 Create a repository Actions secret named `NPM_TOKEN` with an npm granular access token authorized to publish `@2chevskii/kaiten-client`. For unattended publishing, configure the token's bypass-2FA permission and an appropriate expiry. The first publication requires package-creation rights in the `@2chevskii` scope. Rotate the secret when the token expires.
+
+The configured placeholder `REPLACE_WITH_REAL_NPM_TOKEN` must be replaced before publication; the workflow rejects it explicitly. Version 2.0 changes the public argument signatures, so prepare the first npm release with a new `v2.0.0` tag. The existing `v1.0.0` tag belongs to the older GitHub package and must remain unchanged.
 
 The npm job publishes with public access and provenance using `id-token: write`. This requires a public GitHub repository with matching `package.json` repository metadata. See [npm provenance](https://docs.npmjs.com/generating-provenance-statements/). The workflow uses token authentication, including for the first publication. Migrating to [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) requires configuring the package's trusted publisher and updating the workflow authentication.
 
@@ -79,7 +81,7 @@ Then run `npm install @2chevskii/kaiten-client`. Keep tokens out of committed fi
 ```sh
 npm ci
 npm run check
-node scripts/validate-release.mjs v1.0.0
+node scripts/validate-release.mjs v2.0.0
 ```
 
 Use the current package version in the last command. Local checks exercise the package and documentation; the hosted CI run, Pages deployment, and registry publication are verified by the corresponding Actions runs after the workflows are pushed and their external settings are configured.

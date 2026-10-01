@@ -26,13 +26,10 @@ function handleEvent(event: KaitenWebhookEvent): void {
 ```ts
 import { sendCardWebhook } from "@2chevskii/kaiten-client/webhooks";
 
-const card = await sendCardWebhook({
-  url: process.env.KAITEN_WEBHOOK_URL!,
-  body: {
-    title: "Задача из интеграции",
-    tags: ["integration"],
-    properties: { id_42: "priority" },
-  },
+const card = await sendCardWebhook(process.env.KAITEN_WEBHOOK_URL!, {
+  title: "Задача из интеграции",
+  tags: ["integration"],
+  properties: { id_42: "priority" },
 });
 
 console.log(card.id);

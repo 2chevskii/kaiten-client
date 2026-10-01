@@ -1,5 +1,7 @@
 import type { CardsCreateNewCardResponse } from "../rest/index.js";
-import { KaitenHttpError } from "../http.js";
+import { readJsonResponse } from "../http-response.js";
+import type { OperationOptions } from "../http.js";
+import type { CustomPropertyValues } from "../types.js";
 
 export interface CardWebhookLink {
   url: string;
@@ -16,21 +18,20 @@ export interface CardWebhookRequest {
   links?: CardWebhookLink[];
   members?: number[];
   tags?: string[];
-  properties?: Record<`id_${number}`, unknown>;
+  properties?: CustomPropertyValues;
 }
 
-export interface SendCardWebhookOptions {
-  url: string;
-  body: CardWebhookRequest;
+export interface SendCardWebhookOptions extends OperationOptions {
   fetch?: typeof fetch;
-  signal?: AbortSignal;
 }
 
 /** Sends a card payload to a webhook URL configured in Kaiten. */
 export async function sendCardWebhook(
-  options: SendCardWebhookOptions,
+  webhookUrl: string,
+  body: CardWebhookRequest,
+  options: SendCardWebhookOptions = {},
 ): Promise<CardsCreateNewCardResponse> {
-  const url = new URL(options.url);
+  const url = new URL(webhookUrl);
   if (
     url.protocol !== "https:" &&
     !(
@@ -44,21 +45,13 @@ export async function sendCardWebhook(
   const response = await (options.fetch ?? fetch)(url, {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify(options.body),
+    body: JSON.stringify(body),
     signal: options.signal ?? null,
     redirect: "manual",
   });
-  const text = await response.text();
-  let body: unknown;
-  if (text) {
-    try {
-      body = JSON.parse(text) as unknown;
-    } catch {
-      body = text;
-    }
-  }
-  if (!response.ok) {
-    throw new KaitenHttpError(response, body, "POST", url.toString());
-  }
-  return body as CardsCreateNewCardResponse;
+  return readJsonResponse<CardsCreateNewCardResponse>(
+    response,
+    "POST",
+    url.toString(),
+  );
 }

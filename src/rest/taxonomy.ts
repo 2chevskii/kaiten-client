@@ -1,3 +1,7 @@
+import type { TreeEntitySummary } from "../entities.js";
+import type { JsonValue } from "../types.js";
+import type { CardTypeProperty } from "../entities.js";
+import type { RequireAtLeastOne } from "../types.js";
 import type { HttpTransport, OperationOptions } from "../http.js";
 
 import { pathSegment } from "../http.js";
@@ -10,19 +14,19 @@ export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse {
   id: number;
 }
 
-export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeParams extends OperationOptions {
-  type_id: number;
-  body: CardTypeTreeEntitiesAddTreeEntityToCardTypeBody;
-  signal?: AbortSignal;
-}
+export type CardTypeTreeEntitiesAddTreeEntityToCardTypeParams = Parameters<
+  ReturnType<
+    typeof createTaxonomyResources
+  >["cardTypeTreeEntities"]["addTreeEntityToCardType"]
+>;
 
 export type CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeResponse = void;
 
-export interface CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeParams extends OperationOptions {
-  type_id: number;
-  uid: string;
-  signal?: AbortSignal;
-}
+export type CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeParams = Parameters<
+  ReturnType<
+    typeof createTaxonomyResources
+  >["cardTypeTreeEntities"]["deleteTreeEntityFromCardType"]
+>;
 
 export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
   | {
@@ -31,7 +35,7 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
       company_id: number;
       sort_order: number;
       path: string;
-      parent_entity_uid: string;
+      parent_entity_uid: string | null;
       entity_type: string;
       access: string;
       archived: boolean;
@@ -43,7 +47,7 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
       path: string;
       title: string;
       access: string;
-      parent_entity_uid: string;
+      parent_entity_uid: string | null;
       entity_type: string;
       sort_order: number;
       archived: boolean;
@@ -56,7 +60,7 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
       path: string;
       access: string;
       title: string;
-      parent_entity_uid: string;
+      parent_entity_uid: string | null;
       entity_type: string;
       sort_order: number;
       archived: boolean;
@@ -66,10 +70,11 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
     }
 )[];
 
-export interface CardTypeTreeEntitiesGetListOfTypeTreeEntitiesParams extends OperationOptions {
-  type_id: number;
-  signal?: AbortSignal;
-}
+export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesParams = Parameters<
+  ReturnType<
+    typeof createTaxonomyResources
+  >["cardTypeTreeEntities"]["getListOfTypeTreeEntities"]
+>;
 
 export interface CardTypesCreateNewCardTypeBody {
   letter: string;
@@ -90,18 +95,14 @@ export interface CardTypesCreateNewCardTypeResponse {
   id: number;
   description_template: string | null;
   archived: boolean;
-  properties: {
-    id_1: boolean;
-    tags: boolean;
-  };
-  card_properties: string | number;
+  properties: Record<string, JsonValue> | null;
+  card_properties: CardTypeProperty[] | null;
   suggest_fields: boolean;
 }
 
-export interface CardTypesCreateNewCardTypeParams extends OperationOptions {
-  body: CardTypesCreateNewCardTypeBody;
-  signal?: AbortSignal;
-}
+export type CardTypesCreateNewCardTypeParams = Parameters<
+  ReturnType<typeof createTaxonomyResources>["cardTypes"]["createNewCardType"]
+>;
 
 export interface CardTypesGetCardTypeResponse {
   company_id: number;
@@ -113,18 +114,14 @@ export interface CardTypesGetCardTypeResponse {
   id: number;
   description_template: string | null;
   archived: boolean;
-  properties: {
-    id_1: boolean;
-    tags: boolean;
-  };
-  card_properties: string | number;
+  properties: Record<string, JsonValue> | null;
+  card_properties: CardTypeProperty[] | null;
   suggest_fields: boolean;
 }
 
-export interface CardTypesGetCardTypeParams extends OperationOptions {
-  id: number;
-  signal?: AbortSignal;
-}
+export type CardTypesGetCardTypeParams = Parameters<
+  ReturnType<typeof createTaxonomyResources>["cardTypes"]["getCardType"]
+>;
 
 export interface CardTypesGetListOfCardTypesQuery {
   limit?: number;
@@ -139,17 +136,16 @@ export type CardTypesGetListOfCardTypesResponse = {
   updated: string;
   created: string;
   id: number;
-  description_template: null;
+  description_template: string | null;
   archived: boolean;
-  properties: null;
-  card_properties: string | number;
+  properties: Record<string, JsonValue> | null;
+  card_properties: CardTypeProperty[] | null;
   suggest_fields: boolean;
 }[];
 
-export interface CardTypesGetListOfCardTypesParams extends OperationOptions {
-  query?: CardTypesGetListOfCardTypesQuery;
-  signal?: AbortSignal;
-}
+export type CardTypesGetListOfCardTypesParams = Parameters<
+  ReturnType<typeof createTaxonomyResources>["cardTypes"]["getListOfCardTypes"]
+>;
 
 export interface CardTypesRemoveCardTypeBody {
   replace_type_id: number;
@@ -165,21 +161,33 @@ export interface CardTypesRemoveCardTypeResponse {
   id: number;
   description_template: string | null;
   archived: boolean;
-  properties: {
-    id_1: boolean;
-    tags: boolean;
-  };
-  card_properties: string | number;
+  properties: Record<string, JsonValue> | null;
+  card_properties: CardTypeProperty[] | null;
   suggest_fields: boolean;
 }
 
-export interface CardTypesRemoveCardTypeParams extends OperationOptions {
-  id: number;
-  body: CardTypesRemoveCardTypeBody;
-  signal?: AbortSignal;
-}
+export type CardTypesRemoveCardTypeParams = Parameters<
+  ReturnType<typeof createTaxonomyResources>["cardTypes"]["removeCardType"]
+>;
 
-export type CardTypesUpdateCardTypeBody = unknown;
+export type CardTypesUpdateCardTypeBody = RequireAtLeastOne<
+  {
+    letter?: string;
+    name?: string;
+    color?: number;
+    properties?: Record<string, JsonValue>;
+    card_properties?: {
+      regular_property?:
+        "size" | "due_date" | "tags" | "timeline" | "description" | null;
+      property_uid?: string | null;
+      sort_order?: number;
+      required?: boolean;
+      type_uid?: string;
+    }[];
+    suggest_fields?: boolean;
+  },
+  "letter" | "name" | "color" | "properties"
+>;
 
 export interface CardTypesUpdateCardTypeResponse {
   company_id: number;
@@ -191,19 +199,14 @@ export interface CardTypesUpdateCardTypeResponse {
   id: number;
   description_template: string | null;
   archived: boolean;
-  properties: {
-    id_1: boolean;
-    tags: boolean;
-  };
-  card_properties: string | number;
+  properties: Record<string, JsonValue> | null;
+  card_properties: CardTypeProperty[] | null;
   suggest_fields: boolean;
 }
 
-export interface CardTypesUpdateCardTypeParams extends OperationOptions {
-  id: number;
-  body: CardTypesUpdateCardTypeBody;
-  signal?: AbortSignal;
-}
+export type CardTypesUpdateCardTypeParams = Parameters<
+  ReturnType<typeof createTaxonomyResources>["cardTypes"]["updateCardType"]
+>;
 
 export interface TreeEntitiesGetListOfEntitiesQuery {
   limit?: number;
@@ -212,63 +215,13 @@ export interface TreeEntitiesGetListOfEntitiesQuery {
   levels_count?: number;
 }
 
-export type TreeEntitiesGetListOfEntitiesResponse = (
-  | {
-      id: number;
-      uid: string;
-      title: string;
-      external_id: null;
-      company_id: number;
-      sort_order: number;
-      path: string;
-      parent_entity_uid: string;
-      entity_type: string;
-      access: string;
-      archived: boolean;
-      for_everyone_access_role_id: string;
-    }
-  | {
-      uid: string;
-      path: string;
-      title: string;
-      access: string;
-      public: boolean;
-      public_id: string;
-      parent_entity_uid: string;
-      entity_type: string;
-      sort_order: number;
-      author_id: number;
-      updater_id: number;
-      created: string;
-      updated: string;
-      publish_date: null;
-      archived: boolean;
-      for_everyone_access_role_id: string;
-      company_id: number;
-    }
-  | {
-      uid: string;
-      path: string;
-      access: string;
-      title: string;
-      public: boolean;
-      parent_entity_uid: string;
-      entity_type: string;
-      sort_order: number;
-      author_id: number;
-      updater_id: number;
-      news_feed: boolean;
-      hostname: null;
-      archived: boolean;
-      for_everyone_access_role_id: string;
-      company_id: number;
-    }
-)[];
+export type TreeEntitiesGetListOfEntitiesResponse = TreeEntitySummary[];
 
-export interface TreeEntitiesGetListOfEntitiesParams extends OperationOptions {
-  query?: TreeEntitiesGetListOfEntitiesQuery;
-  signal?: AbortSignal;
-}
+export type TreeEntitiesGetListOfEntitiesParams = Parameters<
+  ReturnType<
+    typeof createTaxonomyResources
+  >["treeEntities"]["getListOfEntities"]
+>;
 
 export type TreeEntityRolesGetListOfTreeEntityRolesResponse = {
   id: string;
@@ -367,123 +320,144 @@ export type TreeEntityRolesGetListOfTreeEntityRolesResponse = {
   role_permissions?: Record<string, unknown>;
 }[];
 
-export interface TreeEntityRolesGetListOfTreeEntityRolesParams extends OperationOptions {
-  signal?: AbortSignal;
-}
+export type TreeEntityRolesGetListOfTreeEntityRolesParams = Parameters<
+  ReturnType<
+    typeof createTaxonomyResources
+  >["treeEntityRoles"]["getListOfTreeEntityRoles"]
+>;
 
 export const createTaxonomyResources = (transport: HttpTransport) => ({
   cardTypeTreeEntities: {
     /** @see https://developers.kaiten.ru/card-type-tree-entities/add-tree-entity-to-card-type */
     addTreeEntityToCardType: (
-      params: CardTypeTreeEntitiesAddTreeEntityToCardTypeParams,
+      typeId: number,
+      treeEntityUid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse>(
         {
           method: "POST",
-          path: "/card-types/" + pathSegment(params.type_id) + "/tree-entities",
-          body: params.body,
-          signal: params.signal,
+          path: "/card-types/" + pathSegment(typeId) + "/tree-entities",
+          body: { tree_entity_uid: treeEntityUid },
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/card-type-tree-entities/delete-tree-entity-from-card-type */
     deleteTreeEntityFromCardType: (
-      params: CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeParams,
+      typeId: number,
+      uid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeResponse>(
         {
           method: "DELETE",
+          responseMode: "void",
           path:
             "/card-types/" +
-            pathSegment(params.type_id) +
+            pathSegment(typeId) +
             "/tree-entities/" +
-            pathSegment(params.uid),
-          signal: params.signal,
+            pathSegment(uid),
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/card-type-tree-entities/get-list-of-type-tree-entities */
-    getListOfTypeTreeEntities: (
-      params: CardTypeTreeEntitiesGetListOfTypeTreeEntitiesParams,
-    ) => {
+    getListOfTypeTreeEntities: (typeId: number, options?: OperationOptions) => {
       return transport.request<CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse>(
         {
           method: "GET",
-          path: "/card-types/" + pathSegment(params.type_id) + "/tree-entities",
-          signal: params.signal,
+          path: "/card-types/" + pathSegment(typeId) + "/tree-entities",
+          signal: options?.signal,
         },
       );
     },
   },
   cardTypes: {
     /** @see https://developers.kaiten.ru/card-types/create-new-card-type */
-    createNewCardType: (params: CardTypesCreateNewCardTypeParams) => {
+    createNewCardType: (
+      body: CardTypesCreateNewCardTypeBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTypesCreateNewCardTypeResponse>({
         method: "POST",
         path: "/card-types",
-        body: params.body,
-        signal: params.signal,
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-types/get-card-type */
-    getCardType: (params: CardTypesGetCardTypeParams) => {
+    getCardType: (id: number, options?: OperationOptions) => {
       return transport.request<CardTypesGetCardTypeResponse>({
         method: "GET",
-        path: "/card-types/" + pathSegment(params.id),
-        signal: params.signal,
+        path: "/card-types/" + pathSegment(id),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-types/get-list-of-card-types */
-    getListOfCardTypes: (params: CardTypesGetListOfCardTypesParams = {}) => {
+    getListOfCardTypes: (
+      limit?: number,
+      offset?: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTypesGetListOfCardTypesResponse>({
         method: "GET",
         path: "/card-types",
-        query: params.query,
-        signal: params.signal,
+        query: { limit, offset },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-types/remove-card-type */
-    removeCardType: (params: CardTypesRemoveCardTypeParams) => {
+    removeCardType: (
+      id: number,
+      replaceTypeId: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTypesRemoveCardTypeResponse>({
         method: "DELETE",
-        path: "/card-types/" + pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+        path: "/card-types/" + pathSegment(id),
+        body: { replace_type_id: replaceTypeId },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-types/update-card-type */
-    updateCardType: (params: CardTypesUpdateCardTypeParams) => {
+    updateCardType: (
+      id: number,
+      body: CardTypesUpdateCardTypeBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTypesUpdateCardTypeResponse>({
         method: "PATCH",
-        path: "/card-types/" + pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+        path: "/card-types/" + pathSegment(id),
+        body,
+        signal: options?.signal,
       });
     },
   },
   treeEntities: {
     /** @beta */
     /** @see https://developers.kaiten.ru/tree-entities/get-list-of-entities */
-    getListOfEntities: (params: TreeEntitiesGetListOfEntitiesParams = {}) => {
+    getListOfEntities: (
+      query?: TreeEntitiesGetListOfEntitiesQuery,
+      options?: OperationOptions,
+    ) => {
       return transport.request<TreeEntitiesGetListOfEntitiesResponse>({
         method: "GET",
         path: "/tree-entities",
-        query: params.query,
-        signal: params.signal,
+        query,
+        signal: options?.signal,
       });
     },
   },
   treeEntityRoles: {
     /** @beta */
     /** @see https://developers.kaiten.ru/tree-entity-roles/get-list-of-tree-entity-roles */
-    getListOfTreeEntityRoles: (
-      params: TreeEntityRolesGetListOfTreeEntityRolesParams = {},
-    ) => {
+    getListOfTreeEntityRoles: (options?: OperationOptions) => {
       return transport.request<TreeEntityRolesGetListOfTreeEntityRolesResponse>(
         {
           method: "GET",
           path: "/tree-entity-roles",
-          signal: params.signal,
+          signal: options?.signal,
         },
       );
     },

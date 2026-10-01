@@ -66,6 +66,13 @@ export class KaitenClient {
   readonly users: RestResources["users"];
 
   constructor(options: RestClientOptions) {
+    if (
+      options.apiVersion !== undefined &&
+      options.apiVersion !== "v1" &&
+      options.apiVersion !== "latest"
+    ) {
+      throw new TypeError("The REST API version must be v1 or latest");
+    }
     const transport = new HttpTransport(
       options,
       "/api/" + (options.apiVersion ?? "v1"),

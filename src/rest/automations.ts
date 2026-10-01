@@ -2,7 +2,13 @@ import type { HttpTransport, OperationOptions } from "../http.js";
 
 import { pathSegment } from "../http.js";
 
-import type { AutomationBody, AutomationUpdateBody } from "../automation.js";
+import type {
+  AutomationBody,
+  AutomationUpdateBody,
+  AutomationAction,
+  AutomationTrigger,
+  AutomationConditionGroup,
+} from "../automation.js";
 
 export type AutomationsCreateAutomationBody = AutomationBody;
 
@@ -15,37 +21,28 @@ export interface AutomationsCreateAutomationResponse {
   updater_id: number;
   name: string | null;
   status: string;
-  trigger: {
-    type: string;
-    hasToFireOnCardCreation: boolean;
-  };
-  actions: {
-    data: {
-      slaIds: string[];
-    };
-    type: string;
-    created: string;
-  }[];
-  conditions: Record<string, unknown>;
+  trigger: AutomationTrigger;
+  actions: AutomationAction[];
+  conditions: Partial<AutomationConditionGroup>;
   type: string;
   sort_order: number;
 }
 
-export interface AutomationsCreateAutomationParams extends OperationOptions {
-  space_id: number;
-  body?: AutomationsCreateAutomationBody;
-  signal?: AbortSignal;
-}
+export type AutomationsCreateAutomationParams = Parameters<
+  ReturnType<
+    typeof createAutomationsResources
+  >["automations"]["createAutomation"]
+>;
 
 export interface AutomationsDeleteAutomationResponse {
   message: string;
 }
 
-export interface AutomationsDeleteAutomationParams extends OperationOptions {
-  space_id: number;
-  automation_uid: string;
-  signal?: AbortSignal;
-}
+export type AutomationsDeleteAutomationParams = Parameters<
+  ReturnType<
+    typeof createAutomationsResources
+  >["automations"]["deleteAutomation"]
+>;
 
 export type AutomationsGetListOfAutomationsResponse = {
   created: string;
@@ -56,26 +53,18 @@ export type AutomationsGetListOfAutomationsResponse = {
   updater_id: number;
   name: string | null;
   status: string;
-  trigger: {
-    type: string;
-    hasToFireOnCardCreation: boolean;
-  };
-  actions: {
-    data: {
-      slaIds: string[];
-    };
-    type: string;
-    created: string;
-  }[];
-  conditions: Record<string, unknown>;
+  trigger: AutomationTrigger;
+  actions: AutomationAction[];
+  conditions: Partial<AutomationConditionGroup>;
   type: string;
   sort_order: number;
 }[];
 
-export interface AutomationsGetListOfAutomationsParams extends OperationOptions {
-  space_id: number;
-  signal?: AbortSignal;
-}
+export type AutomationsGetListOfAutomationsParams = Parameters<
+  ReturnType<
+    typeof createAutomationsResources
+  >["automations"]["getListOfAutomations"]
+>;
 
 export type AutomationsUpdateAutomationBody = AutomationUpdateBody;
 
@@ -88,71 +77,74 @@ export interface AutomationsUpdateAutomationResponse {
   updater_id: number;
   name: string | null;
   status: string;
-  trigger: {
-    type: string;
-    hasToFireOnCardCreation: boolean;
-  };
-  actions: {
-    data: {
-      slaIds: string[];
-    };
-    type: string;
-    created: string;
-  }[];
-  conditions: Record<string, unknown>;
+  trigger: AutomationTrigger;
+  actions: AutomationAction[];
+  conditions: Partial<AutomationConditionGroup>;
   type: string;
   sort_order: number;
 }
 
-export interface AutomationsUpdateAutomationParams extends OperationOptions {
-  space_id: number;
-  automation_uid: string;
-  body?: AutomationsUpdateAutomationBody;
-  signal?: AbortSignal;
-}
+export type AutomationsUpdateAutomationParams = Parameters<
+  ReturnType<
+    typeof createAutomationsResources
+  >["automations"]["updateAutomation"]
+>;
 
 export const createAutomationsResources = (transport: HttpTransport) => ({
   automations: {
     /** @see https://developers.kaiten.ru/automations/create-automation */
-    createAutomation: (params: AutomationsCreateAutomationParams) => {
+    createAutomation: (
+      spaceId: number,
+      body: AutomationsCreateAutomationBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<AutomationsCreateAutomationResponse>({
         method: "POST",
-        path: "/spaces/" + pathSegment(params.space_id) + "/automations",
-        body: params.body,
-        signal: params.signal,
+        path: "/spaces/" + pathSegment(spaceId) + "/automations",
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/automations/delete-automation */
-    deleteAutomation: (params: AutomationsDeleteAutomationParams) => {
+    deleteAutomation: (
+      spaceId: number,
+      automationUid: string,
+      options?: OperationOptions,
+    ) => {
       return transport.request<AutomationsDeleteAutomationResponse>({
         method: "DELETE",
         path:
           "/spaces/" +
-          pathSegment(params.space_id) +
+          pathSegment(spaceId) +
           "/automations/" +
-          pathSegment(params.automation_uid),
-        signal: params.signal,
+          pathSegment(automationUid),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/automations/get-list-of-automations */
-    getListOfAutomations: (params: AutomationsGetListOfAutomationsParams) => {
+    getListOfAutomations: (spaceId: number, options?: OperationOptions) => {
       return transport.request<AutomationsGetListOfAutomationsResponse>({
         method: "GET",
-        path: "/spaces/" + pathSegment(params.space_id) + "/automations",
-        signal: params.signal,
+        path: "/spaces/" + pathSegment(spaceId) + "/automations",
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/automations/update-automation */
-    updateAutomation: (params: AutomationsUpdateAutomationParams) => {
+    updateAutomation: (
+      spaceId: number,
+      automationUid: string,
+      body: AutomationsUpdateAutomationBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<AutomationsUpdateAutomationResponse>({
         method: "PATCH",
         path:
           "/spaces/" +
-          pathSegment(params.space_id) +
+          pathSegment(spaceId) +
           "/automations/" +
-          pathSegment(params.automation_uid),
-        body: params.body,
-        signal: params.signal,
+          pathSegment(automationUid),
+        body,
+        signal: options?.signal,
       });
     },
   },

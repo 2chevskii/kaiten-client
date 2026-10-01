@@ -1,3 +1,5 @@
+import type { ColumnSummary, LaneSummary, BoardSummary } from "../entities.js";
+import type { JsonValue } from "../types.js";
 import type { HttpTransport, OperationOptions } from "../http.js";
 
 import { pathSegment } from "../http.js";
@@ -16,11 +18,11 @@ export interface CardServiceDeskExternalRecipientsAddNewRecipientResponse {
   updater_id: number;
 }
 
-export interface CardServiceDeskExternalRecipientsAddNewRecipientParams extends OperationOptions {
-  card_id: number;
-  body: CardServiceDeskExternalRecipientsAddNewRecipientBody;
-  signal?: AbortSignal;
-}
+export type CardServiceDeskExternalRecipientsAddNewRecipientParams = Parameters<
+  ReturnType<
+    typeof createServiceDeskResources
+  >["cardServiceDeskExternalRecipients"]["addNewRecipient"]
+>;
 
 export interface CardServiceDeskExternalRecipientsRemoveRecipientResponse {
   created: string;
@@ -33,11 +35,11 @@ export interface CardServiceDeskExternalRecipientsRemoveRecipientResponse {
   company_id: number;
 }
 
-export interface CardServiceDeskExternalRecipientsRemoveRecipientParams extends OperationOptions {
-  card_id: number;
-  email: string;
-  signal?: AbortSignal;
-}
+export type CardServiceDeskExternalRecipientsRemoveRecipientParams = Parameters<
+  ReturnType<
+    typeof createServiceDeskResources
+  >["cardServiceDeskExternalRecipients"]["removeRecipient"]
+>;
 
 export interface CardSlaRetrieveCardSlaMeasurementsResponse {
   calendars: {
@@ -49,7 +51,7 @@ export interface CardSlaRetrieveCardSlaMeasurementsResponse {
           updated: string;
           id: string;
           calendar_id: string;
-          day: number;
+          day: number | null;
           date: null;
           full_day: null;
           period_start: number;
@@ -61,7 +63,7 @@ export interface CardSlaRetrieveCardSlaMeasurementsResponse {
           id: string;
           calendar_id: string;
           day: null;
-          date: string;
+          date: string | null;
           full_day: boolean;
           period_start: number;
           period_finish: number;
@@ -89,10 +91,11 @@ export interface CardSlaRetrieveCardSlaMeasurementsResponse {
   }[];
 }
 
-export interface CardSlaRetrieveCardSlaMeasurementsParams extends OperationOptions {
-  card_id: number;
-  signal?: AbortSignal;
-}
+export type CardSlaRetrieveCardSlaMeasurementsParams = Parameters<
+  ReturnType<
+    typeof createServiceDeskResources
+  >["cardSla"]["retrieveCardSlaMeasurements"]
+>;
 
 export type ServiceDeskServicesRetrieveServicesListResponse = {
   id: number;
@@ -107,14 +110,14 @@ export type ServiceDeskServicesRetrieveServicesListResponse = {
   column_id: number;
   lane_id: number;
   display_status: string;
-  template_description: string;
+  template_description: string | null;
   settings: {
-    allowed_email_masks: unknown[];
+    allowed_email_masks: JsonValue[];
   };
   allow_to_add_external_recipients: boolean;
-  column: string | number;
-  board: string | number;
-  lane: string | number;
+  column: ColumnSummary;
+  board: BoardSummary;
+  lane: LaneSummary;
   voteCustomProperty: {
     created: string;
     updated: string;
@@ -124,39 +127,44 @@ export type ServiceDeskServicesRetrieveServicesListResponse = {
   };
 }[];
 
-export interface ServiceDeskServicesRetrieveServicesListParams extends OperationOptions {
-  signal?: AbortSignal;
-}
+export type ServiceDeskServicesRetrieveServicesListParams = Parameters<
+  ReturnType<
+    typeof createServiceDeskResources
+  >["serviceDeskServices"]["retrieveServicesList"]
+>;
 
 export const createServiceDeskResources = (transport: HttpTransport) => ({
   cardServiceDeskExternalRecipients: {
     /** @see https://developers.kaiten.ru/card-service-desk-external-recipients/add-new-recipient */
     addNewRecipient: (
-      params: CardServiceDeskExternalRecipientsAddNewRecipientParams,
+      cardId: number,
+      email: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardServiceDeskExternalRecipientsAddNewRecipientResponse>(
         {
           method: "POST",
-          path:
-            "/cards/" + pathSegment(params.card_id) + "/sd-external-recipients",
-          body: params.body,
-          signal: params.signal,
+          path: "/cards/" + pathSegment(cardId) + "/sd-external-recipients",
+          body: { email },
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/card-service-desk-external-recipients/remove-recipient */
     removeRecipient: (
-      params: CardServiceDeskExternalRecipientsRemoveRecipientParams,
+      cardId: number,
+      email: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardServiceDeskExternalRecipientsRemoveRecipientResponse>(
         {
           method: "DELETE",
           path:
             "/cards/" +
-            pathSegment(params.card_id) +
+            pathSegment(cardId) +
             "/sd-external-recipients/" +
-            pathSegment(params.email),
-          signal: params.signal,
+            pathSegment(email),
+          signal: options?.signal,
         },
       );
     },
@@ -164,26 +172,24 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
   cardSla: {
     /** @see https://developers.kaiten.ru/card-sla/retrieve-card-sla-measurements */
     retrieveCardSlaMeasurements: (
-      params: CardSlaRetrieveCardSlaMeasurementsParams,
+      cardId: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardSlaRetrieveCardSlaMeasurementsResponse>({
         method: "GET",
-        path:
-          "/cards/" + pathSegment(params.card_id) + "/sla-rules-measurements",
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/sla-rules-measurements",
+        signal: options?.signal,
       });
     },
   },
   serviceDeskServices: {
     /** @see https://developers.kaiten.ru/service-desk-services/retrieve-services-list */
-    retrieveServicesList: (
-      params: ServiceDeskServicesRetrieveServicesListParams = {},
-    ) => {
+    retrieveServicesList: (options?: OperationOptions) => {
       return transport.request<ServiceDeskServicesRetrieveServicesListResponse>(
         {
           method: "GET",
           path: "/service-desk/services",
-          signal: params.signal,
+          signal: options?.signal,
         },
       );
     },

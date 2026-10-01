@@ -7,11 +7,11 @@ In these examples, `client` is a `KaitenClient` instance from the [first request
 ## Upload
 
 ```ts
-const uploaded = await client.restrictedAccessCardFiles.attachFileToCard({
-  card_uid: "card-uuid",
-  file: new Blob(["report"], { type: "text/plain" }),
-  filename: "report.txt",
-});
+const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
+  "card-uuid",
+  new Blob(["report"], { type: "text/plain" }),
+  { filename: "report.txt" },
+);
 
 console.log(uploaded.id);
 ```
@@ -21,19 +21,19 @@ The client creates `multipart/form-data` with its boundary. Pass a `Blob` and, o
 ## Get a temporary link
 
 ```ts
-const file = await client.restrictedAccessCardFiles.getCardFile({
-  card_uid: "card-uuid",
-  id: uploaded.id,
-});
+const file = await client.restrictedAccessCardFiles.getCardFile(
+  "card-uuid",
+  uploaded.id,
+);
 
-const redirect = await client.restrictedAccessCardFiles.getCardFile({
-  card_uid: "card-uuid",
-  id: uploaded.id,
-  query: { redirect: true },
-});
+const redirect = await client.restrictedAccessCardFiles.getCardFile(
+  "card-uuid",
+  uploaded.id,
+  true,
+);
 
-console.log("url" in file ? file.url : file.location);
-console.log("location" in redirect ? redirect.location : redirect.url);
+console.log(file.url);
+console.log(redirect.location);
 ```
 
 `redirect: true` returns `{ location: string }` from the `Location` header; the client does not follow the redirect. Download the temporary URL with a separate request and without the Kaiten token. The legacy `client.cardFiles.attachFileToCard` remains available with `@deprecated`.

@@ -10,11 +10,19 @@ const scim = new KaitenScimClient({
   token: process.env.KAITEN_TOKEN!,
 });
 
-const users = await scim.users.getUsers({
-  query: { startIndex: 1, count: 20 },
-});
+const users = await scim.users.getUsers(1, 20);
 
 console.log(users.Resources, users.totalResults);
 ```
 
-Параметры и поля SCIM сохраняют регистр спецификации: `startIndex`, `displayName`, `Resources`. Создание и изменение передают данные в `body`; `signal` и обработка `KaitenHttpError` работают так же, как в REST-клиенте. Список всех методов и типов — в [SCIM-справочнике](/reference/scim).
+Поля SCIM сохраняют регистр спецификации: `startIndex`, `displayName`, `Resources`. Методы принимают ID и небольшие наборы полей отдельно, фильтры — объектом `Query`, а отмену — через последний аргумент `{ signal }`. Обработка `KaitenHttpError` работает так же, как в REST-клиенте. Список всех методов и типов — в [SCIM-справочнике](/reference/scim).
+
+```ts
+await scim.users.updateUser(123, [
+  { op: "replace", path: "active", value: false },
+]);
+const group = await scim.groups.addGroup("Разработчики");
+await scim.groups.getGroup(group.id);
+```
+
+`updateUser` и `updateGroup` принимают массивы `ScimUserPatchOperation` и `ScimGroupPatchOperation`; клиент формирует поле `Operations` в запросе. ID групп допускают строковые значения, которые возвращает SCIM.

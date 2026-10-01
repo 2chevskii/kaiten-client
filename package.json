@@ -1,13 +1,13 @@
 {
   "name": "@2chevskii/kaiten-client",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Fully typed TypeScript client for Kaiten integrations",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/2chevskii/kaiten-client.git"
   },
-  "homepage": "https://github.com/2chevskii/kaiten-client#readme",
+  "homepage": "https://2chevskii.github.io/kaiten-client/",
   "bugs": "https://github.com/2chevskii/kaiten-client/issues",
   "type": "module",
   "engines": {
@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node scripts/build.mjs",
     "prepare": "npm run build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p docs/tsconfig.json",
     "lint": "eslint .",
@@ -62,7 +62,10 @@
     "docs:dev": "npm run docs:generate && vitepress dev docs",
     "docs:build": "npm run docs:generate && vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm run docs:check"
+    "contracts:check": "node scripts/check-api-contracts.mjs",
+    "package:check": "node scripts/check-package.mjs",
+    "verify": "node --test verification/*.test.mjs",
+    "check": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm run contracts:check && npm run verify && npm run docs:check && npm run package:check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -74,5 +77,8 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0",
     "vitepress": "1.6.4"
+  },
+  "overrides": {
+    "vite": "6.4.3"
   }
 }

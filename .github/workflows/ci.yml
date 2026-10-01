@@ -14,7 +14,11 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run build
+      - run: npm run typecheck
       - run: npm run lint
+      - run: npm run contracts:check
+      - run: npm run verify
+      - run: npm run package:check
 
   format:
     runs-on: ubuntu-26.04

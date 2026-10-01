@@ -2,12 +2,14 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { format } from "prettier";
+import { readConstant, readPublicApi } from "./api-source.mjs";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const registry = JSON.parse(
   await readFile(resolve(root, "docs/api-coverage.json"), "utf8"),
 );
 const check = process.argv.includes("--check");
+const api = readPublicApi();
 const labels = {
   ru: {
     rest: "REST API: все операции",
@@ -92,10 +94,19 @@ function bodyFields(body) {
   if (!schema?.properties) return [];
   return Object.entries(schema.properties).map(([name, definition]) => ({
     name,
-    type:
-      definition.enum?.map(String).join(" | ") ?? definition.type ?? "unknown",
+    type: schemaType(definition),
     required: schema.required?.includes(name) ?? false,
   }));
+}
+
+function schemaType(definition) {
+  if (definition.enum) return definition.enum.map(String).join(" | ");
+  if (definition.oneOf) return definition.oneOf.map(schemaType).join(" | ");
+  if (definition.anyOf) return definition.anyOf.map(schemaType).join(" | ");
+  if (Array.isArray(definition.type)) return definition.type.join(" | ");
+  if (definition.type === "array")
+    return `array of ${schemaType(definition.items ?? {})}`;
+  return definition.type ?? "unknown";
 }
 
 function responseSummary(response, label) {
@@ -134,7 +145,11 @@ function render(section, language) {
       if (entry.beta) content += ` **${label.beta}.**`;
       if (entry.deprecated) content += ` **${label.deprecated}.**`;
       content += "\n\n";
-      content += `\`${typePrefix}Params\` → \`Promise<${typePrefix}Response>\`\n\n`;
+      const operation = api.operations.get(entry.implementation);
+      if (!operation)
+        throw new Error(`Missing public operation: ${entry.implementation}`);
+      content += `\`...args: ${typePrefix}Params\`\n\n`;
+      content += `\`\`\`ts\ndeclare const ${method}: ${operation.signatures.length === 1 ? operation.signatures[0] : `{ ${operation.signatures.map((signature) => signature.replace(" => ", ": ") + ";").join(" ")} }`};\n\`\`\`\n\n`;
       if (
         entry.query_parameters?.some(
           (parameter) => parameter.name === "version",
@@ -144,9 +159,9 @@ function render(section, language) {
       }
       const pathParameters =
         entry.path_parameters ??
-        [...entry.endpoint.matchAll(/\{([^}]+)\}/g)].map((match) => ({
+        [...entry.endpoint.matchAll(/\{([^}]+)\}/g)].map((match, index) => ({
           name: match[1],
-          type: "integer",
+          type: operation.parameters[index]?.typeText ?? "string",
           required: true,
         }));
       content += `**${label.path}**\n\n${fieldTable(pathParameters, label)}`;
@@ -161,17 +176,10 @@ function render(section, language) {
 }
 
 async function metadataItems(source, constant, field) {
-  const contents = await readFile(resolve(root, source), "utf8");
-  const declaration = contents
-    .split(`export const ${constant} = [`)[1]
-    ?.split("] as const;")[0];
-  if (!declaration) throw new Error(`Could not find ${constant} in ${source}`);
-  return [...declaration.matchAll(/\{([^{}]+)\}/g)].map((match) => {
-    const property = (name) =>
-      match[1].match(new RegExp(`${name}: "([^"]+)"`))?.[1];
-    const documentation = property("documentation");
-    const name = property(field);
-    const type = property("type");
+  return readConstant(source, constant).map((entry) => {
+    const documentation = entry.documentation;
+    const name = entry[field];
+    const type = entry.type;
     if (!documentation || !name || !type) {
       throw new Error(`Incomplete entry in ${constant}`);
     }

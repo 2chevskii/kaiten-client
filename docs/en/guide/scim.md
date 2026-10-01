@@ -10,11 +10,19 @@ const scim = new KaitenScimClient({
   token: process.env.KAITEN_TOKEN!,
 });
 
-const users = await scim.users.getUsers({
-  query: { startIndex: 1, count: 20 },
-});
+const users = await scim.users.getUsers(1, 20);
 
 console.log(users.Resources, users.totalResults);
 ```
 
-SCIM parameters and fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Create and update calls pass data in `body`; `signal` and `KaitenHttpError` work as they do in the REST client. The [SCIM reference](/en/reference/scim) lists every method and type.
+SCIM fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Methods accept IDs and small sets of fields separately, filters as `Query` objects, and cancellation through the last `{ signal }` argument. `KaitenHttpError` works as it does in the REST client. The [SCIM reference](/en/reference/scim) lists every method and type.
+
+```ts
+await scim.users.updateUser(123, [
+  { op: "replace", path: "active", value: false },
+]);
+const group = await scim.groups.addGroup("Developers");
+await scim.groups.getGroup(group.id);
+```
+
+`updateUser` and `updateGroup` accept `ScimUserPatchOperation` and `ScimGroupPatchOperation` arrays; the client constructs the request's `Operations` field. Group IDs accept the string values returned by SCIM.

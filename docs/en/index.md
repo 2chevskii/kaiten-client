@@ -20,6 +20,6 @@ features:
     details: Built-in fetch, AbortSignal, file uploads, and configurable tokens.
 ---
 
-`@2chevskii/kaiten-client` requires Node.js 20+ and is ESM only. The current version is `1.0.0`. Install it from GitHub; it is not published to npm yet.
+`@2chevskii/kaiten-client` requires Node.js 24+ and is ESM only. The current version is `2.0.0`. See the guide for installing a published package.
 
 [Source code](https://github.com/2chevskii/kaiten-client) · [Kaiten documentation](https://developers.kaiten.ru/) · [Русский](/)
