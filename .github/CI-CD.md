@@ -12,14 +12,13 @@ All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 | -------- | -------------------------------- | ----------------------------------------------------------- |
 | `lint`   | `npm run build` → `npm run lint` | ESLint                                                      |
 | `format` | `npm run format:check`           | Prettier                                                    |
-| `test`   | `npm test`                       | Library build, sample type checks, contract and HTTP tests  |
 | `docs`   | `npm run docs:check`             | Generated-reference freshness and bilingual VitePress build |
 
-Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `test` script explicitly builds the library. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`, so the package's `prepare` hook does not trigger an unrelated library build. The `lint` job builds it before ESLint because the REST sample imports the package through its public exports, which resolve to declarations in `dist`. `npm run check` remains the aggregate command for local verification.
 
 - The `docs` job retains documentation as an Actions artifact for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
 
-Configure branch protection for `develop` to require `lint`, `format`, `test`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
+Configure branch protection for `develop` to require `lint`, `format`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
 ## Documentation deployment
 

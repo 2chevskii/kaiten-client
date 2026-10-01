@@ -35,6 +35,4 @@ incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 `src/scim.ts` and `src/webhooks.ts` entry points re-export these modules.
 
 The documentation audit in `docs/api-coverage.json` is the contract inventory.
-`test/operations.test.mjs` checks every REST and SCIM method against it.
-Contracts are maintained in source code alongside their operations. The audit
-and tests validate coverage; no code generation step is required for a build.
+Contracts are maintained in source code alongside their operations. No code generation step is required for a build.

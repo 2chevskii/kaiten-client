@@ -199,6 +199,6 @@ npm run check
 npm pack --dry-run
 ```
 
-The [documentation audit](https://github.com/2chevskii/kaiten-client/blob/v1.0.0/docs/documentation-audit.md) records 310 pages reviewed for this release. Contract tests cover every documented REST and SCIM method; a local HTTP server checks authentication, JSON, SCIM, multipart uploads, errors, and cancellation. Type tests check representative consumer calls. No live Kaiten account or token was available for this release, so server behavior has not been verified against a real tenant. Types represent documented schemas and examples; fields Kaiten leaves unspecified use `unknown`.
+The [documentation audit](https://github.com/2chevskii/kaiten-client/blob/v1.0.0/docs/documentation-audit.md) records 310 pages reviewed for this release. No live Kaiten account or token was available for this release, so server behavior has not been verified against a real tenant. Types represent documented schemas and examples; fields Kaiten leaves unspecified use `unknown`.
 
 MIT licensed.
