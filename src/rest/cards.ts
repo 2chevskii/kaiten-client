@@ -1891,19 +1891,10 @@ export const createCardsResources = (transport: HttpTransport) => {
     cards: {
       /** Lazily iterate version 2 search results using Kaiten's cursor. */
       iterate: (query?: CardsIterateQuery, options?: OperationOptions) => {
-        const searchQuery = { ...query, version: 2 as const };
-        return iterateSearchResults(
-          (position) =>
-            retrieveCardList(
-              {
-                ...searchQuery,
-                ...(position === undefined ? {} : { start_position: position }),
-              },
-              options,
-            ),
-          query?.start_position,
-          options?.signal,
-        );
+        return iterateSearchResults<
+          CardsIterateQuery,
+          CardsRetrieveCardListResponse
+        >(retrieveCardList, query ?? {}, options);
       },
       /** @see https://developers.kaiten.ru/cards/batch-update-for-cards */
       batchUpdateForCards: (

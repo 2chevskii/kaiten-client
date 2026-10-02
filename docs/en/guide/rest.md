@@ -77,6 +77,8 @@ No request starts until iteration begins. Breaking the loop prevents further pag
 
 Iteration ends on an empty page or an empty cursor. A repeated cursor throws an error instead of requesting the same pages indefinitely. Single-page methods remain available when you need to control pagination yourself.
 
+Iterators copy query values, including arrays and nested filters, and capture the signal when created. Every page uses that snapshot. Abort the captured signal's controller to cancel the iteration.
+
 ## Typed card filters
 
 Comma-separated card query fields also accept readonly arrays. Use numeric arrays for ID filters, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`:

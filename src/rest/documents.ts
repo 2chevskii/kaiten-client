@@ -754,19 +754,10 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         query?: DocumentGroupsIterateQuery,
         options?: OperationOptions,
       ) => {
-        const searchQuery = { ...query, version: 2 as const };
-        return iterateSearchResults(
-          (position) =>
-            retrieveListOfDocumentGroups(
-              {
-                ...searchQuery,
-                ...(position === undefined ? {} : { start_position: position }),
-              },
-              options,
-            ),
-          query?.start_position,
-          options?.signal,
-        );
+        return iterateSearchResults<
+          DocumentGroupsIterateQuery,
+          DocumentGroupsRetrieveListOfDocumentGroupsResponse
+        >(retrieveListOfDocumentGroups, query ?? {}, options);
       },
       /** @see https://developers.kaiten.ru/document-groups/create-new-document-group */
       createNewDocumentGroup: (
@@ -825,19 +816,10 @@ export const createDocumentsResources = (transport: HttpTransport) => {
     documents: {
       /** Lazily iterate version 2 search results using Kaiten's cursor. */
       iterate: (query?: DocumentsIterateQuery, options?: OperationOptions) => {
-        const searchQuery = { ...query, version: 2 as const };
-        return iterateSearchResults(
-          (position) =>
-            retrieveListOfDocuments(
-              {
-                ...searchQuery,
-                ...(position === undefined ? {} : { start_position: position }),
-              },
-              options,
-            ),
-          query?.start_position,
-          options?.signal,
-        );
+        return iterateSearchResults<
+          DocumentsIterateQuery,
+          DocumentsRetrieveListOfDocumentsResponse
+        >(retrieveListOfDocuments, query ?? {}, options);
       },
       /** @see https://developers.kaiten.ru/documents/create-new-document */
       createNewDocument: (
