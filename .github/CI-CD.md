@@ -8,13 +8,13 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-| Job      | Command                                            | Scope                                                                                         |
-| -------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `lint`   | build, typecheck, lint, contracts, verify, package | Source types, ESLint, all operation contracts, local HTTP verification, and installed tarball |
-| `format` | `npm run format:check`                             | Prettier                                                                                      |
-| `docs`   | `npm run docs:check`                               | Generated-reference freshness and bilingual VitePress build                                   |
+| Job      | Command                      | Scope                                                          |
+| -------- | ---------------------------- | -------------------------------------------------------------- |
+| `lint`   | build, typecheck, lint, test | Source types, ESLint, HTTP behavior, and public type contracts |
+| `format` | `npm run format:check`       | Prettier                                                       |
+| `docs`   | `npm run docs:build`         | Bilingual VitePress build                                      |
 
-Each job installs dependencies with `npm ci --ignore-scripts`. The `lint` job builds before checking the REST sample, which imports public declarations from `dist`. `contracts:check` compares all 222 operations with the inventory and verifies request forwarding. `verify` checks reviewed regressions through a local HTTP server and the TypeScript compiler. `package:check` installs the actual tarball in an isolated directory and checks all exports and declarations. `npm run check` runs the complete local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`. The `lint` job builds before checking the REST sample, which imports public declarations from `dist`. `npm test` checks HTTP behavior through a local server and public type contracts through the TypeScript compiler. `npm run check` runs the complete local verification.
 
 - The `docs` job retains documentation as an Actions artifact for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
 
@@ -41,7 +41,7 @@ The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with
    git push origin v1.0.1
    ```
 
-3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, it builds, verifies the installed package, packs the library, and creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
+3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, `npm pack` runs the `prepack` build and packs the library. The workflow creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
 4. Review the draft's generated release notes and publish it through GitHub. Publish manually so the `release: published` event starts `Finish release`; events created with a workflow's `GITHUB_TOKEN` do not generally start another workflow.
 5. `Finish release` independently publishes the original asset to npm and GitHub Packages. It validates the published stable release, package metadata and SHA-256 checksum, and compares each registry's SHA-512 integrity with the uploaded tarball. It does not rebuild the package.
 

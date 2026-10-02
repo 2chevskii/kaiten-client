@@ -35,16 +35,16 @@ Outgoing webhook event contracts live in `src/webhooks/events.ts`, while the
 incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 `src/scim.ts` and `src/webhooks.ts` entry points re-export these modules.
 
-The documentation audit in `docs/api-coverage.json` is the contract inventory.
-Contracts are maintained in source code alongside their operations. No code generation step is required for a build.
+Contracts are maintained in source code alongside their operations. Reference
+pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 
 `src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
 
-The reference generator reads actual public signatures through TypeScript and metadata constants through its AST. `contracts:check` verifies inventory coverage and request forwarding. `verify` covers HTTP and typing regressions, and `package:check` verifies the installed npm artifact.
+`npm test` covers HTTP and typing regressions using Node.js's built-in test runner.
 
 ## Build and package
 
-`npm run build` cleans `dist` and runs the TypeScript compiler. The compiler uses
+`npm run build` removes `dist` with Node.js's filesystem API and runs `tsc`. The compiler uses
 the stable `Node20` module mode and targets ES2024 for Node.js 24 and newer.
 Relative imports in source use `.ts`; `rewriteRelativeImportExtensions` converts
 them to `.js` in the emitted ESM JavaScript.
@@ -59,7 +59,5 @@ JavaScript.
 runs a clean build before `npm pack` or `npm publish`.
 
 The library's module graph must remain free of top-level `await` to support
-Node.js 24's synchronous `require()` of ESM. `package:check` installs the npm
-archive, checks every public entry through both `import()` and `require()`,
-compiles ESM and CommonJS type consumers, and verifies that all source maps
-point to packaged files. Runtime checks disable Node.js type stripping.
+Node.js 24's synchronous `require()` of ESM. Tests run against compiled JavaScript
+with Node.js type stripping disabled.

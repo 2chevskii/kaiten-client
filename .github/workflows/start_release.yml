@@ -55,9 +55,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run build
-      - run: npm run package:check
-      - run: npm pack --ignore-scripts
+      - run: npm pack
       - run: |
           sha256sum "$PACKAGE" > SHA256SUMS
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then

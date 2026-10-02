@@ -56,7 +56,7 @@ try {
 }
 ```
 
-Methods are grouped by the sections in Kaiten's REST documentation. For example, `client.cardComments.addComment`, `client.customProperties.getProperty`, and `client.iterations.createIteration` correspond to their documentation pages. The [operation registry](https://github.com/2chevskii/kaiten-client/blob/develop/docs/api-coverage.json) links every method to its source page. `client.cards.create` is an alias for `client.cards.createNewCard`.
+Methods are grouped by the sections in Kaiten's REST documentation. For example, `client.cardComments.addComment`, `client.customProperties.getProperty`, and `client.iterations.createIteration` correspond to their documentation pages. The [REST reference](https://2chevskii.github.io/kaiten-client/en/reference/rest) links methods to their source documentation. `client.cards.create` is an alias for `client.cards.createNewCard`.
 
 The client accepts a token string or an async token provider, an optional `fetch` implementation, and `apiVersion: 'v1' | 'latest'` (default: `v1`). Pass `{ signal }` as the last options argument to cancel an operation. Path IDs and small sets of body fields are separate arguments; larger bodies and filters retain their typed objects. HTTP errors expose status, headers, body, method, and URL. `KaitenResponseError` reports malformed or unexpectedly empty successful responses. Requests are not automatically retried.
 

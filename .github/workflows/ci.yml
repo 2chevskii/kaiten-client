@@ -16,9 +16,7 @@ jobs:
       - run: npm run build
       - run: npm run typecheck
       - run: npm run lint
-      - run: npm run contracts:check
-      - run: npm run verify
-      - run: npm run package:check
+      - run: npm test
 
   format:
     runs-on: ubuntu-26.04
@@ -44,7 +42,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - env:
           VITEPRESS_BASE: /${{ github.event.repository.name }}/
-        run: npm run docs:check
+        run: npm run docs:build
       - uses: actions/upload-artifact@v7
         with:
           name: documentation

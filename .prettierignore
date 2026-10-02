@@ -1,5 +1,4 @@
 node_modules/
 dist/
-docs/api-coverage.json
 docs/.vitepress/cache/
 docs/.vitepress/dist/

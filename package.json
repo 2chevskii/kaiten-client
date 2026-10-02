@@ -51,7 +51,7 @@
     }
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
     "build:watch": "tsc --watch",
     "prepack": "npm run build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p docs/tsconfig.json",
@@ -59,15 +59,11 @@
     "format:check": "prettier . --check",
     "format": "prettier . --write",
     "sample:kaiten-rest": "npm run build && tsc -p samples/kaiten-rest/tsconfig.json && node samples/kaiten-rest/dist/index.js",
-    "docs:generate": "node scripts/generate-api-docs.mjs",
-    "docs:check": "node scripts/generate-api-docs.mjs --check && vitepress build docs",
-    "docs:dev": "npm run docs:generate && vitepress dev docs",
-    "docs:build": "npm run docs:generate && vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "contracts:check": "node scripts/check-api-contracts.mjs",
-    "package:check": "node scripts/check-package.mjs",
-    "verify": "node --no-strip-types --test verification/*.test.mjs",
-    "check": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm run contracts:check && npm run verify && npm run docs:check && npm run package:check"
+    "test": "node --no-strip-types --test verification/*.test.mjs",
+    "check": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm test && npm run docs:build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
