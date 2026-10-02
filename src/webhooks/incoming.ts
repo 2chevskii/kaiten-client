@@ -1,7 +1,7 @@
-import type { CardsCreateNewCardResponse } from "../rest/index.js";
-import { readJsonResponse } from "../http-response.js";
-import type { OperationOptions } from "../http.js";
-import type { CustomPropertyValues } from "../types.js";
+import type { CardsCreateNewCardResponse } from "../rest/index.ts";
+import { readJsonResponse } from "../http-response.ts";
+import type { OperationOptions } from "../http.ts";
+import type { CustomPropertyValues } from "../types.ts";
 
 export interface CardWebhookLink {
   url: string;

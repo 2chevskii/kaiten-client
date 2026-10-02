@@ -1,4 +1,4 @@
-import type { JsonValue } from "./types.js";
+import type { JsonValue } from "./types.ts";
 
 /** Request Kaiten sends to a configured user metadata service. */
 export interface UserMetadataRequest {

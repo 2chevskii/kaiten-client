@@ -1,5 +1,5 @@
-import type { BlockedCardSummary } from "../entities.js";
-import type { CardFileSummary } from "../entities.js";
+import type { BlockedCardSummary } from "../entities.ts";
+import type { CardFileSummary } from "../entities.ts";
 import type {
   UserSummary,
   ColumnSummary,
@@ -13,17 +13,17 @@ import type {
   BoardCardProperty,
   CardTagSummary,
   ExternalLinkSummary,
-} from "../entities.js";
+} from "../entities.ts";
 import type {
   CustomPropertyValues,
   JsonValue,
   RequireAtLeastOne,
-} from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+} from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
-import type { SearchResponseV2 } from "./search.js";
+import type { SearchResponseV2 } from "./search.ts";
 
 export interface CardAllowedUsersRetrieveUsersListQuery {
   type?: string;

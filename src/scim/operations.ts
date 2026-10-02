@@ -1,11 +1,11 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
-import { pathSegment } from "../http.js";
+import type { HttpTransport, OperationOptions } from "../http.ts";
+import { pathSegment } from "../http.ts";
 import type {
   ScimGroupPatchOperation,
   ScimName,
   ScimUserPatchOperation,
-} from "./types.js";
-import type { JsonValue } from "../types.js";
+} from "./types.ts";
+import type { JsonValue } from "../types.ts";
 
 export interface GroupsAddGroupBody {
   displayName: string;

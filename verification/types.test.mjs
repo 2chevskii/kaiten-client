@@ -4,10 +4,10 @@ import { test } from "node:test";
 import ts from "typescript";
 
 const source = `
-import { KaitenClient, type OperationOptions, type CustomPropertyValues, type DocumentData } from "../src/index.js";
-import { KaitenScimClient } from "../src/scim.js";
-import type { AddonCapabilities, AddonDialogOptions, AddonContext } from "../src/addons.js";
-import type { CardUpdateWebhookEvent, TimelogUpdateWebhookEvent } from "../src/webhooks.js";
+import { KaitenClient, type OperationOptions, type CustomPropertyValues, type DocumentData } from "../src/index.ts";
+import { KaitenScimClient } from "../src/scim.ts";
+import type { AddonCapabilities, AddonDialogOptions, AddonContext } from "../src/addons.ts";
+import type { CardUpdateWebhookEvent, TimelogUpdateWebhookEvent } from "../src/webhooks.ts";
 
 declare const client: KaitenClient;
 declare const scim: KaitenScimClient;
@@ -89,9 +89,9 @@ declare const addon: AddonContext;
 test("public types accept supported calls and reject the reviewed regressions", () => {
   const file = resolve("verification/type-contracts.mts");
   const options = {
-    target: ts.ScriptTarget.ES2022,
-    module: ts.ModuleKind.NodeNext,
-    moduleResolution: ts.ModuleResolutionKind.NodeNext,
+    target: ts.ScriptTarget.ES2024,
+    module: ts.ModuleKind.Node20,
+    rewriteRelativeImportExtensions: true,
     strict: true,
     exactOptionalPropertyTypes: true,
     noUncheckedIndexedAccess: true,

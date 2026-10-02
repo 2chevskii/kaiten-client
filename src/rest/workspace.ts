@@ -4,15 +4,15 @@ import type {
   LaneSummary,
   BoardSummary,
   BoardCardProperty,
-} from "../entities.js";
+} from "../entities.ts";
 import type {
   CustomPropertyValues,
   JsonValue,
   RequireAtLeastOne,
-} from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+} from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface BoardsGetBoardResponse {
   created: string;

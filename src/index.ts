@@ -1,5 +1,5 @@
-export { KaitenClient } from "./client.js";
-export { KaitenHttpError, KaitenResponseError } from "./http.js";
+export { KaitenClient } from "./client.ts";
+export { KaitenHttpError, KaitenResponseError } from "./http.ts";
 export type {
   ClientOptions,
   FileRedirectResponse,
@@ -8,10 +8,10 @@ export type {
   QueryValue,
   RestClientOptions,
   TokenProvider,
-} from "./http.js";
-export { REST_OPERATION_METADATA } from "./rest/index.js";
-export type * from "./rest/index.js";
-export type * from "./automation.js";
-export type * from "./types.js";
-export type * from "./entities.js";
-export type * from "./document-data.js";
+} from "./http.ts";
+export { REST_OPERATION_METADATA } from "./rest/index.ts";
+export type * from "./rest/index.ts";
+export type * from "./automation.ts";
+export type * from "./types.ts";
+export type * from "./entities.ts";
+export type * from "./document-data.ts";

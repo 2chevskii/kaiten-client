@@ -1,8 +1,8 @@
-import type { ColumnSummary, LaneSummary, BoardSummary } from "../entities.js";
-import type { JsonValue } from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { ColumnSummary, LaneSummary, BoardSummary } from "../entities.ts";
+import type { JsonValue } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardServiceDeskExternalRecipientsAddNewRecipientBody {
   email: string;

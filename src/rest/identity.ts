@@ -1,8 +1,8 @@
-import type { UserRoleSummary, SpaceSummary } from "../entities.js";
-import type { JsonValue, RequireAtLeastOne } from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { UserRoleSummary, SpaceSummary } from "../entities.ts";
+import type { JsonValue, RequireAtLeastOne } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CompanyUsersGetListOfUsersQuery {
   invitesOnly?: boolean;

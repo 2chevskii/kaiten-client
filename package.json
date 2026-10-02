@@ -15,6 +15,7 @@
   },
   "files": [
     "dist",
+    "src",
     "README.md",
     "LICENSE"
   ],
@@ -51,7 +52,8 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "prepare": "npm run build",
+    "build:watch": "tsc --watch",
+    "prepack": "npm run build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p docs/tsconfig.json",
     "lint": "eslint .",
     "format:check": "prettier . --check",
@@ -64,12 +66,12 @@
     "docs:preview": "vitepress preview docs",
     "contracts:check": "node scripts/check-api-contracts.mjs",
     "package:check": "node scripts/check-package.mjs",
-    "verify": "node --test verification/*.test.mjs",
+    "verify": "node --no-strip-types --test verification/*.test.mjs",
     "check": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm run contracts:check && npm run verify && npm run docs:check && npm run package:check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.6.3",
+    "@types/node": "^24.19.1",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",

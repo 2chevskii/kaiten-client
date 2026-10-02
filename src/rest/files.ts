@@ -1,7 +1,7 @@
-import type { FileRedirectResponse, FileUploadOptions } from "../http.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { FileRedirectResponse, FileUploadOptions } from "../http.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardFilesAttachFileToCardResponse {
   author_id: number;

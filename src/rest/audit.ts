@@ -1,4 +1,4 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
 export interface AuditLogsRetrieveAuditLogEventsQuery {
   from?: string;

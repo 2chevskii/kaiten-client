@@ -1,4 +1,4 @@
-import type { IterationReference } from "../entities.js";
+import type { IterationReference } from "../entities.ts";
 import type {
   UserSummary,
   ColumnSummary,
@@ -8,15 +8,15 @@ import type {
   UserRoleSummary,
   CardMemberSummary,
   BoardCardProperty,
-} from "../entities.js";
+} from "../entities.ts";
 import type {
   CustomPropertyValues,
   JsonValue,
   RequireAtLeastOne,
-} from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+} from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardTimeLogsAddTimeLogBody {
   role_id: number;

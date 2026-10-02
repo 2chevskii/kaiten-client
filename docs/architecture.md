@@ -41,3 +41,25 @@ Contracts are maintained in source code alongside their operations. No code gene
 `src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
 
 The reference generator reads actual public signatures through TypeScript and metadata constants through its AST. `contracts:check` verifies inventory coverage and request forwarding. `verify` covers HTTP and typing regressions, and `package:check` verifies the installed npm artifact.
+
+## Build and package
+
+`npm run build` cleans `dist` and runs the TypeScript compiler. The compiler uses
+the stable `Node20` module mode and targets ES2024 for Node.js 24 and newer.
+Relative imports in source use `.ts`; `rewriteRelativeImportExtensions` converts
+them to `.js` in the emitted ESM JavaScript.
+
+Each source module produces JavaScript, a declaration file, and maps for both.
+The npm package includes `dist` and `src` so declaration maps can navigate to
+the implementation and JavaScript maps can resolve stack traces with
+`node --enable-source-maps`. Runtime entry points always resolve to compiled
+JavaScript.
+
+`npm run build:watch` recompiles changes during development. The `prepack` hook
+runs a clean build before `npm pack` or `npm publish`.
+
+The library's module graph must remain free of top-level `await` to support
+Node.js 24's synchronous `require()` of ESM. `package:check` installs the npm
+archive, checks every public entry through both `import()` and `require()`,
+compiles ESM and CommonJS type consumers, and verifies that all source maps
+point to packaged files. Runtime checks disable Node.js type stripping.

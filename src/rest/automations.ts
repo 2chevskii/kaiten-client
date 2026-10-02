@@ -1,6 +1,6 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 import type {
   AutomationBody,
@@ -8,7 +8,7 @@ import type {
   AutomationAction,
   AutomationTrigger,
   AutomationConditionGroup,
-} from "../automation.js";
+} from "../automation.ts";
 
 export type AutomationsCreateAutomationBody = AutomationBody;
 

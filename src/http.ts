@@ -1,7 +1,7 @@
-import { KaitenHttpError, KaitenResponseError } from "./errors.js";
-import { readJsonResponse } from "./http-response.js";
+import { KaitenHttpError, KaitenResponseError } from "./errors.ts";
+import { readJsonResponse } from "./http-response.ts";
 
-export { KaitenHttpError, KaitenResponseError } from "./errors.js";
+export { KaitenHttpError, KaitenResponseError } from "./errors.ts";
 
 export type TokenProvider = string | (() => string | Promise<string>);
 

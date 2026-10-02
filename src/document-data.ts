@@ -1,4 +1,4 @@
-import type { JsonValue } from "./types.js";
+import type { JsonValue } from "./types.ts";
 
 export interface DocumentMark {
   type: string;

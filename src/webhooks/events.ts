@@ -1,5 +1,5 @@
-import type { CustomPropertyValues, JsonValue } from "../types.js";
-import type { UserSummary } from "../entities.js";
+import type { CustomPropertyValues, JsonValue } from "../types.ts";
+import type { UserSummary } from "../entities.ts";
 
 /** Types for every documented outgoing Kaiten webhook event. */
 

@@ -1,7 +1,7 @@
-import { HttpTransport } from "./http.js";
-import type { RestResources } from "./rest/index.js";
-import { createRestResources } from "./rest/index.js";
-import type { RestClientOptions } from "./http.js";
+import { HttpTransport } from "./http.ts";
+import type { RestResources } from "./rest/index.ts";
+import { createRestResources } from "./rest/index.ts";
+import type { RestClientOptions } from "./http.ts";
 
 export class KaitenClient {
   readonly auditLogs: RestResources["auditLogs"];

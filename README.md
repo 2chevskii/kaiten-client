@@ -8,7 +8,16 @@ Install a published version from npm:
 npm install @2chevskii/kaiten-client
 ```
 
-Node.js 24 or newer is required. The package is ESM only.
+Node.js 24 or newer is required. The package ships compiled ESM JavaScript and
+type declarations. Both `import` and Node.js 24's `require()` are supported:
+
+```js
+const { KaitenClient } = require("@2chevskii/kaiten-client");
+```
+
+Source files and declaration maps are included for editor navigation. JavaScript
+source maps support debugging with `node --enable-source-maps`. No TypeScript
+runtime loader is needed.
 
 The bilingual [documentation site](https://2chevskii.github.io/kaiten-client/) has Russian and English guides, plus a reference for every REST and SCIM operation. Run it locally with `npm run docs:dev` or build it with `npm run docs:build`. Version 2 uses positional arguments; see the [migration guide](https://2chevskii.github.io/kaiten-client/en/guide/migration).
 

@@ -1,9 +1,9 @@
-import type { CustomPropertyValues, JsonValue } from "../types.js";
-import type { ChecklistItemSummary } from "../entities.js";
-import type { RequireAtLeastOne } from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { CustomPropertyValues, JsonValue } from "../types.ts";
+import type { ChecklistItemSummary } from "../entities.ts";
+import type { RequireAtLeastOne } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardChecklistItemsAddItemToChecklistBody {
   text: string;

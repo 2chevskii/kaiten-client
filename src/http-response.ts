@@ -1,4 +1,4 @@
-import { KaitenHttpError, KaitenResponseError } from "./errors.js";
+import { KaitenHttpError, KaitenResponseError } from "./errors.ts";
 
 /** Preserve error payloads while rejecting malformed successful JSON responses. */
 export async function readJsonResponse<T>(

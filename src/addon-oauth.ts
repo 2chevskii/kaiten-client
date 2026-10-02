@@ -1,5 +1,5 @@
-import { HttpTransport, pathSegment } from "./http.js";
-import type { ClientOptions, OperationOptions, TokenProvider } from "./http.js";
+import { HttpTransport, pathSegment } from "./http.ts";
+import type { ClientOptions, OperationOptions, TokenProvider } from "./http.ts";
 
 export interface AddonOAuthOptions extends Omit<ClientOptions, "token"> {
   addonSecret: TokenProvider;

@@ -1,4 +1,4 @@
-import type { CustomPropertyValues, JsonValue } from "./types.js";
+import type { CustomPropertyValues, JsonValue } from "./types.ts";
 
 export interface AddonTokenResponse {
   access_token: string;

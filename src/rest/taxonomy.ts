@@ -1,10 +1,10 @@
-import type { TreeEntitySummary } from "../entities.js";
-import type { JsonValue } from "../types.js";
-import type { CardTypeProperty } from "../entities.js";
-import type { RequireAtLeastOne } from "../types.js";
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { TreeEntitySummary } from "../entities.ts";
+import type { JsonValue } from "../types.ts";
+import type { CardTypeProperty } from "../entities.ts";
+import type { RequireAtLeastOne } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeBody {
   tree_entity_uid: string;

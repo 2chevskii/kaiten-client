@@ -1,33 +1,33 @@
 /** REST operations grouped by Kaiten domain. */
-import type { HttpTransport } from "../http.js";
-import { createAuditResources } from "./audit.js";
-import { createAutomationsResources } from "./automations.js";
-import { createWorkspaceResources } from "./workspace.js";
-import { createCardsResources } from "./cards.js";
-import { createChecklistsResources } from "./checklists.js";
-import { createFilesResources } from "./files.js";
-import { createTaxonomyResources } from "./taxonomy.js";
-import { createCustomFieldsResources } from "./custom-fields.js";
-import { createDocumentsResources } from "./documents.js";
-import { createIdentityResources } from "./identity.js";
-import { createTimeResources } from "./time.js";
-import { createServiceDeskResources } from "./service-desk.js";
-import { createTagsResources } from "./tags.js";
+import type { HttpTransport } from "../http.ts";
+import { createAuditResources } from "./audit.ts";
+import { createAutomationsResources } from "./automations.ts";
+import { createWorkspaceResources } from "./workspace.ts";
+import { createCardsResources } from "./cards.ts";
+import { createChecklistsResources } from "./checklists.ts";
+import { createFilesResources } from "./files.ts";
+import { createTaxonomyResources } from "./taxonomy.ts";
+import { createCustomFieldsResources } from "./custom-fields.ts";
+import { createDocumentsResources } from "./documents.ts";
+import { createIdentityResources } from "./identity.ts";
+import { createTimeResources } from "./time.ts";
+import { createServiceDeskResources } from "./service-desk.ts";
+import { createTagsResources } from "./tags.ts";
 
-export type * from "./audit.js";
-export type * from "./automations.js";
-export type * from "./workspace.js";
-export type * from "./cards.js";
-export type * from "./checklists.js";
-export type * from "./files.js";
-export type * from "./taxonomy.js";
-export type * from "./custom-fields.js";
-export type * from "./documents.js";
-export type * from "./identity.js";
-export type * from "./time.js";
-export type * from "./service-desk.js";
-export type * from "./tags.js";
-export type { SearchResponseV2 } from "./search.js";
+export type * from "./audit.ts";
+export type * from "./automations.ts";
+export type * from "./workspace.ts";
+export type * from "./cards.ts";
+export type * from "./checklists.ts";
+export type * from "./files.ts";
+export type * from "./taxonomy.ts";
+export type * from "./custom-fields.ts";
+export type * from "./documents.ts";
+export type * from "./identity.ts";
+export type * from "./time.ts";
+export type * from "./service-desk.ts";
+export type * from "./tags.ts";
+export type { SearchResponseV2 } from "./search.ts";
 
 export const createRestResources = (transport: HttpTransport) => ({
   ...createAuditResources(transport),
@@ -47,4 +47,4 @@ export const createRestResources = (transport: HttpTransport) => ({
 
 export type RestResources = ReturnType<typeof createRestResources>;
 
-export { REST_OPERATION_METADATA } from "./metadata.js";
+export { REST_OPERATION_METADATA } from "./metadata.ts";
