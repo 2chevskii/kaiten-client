@@ -1,15 +1,16 @@
-import { HttpTransport, pathSegment } from "./http.js";
-import type { ClientOptions, OperationOptions, TokenProvider } from "./http.js";
+import { HttpTransport, pathSegment } from "./http.ts";
+import type { ClientOptions, OperationOptions, TokenProvider } from "./http.ts";
 
 export interface AddonOAuthOptions extends Omit<ClientOptions, "token"> {
   addonSecret: TokenProvider;
 }
 
-export interface AddonTokenKey extends OperationOptions {
-  addon_uid: string;
-  user_id: number;
-  company_id: number;
-}
+export type AddonTokenKey = [
+  addonUid: string,
+  userId: number,
+  companyId: number,
+  options?: OperationOptions,
+];
 
 export type AddonTokenResponse =
   | {
@@ -36,24 +37,38 @@ export class AddonOAuthClient {
   }
 
   /** @see https://developers.kaiten.ru/addons/api-access */
-  getToken(key: AddonTokenKey): Promise<AddonTokenResponse> {
+  getToken(
+    addonUid: string,
+    userId: number,
+    companyId: number,
+    options?: OperationOptions,
+  ): Promise<AddonTokenResponse> {
     return this.transport.request({
       method: "GET",
-      path: this.tokenPath(key),
-      signal: key.signal,
+      path: this.tokenPath(addonUid, userId, companyId),
+      signal: options?.signal,
     });
   }
 
   /** @see https://developers.kaiten.ru/addons/api-access */
-  refreshToken(key: AddonTokenKey): Promise<AddonTokenResponse> {
+  refreshToken(
+    addonUid: string,
+    userId: number,
+    companyId: number,
+    options?: OperationOptions,
+  ): Promise<AddonTokenResponse> {
     return this.transport.request({
       method: "POST",
-      path: `${this.tokenPath(key)}/refresh`,
-      signal: key.signal,
+      path: `${this.tokenPath(addonUid, userId, companyId)}/refresh`,
+      signal: options?.signal,
     });
   }
 
-  private tokenPath(key: AddonTokenKey): string {
-    return `/addon-oauth/${pathSegment(key.addon_uid)}/tokens/${pathSegment(key.user_id)}/${pathSegment(key.company_id)}`;
+  private tokenPath(
+    addonUid: string,
+    userId: number,
+    companyId: number,
+  ): string {
+    return `/addon-oauth/${pathSegment(addonUid)}/tokens/${pathSegment(userId)}/${pathSegment(companyId)}`;
   }
 }

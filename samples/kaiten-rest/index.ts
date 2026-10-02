@@ -12,9 +12,7 @@ if (!origin || !token) {
 const client = new KaitenClient({ origin, token });
 
 try {
-  const cards = await client.cards.retrieveCardList({
-    query: { limit: 10 },
-  });
+  const cards = await client.cards.retrieveCardList({ limit: 10 });
 
   for (const card of cards) {
     console.log(`${card.id}: ${card.title}`);

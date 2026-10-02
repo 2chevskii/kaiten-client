@@ -3,6 +3,7 @@ import { defineConfig } from "vitepress";
 const repository = "https://github.com/2chevskii/kaiten-client";
 
 export default defineConfig({
+  base: process.env.VITEPRESS_BASE ?? "/",
   title: "Kaiten Client",
   description: "Typed TypeScript client for Kaiten",
   cleanUrls: true,
@@ -61,6 +62,7 @@ export default defineConfig({
                 link: "/guide/getting-started",
               },
               { text: "Настройка и ошибки", link: "/guide/configuration" },
+              { text: "Переход на 2.0", link: "/guide/migration" },
             ],
           },
           {
@@ -122,6 +124,7 @@ export default defineConfig({
                 text: "Configuration and errors",
                 link: "/en/guide/configuration",
               },
+              { text: "Migrating to 2.0", link: "/en/guide/migration" },
             ],
           },
           {

@@ -7,11 +7,11 @@ Kaiten переводит файловые маршруты на огранич�
 ## Загрузка
 
 ```ts
-const uploaded = await client.restrictedAccessCardFiles.attachFileToCard({
-  card_uid: "card-uuid",
-  file: new Blob(["report"], { type: "text/plain" }),
-  filename: "report.txt",
-});
+const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
+  "card-uuid",
+  new Blob(["report"], { type: "text/plain" }),
+  { filename: "report.txt" },
+);
 
 console.log(uploaded.id);
 ```
@@ -21,19 +21,19 @@ console.log(uploaded.id);
 ## Получение временной ссылки
 
 ```ts
-const file = await client.restrictedAccessCardFiles.getCardFile({
-  card_uid: "card-uuid",
-  id: uploaded.id,
-});
+const file = await client.restrictedAccessCardFiles.getCardFile(
+  "card-uuid",
+  uploaded.id,
+);
 
-const redirect = await client.restrictedAccessCardFiles.getCardFile({
-  card_uid: "card-uuid",
-  id: uploaded.id,
-  query: { redirect: true },
-});
+const redirect = await client.restrictedAccessCardFiles.getCardFile(
+  "card-uuid",
+  uploaded.id,
+  true,
+);
 
-console.log("url" in file ? file.url : file.location);
-console.log("location" in redirect ? redirect.location : redirect.url);
+console.log(file.url);
+console.log(redirect.location);
 ```
 
 `redirect: true` возвращает `{ location: string }` из заголовка `Location`; клиент не следует за перенаправлением. Временную ссылку скачивайте отдельным запросом без токена Kaiten. Старый `client.cardFiles.attachFileToCard` сохранён и помечен `@deprecated`.

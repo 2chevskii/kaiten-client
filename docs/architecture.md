@@ -6,7 +6,8 @@ The package keeps its public entry points at `src/index.ts`, `src/scim.ts`,
 depending on internal paths.
 
 `src/http.ts` owns authenticated request transport, URL construction, response
-handling, and HTTP errors. `src/client.ts` composes REST resources. The REST
+handling, and path validation. `src/http-response.ts` parses JSON responses and
+`src/errors.ts` defines HTTP and response errors. `src/client.ts` composes REST resources. The REST
 resource index in `src/rest/index.ts` assembles the domain modules under
 `src/rest/`:
 
@@ -34,7 +35,39 @@ Outgoing webhook event contracts live in `src/webhooks/events.ts`, while the
 incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 `src/scim.ts` and `src/webhooks.ts` entry points re-export these modules.
 
-The documentation audit in `docs/api-coverage.json` is the contract inventory.
-`test/operations.test.mjs` checks every REST and SCIM method against it.
-Contracts are maintained in source code alongside their operations. The audit
-and tests validate coverage; no code generation step is required for a build.
+Contracts are maintained in source code alongside their operations. Reference
+pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
+
+`src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
+
+## Build and package
+
+`npm run build` runs `tsc -b` to build the library incrementally. The compiler uses
+the stable `Node20` module mode and targets ES2024 for Node.js 24 and newer.
+Relative imports in source use `.ts`; `rewriteRelativeImportExtensions` converts
+them to `.js` in the emitted ESM JavaScript.
+
+Each source module produces JavaScript, a declaration file, and maps for both.
+The npm package includes `lib` and `src` so declaration maps can navigate to
+the implementation and JavaScript maps can resolve stack traces with
+`node --enable-source-maps`. Runtime entry points always resolve to compiled
+JavaScript.
+
+The library is a composite TypeScript project. The REST sample references it,
+so `npx tsc -b samples/kaiten-rest` builds the library before the sample, including
+on a clean checkout. Build mode skips projects that are already up to date.
+Build state is stored in `artifacts/tsconfig.tsbuildinfo` for the library and
+`samples/kaiten-rest/dist/tsconfig.tsbuildinfo` for the sample, outside source control
+and the published package. The documentation config remains a separate non-composite project.
+
+`npm run build:watch` uses build mode to recompile changes during development. `npm pack` runs
+one clean build through its `prepack` hook: it removes `lib` and runs
+`tsc -b --force` so stale outputs from deleted or renamed modules cannot enter the package.
+The repository root is the package root: npm includes `lib/`, `src/`, README,
+license, and the existing package manifest directly. The compiler's source maps
+already point from `lib/` to `src/`. No copying or path rewriting is needed.
+The `.npmrc` setting writes the tarball to `artifacts/`, which is excluded from
+the package along with the compiler's build state.
+
+The library's module graph must remain free of top-level `await` to support
+Node.js 24's synchronous `require()` of ESM.

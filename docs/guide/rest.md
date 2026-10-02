@@ -7,7 +7,7 @@
 ```ts
 import { KaitenClient } from "@2chevskii/kaiten-client";
 import type {
-  CardsCreateNewCardParams,
+  CardsCreateNewCardBody,
   CardsCreateNewCardResponse,
 } from "@2chevskii/kaiten-client";
 
@@ -16,14 +16,15 @@ const client = new KaitenClient({
   token: process.env.KAITEN_TOKEN!,
 });
 
-const request: CardsCreateNewCardParams = {
-  body: { title: "Подготовить релиз", board_id: 10 },
+const request: CardsCreateNewCardBody = {
+  title: "Подготовить релиз",
+  board_id: 10,
 };
 const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Каждый метод принимает объект параметров. Параметры пути лежат на верхнем уровне, параметры URL — в `query`, JSON — в `body`, отмена — в `signal`. Все методы возвращают `Promise`. Имена типов составлены из ресурса, операции и суффикса `Params`, `Body`, `Query` или `Response`; точные доступные экспорты смотрите в TypeScript.
+Методы принимают ID отдельными аргументами. Небольшие наборы полей тела тоже передаются отдельно: `client.cardComments.addComment(cardId, text)`. Большие тела и фильтры сохраняют объекты типов `Body` и `Query`: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. Последний аргумент — необязательный `OperationOptions` с `signal`. Все методы возвращают `Promise`. Типы `Params` описывают кортеж аргументов конкретного метода; его можно передать через `...args`.
 
 `client.cards.create(...)` — короткий псевдоним `client.cards.createNewCard(...)`. Beta- и deprecated-операции остаются доступными и отмечены в типах и [справочнике](/reference/rest).
 
@@ -37,7 +38,7 @@ import type { AutomationBody } from "@2chevskii/kaiten-client";
 const automation: AutomationBody = {
   type: "on_demand",
   name: "Обновить карточку",
-  actions: [{ type: "some_action", data: {} }],
+  actions: [{ type: "change_asap", data: { asap: true } }],
 };
 ```
 
@@ -47,11 +48,13 @@ const automation: AutomationBody = {
 
 ```ts
 const firstPage = await client.cards.retrieveCardList({
-  query: { version: 2, limit: 50 },
+  version: 2,
+  limit: 50,
 });
 
 const nextPage = await client.cards.retrieveCardList({
-  query: { version: 2, start_position: firstPage.position },
+  version: 2,
+  start_position: firstPage.position,
 });
 
 console.log(firstPage.result, nextPage.result);

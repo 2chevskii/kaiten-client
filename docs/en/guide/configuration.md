@@ -21,10 +21,10 @@ Exported types include `ClientOptions`, `RestClientOptions`, `TokenProvider`, `O
 
 ```ts
 const controller = new AbortController();
-const request = client.cards.retrieveCardList({
-  query: { limit: 50 },
-  signal: controller.signal,
-});
+const request = client.cards.retrieveCardList(
+  { limit: 50 },
+  { signal: controller.signal },
+);
 
 controller.abort();
 await request; // Rejects with the fetch abort error.
@@ -36,7 +36,7 @@ await request; // Rejects with the fetch abort error.
 import { KaitenHttpError } from "@2chevskii/kaiten-client";
 
 try {
-  await client.cards.retrieveCard({ card_id: 123 });
+  await client.cards.retrieveCard(123);
 } catch (error) {
   if (error instanceof KaitenHttpError) {
     console.error(error.status, error.method, error.url);
@@ -49,3 +49,5 @@ try {
 ```
 
 `body` is `unknown`: it can contain JSON, text, or `undefined` for an empty response. Network and abort errors come from `fetch`. Requests are never retried automatically; implement retries in your application with the method and Kaiten limits in mind.
+
+Malformed JSON or an unexpectedly empty successful response throws `KaitenResponseError`. It exposes `status`, `headers`, `method`, `url`, the original response text in `body`, and the parsing error in `cause`. Documented operations without a response body return `undefined`.

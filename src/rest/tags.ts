@@ -1,6 +1,6 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardTagsAddTagBody {
   name: string;
@@ -16,21 +16,17 @@ export interface CardTagsAddTagResponse {
   color: number;
 }
 
-export interface CardTagsAddTagParams extends OperationOptions {
-  card_id: number;
-  body: CardTagsAddTagBody;
-  signal?: AbortSignal;
-}
+export type CardTagsAddTagParams = Parameters<
+  ReturnType<typeof createTagsResources>["cardTags"]["addTag"]
+>;
 
 export interface CardTagsRemoveTagFromCardResponse {
   id: number;
 }
 
-export interface CardTagsRemoveTagFromCardParams extends OperationOptions {
-  card_id: number;
-  tag_id: number;
-  signal?: AbortSignal;
-}
+export type CardTagsRemoveTagFromCardParams = Parameters<
+  ReturnType<typeof createTagsResources>["cardTags"]["removeTagFromCard"]
+>;
 
 export type CardTagsRertrieveListOfTagsResponse = {
   id: number;
@@ -40,10 +36,9 @@ export type CardTagsRertrieveListOfTagsResponse = {
   tag_id: number;
 }[];
 
-export interface CardTagsRertrieveListOfTagsParams extends OperationOptions {
-  card_id: number;
-  signal?: AbortSignal;
-}
+export type CardTagsRertrieveListOfTagsParams = Parameters<
+  ReturnType<typeof createTagsResources>["cardTags"]["rertrieveListOfTags"]
+>;
 
 export interface TagsAddTagQuery {
   ids?: string;
@@ -67,11 +62,9 @@ export interface TagsAddTagResponse {
   archived: boolean;
 }
 
-export interface TagsAddTagParams extends OperationOptions {
-  query?: TagsAddTagQuery;
-  body: TagsAddTagBody;
-  signal?: AbortSignal;
-}
+export type TagsAddTagParams = Parameters<
+  ReturnType<typeof createTagsResources>["tags"]["addTag"]
+>;
 
 export interface TagsRetrieveListOfTagsQuery {
   limit?: number;
@@ -91,61 +84,67 @@ export type TagsRetrieveListOfTagsResponse = {
   archived: boolean;
 }[];
 
-export interface TagsRetrieveListOfTagsParams extends OperationOptions {
-  query?: TagsRetrieveListOfTagsQuery;
-  signal?: AbortSignal;
-}
+export type TagsRetrieveListOfTagsParams = Parameters<
+  ReturnType<typeof createTagsResources>["tags"]["retrieveListOfTags"]
+>;
 
 export const createTagsResources = (transport: HttpTransport) => ({
   cardTags: {
     /** @see https://developers.kaiten.ru/card-tags/add-tag */
-    addTag: (params: CardTagsAddTagParams) => {
+    addTag: (cardId: number, name: string, options?: OperationOptions) => {
       return transport.request<CardTagsAddTagResponse>({
         method: "POST",
-        path: "/cards/" + pathSegment(params.card_id) + "/tags",
-        body: params.body,
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/tags",
+        body: { name },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-tags/remove-tag-from-card */
-    removeTagFromCard: (params: CardTagsRemoveTagFromCardParams) => {
+    removeTagFromCard: (
+      cardId: number,
+      tagId: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTagsRemoveTagFromCardResponse>({
         method: "DELETE",
-        path:
-          "/cards/" +
-          pathSegment(params.card_id) +
-          "/tags/" +
-          pathSegment(params.tag_id),
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/tags/" + pathSegment(tagId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-tags/rertrieve-list-of-tags */
-    rertrieveListOfTags: (params: CardTagsRertrieveListOfTagsParams) => {
+    rertrieveListOfTags: (cardId: number, options?: OperationOptions) => {
       return transport.request<CardTagsRertrieveListOfTagsResponse>({
         method: "GET",
-        path: "/cards/" + pathSegment(params.card_id) + "/tags",
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/tags",
+        signal: options?.signal,
       });
     },
   },
   tags: {
     /** @see https://developers.kaiten.ru/tags/add-tag */
-    addTag: (params: TagsAddTagParams) => {
+    addTag: (
+      name: string,
+      query?: TagsAddTagQuery,
+      options?: OperationOptions,
+    ) => {
       return transport.request<TagsAddTagResponse>({
         method: "POST",
         path: "/tags",
-        query: params.query,
-        body: params.body,
-        signal: params.signal,
+        query,
+        body: { name },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/tags/retrieve-list-of-tags */
-    retrieveListOfTags: (params: TagsRetrieveListOfTagsParams = {}) => {
+    retrieveListOfTags: (
+      query?: TagsRetrieveListOfTagsQuery,
+      options?: OperationOptions,
+    ) => {
       return transport.request<TagsRetrieveListOfTagsResponse>({
         method: "GET",
         path: "/tags",
-        query: params.query,
-        signal: params.signal,
+        query,
+        signal: options?.signal,
       });
     },
   },

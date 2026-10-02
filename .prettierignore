@@ -1,3 +1,6 @@
 node_modules/
+artifacts/
+/lib/
 dist/
-docs/api-coverage.json
+docs/.vitepress/cache/
+docs/.vitepress/dist/

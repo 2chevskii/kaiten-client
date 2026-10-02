@@ -1,10 +1,11 @@
-import { HttpTransport } from "./http.js";
-import type { ClientOptions } from "./http.js";
-import type { ScimResources } from "./scim/operations.js";
-import { createScimResources } from "./scim/operations.js";
+import { HttpTransport } from "./http.ts";
+import type { ClientOptions } from "./http.ts";
+import type { ScimResources } from "./scim/operations.ts";
+import { createScimResources } from "./scim/operations.ts";
 
-export { SCIM_OPERATION_METADATA } from "./scim/operations.js";
-export type * from "./scim/operations.js";
+export { SCIM_OPERATION_METADATA } from "./scim/operations.ts";
+export type * from "./scim/operations.ts";
+export type * from "./scim/types.ts";
 
 export class KaitenScimClient {
   readonly groups: ScimResources["groups"];

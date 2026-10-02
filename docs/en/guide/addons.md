@@ -40,11 +40,11 @@ const oauth = new AddonOAuthClient({
   addonSecret: process.env.KAITEN_ADDON_SECRET!,
 });
 
-const key = { addon_uid: "addon-uuid", user_id: 1, company_id: 1 };
-const token = await oauth.getToken(key);
+const key = ["addon-uuid", 1, 1] as const;
+const token = await oauth.getToken(...key);
 if (token.has_token) console.log(token.access_token);
 
-const refreshed = await oauth.refreshToken(key);
+const refreshed = await oauth.refreshToken(...key);
 ```
 
 `addonSecret` accepts a string or a token provider. Both operations support `signal`; the result is discriminated by `has_token`. Keep the secret on the server. [Kaiten OAuth documentation](https://developers.kaiten.ru/addons/api-access).

@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "composite": true,
+    "tsBuildInfoFile": "artifacts/tsconfig.tsbuildinfo",
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM"],
+    "module": "Node20",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -12,12 +13,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "verbatimModuleSyntax": true,
+    "rewriteRelativeImportExtensions": true,
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmitOnError": true,
     "isolatedModules": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "rootDir": "src"
   },
   "include": ["src/**/*.ts"]

@@ -1149,7 +1149,7 @@ export const REST_OPERATION_METADATA = [
     method: "GET",
     path: "/document-schemas/{id}",
     pathParameters: ["id"],
-    hasBody: true,
+    hasBody: false,
   },
   {
     documentation: "/documents/create-new-document",

@@ -1,6 +1,9 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { CustomPropertyValues, JsonValue } from "../types.ts";
+import type { ChecklistItemSummary } from "../entities.ts";
+import type { RequireAtLeastOne } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardChecklistItemsAddItemToChecklistBody {
   text: string;
@@ -26,25 +29,38 @@ export interface CardChecklistItemsAddItemToChecklistResponse {
   due_date: string | null;
 }
 
-export interface CardChecklistItemsAddItemToChecklistParams extends OperationOptions {
-  card_id: number;
-  checklist_id: number;
-  body: CardChecklistItemsAddItemToChecklistBody;
-  signal?: AbortSignal;
-}
+export type CardChecklistItemsAddItemToChecklistParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklistItems"]["addItemToChecklist"]
+>;
 
 export interface CardChecklistItemsRemoveChecklistItemResponse {
   id: number;
 }
 
-export interface CardChecklistItemsRemoveChecklistItemParams extends OperationOptions {
-  card_id: number;
-  checklist_id: number;
-  id: number;
-  signal?: AbortSignal;
-}
+export type CardChecklistItemsRemoveChecklistItemParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklistItems"]["removeChecklistItem"]
+>;
 
-export type CardChecklistItemsUpdateChecklistItemBody = unknown;
+export type CardChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
+  {
+    text?: string | null;
+    sort_order?: number;
+    checklist_id?: number;
+    checked?: boolean;
+    due_date?: string | null;
+    responsible_id?: number | null;
+  },
+  | "text"
+  | "checked"
+  | "due_date"
+  | "sort_order"
+  | "checklist_id"
+  | "responsible_id"
+>;
 
 export interface CardChecklistItemsUpdateChecklistItemResponse {
   created: string;
@@ -62,15 +78,22 @@ export interface CardChecklistItemsUpdateChecklistItemResponse {
   due_date: string | null;
 }
 
-export interface CardChecklistItemsUpdateChecklistItemParams extends OperationOptions {
-  card_id: number;
-  checklist_id: number;
-  id: number;
-  body: CardChecklistItemsUpdateChecklistItemBody;
-  signal?: AbortSignal;
-}
+export type CardChecklistItemsUpdateChecklistItemParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklistItems"]["updateChecklistItem"]
+>;
 
-export type CardChecklistsAddChecklistToCardBody = unknown;
+export type CardChecklistsAddChecklistToCardBody = RequireAtLeastOne<
+  {
+    name?: string;
+    sort_order?: number;
+    items_source_checklist_id?: number;
+    exclude_item_ids?: number[];
+    source_share_id?: number;
+  },
+  "name" | "source_share_id"
+>;
 
 export interface CardChecklistsAddChecklistToCardResponse {
   created: string;
@@ -82,24 +105,24 @@ export interface CardChecklistsAddChecklistToCardResponse {
   checklist_id: number;
   sort_order: number;
   deleted: boolean;
-  items: string | number;
+  items: ChecklistItemSummary[];
 }
 
-export interface CardChecklistsAddChecklistToCardParams extends OperationOptions {
-  card_id: number;
-  body: CardChecklistsAddChecklistToCardBody;
-  signal?: AbortSignal;
-}
+export type CardChecklistsAddChecklistToCardParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklists"]["addChecklistToCard"]
+>;
 
 export interface CardChecklistsRemoveChecklistFromCardResponse {
   id: number;
 }
 
-export interface CardChecklistsRemoveChecklistFromCardParams extends OperationOptions {
-  card_id: number;
-  id: number;
-  signal?: AbortSignal;
-}
+export type CardChecklistsRemoveChecklistFromCardParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklists"]["removeChecklistFromCard"]
+>;
 
 export interface CardChecklistsRetrieveCardChecklistResponse {
   created: string;
@@ -109,16 +132,23 @@ export interface CardChecklistsRetrieveCardChecklistResponse {
   fts_version: string;
   name: string;
   policy_id: number | null;
-  items: string | number;
+  items: ChecklistItemSummary[];
 }
 
-export interface CardChecklistsRetrieveCardChecklistParams extends OperationOptions {
-  card_id: number;
-  id: number;
-  signal?: AbortSignal;
-}
+export type CardChecklistsRetrieveCardChecklistParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklists"]["retrieveCardChecklist"]
+>;
 
-export type CardChecklistsUpdateChecklistBody = unknown;
+export type CardChecklistsUpdateChecklistBody = RequireAtLeastOne<
+  {
+    name?: string;
+    sort_order?: number;
+    card_id?: number;
+  },
+  "name" | "sort_order" | "card_id"
+>;
 
 export interface CardChecklistsUpdateChecklistResponse {
   created: string;
@@ -128,12 +158,11 @@ export interface CardChecklistsUpdateChecklistResponse {
   policy_id: number | null;
 }
 
-export interface CardChecklistsUpdateChecklistParams extends OperationOptions {
-  card_id: number;
-  id: number;
-  body: CardChecklistsUpdateChecklistBody;
-  signal?: AbortSignal;
-}
+export type CardChecklistsUpdateChecklistParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["cardChecklists"]["updateChecklist"]
+>;
 
 export interface ChecklistItemsAddItemToChecklistBody {
   text: string;
@@ -159,23 +188,38 @@ export interface ChecklistItemsAddItemToChecklistResponse {
   due_date: string | null;
 }
 
-export interface ChecklistItemsAddItemToChecklistParams extends OperationOptions {
-  checklist_id: number;
-  body: ChecklistItemsAddItemToChecklistBody;
-  signal?: AbortSignal;
-}
+export type ChecklistItemsAddItemToChecklistParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["checklistItems"]["addItemToChecklist"]
+>;
 
 export interface ChecklistItemsRemoveChecklistItemResponse {
   id: number;
 }
 
-export interface ChecklistItemsRemoveChecklistItemParams extends OperationOptions {
-  checklist_id: number;
-  id: number;
-  signal?: AbortSignal;
-}
+export type ChecklistItemsRemoveChecklistItemParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["checklistItems"]["removeChecklistItem"]
+>;
 
-export type ChecklistItemsUpdateChecklistItemBody = unknown;
+export type ChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
+  {
+    text?: string | null;
+    sort_order?: number;
+    checklist_id?: number;
+    checked?: boolean;
+    due_date?: string | null;
+    responsible_id?: number | null;
+  },
+  | "text"
+  | "checked"
+  | "due_date"
+  | "sort_order"
+  | "checklist_id"
+  | "responsible_id"
+>;
 
 export interface ChecklistItemsUpdateChecklistItemResponse {
   created: string;
@@ -193,12 +237,11 @@ export interface ChecklistItemsUpdateChecklistItemResponse {
   due_date: string | null;
 }
 
-export interface ChecklistItemsUpdateChecklistItemParams extends OperationOptions {
-  checklist_id: number;
-  id: number;
-  body: ChecklistItemsUpdateChecklistItemBody;
-  signal?: AbortSignal;
-}
+export type ChecklistItemsUpdateChecklistItemParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["checklistItems"]["updateChecklistItem"]
+>;
 
 export interface ChecklistsRetrieveCardsWithChecklistQuery {
   only_shared_cards: boolean;
@@ -221,7 +264,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
   children_done: number;
   goals_total: number;
   goals_done: number;
-  parent_checklist_ids: unknown[] | null;
+  parent_checklist_ids: number[] | null;
   parent_link_ids: null;
   blocked: boolean;
   size: number | null;
@@ -230,18 +273,18 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
   due_date_time_present: boolean;
   board_id: number;
   column_id: number;
-  lane_id: number;
+  lane_id: number | null;
   owner_id: number;
-  type_id: number;
+  type_id: number | null;
   version: number;
   updater_id: number;
   completed_on_time: boolean | null;
   completed_at: string | null;
   project_id: null;
   milestone_id: null;
-  fifo_order: number;
+  fifo_order: number | null;
   blocking_card: boolean;
-  sprint_id: number;
+  sprint_id: number | null;
   condition: number;
   last_moved_at: string | null;
   external_id: string | null;
@@ -249,13 +292,13 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
   column_changed_at: string | null;
   first_moved_to_in_progress_at: string | null;
   last_moved_to_done_at: string | null;
-  service_id: number;
+  service_id: number | null;
   has_blocked_children: boolean;
   comments_total: number;
   comment_last_added_at: string | null;
-  children_ids: unknown[] | null;
-  parents_ids: unknown[] | null;
-  properties: Record<string, unknown> | null;
+  children_ids: number[] | null;
+  parents_ids: number[] | null;
+  properties: CustomPropertyValues | null;
   planned_start: string | null;
   planned_end: string | null;
   ignore_planned_dates_recalculation: boolean;
@@ -263,7 +306,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
   sd_new_comment: boolean;
   public: boolean;
   share_id: string | null;
-  share_settings: boolean | null;
+  share_settings: Record<string, JsonValue> | null;
   sd_external_recipients: null;
   external_user_emails: string | null;
   time_spent_sum: number;
@@ -299,11 +342,11 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
   tags_ids?: unknown[];
 }[];
 
-export interface ChecklistsRetrieveCardsWithChecklistParams extends OperationOptions {
-  id: number;
-  query?: ChecklistsRetrieveCardsWithChecklistQuery;
-  signal?: AbortSignal;
-}
+export type ChecklistsRetrieveCardsWithChecklistParams = Parameters<
+  ReturnType<
+    typeof createChecklistsResources
+  >["checklists"]["retrieveCardsWithChecklist"]
+>;
 
 export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemBody {
   text: string;
@@ -319,26 +362,32 @@ export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemR
   updated: string;
 }
 
-export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemParams extends OperationOptions {
-  space_uid: string;
-  template_checklist_uid: string;
-  body: SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemBody;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklistItems"]["createNewSpaceTemplateChecklistItem"]
+  >;
 
 export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse {
   uid: string;
 }
 
-export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemParams extends OperationOptions {
-  space_uid: string;
-  template_checklist_uid: string;
-  item_uid: string;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklistItems"]["removeSpaceTemplateChecklistItem"]
+  >;
 
 export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody =
-  unknown;
+  RequireAtLeastOne<
+    {
+      text?: string;
+      sort_order?: number;
+    },
+    "text" | "sort_order"
+  >;
 
 export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse {
   uid: string;
@@ -349,15 +398,17 @@ export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResp
   updated: string;
 }
 
-export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemParams extends OperationOptions {
-  space_uid: string;
-  template_checklist_uid: string;
-  item_uid: string;
-  body: SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklistItems"]["updateSpaceTemplateChecklistItem"]
+  >;
 
-export type SpaceTemplateChecklistCreateNewSpaceTemplateChecklistBody = unknown;
+export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistBody {
+  name: string;
+  sort_order?: number;
+}
 
 export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse {
   uid: string;
@@ -368,11 +419,12 @@ export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse {
   updated: string;
 }
 
-export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams extends OperationOptions {
-  space_uid: string;
-  body: SpaceTemplateChecklistCreateNewSpaceTemplateChecklistBody;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklist"]["createNewSpaceTemplateChecklist"]
+  >;
 
 export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse = {
   uid: string;
@@ -391,22 +443,33 @@ export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse = {
   }[];
 }[];
 
-export interface SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsParams extends OperationOptions {
-  space_uid: string;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklist"]["getListOfSpaceTemplateChecklists"]
+  >;
 
 export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse {
   uid: string;
 }
 
-export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams extends OperationOptions {
-  space_uid: string;
-  template_checklist_uid: string;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklist"]["removeSpaceTemplateChecklist"]
+  >;
 
-export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody = unknown;
+export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody =
+  RequireAtLeastOne<
+    {
+      name?: string;
+      sort_order?: number;
+      space_uid?: string;
+    },
+    "name" | "sort_order"
+  >;
 
 export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse {
   uid: string;
@@ -417,224 +480,269 @@ export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse {
   updated: string;
 }
 
-export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistParams extends OperationOptions {
-  space_uid: string;
-  template_checklist_uid: string;
-  body: SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody;
-  signal?: AbortSignal;
-}
+export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistParams =
+  Parameters<
+    ReturnType<
+      typeof createChecklistsResources
+    >["spaceTemplateChecklist"]["updateSpaceTemplateChecklist"]
+  >;
 
 export const createChecklistsResources = (transport: HttpTransport) => ({
   cardChecklistItems: {
     /** @see https://developers.kaiten.ru/card-checklist-items/add-item-to-checklist */
     addItemToChecklist: (
-      params: CardChecklistItemsAddItemToChecklistParams,
+      cardId: number,
+      checklistId: number,
+      body: CardChecklistItemsAddItemToChecklistBody,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsAddItemToChecklistResponse>({
         method: "POST",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.checklist_id) +
+          pathSegment(checklistId) +
           "/items",
-        body: params.body,
-        signal: params.signal,
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-checklist-items/remove-checklist-item */
     removeChecklistItem: (
-      params: CardChecklistItemsRemoveChecklistItemParams,
+      cardId: number,
+      checklistId: number,
+      itemId: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsRemoveChecklistItemResponse>({
         method: "DELETE",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.checklist_id) +
+          pathSegment(checklistId) +
           "/items/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          pathSegment(itemId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-checklist-items/update-checklist-item */
     updateChecklistItem: (
-      params: CardChecklistItemsUpdateChecklistItemParams,
+      cardId: number,
+      checklistId: number,
+      itemId: number,
+      body: CardChecklistItemsUpdateChecklistItemBody,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsUpdateChecklistItemResponse>({
         method: "PATCH",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.checklist_id) +
+          pathSegment(checklistId) +
           "/items/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          pathSegment(itemId),
+        body,
+        signal: options?.signal,
       });
     },
   },
   cardChecklists: {
     /** @see https://developers.kaiten.ru/card-checklists/add-checklist-to-card */
-    addChecklistToCard: (params: CardChecklistsAddChecklistToCardParams) => {
+    addChecklistToCard: (
+      cardId: number,
+      body: CardChecklistsAddChecklistToCardBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardChecklistsAddChecklistToCardResponse>({
         method: "POST",
-        path: "/cards/" + pathSegment(params.card_id) + "/checklists",
-        body: params.body,
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/checklists",
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-checklists/remove-checklist-from-card */
     removeChecklistFromCard: (
-      params: CardChecklistsRemoveChecklistFromCardParams,
+      cardId: number,
+      checklistId: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsRemoveChecklistFromCardResponse>({
         method: "DELETE",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          pathSegment(checklistId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-checklists/retrieve-card-checklist */
     retrieveCardChecklist: (
-      params: CardChecklistsRetrieveCardChecklistParams,
+      cardId: number,
+      checklistId: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsRetrieveCardChecklistResponse>({
         method: "GET",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          pathSegment(checklistId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-checklists/update-checklist */
-    updateChecklist: (params: CardChecklistsUpdateChecklistParams) => {
+    updateChecklist: (
+      cardId: number,
+      checklistId: number,
+      body: CardChecklistsUpdateChecklistBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardChecklistsUpdateChecklistResponse>({
         method: "PATCH",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/checklists/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          pathSegment(checklistId),
+        body,
+        signal: options?.signal,
       });
     },
   },
   checklistItems: {
     /** @see https://developers.kaiten.ru/checklist-items/add-item-to-checklist */
-    addItemToChecklist: (params: ChecklistItemsAddItemToChecklistParams) => {
+    addItemToChecklist: (
+      checklistId: number,
+      body: ChecklistItemsAddItemToChecklistBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<ChecklistItemsAddItemToChecklistResponse>({
         method: "POST",
-        path: "/checklists/" + pathSegment(params.checklist_id) + "/items",
-        body: params.body,
-        signal: params.signal,
+        path: "/checklists/" + pathSegment(checklistId) + "/items",
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/checklist-items/remove-checklist-item */
-    removeChecklistItem: (params: ChecklistItemsRemoveChecklistItemParams) => {
+    removeChecklistItem: (
+      checklistId: number,
+      itemId: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<ChecklistItemsRemoveChecklistItemResponse>({
         method: "DELETE",
         path:
           "/checklists/" +
-          pathSegment(params.checklist_id) +
+          pathSegment(checklistId) +
           "/items/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          pathSegment(itemId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/checklist-items/update-checklist-item */
-    updateChecklistItem: (params: ChecklistItemsUpdateChecklistItemParams) => {
+    updateChecklistItem: (
+      checklistId: number,
+      itemId: number,
+      body: ChecklistItemsUpdateChecklistItemBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<ChecklistItemsUpdateChecklistItemResponse>({
         method: "PATCH",
         path:
           "/checklists/" +
-          pathSegment(params.checklist_id) +
+          pathSegment(checklistId) +
           "/items/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          pathSegment(itemId),
+        body,
+        signal: options?.signal,
       });
     },
   },
   checklists: {
     /** @see https://developers.kaiten.ru/checklists/retrieve-cards-with-checklist */
     retrieveCardsWithChecklist: (
-      params: ChecklistsRetrieveCardsWithChecklistParams,
+      id: number,
+      onlySharedCards: boolean,
+      options?: OperationOptions,
     ) => {
       return transport.request<ChecklistsRetrieveCardsWithChecklistResponse>({
         method: "GET",
-        path: "/checklists/" + pathSegment(params.id),
-        query: params.query,
-        signal: params.signal,
+        path: "/checklists/" + pathSegment(id),
+        query: { only_shared_cards: onlySharedCards },
+        signal: options?.signal,
       });
     },
   },
   spaceTemplateChecklist: {
     /** @see https://developers.kaiten.ru/space-template-checklist/create-new-space-template-checklist */
     createNewSpaceTemplateChecklist: (
-      params: SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams,
+      spaceUid: string,
+      name: string,
+      sortOrder?: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse>(
         {
           method: "POST",
-          path:
-            "/spaces/" + pathSegment(params.space_uid) + "/template-checklists",
-          body: params.body,
-          signal: params.signal,
+          path: "/spaces/" + pathSegment(spaceUid) + "/template-checklists",
+          body: { name, sort_order: sortOrder },
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/space-template-checklist/get-list-of-space-template-checklists */
     getListOfSpaceTemplateChecklists: (
-      params: SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsParams,
+      spaceUid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse>(
         {
           method: "GET",
-          path:
-            "/spaces/" + pathSegment(params.space_uid) + "/template-checklists",
-          signal: params.signal,
+          path: "/spaces/" + pathSegment(spaceUid) + "/template-checklists",
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/space-template-checklist/remove-space-template-checklist */
     removeSpaceTemplateChecklist: (
-      params: SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams,
+      spaceUid: string,
+      templateChecklistUid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse>(
         {
           method: "DELETE",
           path:
             "/spaces/" +
-            pathSegment(params.space_uid) +
+            pathSegment(spaceUid) +
             "/template-checklists/" +
-            pathSegment(params.template_checklist_uid),
-          signal: params.signal,
+            pathSegment(templateChecklistUid),
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/space-template-checklist/update-space-template-checklist */
     updateSpaceTemplateChecklist: (
-      params: SpaceTemplateChecklistUpdateSpaceTemplateChecklistParams,
+      spaceUid: string,
+      templateChecklistUid: string,
+      body: SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse>(
         {
           method: "PATCH",
           path:
             "/spaces/" +
-            pathSegment(params.space_uid) +
+            pathSegment(spaceUid) +
             "/template-checklists/" +
-            pathSegment(params.template_checklist_uid),
-          body: params.body,
-          signal: params.signal,
+            pathSegment(templateChecklistUid),
+          body,
+          signal: options?.signal,
         },
       );
     },
@@ -642,56 +750,67 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
   spaceTemplateChecklistItems: {
     /** @see https://developers.kaiten.ru/space-template-checklist-items/create-new-space-template-checklist-item */
     createNewSpaceTemplateChecklistItem: (
-      params: SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemParams,
+      spaceUid: string,
+      templateChecklistUid: string,
+      text: string,
+      sortOrder?: number,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemResponse>(
         {
           method: "POST",
           path:
             "/spaces/" +
-            pathSegment(params.space_uid) +
+            pathSegment(spaceUid) +
             "/template-checklists/" +
-            pathSegment(params.template_checklist_uid) +
+            pathSegment(templateChecklistUid) +
             "/items",
-          body: params.body,
-          signal: params.signal,
+          body: { text, sort_order: sortOrder },
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/space-template-checklist-items/remove-space-template-checklist-item */
     removeSpaceTemplateChecklistItem: (
-      params: SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemParams,
+      spaceUid: string,
+      templateChecklistUid: string,
+      itemUid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse>(
         {
           method: "DELETE",
           path:
             "/spaces/" +
-            pathSegment(params.space_uid) +
+            pathSegment(spaceUid) +
             "/template-checklists/" +
-            pathSegment(params.template_checklist_uid) +
+            pathSegment(templateChecklistUid) +
             "/items/" +
-            pathSegment(params.item_uid),
-          signal: params.signal,
+            pathSegment(itemUid),
+          signal: options?.signal,
         },
       );
     },
     /** @see https://developers.kaiten.ru/space-template-checklist-items/update-space-template-checklist-item */
     updateSpaceTemplateChecklistItem: (
-      params: SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemParams,
+      spaceUid: string,
+      templateChecklistUid: string,
+      itemUid: string,
+      body: SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody,
+      options?: OperationOptions,
     ) => {
       return transport.request<SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse>(
         {
           method: "PATCH",
           path:
             "/spaces/" +
-            pathSegment(params.space_uid) +
+            pathSegment(spaceUid) +
             "/template-checklists/" +
-            pathSegment(params.template_checklist_uid) +
+            pathSegment(templateChecklistUid) +
             "/items/" +
-            pathSegment(params.item_uid),
-          body: params.body,
-          signal: params.signal,
+            pathSegment(itemUid),
+          body,
+          signal: options?.signal,
         },
       );
     },

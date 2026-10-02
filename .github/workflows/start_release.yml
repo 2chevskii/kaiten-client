@@ -1,0 +1,68 @@
+name: Start release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate-release:
+    name: Validate release version
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    outputs:
+      package: ${{ steps.version.outputs.package }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - id: version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: node scripts/validate-release.mjs "$RELEASE_TAG"
+
+  checks:
+    needs: validate-release
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/ci.yml
+
+  create-release:
+    name: Create draft release
+    needs: [validate-release, checks]
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RELEASE_TAG: ${{ github.ref_name }}
+      PACKAGE: ${{ needs.validate-release.outputs.package }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm pack
+      - working-directory: artifacts
+        run: |
+          sha256sum "$PACKAGE" > SHA256SUMS
+          if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
+            node -e 'if (!JSON.parse(require("fs").readFileSync("release.json")).isDraft) throw new Error("Release is already published");'
+            gh release upload "$RELEASE_TAG" "$PACKAGE" SHA256SUMS --clobber
+          else
+            gh release create "$RELEASE_TAG" "$PACKAGE" SHA256SUMS \
+              --draft --verify-tag --title "Kaiten Client $RELEASE_TAG" --generate-notes
+          fi

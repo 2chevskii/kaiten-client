@@ -1,7 +1,7 @@
-import { HttpTransport } from "./http.js";
-import type { RestResources } from "./rest/index.js";
-import { createRestResources } from "./rest/index.js";
-import type { RestClientOptions } from "./http.js";
+import { HttpTransport } from "./http.ts";
+import type { RestResources } from "./rest/index.ts";
+import { createRestResources } from "./rest/index.ts";
+import type { RestClientOptions } from "./http.ts";
 
 export class KaitenClient {
   readonly auditLogs: RestResources["auditLogs"];
@@ -66,6 +66,13 @@ export class KaitenClient {
   readonly users: RestResources["users"];
 
   constructor(options: RestClientOptions) {
+    if (
+      options.apiVersion !== undefined &&
+      options.apiVersion !== "v1" &&
+      options.apiVersion !== "latest"
+    ) {
+      throw new TypeError("The REST API version must be v1 or latest");
+    }
     const transport = new HttpTransport(
       options,
       "/api/" + (options.apiVersion ?? "v1"),

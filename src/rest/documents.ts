@@ -1,8 +1,14 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type {
+  DocumentJsonSchema,
+  DocumentProseMirrorSchema,
+} from "../document-data.ts";
+import type { DocumentData } from "../document-data.ts";
+import type { JsonValue, RequireAtLeastOne } from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
-import type { SearchResponseV2 } from "./search.js";
+import type { SearchResponseV2 } from "./search.ts";
 
 export interface DocumentGroupsCreateNewDocumentGroupBody {
   title: string;
@@ -22,7 +28,7 @@ export interface DocumentGroupsCreateNewDocumentGroupResponse {
   company_id: number;
   author_id: number;
   parent_entity_uid: string | null;
-  parent_group_id: null;
+  parent_group_id: number | null;
   entity_type: string;
   sort_order: number;
   access: string;
@@ -52,10 +58,11 @@ export interface DocumentGroupsCreateNewDocumentGroupResponse {
   };
 }
 
-export interface DocumentGroupsCreateNewDocumentGroupParams extends OperationOptions {
-  body: DocumentGroupsCreateNewDocumentGroupBody;
-  signal?: AbortSignal;
-}
+export type DocumentGroupsCreateNewDocumentGroupParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentGroups"]["createNewDocumentGroup"]
+>;
 
 export interface DocumentGroupsRemoveDocumentGroupResponse {
   uid: string;
@@ -66,29 +73,30 @@ export interface DocumentGroupsRemoveDocumentGroupResponse {
   archived: boolean;
   company_id: number;
   author_id: number;
-  parent_entity_uid: null;
-  parent_group_id: null;
+  parent_entity_uid: string | null;
+  parent_group_id: number | null;
   entity_type: string;
   sort_order: number;
   access: string;
   for_everyone_access_role_id: string;
   hostname: string;
-  redirect_url: null;
-  key: null;
-  icon_type: null;
-  icon_value: null;
-  icon_color: null;
+  redirect_url: string | null;
+  key: JsonValue;
+  icon_type: JsonValue;
+  icon_value: JsonValue;
+  icon_color: JsonValue;
   public: boolean;
   news_feed: boolean;
   hidden_on_public_site: boolean;
   path: string;
-  index_document_uid: null;
+  index_document_uid: string | null;
 }
 
-export interface DocumentGroupsRemoveDocumentGroupParams extends OperationOptions {
-  document_group_uid: string;
-  signal?: AbortSignal;
-}
+export type DocumentGroupsRemoveDocumentGroupParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentGroups"]["removeDocumentGroup"]
+>;
 
 export interface DocumentGroupsRetrieveDocumentGroupResponse {
   uid: string;
@@ -100,7 +108,7 @@ export interface DocumentGroupsRetrieveDocumentGroupResponse {
   company_id: number;
   author_id: number;
   parent_entity_uid: string | null;
-  parent_group_id: null;
+  parent_group_id: number | null;
   entity_type: string;
   sort_order: number;
   access: string;
@@ -134,10 +142,11 @@ export interface DocumentGroupsRetrieveDocumentGroupResponse {
   author?: Record<string, unknown> | null;
 }
 
-export interface DocumentGroupsRetrieveDocumentGroupParams extends OperationOptions {
-  document_group_uid: string;
-  signal?: AbortSignal;
-}
+export type DocumentGroupsRetrieveDocumentGroupParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentGroups"]["retrieveDocumentGroup"]
+>;
 
 export interface DocumentGroupsRetrieveListOfDocumentGroupsQuery {
   query?: string;
@@ -187,7 +196,7 @@ export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = (
       company_id: number;
       author_id: number;
       parent_entity_uid: string | null;
-      parent_group_id: string;
+      parent_group_id: string | null;
       entity_type: string;
       sort_order: number;
       access: string;
@@ -206,12 +215,40 @@ export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = (
     }
 )[];
 
-export interface DocumentGroupsRetrieveListOfDocumentGroupsParams extends OperationOptions {
-  query?: DocumentGroupsRetrieveListOfDocumentGroupsQuery;
-  signal?: AbortSignal;
-}
+export type DocumentGroupsRetrieveListOfDocumentGroupsParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentGroups"]["retrieveListOfDocumentGroups"]
+>;
 
-export type DocumentGroupsUpdateDocumentGroupBody = unknown;
+export type DocumentGroupsUpdateDocumentGroupBody = RequireAtLeastOne<
+  {
+    title?: string;
+    parent_entity_uid?: string | null;
+    sort_order?: number;
+    access?: "for_everyone" | "by_invite";
+    for_everyone_access_role_id?: string | null;
+    hostname?: string | null;
+    redirect_url?: string | null;
+    key?: string | null;
+    icon_type?: "material_icon" | null;
+    icon_value?: string | null;
+    icon_color?: number | null;
+    hidden_on_public_site?: boolean;
+    news_feed?: boolean;
+    index_document_uid?: string | null;
+  },
+  | "title"
+  | "parent_entity_uid"
+  | "sort_order"
+  | "access"
+  | "hostname"
+  | "key"
+  | "icon_type"
+  | "hidden_on_public_site"
+  | "news_feed"
+  | "index_document_uid"
+>;
 
 export interface DocumentGroupsUpdateDocumentGroupResponse {
   uid: string;
@@ -223,7 +260,7 @@ export interface DocumentGroupsUpdateDocumentGroupResponse {
   company_id: number;
   author_id: number;
   parent_entity_uid: string | null;
-  parent_group_id: null;
+  parent_group_id: number | null;
   entity_type: string;
   sort_order: number;
   access: string;
@@ -253,1797 +290,24 @@ export interface DocumentGroupsUpdateDocumentGroupResponse {
   };
 }
 
-export interface DocumentGroupsUpdateDocumentGroupParams extends OperationOptions {
-  document_group_uid: string;
-  body: DocumentGroupsUpdateDocumentGroupBody;
-  signal?: AbortSignal;
-}
+export type DocumentGroupsUpdateDocumentGroupParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentGroups"]["updateDocumentGroup"]
+>;
 
 export interface DocumentSchemasGetDocumentDataSchemaQuery {
-  format?: string;
+  format?: "draft-06" | "prosemirror";
 }
 
-export type DocumentSchemasGetDocumentDataSchemaBody = unknown;
+export type DocumentSchemasGetDocumentDataSchemaResponse =
+  DocumentJsonSchema | DocumentProseMirrorSchema;
 
-export interface DocumentSchemasGetDocumentDataSchemaResponse {
-  $schema: string;
-  $id: string;
-  title: string;
-  description: string;
-  allOf: {
-    $ref: string;
-  }[];
-  version: string;
-  definitions: {
-    nodes: {
-      doc: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-        };
-      };
-      text: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          text: {
-            type: string;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-        };
-      };
-      hard_break: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          inline: boolean;
-          group: string;
-          selectable: boolean;
-        };
-      };
-      paragraph: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              textAlign: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          attrs: {
-            id: Record<string, unknown>;
-            textAlign: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-          group: string;
-        };
-      };
-      horizontal_rule: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      heading: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              level: {
-                type: string;
-                default: number;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          defining: boolean;
-          attrs: {
-            level: {
-              default: number;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      heading1: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              textAlign: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          defining: boolean;
-          attrs: {
-            id: Record<string, unknown>;
-            textAlign: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      heading2: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              textAlign: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          defining: boolean;
-          attrs: {
-            id: Record<string, unknown>;
-            textAlign: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      heading3: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              textAlign: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          defining: boolean;
-          attrs: {
-            id: Record<string, unknown>;
-            textAlign: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      blockquote: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      code_block: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              language: {
-                type: string;
-                default: string;
-              };
-              lineNumbers: {
-                type: string;
-                default: boolean;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          selectable: boolean;
-          code: boolean;
-          defining: boolean;
-          marks: string;
-          attrs: {
-            language: {
-              default: string;
-            };
-            lineNumbers: {
-              default: boolean;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      image: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              src: {
-                type: string;
-                default: string;
-              };
-              alt: {
-                type: string[];
-                default: null;
-              };
-              title: {
-                type: string[];
-                default: null;
-              };
-              size: {
-                type: string;
-                default: string;
-              };
-              loading: {
-                type: string[];
-              };
-              width: {
-                type: string[];
-                default: null;
-              };
-              height: {
-                type: string[];
-                default: null;
-              };
-              plantuml: {
-                type: string[];
-              };
-              plantumlEncodedMD: {
-                type: string[];
-              };
-              fileId: {
-                type: string[];
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          selectable: boolean;
-          draggable: boolean;
-          isolating: boolean;
-          attrs: {
-            id: Record<string, unknown>;
-            src: {
-              default: string;
-            };
-            alt: {
-              default: null;
-            };
-            title: {
-              default: null;
-            };
-            size: {
-              default: string;
-            };
-            loading: Record<string, unknown>;
-            width: {
-              default: null;
-            };
-            height: {
-              default: null;
-            };
-            plantuml: Record<string, unknown>;
-            plantumlEncodedMD: Record<string, unknown>;
-            fileId: Record<string, unknown>;
-          };
-        };
-      };
-      embed: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              src: {
-                type: string;
-                default: string;
-              };
-              size: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          selectable: boolean;
-          draggable: boolean;
-          isolating: boolean;
-          attrs: {
-            src: {
-              default: string;
-            };
-            size: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      ordered_list: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              order: {
-                type: string;
-                default: number;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          attrs: {
-            order: {
-              default: number;
-              validate: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-          group: string;
-          content: string;
-        };
-      };
-      bullet_list: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          content: string;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      list_item: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          defining: boolean;
-          content: string;
-        };
-      };
-      table: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              size: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          tableRole: string;
-          isolating: boolean;
-          group: string;
-          attrs: {
-            size: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      table_row: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          tableRole: string;
-        };
-      };
-      table_cell: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              colspan: {
-                type: string;
-                default: number;
-              };
-              rowspan: {
-                type: string;
-                default: number;
-              };
-              colwidth: {
-                type: string[];
-                default: null;
-              };
-              background: {
-                type: string[];
-                default: null;
-              };
-              color: {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          attrs: {
-            colspan: {
-              default: number;
-              validate: string;
-            };
-            rowspan: {
-              default: number;
-              validate: string;
-            };
-            colwidth: {
-              default: null;
-            };
-            background: {
-              default: null;
-            };
-            color: {
-              default: null;
-            };
-          };
-          tableRole: string;
-          isolating: boolean;
-        };
-      };
-      table_header: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              colspan: {
-                type: string;
-                default: number;
-              };
-              rowspan: {
-                type: string;
-                default: number;
-              };
-              colwidth: {
-                type: string[];
-                default: null;
-              };
-              background: {
-                type: string[];
-                default: null;
-              };
-              color: {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          attrs: {
-            colspan: {
-              default: number;
-              validate: string;
-            };
-            rowspan: {
-              default: number;
-              validate: string;
-            };
-            colwidth: {
-              default: null;
-            };
-            background: {
-              default: null;
-            };
-            color: {
-              default: null;
-            };
-          };
-          tableRole: string;
-          isolating: boolean;
-        };
-      };
-      alert: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              type: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-          selectable: boolean;
-          defining: boolean;
-          attrs: {
-            type: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      file: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              url: {
-                type: string;
-                default: string;
-              };
-              name: {
-                type: string;
-                default: string;
-              };
-              size: {
-                type: string[];
-              };
-              type: {
-                type: string[];
-              };
-              fileId: {
-                type: string[];
-              };
-              loadingByClientID: {
-                type: string[];
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          selectable: boolean;
-          draggable: boolean;
-          isolating: boolean;
-          attrs: {
-            id: Record<string, unknown>;
-            url: {
-              default: string;
-            };
-            name: {
-              default: string;
-            };
-            size: Record<string, unknown>;
-            type: Record<string, unknown>;
-            fileId: Record<string, unknown>;
-            loadingByClientID: Record<string, unknown>;
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      inline_card_link: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              type: {
-                type: string[];
-                default: null;
-              };
-              resourceId: {
-                type: string[];
-                default: null;
-              };
-              url: {
-                type: string[];
-                default: null;
-              };
-              linkId: {
-                type: string;
-                default: string;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          inline: boolean;
-          selectable: boolean;
-          draggable: boolean;
-          atom: boolean;
-          attrs: {
-            type: {
-              default: null;
-            };
-            resourceId: {
-              default: null;
-            };
-            url: {
-              default: null;
-            };
-            linkId: {
-              default: string;
-            };
-          };
-        };
-      };
-      block_card_link: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              type: {
-                type: string[];
-                default: null;
-              };
-              resourceId: {
-                type: string[];
-                default: null;
-              };
-              url: {
-                type: string[];
-                default: null;
-              };
-              linkId: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          inline: boolean;
-          selectable: boolean;
-          draggable: boolean;
-          atom: boolean;
-          attrs: {
-            type: {
-              default: null;
-            };
-            resourceId: {
-              default: null;
-            };
-            url: {
-              default: null;
-            };
-            linkId: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      cards_collection: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              filter: {
-                type: string[];
-                default: null;
-              };
-              linkId: {
-                type: string;
-                default: string;
-              };
-              size: {
-                type: string;
-                default: string;
-              };
-              columnsMeta: {
-                type: string;
-                default: unknown[];
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          inline: boolean;
-          selectable: boolean;
-          draggable: boolean;
-          atom: boolean;
-          attrs: {
-            filter: {
-              default: null;
-            };
-            linkId: {
-              default: string;
-            };
-            size: {
-              default: string;
-            };
-            columnsMeta: {
-              default: unknown[];
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      diagram: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              diagramId: {
-                type: string[];
-                default: null;
-              };
-              src: {
-                type: string[];
-                default: null;
-              };
-              alt: {
-                type: string;
-                default: string;
-              };
-              size: {
-                type: string;
-                default: string;
-              };
-              format: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          draggable: boolean;
-          sortable: boolean;
-          isolating: boolean;
-          attrs: {
-            diagramId: {
-              default: null;
-            };
-            src: {
-              default: null;
-            };
-            alt: {
-              default: string;
-            };
-            size: {
-              default: string;
-            };
-            format: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      check_list: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          content: string;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      check_list_item: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              checked: {
-                type: string;
-                default: boolean;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          attrs: {
-            checked: {
-              default: boolean;
-            };
-          };
-          defining: boolean;
-        };
-      };
-      columns: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              borderStyle: {
-                type: string;
-                default: string;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          content: string;
-          isolating: boolean;
-          attrs: {
-            borderStyle: {
-              default: string;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      column: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              width: {
-                type: string;
-                default: number;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          isolating: boolean;
-          attrs: {
-            width: {
-              default: number;
-            };
-          };
-        };
-      };
-      toggle: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              collapsed: {
-                type: string;
-                default: boolean;
-              };
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          content: string;
-          isolating: boolean;
-          attrs: {
-            collapsed: {
-              default: boolean;
-            };
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      toggle_heading: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-        };
-      };
-      toggle_content: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-        };
-      };
-      table_of_contents: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          atom: boolean;
-          selectable: boolean;
-          draggable: boolean;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      imageBlock: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              "data-block-id": {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-            minItems: number;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          content: string;
-          selectable: boolean;
-          draggable: boolean;
-          isolating: boolean;
-          attrs: {
-            "data-block-id": {
-              default: null;
-            };
-          };
-        };
-      };
-      imageCaption: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          content: {
-            type: string;
-            items: {
-              anyOf: {
-                $ref: string;
-              }[];
-            };
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          selectable: boolean;
-          draggable: boolean;
-        };
-      };
-    };
-    marks: {
-      annotation: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              id: {
-                type: string[];
-              };
-              resolved: {
-                type: string;
-                default: boolean;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          attrs: {
-            id: Record<string, unknown>;
-            resolved: {
-              default: boolean;
-            };
-          };
-          inclusive: boolean;
-          excludes: string;
-        };
-      };
-      color: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              color: {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          attrs: {
-            color: {
-              default: null;
-            };
-          };
-        };
-      };
-      highlight: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              color: {
-                type: string[];
-                default: null;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          attrs: {
-            color: {
-              default: null;
-            };
-          };
-        };
-      };
-      underline: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-        };
-      };
-      strong: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-        };
-      };
-      strike: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-        };
-      };
-      em: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-        };
-      };
-      code: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-        };
-        "x-prosemirror": {
-          content: string;
-          group: string;
-        };
-      };
-      link: {
-        type: string;
-        additionalProperties: boolean;
-        required: string[];
-        properties: {
-          type: {
-            const: string;
-          };
-          attrs: {
-            type: string;
-            additionalProperties: boolean;
-            properties: {
-              href: {
-                type: string[];
-              };
-              title: {
-                type: string[];
-                default: null;
-              };
-              target: {
-                type: string;
-                default: string;
-              };
-              rel: {
-                type: string;
-                default: string;
-              };
-            };
-          };
-        };
-        "x-prosemirror": {
-          group: string;
-          attrs: {
-            href: Record<string, unknown>;
-            title: {
-              default: null;
-            };
-            target: {
-              default: string;
-            };
-            rel: {
-              default: string;
-            };
-          };
-          inclusive: boolean;
-        };
-      };
-    };
-  };
-}
-
-export interface DocumentSchemasGetDocumentDataSchemaParams extends OperationOptions {
-  id: string;
-  query?: DocumentSchemasGetDocumentDataSchemaQuery;
-  body?: DocumentSchemasGetDocumentDataSchemaBody;
-  signal?: AbortSignal;
-}
+export type DocumentSchemasGetDocumentDataSchemaParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documentSchemas"]["getDocumentDataSchema"]
+>;
 
 export interface DocumentsCreateNewDocumentBody {
   title?: string;
@@ -2069,12 +333,7 @@ export interface DocumentsCreateNewDocumentResponse {
   sort_order: number;
   access: string;
   for_everyone_access_role_id: string | null;
-  data: {
-    type: string;
-    content: {
-      type: string;
-    }[];
-  };
+  data: DocumentData;
   version: number;
   published_version: number | null;
   publish_date: string | null;
@@ -2090,7 +349,7 @@ export interface DocumentsCreateNewDocumentResponse {
   schema_version: number;
   notification_period_start: string | null;
   notification_period_end: string | null;
-  group_id: null;
+  group_id: number | null;
   access_record: {
     role: number;
     role_permissions: {
@@ -2104,10 +363,9 @@ export interface DocumentsCreateNewDocumentResponse {
   };
 }
 
-export interface DocumentsCreateNewDocumentParams extends OperationOptions {
-  body: DocumentsCreateNewDocumentBody;
-  signal?: AbortSignal;
-}
+export type DocumentsCreateNewDocumentParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documents"]["createNewDocument"]
+>;
 
 export interface DocumentsRemoveDocumentResponse {
   uid: string;
@@ -2118,33 +376,32 @@ export interface DocumentsRemoveDocumentResponse {
   archived: boolean;
   company_id: number;
   author_id: number;
-  parent_entity_uid: null;
+  parent_entity_uid: string | null;
   entity_type: string;
   sort_order: number;
   access: string;
   for_everyone_access_role_id: string;
   version: number;
   published_version: number;
-  publish_date: null;
+  publish_date: string | null;
   public: boolean;
   hidden_on_public_site: boolean;
   settings: Record<string, unknown>;
-  key: null;
-  redirect_url: null;
-  icon_type: null;
-  icon_value: null;
-  icon_color: null;
+  key: JsonValue;
+  redirect_url: string | null;
+  icon_type: JsonValue;
+  icon_value: JsonValue;
+  icon_color: JsonValue;
   path: string;
   schema_version: number;
-  notification_period_start: null;
-  notification_period_end: null;
-  group_id: null;
+  notification_period_start: string | null;
+  notification_period_end: string | null;
+  group_id: number | null;
 }
 
-export interface DocumentsRemoveDocumentParams extends OperationOptions {
-  document_uid: string;
-  signal?: AbortSignal;
-}
+export type DocumentsRemoveDocumentParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documents"]["removeDocument"]
+>;
 
 export interface DocumentsRetrieveDocumentResponse {
   uid: string;
@@ -2160,16 +417,7 @@ export interface DocumentsRetrieveDocumentResponse {
   sort_order: number;
   access: string;
   for_everyone_access_role_id: string | null;
-  data: {
-    type: string;
-    content: {
-      type: string;
-      content: {
-        type: string;
-        text: string;
-      }[];
-    }[];
-  };
+  data: DocumentData;
   version: number;
   published_version: number | null;
   publish_date: string | null;
@@ -2185,7 +433,7 @@ export interface DocumentsRetrieveDocumentResponse {
   schema_version: number;
   notification_period_start: string | null;
   notification_period_end: string | null;
-  group_id: null;
+  group_id: number | null;
   access_record: {
     role: number;
     role_permissions: {
@@ -2199,10 +447,9 @@ export interface DocumentsRetrieveDocumentResponse {
   };
 }
 
-export interface DocumentsRetrieveDocumentParams extends OperationOptions {
-  document_uid: string;
-  signal?: AbortSignal;
-}
+export type DocumentsRetrieveDocumentParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documents"]["retrieveDocument"]
+>;
 
 export interface DocumentsRetrieveListOfDocumentsQuery {
   query?: string;
@@ -2276,16 +523,62 @@ export type DocumentsRetrieveListOfDocumentsResponse = (
       schema_version: number;
       notification_period_start: string | null;
       notification_period_end: string | null;
-      group_id: string;
+      group_id: string | null;
     }
 )[];
 
-export interface DocumentsRetrieveListOfDocumentsParams extends OperationOptions {
-  query?: DocumentsRetrieveListOfDocumentsQuery;
-  signal?: AbortSignal;
-}
+export type DocumentsRetrieveListOfDocumentsParams = Parameters<
+  ReturnType<
+    typeof createDocumentsResources
+  >["documents"]["retrieveListOfDocuments"]
+>;
 
-export type DocumentsUpdateDocumentBody = unknown;
+export type DocumentsUpdateDocumentBody = RequireAtLeastOne<
+  {
+    title?: string;
+    sort_order?: number;
+    publish_date?: string | null;
+    data?: DocumentData;
+    access?: "for_everyone" | "by_invite";
+    parent_entity_uid?: string | null;
+    for_everyone_access_role_id?: string;
+    public?: boolean;
+    redirect_url?: string | null;
+    hidden_on_public_site?: boolean;
+    settings?: {
+      content_width?: "default" | "wide";
+    };
+    backup_version?: number;
+    published_version?: number | null | "current";
+    key?: string | null;
+    icon_type?: "emoji" | "material_icon" | null;
+    icon_value?: string | null;
+    icon_color?: number | null;
+    notification_period_start?: string | null;
+    notification_period_end?: string | null;
+    slug?: string | null;
+  },
+  | "title"
+  | "sort_order"
+  | "data"
+  | "access"
+  | "parent_entity_uid"
+  | "for_everyone_access_role_id"
+  | "public"
+  | "publish_date"
+  | "redirect_url"
+  | "hidden_on_public_site"
+  | "settings"
+  | "backup_version"
+  | "published_version"
+  | "key"
+  | "icon_type"
+  | "icon_value"
+  | "icon_color"
+  | "notification_period_start"
+  | "notification_period_end"
+  | "slug"
+>;
 
 export interface DocumentsUpdateDocumentResponse {
   uid: string;
@@ -2301,16 +594,7 @@ export interface DocumentsUpdateDocumentResponse {
   sort_order: number;
   access: string;
   for_everyone_access_role_id: string | null;
-  data: {
-    type: string;
-    content: {
-      type: string;
-      content: {
-        type: string;
-        text: string;
-      }[];
-    }[];
-  };
+  data: DocumentData;
   version: number;
   published_version: number | null;
   publish_date: string | null;
@@ -2326,7 +610,7 @@ export interface DocumentsUpdateDocumentResponse {
   schema_version: number;
   notification_period_start: string | null;
   notification_period_end: string | null;
-  group_id: null;
+  group_id: number | null;
   access_record: {
     role: number;
     role_permissions: {
@@ -2340,143 +624,210 @@ export interface DocumentsUpdateDocumentResponse {
   };
 }
 
-export interface DocumentsUpdateDocumentParams extends OperationOptions {
-  document_uid: string;
-  body: DocumentsUpdateDocumentBody;
-  signal?: AbortSignal;
-}
+export type DocumentsUpdateDocumentParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documents"]["updateDocument"]
+>;
 
-export const createDocumentsResources = (transport: HttpTransport) => ({
-  documentGroups: {
-    /** @see https://developers.kaiten.ru/document-groups/create-new-document-group */
-    createNewDocumentGroup: (
-      params: DocumentGroupsCreateNewDocumentGroupParams,
-    ) => {
-      return transport.request<DocumentGroupsCreateNewDocumentGroupResponse>({
-        method: "POST",
-        path: "/document-groups",
-        body: params.body,
-        signal: params.signal,
-      });
+export const createDocumentsResources = (transport: HttpTransport) => {
+  function retrieveListOfDocumentGroups(
+    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & { version: 2 },
+    options?: OperationOptions,
+  ): Promise<
+    SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
+  >;
+  function retrieveListOfDocumentGroups(
+    query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, "version"> & {
+      version?: 1;
     },
-    /** @see https://developers.kaiten.ru/document-groups/remove-document-group */
-    removeDocumentGroup: (params: DocumentGroupsRemoveDocumentGroupParams) => {
-      return transport.request<DocumentGroupsRemoveDocumentGroupResponse>({
-        method: "DELETE",
-        path: "/document-groups/" + pathSegment(params.document_group_uid),
-        signal: params.signal,
-      });
+    options?: OperationOptions,
+  ): Promise<DocumentGroupsRetrieveListOfDocumentGroupsResponse>;
+  function retrieveListOfDocumentGroups(
+    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery | undefined,
+    options?: OperationOptions,
+  ): Promise<
+    | DocumentGroupsRetrieveListOfDocumentGroupsResponse
+    | SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
+  >;
+  function retrieveListOfDocumentGroups(
+    query?: DocumentGroupsRetrieveListOfDocumentGroupsQuery,
+    options?: OperationOptions,
+  ): Promise<
+    | DocumentGroupsRetrieveListOfDocumentGroupsResponse
+    | SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
+  > {
+    return transport.request<
+      | DocumentGroupsRetrieveListOfDocumentGroupsResponse
+      | SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
+    >({
+      method: "GET",
+      path: "/document-groups",
+      query,
+      signal: options?.signal,
+    });
+  }
+
+  function getDocumentDataSchema(
+    schemaVersion: string,
+    format: "prosemirror",
+    options?: OperationOptions,
+  ): Promise<DocumentProseMirrorSchema>;
+  function getDocumentDataSchema(
+    schemaVersion: string,
+    format?: "draft-06",
+    options?: OperationOptions,
+  ): Promise<DocumentJsonSchema>;
+  function getDocumentDataSchema(
+    schemaVersion: string,
+    format: "draft-06" | "prosemirror" | undefined,
+    options?: OperationOptions,
+  ): Promise<DocumentSchemasGetDocumentDataSchemaResponse>;
+  function getDocumentDataSchema(
+    schemaVersion: string,
+    format?: "draft-06" | "prosemirror",
+    options?: OperationOptions,
+  ): Promise<DocumentSchemasGetDocumentDataSchemaResponse> {
+    return transport.request<DocumentSchemasGetDocumentDataSchemaResponse>({
+      method: "GET",
+      path: "/document-schemas/" + pathSegment(schemaVersion),
+      query: { format },
+      signal: options?.signal,
+    });
+  }
+
+  function retrieveListOfDocuments(
+    query: DocumentsRetrieveListOfDocumentsQuery & { version: 2 },
+    options?: OperationOptions,
+  ): Promise<SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>>;
+  function retrieveListOfDocuments(
+    query?: Omit<DocumentsRetrieveListOfDocumentsQuery, "version"> & {
+      version?: 1;
     },
-    /** @see https://developers.kaiten.ru/document-groups/retrieve-document-group */
-    retrieveDocumentGroup: (
-      params: DocumentGroupsRetrieveDocumentGroupParams,
-    ) => {
-      return transport.request<DocumentGroupsRetrieveDocumentGroupResponse>({
-        method: "GET",
-        path: "/document-groups/" + pathSegment(params.document_group_uid),
-        signal: params.signal,
-      });
+    options?: OperationOptions,
+  ): Promise<DocumentsRetrieveListOfDocumentsResponse>;
+  function retrieveListOfDocuments(
+    query: DocumentsRetrieveListOfDocumentsQuery | undefined,
+    options?: OperationOptions,
+  ): Promise<
+    | DocumentsRetrieveListOfDocumentsResponse
+    | SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>
+  >;
+  function retrieveListOfDocuments(
+    query?: DocumentsRetrieveListOfDocumentsQuery,
+    options?: OperationOptions,
+  ): Promise<
+    | DocumentsRetrieveListOfDocumentsResponse
+    | SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>
+  > {
+    return transport.request<
+      | DocumentsRetrieveListOfDocumentsResponse
+      | SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>
+    >({
+      method: "GET",
+      path: "/documents",
+      query,
+      signal: options?.signal,
+    });
+  }
+  return {
+    documentGroups: {
+      /** @see https://developers.kaiten.ru/document-groups/create-new-document-group */
+      createNewDocumentGroup: (
+        body: DocumentGroupsCreateNewDocumentGroupBody,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentGroupsCreateNewDocumentGroupResponse>({
+          method: "POST",
+          path: "/document-groups",
+          body,
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/document-groups/remove-document-group */
+      removeDocumentGroup: (
+        documentGroupUid: string,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentGroupsRemoveDocumentGroupResponse>({
+          method: "DELETE",
+          path: "/document-groups/" + pathSegment(documentGroupUid),
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/document-groups/retrieve-document-group */
+      retrieveDocumentGroup: (
+        documentGroupUid: string,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentGroupsRetrieveDocumentGroupResponse>({
+          method: "GET",
+          path: "/document-groups/" + pathSegment(documentGroupUid),
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups */
+      retrieveListOfDocumentGroups,
+      /** @see https://developers.kaiten.ru/document-groups/update-document-group */
+      updateDocumentGroup: (
+        documentGroupUid: string,
+        body: DocumentGroupsUpdateDocumentGroupBody,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentGroupsUpdateDocumentGroupResponse>({
+          method: "PATCH",
+          path: "/document-groups/" + pathSegment(documentGroupUid),
+          body,
+          signal: options?.signal,
+        });
+      },
     },
-    /** @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups */
-    retrieveListOfDocumentGroups: <Version extends 1 | 2 = 1>(
-      params: Omit<
-        DocumentGroupsRetrieveListOfDocumentGroupsParams,
-        "query"
-      > & {
-        query?: Omit<
-          DocumentGroupsRetrieveListOfDocumentGroupsQuery,
-          "version"
-        > & { version?: Version };
-      } = {},
-    ) => {
-      return transport.request<
-        Version extends 2
-          ? SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
-          : DocumentGroupsRetrieveListOfDocumentGroupsResponse
-      >({
-        method: "GET",
-        path: "/document-groups",
-        query: params.query,
-        signal: params.signal,
-      });
+    documentSchemas: {
+      /** @see https://developers.kaiten.ru/document-schemas/get-document-data-schema */
+      getDocumentDataSchema,
     },
-    /** @see https://developers.kaiten.ru/document-groups/update-document-group */
-    updateDocumentGroup: (params: DocumentGroupsUpdateDocumentGroupParams) => {
-      return transport.request<DocumentGroupsUpdateDocumentGroupResponse>({
-        method: "PATCH",
-        path: "/document-groups/" + pathSegment(params.document_group_uid),
-        body: params.body,
-        signal: params.signal,
-      });
+    documents: {
+      /** @see https://developers.kaiten.ru/documents/create-new-document */
+      createNewDocument: (
+        body: DocumentsCreateNewDocumentBody,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentsCreateNewDocumentResponse>({
+          method: "POST",
+          path: "/documents",
+          body,
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/documents/remove-document */
+      removeDocument: (documentUid: string, options?: OperationOptions) => {
+        return transport.request<DocumentsRemoveDocumentResponse>({
+          method: "DELETE",
+          path: "/documents/" + pathSegment(documentUid),
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/documents/retrieve-document */
+      retrieveDocument: (documentUid: string, options?: OperationOptions) => {
+        return transport.request<DocumentsRetrieveDocumentResponse>({
+          method: "GET",
+          path: "/documents/" + pathSegment(documentUid),
+          signal: options?.signal,
+        });
+      },
+      /** @see https://developers.kaiten.ru/documents/retrieve-list-of-documents */
+      retrieveListOfDocuments,
+      /** @see https://developers.kaiten.ru/documents/update-document */
+      updateDocument: (
+        documentUid: string,
+        body: DocumentsUpdateDocumentBody,
+        options?: OperationOptions,
+      ) => {
+        return transport.request<DocumentsUpdateDocumentResponse>({
+          method: "PATCH",
+          path: "/documents/" + pathSegment(documentUid),
+          body,
+          signal: options?.signal,
+        });
+      },
     },
-  },
-  documentSchemas: {
-    /** @see https://developers.kaiten.ru/document-schemas/get-document-data-schema */
-    getDocumentDataSchema: (
-      params: DocumentSchemasGetDocumentDataSchemaParams,
-    ) => {
-      return transport.request<DocumentSchemasGetDocumentDataSchemaResponse>({
-        method: "GET",
-        path: "/document-schemas/" + pathSegment(params.id),
-        query: params.query,
-        body: params.body,
-        signal: params.signal,
-      });
-    },
-  },
-  documents: {
-    /** @see https://developers.kaiten.ru/documents/create-new-document */
-    createNewDocument: (params: DocumentsCreateNewDocumentParams) => {
-      return transport.request<DocumentsCreateNewDocumentResponse>({
-        method: "POST",
-        path: "/documents",
-        body: params.body,
-        signal: params.signal,
-      });
-    },
-    /** @see https://developers.kaiten.ru/documents/remove-document */
-    removeDocument: (params: DocumentsRemoveDocumentParams) => {
-      return transport.request<DocumentsRemoveDocumentResponse>({
-        method: "DELETE",
-        path: "/documents/" + pathSegment(params.document_uid),
-        signal: params.signal,
-      });
-    },
-    /** @see https://developers.kaiten.ru/documents/retrieve-document */
-    retrieveDocument: (params: DocumentsRetrieveDocumentParams) => {
-      return transport.request<DocumentsRetrieveDocumentResponse>({
-        method: "GET",
-        path: "/documents/" + pathSegment(params.document_uid),
-        signal: params.signal,
-      });
-    },
-    /** @see https://developers.kaiten.ru/documents/retrieve-list-of-documents */
-    retrieveListOfDocuments: <Version extends 1 | 2 = 1>(
-      params: Omit<DocumentsRetrieveListOfDocumentsParams, "query"> & {
-        query?: Omit<DocumentsRetrieveListOfDocumentsQuery, "version"> & {
-          version?: Version;
-        };
-      } = {},
-    ) => {
-      return transport.request<
-        Version extends 2
-          ? SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>
-          : DocumentsRetrieveListOfDocumentsResponse
-      >({
-        method: "GET",
-        path: "/documents",
-        query: params.query,
-        signal: params.signal,
-      });
-    },
-    /** @see https://developers.kaiten.ru/documents/update-document */
-    updateDocument: (params: DocumentsUpdateDocumentParams) => {
-      return transport.request<DocumentsUpdateDocumentResponse>({
-        method: "PATCH",
-        path: "/documents/" + pathSegment(params.document_uid),
-        body: params.body,
-        signal: params.signal,
-      });
-    },
-  },
-});
+  };
+};

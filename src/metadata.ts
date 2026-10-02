@@ -1,3 +1,5 @@
+import type { JsonValue } from "./types.ts";
+
 /** Request Kaiten sends to a configured user metadata service. */
 export interface UserMetadataRequest {
   email: string;
@@ -5,7 +7,7 @@ export interface UserMetadataRequest {
 }
 
 export type UserMetadataPropertyValue =
-  string | number | null | Record<string, unknown>;
+  string | number | null | Record<string, JsonValue>;
 
 /** Response fields Kaiten accepts from the metadata service. */
 export type UserMetadataResponse = {

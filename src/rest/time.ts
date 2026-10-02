@@ -1,6 +1,22 @@
-import type { HttpTransport, OperationOptions } from "../http.js";
+import type { IterationReference } from "../entities.ts";
+import type {
+  UserSummary,
+  ColumnSummary,
+  LaneSummary,
+  CardTypeSummary,
+  BoardSummary,
+  UserRoleSummary,
+  CardMemberSummary,
+  BoardCardProperty,
+} from "../entities.ts";
+import type {
+  CustomPropertyValues,
+  JsonValue,
+  RequireAtLeastOne,
+} from "../types.ts";
+import type { HttpTransport, OperationOptions } from "../http.ts";
 
-import { pathSegment } from "../http.js";
+import { pathSegment } from "../http.ts";
 
 export interface CardTimeLogsAddTimeLogBody {
   role_id: number;
@@ -17,17 +33,15 @@ export interface CardTimeLogsAddTimeLogResponse {
   user_id: number;
   role_id: number;
   author_id: number;
-  updater_id: number;
+  updater_id: number | null;
   time_spent: number;
   for_date: string;
   comment: string | null;
 }
 
-export interface CardTimeLogsAddTimeLogParams extends OperationOptions {
-  card_id: number;
-  body: CardTimeLogsAddTimeLogBody;
-  signal?: AbortSignal;
-}
+export type CardTimeLogsAddTimeLogParams = Parameters<
+  ReturnType<typeof createTimeResources>["cardTimeLogs"]["addTimeLog"]
+>;
 
 export interface CardTimeLogsGetTimeLogsQuery {
   for_date?: string;
@@ -42,32 +56,36 @@ export type CardTimeLogsGetTimeLogsResponse = {
   user_id: number;
   role_id: number;
   author_id: number;
-  updater_id: number;
+  updater_id: number | null;
   time_spent: number;
   for_date: string;
   comment: string | null;
-  role: string | number;
-  user: string | number;
-  author: string | number;
+  role: UserRoleSummary;
+  user: UserSummary;
+  author: UserSummary;
 }[];
 
-export interface CardTimeLogsGetTimeLogsParams extends OperationOptions {
-  card_id: number;
-  query?: CardTimeLogsGetTimeLogsQuery;
-  signal?: AbortSignal;
-}
+export type CardTimeLogsGetTimeLogsParams = Parameters<
+  ReturnType<typeof createTimeResources>["cardTimeLogs"]["getTimeLogs"]
+>;
 
 export interface CardTimeLogsRemoveTimeLogResponse {
   id: number;
 }
 
-export interface CardTimeLogsRemoveTimeLogParams extends OperationOptions {
-  card_id: number;
-  id: number;
-  signal?: AbortSignal;
-}
+export type CardTimeLogsRemoveTimeLogParams = Parameters<
+  ReturnType<typeof createTimeResources>["cardTimeLogs"]["removeTimeLog"]
+>;
 
-export type CardTimeLogsUpdateLogRecordBody = unknown;
+export type CardTimeLogsUpdateLogRecordBody = RequireAtLeastOne<
+  {
+    role_id?: number;
+    time_spent?: number;
+    for_date?: string;
+    comment?: string;
+  },
+  "role_id" | "time_spent" | "for_date" | "comment"
+>;
 
 export interface CardTimeLogsUpdateLogRecordResponse {
   created: string;
@@ -77,18 +95,15 @@ export interface CardTimeLogsUpdateLogRecordResponse {
   user_id: number;
   role_id: number;
   author_id: number;
-  updater_id: number;
+  updater_id: number | null;
   time_spent: number;
   for_date: string;
   comment: string | null;
 }
 
-export interface CardTimeLogsUpdateLogRecordParams extends OperationOptions {
-  card_id: number;
-  id: number;
-  body: CardTimeLogsUpdateLogRecordBody;
-  signal?: AbortSignal;
-}
+export type CardTimeLogsUpdateLogRecordParams = Parameters<
+  ReturnType<typeof createTimeResources>["cardTimeLogs"]["updateLogRecord"]
+>;
 
 export interface IterationsAddCardToIterationBody {
   card_uid: string;
@@ -105,12 +120,9 @@ export interface IterationsAddCardToIterationResponse {
   updated: string;
 }
 
-export interface IterationsAddCardToIterationParams extends OperationOptions {
-  space_uid: string;
-  iteration_id: string;
-  body: IterationsAddCardToIterationBody;
-  signal?: AbortSignal;
-}
+export type IterationsAddCardToIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>["iterations"]["addCardToIteration"]
+>;
 
 export interface IterationsCreateIterationBody {
   title: string;
@@ -136,11 +148,9 @@ export interface IterationsCreateIterationResponse {
   updated: string;
 }
 
-export interface IterationsCreateIterationParams extends OperationOptions {
-  space_uid: string;
-  body: IterationsCreateIterationBody;
-  signal?: AbortSignal;
-}
+export type IterationsCreateIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>["iterations"]["createIteration"]
+>;
 
 export interface IterationsDeleteIterationBody {
   new_iteration_id?: string | null;
@@ -159,17 +169,14 @@ export interface IterationsDeleteIterationResponse {
   actual_finish_date: string | null;
   sort_order: number;
   data: Record<string, unknown> | null;
-  moved_cards: string | number;
+  moved_cards: JsonValue;
   created: string;
   updated: string;
 }
 
-export interface IterationsDeleteIterationParams extends OperationOptions {
-  space_uid: string;
-  id: string;
-  body?: IterationsDeleteIterationBody;
-  signal?: AbortSignal;
-}
+export type IterationsDeleteIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>["iterations"]["deleteIteration"]
+>;
 
 export interface IterationsGetCardIterationsHistoryQuery {
   with_details?: boolean;
@@ -184,13 +191,16 @@ export type IterationsGetCardIterationsHistoryResponse = {
   sort_order: number;
   created: string;
   updated: string;
+  iteration?: IterationReference | null;
+  addedBy?: UserSummary | null;
+  removedBy?: UserSummary | null;
 }[];
 
-export interface IterationsGetCardIterationsHistoryParams extends OperationOptions {
-  card_uid: string;
-  query?: IterationsGetCardIterationsHistoryQuery;
-  signal?: AbortSignal;
-}
+export type IterationsGetCardIterationsHistoryParams = Parameters<
+  ReturnType<
+    typeof createTimeResources
+  >["iterations"]["getCardIterationsHistory"]
+>;
 
 export interface IterationsGetIterationResponse {
   id: string;
@@ -204,16 +214,14 @@ export interface IterationsGetIterationResponse {
   finish_date: string | null;
   actual_finish_date: string | null;
   sort_order: number;
-  data: number;
+  data: Record<string, JsonValue> | null;
   created: string;
   updated: string;
 }
 
-export interface IterationsGetIterationParams extends OperationOptions {
-  space_uid: string;
-  id: string;
-  signal?: AbortSignal;
-}
+export type IterationsGetIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>["iterations"]["getIteration"]
+>;
 
 export interface IterationsRemoveCardFromIterationResponse {
   iteration_id: string;
@@ -226,12 +234,11 @@ export interface IterationsRemoveCardFromIterationResponse {
   updated: string;
 }
 
-export interface IterationsRemoveCardFromIterationParams extends OperationOptions {
-  space_uid: string;
-  iteration_id: string;
-  uid: string;
-  signal?: AbortSignal;
-}
+export type IterationsRemoveCardFromIterationParams = Parameters<
+  ReturnType<
+    typeof createTimeResources
+  >["iterations"]["removeCardFromIteration"]
+>;
 
 export interface IterationsRetrieveCardsInIterationQuery {
   status?: string;
@@ -249,12 +256,11 @@ export type IterationsRetrieveCardsInIterationResponse = {
   updated: string;
 }[];
 
-export interface IterationsRetrieveCardsInIterationParams extends OperationOptions {
-  space_uid: string;
-  iteration_id: string;
-  query?: IterationsRetrieveCardsInIterationQuery;
-  signal?: AbortSignal;
-}
+export type IterationsRetrieveCardsInIterationParams = Parameters<
+  ReturnType<
+    typeof createTimeResources
+  >["iterations"]["retrieveCardsInIteration"]
+>;
 
 export interface IterationsRetrieveListOfIterationsQuery {
   status?: string;
@@ -276,19 +282,30 @@ export type IterationsRetrieveListOfIterationsResponse = {
   finish_date: string | null;
   actual_finish_date: string | null;
   sort_order: number;
-  data: number;
+  data: Record<string, JsonValue> | null;
   created: string;
   updated: string;
   cards?: string | number;
 }[];
 
-export interface IterationsRetrieveListOfIterationsParams extends OperationOptions {
-  space_uid: string;
-  query?: IterationsRetrieveListOfIterationsQuery;
-  signal?: AbortSignal;
-}
+export type IterationsRetrieveListOfIterationsParams = Parameters<
+  ReturnType<
+    typeof createTimeResources
+  >["iterations"]["retrieveListOfIterations"]
+>;
 
-export type IterationsUpdateIterationBody = unknown;
+export type IterationsUpdateIterationBody = RequireAtLeastOne<
+  {
+    title?: string;
+    goal?: string | null;
+    status?: "planned" | "active" | "closed";
+    start_date?: string | null;
+    finish_date?: string | null;
+    actual_finish_date?: string | null;
+    new_iteration_id?: string | null;
+  },
+  "title" | "goal" | "status" | "start_date" | "finish_date"
+>;
 
 export interface IterationsUpdateIterationResponse {
   id: string;
@@ -302,18 +319,15 @@ export interface IterationsUpdateIterationResponse {
   finish_date: string | null;
   actual_finish_date: string | null;
   sort_order: number;
-  data: number;
+  data: Record<string, JsonValue> | null;
   created: string;
   updated: string;
   moved_cards?: string | number;
 }
 
-export interface IterationsUpdateIterationParams extends OperationOptions {
-  space_uid: string;
-  id: string;
-  body: IterationsUpdateIterationBody;
-  signal?: AbortSignal;
-}
+export type IterationsUpdateIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>["iterations"]["updateIteration"]
+>;
 
 export interface SprintsGetSprintSummaryQuery {
   exclude_deleted_cards?: boolean;
@@ -347,16 +361,117 @@ export interface SprintsGetSprintSummaryResponse {
   start_date: string;
   finish_date: string;
   actual_finish_date: string | null;
-  cards: string | number;
-  cardUpdates: string | number;
+  cards: {
+    created: string;
+    updated: string;
+    archived: boolean;
+    id: number;
+    title: string;
+    asap: boolean;
+    due_date: string | null;
+    due_date_time_present: boolean;
+    expires_later: boolean;
+    sort_order: number;
+    description: string | null;
+    state: number;
+    condition: number;
+    blocking_card: boolean;
+    blocked: boolean;
+    size: number | null;
+    size_unit: string | null;
+    size_text: string | null;
+    board_id: number;
+    column_id: number;
+    lane_id: number;
+    owner_id: number;
+    type_id: number;
+    version: number;
+    updater_id: number;
+    completed_on_time: boolean | null;
+    completed_at: string | null;
+    last_moved_at: string;
+    lane_changed_at: string;
+    column_changed_at: string;
+    first_moved_to_in_progress_at: string;
+    last_moved_to_done_at: string;
+    planned_start: string | null;
+    planned_end: string | null;
+    ignore_planned_dates_recalculation: boolean;
+    sprint_id: number | null;
+    external_id: string | null;
+    service_id: number | null;
+    properties: CustomPropertyValues | null;
+    public: boolean;
+    share_id: string | null;
+    share_settings: Record<string, JsonValue> | null;
+    external_user_emails: string | null;
+    tag_ids: number[] | null;
+    estimate_workload: number;
+    uid: string;
+    comments_total: number;
+    comment_last_added_at: string | null;
+    parents_count: number;
+    children_count: number;
+    children_done: number;
+    goals_total: number;
+    goals_done: number;
+    time_spent_sum: number;
+    time_blocked_sum: number;
+    children_number_properties_sum: number | Record<string, number> | null;
+    calculated_planned_start: string | null;
+    calculated_planned_end: string | null;
+    description_filled: boolean;
+    has_blocked_children: boolean;
+    parent_checklist_ids: number[] | null;
+    children_ids: number[] | null;
+    parents_ids: number[] | null;
+    fifo_order: number | null;
+    counters_recalculated_at: string;
+    sd_new_comment: boolean;
+    import_id: number | null;
+    fts_version: string;
+    locked: JsonValue;
+    source: string;
+    type: CardTypeSummary;
+    owner: UserSummary;
+    members: CardMemberSummary[];
+    has_access_to_space: boolean;
+    path_data: {
+      lane: LaneSummary;
+      board: BoardSummary;
+      space: {
+        id: number;
+        title: string;
+      };
+      column: ColumnSummary;
+    };
+    space_id: number;
+  }[];
+  cardUpdates: {
+    id: number;
+    sprint_id: number | null;
+    created: string;
+    updated: string;
+    size: number | null;
+    size_unit: string | null;
+    size_text: string | null;
+    properties: CustomPropertyValues | null;
+    tag_ids: number[] | null;
+    description: string | null;
+    board_id: number;
+    column_id: number;
+    lane_id: number;
+    condition: number;
+    state: number;
+    archived: boolean;
+    version: number;
+  }[];
   customProperties: unknown[];
 }
 
-export interface SprintsGetSprintSummaryParams extends OperationOptions {
-  id: number;
-  query?: SprintsGetSprintSummaryQuery;
-  signal?: AbortSignal;
-}
+export type SprintsGetSprintSummaryParams = Parameters<
+  ReturnType<typeof createTimeResources>["sprints"]["getSprintSummary"]
+>;
 
 export interface SprintsGetSprintsListQuery {
   active?: boolean;
@@ -394,10 +509,9 @@ export type SprintsGetSprintsListResponse = {
   archived: boolean;
 }[];
 
-export interface SprintsGetSprintsListParams extends OperationOptions {
-  query?: SprintsGetSprintsListQuery;
-  signal?: AbortSignal;
-}
+export type SprintsGetSprintsListParams = Parameters<
+  ReturnType<typeof createTimeResources>["sprints"]["getSprintsList"]
+>;
 
 export interface TimesheetGetListQuery {
   from: string;
@@ -428,7 +542,7 @@ export type TimesheetGetListResponse = {
   user_id: number;
   role_id: number;
   author_id: number;
-  updater_id: number;
+  updater_id: number | null;
   time_spent: number;
   for_date: string;
   comment: string | null;
@@ -439,9 +553,9 @@ export type TimesheetGetListResponse = {
     archived: boolean;
     title: string;
     asap: boolean;
-    due_date: null;
+    due_date: string | null;
     sort_order: number;
-    fifo_order: null;
+    fifo_order: number | null;
     state: number;
     condition: number;
     expires_later: boolean;
@@ -453,17 +567,17 @@ export type TimesheetGetListResponse = {
     goals_done: number;
     time_spent_sum: number;
     time_blocked_sum: number;
-    children_number_properties_sum: null;
-    calculated_planned_start: null;
-    calculated_planned_end: null;
-    parent_checklist_ids: null;
-    parent_dod_item_ids: null;
-    children_ids: null;
-    parents_ids: null;
+    children_number_properties_sum: number | Record<string, number> | null;
+    calculated_planned_start: string | null;
+    calculated_planned_end: string | null;
+    parent_checklist_ids: number[] | null;
+    parent_dod_item_ids: number[] | null;
+    children_ids: number[] | null;
+    parents_ids: number[] | null;
     blocking_card: boolean;
     blocked: boolean;
     size: number;
-    size_unit: null;
+    size_unit: string | null;
     size_text: string;
     due_date_time_present: boolean;
     board_id: number;
@@ -473,65 +587,46 @@ export type TimesheetGetListResponse = {
     type_id: number;
     version: number;
     updater_id: number;
-    completed_on_time: null;
-    completed_at: null;
+    completed_on_time: boolean | null;
+    completed_at: string | null;
     last_moved_at: string;
     lane_changed_at: string;
     column_changed_at: string;
     first_moved_to_in_progress_at: string;
     last_moved_to_done_at: string;
-    sprint_id: null;
-    external_id: null;
+    sprint_id: number | null;
+    external_id: string | null;
     comments_total: number;
-    comment_last_added_at: null;
-    properties: {
-      id_44: number;
-      id_50: number;
-      id_74: {
-        count: number;
-        emoji: string;
-        userIds: number[];
-      }[];
-      id_79: {
-        date: string;
-        time: string;
-        tzOffset: number;
-      };
-      id_5376: number;
-    };
-    planned_start: null;
-    planned_end: null;
+    comment_last_added_at: string | null;
+    properties: CustomPropertyValues | null;
+    planned_start: string | null;
+    planned_end: string | null;
     ignore_planned_dates_recalculation: boolean;
-    service_id: null;
+    service_id: number | null;
     sd_new_comment: boolean;
     public: boolean;
-    share_settings: null;
-    share_id: null;
-    external_user_emails: null;
+    share_settings: Record<string, JsonValue> | null;
+    share_id: string | null;
+    external_user_emails: string | null;
     description_filled: boolean;
     type: {
       id: number;
       name: string;
       color: number;
       letter: string;
-      company_id: null;
+      company_id: number | null;
       archived: boolean;
-      properties: null;
+      properties: CustomPropertyValues | null;
     };
     board: {
       id: number;
       title: string;
-      external_id: null;
-      card_properties: {
-        key: string;
-        laneIds: unknown[];
-        required: boolean;
-        cardTypeIds: unknown[];
-      }[];
+      external_id: string | null;
+      card_properties: BoardCardProperty[] | null;
       spaces: {
         id: number;
         title: string;
-        external_id: null;
+        external_id: string | null;
         board_id: number;
         space_id: number;
         top: number;
@@ -547,7 +642,7 @@ export type TimesheetGetListResponse = {
       sort_order: number;
       board_id: number;
       condition: number;
-      external_id: null;
+      external_id: string | null;
     };
     column: {
       id: number;
@@ -556,8 +651,8 @@ export type TimesheetGetListResponse = {
       col_count: number;
       type: number;
       board_id: number;
-      column_id: null;
-      external_id: null;
+      column_id: number | null;
+      external_id: string | null;
       rules: number;
     };
     owner: {
@@ -577,215 +672,268 @@ export type TimesheetGetListResponse = {
       ui_version: number;
     };
   };
-  user: string | number;
-  role: string | number;
+  user: UserSummary;
+  role: UserRoleSummary;
 }[];
 
-export interface TimesheetGetListParams extends OperationOptions {
-  query?: TimesheetGetListQuery;
-  signal?: AbortSignal;
-}
+export type TimesheetGetListParams = Parameters<
+  ReturnType<typeof createTimeResources>["timesheet"]["getList"]
+>;
 
 export const createTimeResources = (transport: HttpTransport) => ({
   cardTimeLogs: {
     /** @see https://developers.kaiten.ru/card-time-logs/add-time-log */
-    addTimeLog: (params: CardTimeLogsAddTimeLogParams) => {
+    addTimeLog: (
+      cardId: number,
+      body: CardTimeLogsAddTimeLogBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTimeLogsAddTimeLogResponse>({
         method: "POST",
-        path: "/cards/" + pathSegment(params.card_id) + "/time-logs",
-        body: params.body,
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/time-logs",
+        body,
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-time-logs/get-time-logs */
-    getTimeLogs: (params: CardTimeLogsGetTimeLogsParams) => {
+    getTimeLogs: (
+      cardId: number,
+      forDate?: string,
+      personal?: boolean,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTimeLogsGetTimeLogsResponse>({
         method: "GET",
-        path: "/cards/" + pathSegment(params.card_id) + "/time-logs",
-        query: params.query,
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardId) + "/time-logs",
+        query: { for_date: forDate, personal },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-time-logs/remove-time-log */
-    removeTimeLog: (params: CardTimeLogsRemoveTimeLogParams) => {
+    removeTimeLog: (
+      cardId: number,
+      timeLogId: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTimeLogsRemoveTimeLogResponse>({
         method: "DELETE",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/time-logs/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          pathSegment(timeLogId),
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-time-logs/update-log-record */
-    updateLogRecord: (params: CardTimeLogsUpdateLogRecordParams) => {
+    updateLogRecord: (
+      cardId: number,
+      timeLogId: number,
+      body: CardTimeLogsUpdateLogRecordBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<CardTimeLogsUpdateLogRecordResponse>({
         method: "PATCH",
         path:
           "/cards/" +
-          pathSegment(params.card_id) +
+          pathSegment(cardId) +
           "/time-logs/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          pathSegment(timeLogId),
+        body,
+        signal: options?.signal,
       });
     },
   },
   iterations: {
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/add-card-to-iteration */
-    addCardToIteration: (params: IterationsAddCardToIterationParams) => {
+    addCardToIteration: (
+      spaceUid: string,
+      iterationId: string,
+      cardUid: string,
+      options?: OperationOptions,
+    ) => {
       return transport.request<IterationsAddCardToIterationResponse>({
         method: "POST",
         path:
           "/spaces/" +
-          pathSegment(params.space_uid) +
+          pathSegment(spaceUid) +
           "/iterations/" +
-          pathSegment(params.iteration_id) +
+          pathSegment(iterationId) +
           "/cards",
-        body: params.body,
-        signal: params.signal,
+        body: { card_uid: cardUid },
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/create-iteration */
-    createIteration: (params: IterationsCreateIterationParams) => {
+    createIteration: (
+      spaceUid: string,
+      body: IterationsCreateIterationBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<IterationsCreateIterationResponse>({
         method: "POST",
-        path: "/spaces/" + pathSegment(params.space_uid) + "/iterations",
-        body: params.body,
-        signal: params.signal,
+        path: "/spaces/" + pathSegment(spaceUid) + "/iterations",
+        body,
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/delete-iteration */
-    deleteIteration: (params: IterationsDeleteIterationParams) => {
+    deleteIteration: (
+      spaceUid: string,
+      id: string,
+      newIterationId?: string | null,
+      options?: OperationOptions,
+    ) => {
       return transport.request<IterationsDeleteIterationResponse>({
         method: "DELETE",
         path:
-          "/spaces/" +
-          pathSegment(params.space_uid) +
-          "/iterations/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+        body:
+          newIterationId === undefined
+            ? undefined
+            : { new_iteration_id: newIterationId },
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/get-card-iterations-history */
     getCardIterationsHistory: (
-      params: IterationsGetCardIterationsHistoryParams,
+      cardUid: string,
+      withDetails?: boolean,
+      options?: OperationOptions,
     ) => {
       return transport.request<IterationsGetCardIterationsHistoryResponse>({
         method: "GET",
-        path: "/cards/" + pathSegment(params.card_uid) + "/iterations-history",
-        query: params.query,
-        signal: params.signal,
+        path: "/cards/" + pathSegment(cardUid) + "/iterations-history",
+        query: { with_details: withDetails },
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/get-iteration */
-    getIteration: (params: IterationsGetIterationParams) => {
+    getIteration: (
+      spaceUid: string,
+      id: string,
+      options?: OperationOptions,
+    ) => {
       return transport.request<IterationsGetIterationResponse>({
         method: "GET",
         path:
-          "/spaces/" +
-          pathSegment(params.space_uid) +
-          "/iterations/" +
-          pathSegment(params.id),
-        signal: params.signal,
+          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/remove-card-from-iteration */
     removeCardFromIteration: (
-      params: IterationsRemoveCardFromIterationParams,
+      spaceUid: string,
+      iterationId: string,
+      uid: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<IterationsRemoveCardFromIterationResponse>({
         method: "DELETE",
         path:
           "/spaces/" +
-          pathSegment(params.space_uid) +
+          pathSegment(spaceUid) +
           "/iterations/" +
-          pathSegment(params.iteration_id) +
+          pathSegment(iterationId) +
           "/cards/" +
-          pathSegment(params.uid),
-        signal: params.signal,
+          pathSegment(uid),
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/retrieve-cards-in-iteration */
     retrieveCardsInIteration: (
-      params: IterationsRetrieveCardsInIterationParams,
+      spaceUid: string,
+      iterationId: string,
+      status?: string,
+      options?: OperationOptions,
     ) => {
       return transport.request<IterationsRetrieveCardsInIterationResponse>({
         method: "GET",
         path:
           "/spaces/" +
-          pathSegment(params.space_uid) +
+          pathSegment(spaceUid) +
           "/iterations/" +
-          pathSegment(params.iteration_id) +
+          pathSegment(iterationId) +
           "/cards",
-        query: params.query,
-        signal: params.signal,
+        query: { status },
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/retrieve-list-of-iterations */
     retrieveListOfIterations: (
-      params: IterationsRetrieveListOfIterationsParams,
+      spaceUid: string,
+      query?: IterationsRetrieveListOfIterationsQuery,
+      options?: OperationOptions,
     ) => {
       return transport.request<IterationsRetrieveListOfIterationsResponse>({
         method: "GET",
-        path: "/spaces/" + pathSegment(params.space_uid) + "/iterations",
-        query: params.query,
-        signal: params.signal,
+        path: "/spaces/" + pathSegment(spaceUid) + "/iterations",
+        query,
+        signal: options?.signal,
       });
     },
     /** @beta */
     /** @see https://developers.kaiten.ru/iterations/update-iteration */
-    updateIteration: (params: IterationsUpdateIterationParams) => {
+    updateIteration: (
+      spaceUid: string,
+      id: string,
+      body: IterationsUpdateIterationBody,
+      options?: OperationOptions,
+    ) => {
       return transport.request<IterationsUpdateIterationResponse>({
         method: "PATCH",
         path:
-          "/spaces/" +
-          pathSegment(params.space_uid) +
-          "/iterations/" +
-          pathSegment(params.id),
-        body: params.body,
-        signal: params.signal,
+          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+        body,
+        signal: options?.signal,
       });
     },
   },
   sprints: {
     /** @see https://developers.kaiten.ru/sprints/get-sprint-summary */
-    getSprintSummary: (params: SprintsGetSprintSummaryParams) => {
+    getSprintSummary: (
+      id: number,
+      excludeDeletedCards?: boolean,
+      options?: OperationOptions,
+    ) => {
       return transport.request<SprintsGetSprintSummaryResponse>({
         method: "GET",
-        path: "/sprints/" + pathSegment(params.id),
-        query: params.query,
-        signal: params.signal,
+        path: "/sprints/" + pathSegment(id),
+        query: { exclude_deleted_cards: excludeDeletedCards },
+        signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/sprints/get-sprints-list */
-    getSprintsList: (params: SprintsGetSprintsListParams = {}) => {
+    getSprintsList: (
+      active?: boolean,
+      limit?: number,
+      offset?: number,
+      options?: OperationOptions,
+    ) => {
       return transport.request<SprintsGetSprintsListResponse>({
         method: "GET",
         path: "/sprints",
-        query: params.query,
-        signal: params.signal,
+        query: { active, limit, offset },
+        signal: options?.signal,
       });
     },
   },
   timesheet: {
     /** @see https://developers.kaiten.ru/timesheet/get-list */
-    getList: (params: TimesheetGetListParams = {}) => {
+    getList: (query: TimesheetGetListQuery, options?: OperationOptions) => {
       return transport.request<TimesheetGetListResponse>({
         method: "GET",
         path: "/time-logs",
-        query: params.query,
-        signal: params.signal,
+        query,
+        signal: options?.signal,
       });
     },
   },

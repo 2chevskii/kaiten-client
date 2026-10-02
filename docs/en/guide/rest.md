@@ -7,7 +7,7 @@
 ```ts
 import { KaitenClient } from "@2chevskii/kaiten-client";
 import type {
-  CardsCreateNewCardParams,
+  CardsCreateNewCardBody,
   CardsCreateNewCardResponse,
 } from "@2chevskii/kaiten-client";
 
@@ -16,14 +16,15 @@ const client = new KaitenClient({
   token: process.env.KAITEN_TOKEN!,
 });
 
-const request: CardsCreateNewCardParams = {
-  body: { title: "Prepare release", board_id: 10 },
+const request: CardsCreateNewCardBody = {
+  title: "Prepare release",
+  board_id: 10,
 };
 const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Every method takes an options object. Path parameters are top-level properties, URL parameters go in `query`, JSON goes in `body`, and cancellation uses `signal`. All methods return a `Promise`. Type names combine resource, operation, and the `Params`, `Body`, `Query`, or `Response` suffix; consult TypeScript for the exact exports.
+Methods take IDs as separate arguments. Small sets of body fields are separate too: `client.cardComments.addComment(cardId, text)`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Every method returns a `Promise`. `Params` types describe the method's argument tuple, which can be passed with `...args`.
 
 `client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types and [reference](/en/reference/rest).
 
@@ -37,7 +38,7 @@ import type { AutomationBody } from "@2chevskii/kaiten-client";
 const automation: AutomationBody = {
   type: "on_demand",
   name: "Update card",
-  actions: [{ type: "some_action", data: {} }],
+  actions: [{ type: "change_asap", data: { asap: true } }],
 };
 ```
 
@@ -47,11 +48,13 @@ Card and document search supports two response versions. `version: 1` returns an
 
 ```ts
 const firstPage = await client.cards.retrieveCardList({
-  query: { version: 2, limit: 50 },
+  version: 2,
+  limit: 50,
 });
 
 const nextPage = await client.cards.retrieveCardList({
-  query: { version: 2, start_position: firstPage.position },
+  version: 2,
+  start_position: firstPage.position,
 });
 
 console.log(firstPage.result, nextPage.result);

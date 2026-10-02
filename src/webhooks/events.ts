@@ -1,3 +1,6 @@
+import type { CustomPropertyValues, JsonValue } from "../types.ts";
+import type { UserSummary } from "../entities.ts";
+
 /** Types for every documented outgoing Kaiten webhook event. */
 
 /** @see https://developers.kaiten.ru/external-webhooks/block/block:add */
@@ -5,82 +8,83 @@ export interface BlockAddWebhookEvent {
   event: "block:add";
   data: {
     blocker_id: number;
-    released_by_id: unknown;
+    released_by_id: number | null;
     blocked_card: {
       type_id: number;
-      sprint_id: unknown;
-      planned_end: unknown;
+      sprint_id: number | null;
+      planned_end: string | null;
       ignore_planned_dates_recalculation: boolean;
-      size: unknown;
+      size: number | null;
       goals_done: number;
       expires_later: boolean;
-      last_moved_to_done_at: unknown;
+      last_moved_to_done_at: string | null;
       asap: boolean;
       children_done: number;
-      parents_ids: unknown;
-      size_unit: unknown;
+      parents_ids: number[] | null;
+      size_unit: string | null;
       archived: boolean;
-      share_settings: unknown;
+      share_settings: Record<string, JsonValue> | null;
       column_id: number;
       goals_total: number;
-      service_id: unknown;
+      service_id: number | null;
       description_filled: boolean;
-      calculated_planned_start: unknown;
+      calculated_planned_start: string | null;
       time_blocked_sum: number;
       owner_id: number;
-      planned_start: unknown;
+      planned_start: string | null;
       column_changed_at: string;
-      completed_at: unknown;
+      completed_at: string | null;
       last_moved_at: string;
       time_spent_sum: number;
       created: string;
       public: boolean;
-      parent_checklist_ids: unknown;
-      size_text: unknown;
+      parent_checklist_ids: number[] | null;
+      size_text: string | null;
       blocked: boolean;
       sort_order: number;
       lane_id: number;
       due_date_time_present: boolean;
-      external_id: unknown;
+      external_id: string | null;
       children_count: number;
       updater_id: number;
       state: number;
       lane_changed_at: string;
       sd_new_comment: boolean;
-      properties: {
-        id_5376: number;
-        id_5419: number;
-      };
+      properties: CustomPropertyValues | null;
       board_id: number;
-      first_moved_to_in_progress_at: unknown;
-      children_number_properties_sum: unknown;
-      external_user_emails: unknown;
+      first_moved_to_in_progress_at: string | null;
+      children_number_properties_sum: number | Record<string, number> | null;
+      external_user_emails: string | null;
       has_blocked_children: boolean;
-      children_ids: unknown;
+      children_ids: number[] | null;
       version: number;
       title: string;
       counters_recalculated_at: string;
       comments_total: number;
       parents_count: number;
-      due_date: unknown;
-      completed_on_time: unknown;
+      due_date: string | null;
+      completed_on_time: boolean | null;
       blocking_card: boolean;
       type: {
         id: number;
         name: string;
         color: number;
         letter: string;
-        company_id: unknown;
+        company_id: number | null;
         archived: boolean;
-        properties: unknown;
+        properties: Record<string, JsonValue> | null;
       };
       updated: string;
       id: number;
       condition: number;
-      share_id: unknown;
-      comment_last_added_at: unknown;
-      ifo_order: unknown;
-      alculated_planned_end: unknown;
+      share_id: string | null;
+      comment_last_added_at: string | null;
+      /** Legacy spelling in Kaiten's published example. */
+      ifo_order?: number | null;
+      fifo_order?: number | null;
+      /** Legacy spelling in Kaiten's published example. */
+      alculated_planned_end?: string | null;
+      calculated_planned_end?: string | null;
     };
     reason: string;
     blocker_card_id: number;
@@ -89,56 +93,53 @@ export interface BlockAddWebhookEvent {
     blocker_card_title: unknown;
     card: {
       type_id: number;
-      sprint_id: unknown;
-      planned_end: unknown;
+      sprint_id: number | null;
+      planned_end: string | null;
       ignore_planned_dates_recalculation: boolean;
-      size: unknown;
+      size: number | null;
       goals_done: number;
       expires_later: boolean;
-      last_moved_to_done_at: unknown;
+      last_moved_to_done_at: string | null;
       asap: boolean;
       children_done: number;
-      parents_ids: unknown;
-      size_unit: unknown;
+      parents_ids: number[] | null;
+      size_unit: string | null;
       archived: boolean;
-      share_settings: unknown;
+      share_settings: Record<string, JsonValue> | null;
       column_id: number;
       goals_total: number;
-      service_id: unknown;
+      service_id: number | null;
       description_filled: boolean;
-      calculated_planned_start: unknown;
+      calculated_planned_start: string | null;
       time_blocked_sum: number;
       owner_id: number;
-      planned_start: unknown;
+      planned_start: string | null;
       column_changed_at: string;
-      completed_at: unknown;
+      completed_at: string | null;
       last_moved_at: string;
       time_spent_sum: number;
       created: string;
       public: boolean;
-      parent_checklist_ids: unknown;
-      size_text: unknown;
+      parent_checklist_ids: number[] | null;
+      size_text: string | null;
       blocked: boolean;
       sort_order: number;
       lane_id: number;
       due_date_time_present: boolean;
-      external_id: unknown;
+      external_id: string | null;
       children_count: number;
       updater_id: number;
       state: number;
       lane_changed_at: string;
       sd_new_comment: boolean;
-      properties: {
-        id_5376: number;
-        id_5419: number;
-      };
+      properties: CustomPropertyValues | null;
       owner: {
         avatar_type: number;
         avatar_initials_url: string;
         lng: string;
         theme: string;
         initials: string;
-        avatar_uploaded_url: unknown;
+        avatar_uploaded_url: string | null;
         username: string;
         timezone: string;
         updated: string;
@@ -147,35 +148,37 @@ export interface BlockAddWebhookEvent {
         email: string;
       };
       board_id: number;
-      first_moved_to_in_progress_at: unknown;
-      children_number_properties_sum: unknown;
-      external_user_emails: unknown;
-      as_blocked_children: boolean;
-      children_ids: unknown;
+      first_moved_to_in_progress_at: string | null;
+      children_number_properties_sum: number | Record<string, number> | null;
+      external_user_emails: string | null;
+      /** Legacy spelling in Kaiten's published example. */
+      as_blocked_children?: boolean;
+      has_blocked_children?: boolean;
+      children_ids: number[] | null;
       version: number;
       title: string;
       counters_recalculated_at: string;
       comments_total: number;
       parents_count: number;
-      due_date: unknown;
-      completed_on_time: unknown;
+      due_date: string | null;
+      completed_on_time: boolean | null;
       blocking_card: boolean;
       type: {
         id: number;
         name: string;
         color: number;
         letter: string;
-        company_id: unknown;
+        company_id: number | null;
         archived: boolean;
-        properties: unknown;
+        properties: Record<string, JsonValue> | null;
       };
       updated: string;
       id: number;
       condition: number;
-      share_id: unknown;
-      comment_last_added_at: unknown;
-      fifo_order: unknown;
-      calculated_planned_end: unknown;
+      share_id: string | null;
+      comment_last_added_at: string | null;
+      fifo_order: number | null;
+      calculated_planned_end: string | null;
     };
     blocker: {
       avatar_type: number;
@@ -183,7 +186,7 @@ export interface BlockAddWebhookEvent {
       lng: string;
       theme: string;
       initials: string;
-      avatar_uploaded_url: unknown;
+      avatar_uploaded_url: string | null;
       username: string;
       timezone: string;
       updated: string;
@@ -209,7 +212,7 @@ export interface BlockUpdateWebhookEvent {
   data: {
     old: {
       blocker_id: number;
-      released_by_id: unknown;
+      released_by_id: number | null;
       reason: string;
       blocker_card_id: number;
       created: string;
@@ -219,11 +222,7 @@ export interface BlockUpdateWebhookEvent {
       id: number;
       released: boolean;
     };
-    changes: {
-      created: string;
-      updated: string;
-      reason: string;
-    };
+    changes: Partial<BlockUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -245,7 +244,7 @@ export interface BoardAddWebhookEvent {
     created: string;
     backward_moves_enabled: boolean;
     sort_order: number;
-    external_id: unknown;
+    external_id: string | null;
     default_card_type_id: number;
     hide_done_policies: boolean;
     space_id: number;
@@ -256,14 +255,14 @@ export interface BoardAddWebhookEvent {
     title: string;
     updated: string;
     id: number;
-    description: unknown;
+    description: string | null;
     lanes: {
       last_moved_warning_after_minutes: number;
       created: string;
       row_count: number;
       sort_order: number;
-      external_id: unknown;
-      default_card_type_id: unknown;
+      external_id: string | null;
+      default_card_type_id: number | null;
       last_moved_warning_after_days: number;
       board_id: number;
       last_moved_warning_after_hours: number;
@@ -276,11 +275,11 @@ export interface BoardAddWebhookEvent {
       wip_limit_type: number;
     }[];
     columns: {
-      column_id: unknown;
+      column_id: number | null;
       last_moved_warning_after_minutes: number;
       created: string;
       sort_order: number;
-      external_id: unknown;
+      external_id: string | null;
       col_count: number;
       last_moved_warning_after_days: number;
       board_id: number;
@@ -311,10 +310,7 @@ export interface BoardAddWebhookEvent {
 export interface BoardUpdateWebhookEvent {
   event: "board:update";
   data: {
-    changes: {
-      updated: string;
-      title: string;
-    };
+    changes: Partial<BoardUpdateWebhookEvent["data"]["old"]>;
     old: {
       reset_lane_spent_time: boolean;
       move_parents_to_done: boolean;
@@ -324,7 +320,7 @@ export interface BoardUpdateWebhookEvent {
       created: string;
       backward_moves_enabled: boolean;
       sort_order: number;
-      external_id: unknown;
+      external_id: string | null;
       default_card_type_id: number;
       hide_done_policies: boolean;
       first_image_is_cover: boolean;
@@ -334,7 +330,7 @@ export interface BoardUpdateWebhookEvent {
       title: string;
       updated: string;
       id: number;
-      description: unknown;
+      description: string | null;
     };
     author: {
       id: number;
@@ -354,7 +350,7 @@ export interface CardMemberAddWebhookEvent {
     email: string;
     username: string;
     avatar_initials_url: string;
-    avatar_uploaded_url: unknown;
+    avatar_uploaded_url: string | null;
     initials: string;
     avatar_type: number;
     lng: string;
@@ -395,11 +391,7 @@ export interface CardMemberUpdateWebhookEvent {
       user_id: number;
       type: number;
     };
-    changes: {
-      card_id: number;
-      user_id: number;
-      type: number;
-    };
+    changes: Partial<CardMemberUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -414,49 +406,46 @@ export interface CardAddWebhookEvent {
   event: "card:add";
   data: {
     type_id: number;
-    sprint_id: unknown;
-    planned_end: unknown;
+    sprint_id: number | null;
+    planned_end: string | null;
     ignore_planned_dates_recalculation: boolean;
-    size: unknown;
+    size: number | null;
     goals_done: number;
     expires_later: boolean;
-    last_moved_to_done_at: unknown;
+    last_moved_to_done_at: string | null;
     asap: boolean;
     children_done: number;
-    size_unit: unknown;
+    size_unit: string | null;
     archived: boolean;
-    share_settings: unknown;
+    share_settings: Record<string, JsonValue> | null;
     column_id: number;
     goals_total: number;
     external_links: unknown[];
-    service_id: unknown;
+    service_id: number | null;
     description_filled: boolean;
     time_blocked_sum: number;
     owner_id: number;
-    planned_start: unknown;
+    planned_start: string | null;
     column_changed_at: string;
-    completed_at: unknown;
+    completed_at: string | null;
     last_moved_at: string;
     time_spent_sum: number;
     created: string;
     public: boolean;
-    parent_checklist_ids: unknown;
-    size_text: unknown;
+    parent_checklist_ids: number[] | null;
+    size_text: string | null;
     blocked: boolean;
     sort_order: number;
     checklists: unknown[];
     lane_id: number;
     due_date_time_present: boolean;
-    external_id: unknown;
+    external_id: string | null;
     children_count: number;
     updater_id: number;
     state: number;
     lane_changed_at: string;
     sd_new_comment: boolean;
-    properties: {
-      id_5376: number;
-      id_5419: number;
-    };
+    properties: CustomPropertyValues | null;
     owner: {
       avatar_type: number;
       avatar_initials_url: string;
@@ -464,11 +453,11 @@ export interface CardAddWebhookEvent {
       created: string;
       theme: string;
       news_subscription: boolean;
-      sd_telegram_id: unknown;
+      sd_telegram_id: number | null;
       ui_version: number;
       initials: string;
       activated: boolean;
-      avatar_uploaded_url: unknown;
+      avatar_uploaded_url: string | null;
       username: string;
       skype: unknown;
       apps_permissions: number;
@@ -481,17 +470,17 @@ export interface CardAddWebhookEvent {
       email: string;
     };
     board_id: number;
-    first_moved_to_in_progress_at: unknown;
-    children_number_properties_sum: unknown;
-    external_user_emails: unknown;
+    first_moved_to_in_progress_at: string | null;
+    children_number_properties_sum: number | Record<string, number> | null;
+    external_user_emails: string | null;
     files: unknown[];
     version: number;
     title: string;
     counters_recalculated_at: string;
     comments_total: number;
     parents_count: number;
-    due_date: unknown;
-    completed_on_time: unknown;
+    due_date: string | null;
+    completed_on_time: boolean | null;
     blocking_card: boolean;
     type: {
       archived: boolean;
@@ -499,19 +488,19 @@ export interface CardAddWebhookEvent {
       letter: string;
       created: string;
       name: string;
-      properties: unknown;
+      properties: Record<string, JsonValue> | null;
       updated: string;
       id: number;
-      company_id: unknown;
-      description_template: unknown;
+      company_id: number | null;
+      description_template: string | null;
     };
     updated: string;
     id: number;
     condition: number;
-    share_id: unknown;
-    comment_last_added_at: unknown;
-    fifo_order: unknown;
-    description: unknown;
+    share_id: string | null;
+    comment_last_added_at: string | null;
+    fifo_order: number | null;
+    description: string | null;
     author: {
       id: number;
       full_name: string;
@@ -527,89 +516,76 @@ export interface CardUpdateWebhookEvent {
   data: {
     old: {
       type_id: number;
-      sprint_id: unknown;
+      sprint_id: number | null;
       sd_external_recipients: unknown;
-      planned_end: unknown;
+      planned_end: string | null;
       ignore_planned_dates_recalculation: boolean;
-      project_id: unknown;
-      size: unknown;
+      project_id: number | null;
+      size: number | null;
       goals_done: number;
       expires_later: boolean;
-      last_moved_to_done_at: unknown;
+      last_moved_to_done_at: string | null;
       asap: boolean;
       children_done: number;
-      parents_ids: unknown;
-      size_unit: unknown;
+      parents_ids: number[] | null;
+      size_unit: string | null;
       archived: boolean;
-      share_settings: unknown;
+      share_settings: Record<string, JsonValue> | null;
       column_id: number;
       goals_total: number;
-      service_id: unknown;
+      service_id: number | null;
       description_filled: boolean;
-      calculated_planned_start: unknown;
+      calculated_planned_start: string | null;
       time_blocked_sum: number;
       owner_id: number;
-      planned_start: unknown;
+      planned_start: string | null;
       column_changed_at: string;
-      completed_at: unknown;
+      completed_at: string | null;
       last_moved_at: string;
       parent_link_ids: unknown;
       time_spent_sum: number;
       created: string;
       public: boolean;
-      parent_checklist_ids: unknown;
-      milestone_id: unknown;
-      size_text: unknown;
+      parent_checklist_ids: number[] | null;
+      milestone_id: number | null;
+      size_text: string | null;
       blocked: boolean;
       sort_order: number;
       lane_id: number;
       due_date_time_present: boolean;
-      external_id: unknown;
+      external_id: string | null;
       children_count: number;
       updater_id: number;
       state: number;
       lane_changed_at: string;
       sd_new_comment: boolean;
-      tag_ids: unknown;
-      properties: {
-        id_5376: number;
-        id_5419: number;
-      };
+      tag_ids: number[] | null;
+      properties: CustomPropertyValues | null;
       board_id: number;
-      first_moved_to_in_progress_at: unknown;
-      children_number_properties_sum: unknown;
-      import_id: unknown;
-      external_user_emails: unknown;
+      first_moved_to_in_progress_at: string | null;
+      children_number_properties_sum: number | Record<string, number> | null;
+      import_id: number | null;
+      external_user_emails: string | null;
       has_blocked_children: boolean;
-      children_ids: unknown;
+      children_ids: number[] | null;
       version: number;
       title: string;
       counters_recalculated_at: string;
       comments_total: number;
       parents_count: number;
-      due_date: unknown;
-      completed_on_time: unknown;
+      due_date: string | null;
+      completed_on_time: boolean | null;
       blocking_card: boolean;
       updated: string;
       id: number;
       condition: number;
-      share_id: unknown;
-      comment_last_added_at: unknown;
-      fifo_order: unknown;
-      description: unknown;
-      calculated_planned_end: unknown;
+      share_id: string | null;
+      comment_last_added_at: string | null;
+      fifo_order: number | null;
+      description: string | null;
+      calculated_planned_end: string | null;
     };
-    changes: {
-      updated: string;
-      archived: boolean;
-      version: number;
-      condition: number;
-      properties: {
-        id_5376: unknown;
-        id_5419: number;
-      };
-      counters_recalculated_at: string;
-    };
+    changes: Partial<CardUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -633,7 +609,7 @@ export interface CommentAddWebhookEvent {
     type: number;
     updated: string;
     id: number;
-    email_addresses_to: unknown;
+    email_addresses_to: string | null;
     internal: boolean;
     sd_external_recipients_cc: unknown;
     author: {
@@ -660,7 +636,7 @@ export interface CommentRemoveWebhookEvent {
     type: number;
     updated: string;
     id: number;
-    email_addresses_to: unknown;
+    email_addresses_to: string | null;
     internal: boolean;
     sd_external_recipients_cc: unknown;
     author: {
@@ -688,14 +664,13 @@ export interface CommentUpdateWebhookEvent {
       type: number;
       updated: string;
       id: number;
-      email_addresses_to: unknown;
+      email_addresses_to: string | null;
       internal: boolean;
-      d_external_recipients_cc: unknown;
+      /** Legacy spelling in Kaiten's published example. */
+      d_external_recipients_cc?: string | null;
+      sd_external_recipients_cc?: string | null;
     };
-    changes: {
-      updated: string;
-      text: string;
-    };
+    changes: Partial<CommentUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -715,9 +690,9 @@ export interface FileAddWebhookEvent {
     card_id: number;
     name: string;
     external: boolean;
-    url_with_not_encoded_filename: unknown;
+    url_with_not_encoded_filename: string | null;
     sort_order: number;
-    mh_markup_id: unknown;
+    mh_markup_id: number | null;
     author_id: number;
     url: string;
     mh_secret: unknown;
@@ -725,7 +700,7 @@ export interface FileAddWebhookEvent {
     type: number;
     updated: string;
     id: number;
-    comment_id: unknown;
+    comment_id: number | null;
     author: {
       id: number;
       full_name: string;
@@ -753,7 +728,7 @@ export interface FileRemoveWebhookEvent {
     type: number;
     updated: string;
     id: number;
-    comment_id: unknown;
+    comment_id: number | null;
     author: {
       id: number;
       full_name: string;
@@ -774,9 +749,9 @@ export interface FileUpdateWebhookEvent {
       card_id: number;
       name: string;
       external: boolean;
-      url_with_not_encoded_filename: unknown;
+      url_with_not_encoded_filename: string | null;
       sort_order: number;
-      mh_markup_id: unknown;
+      mh_markup_id: number | null;
       author_id: number;
       url: string;
       mh_secret: unknown;
@@ -784,11 +759,9 @@ export interface FileUpdateWebhookEvent {
       type: number;
       updated: string;
       id: number;
-      comment_id: unknown;
+      comment_id: number | null;
     };
-    changes: {
-      updated: string;
-    };
+    changes: Partial<FileUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -802,21 +775,16 @@ export interface FileUpdateWebhookEvent {
 export interface SpaceUpdateWebhookEvent {
   event: "space:update";
   data: {
-    changes: {
-      created: string;
-      updated: string;
-      title: string;
-      external_id: string;
-    };
+    changes: Partial<SpaceUpdateWebhookEvent["data"]["old"]>;
     old: {
       archived: boolean;
-      settings: unknown;
+      settings: Record<string, JsonValue> | null;
       private: boolean;
       subspace: boolean;
       created: string;
       allowed_card_type_ids: unknown;
       hidden_card_type_uids: unknown;
-      external_id: unknown;
+      external_id: string | null;
       title: string;
       updated: string;
       id: number;
@@ -879,11 +847,7 @@ export interface TagUpdateWebhookEvent {
       company_id: number;
       color: number;
     };
-    changes: {
-      created: string;
-      updated: string;
-      name: string;
-    };
+    changes: Partial<TagUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;
@@ -903,7 +867,7 @@ export interface TimelogAddWebhookEvent {
     card_id: number;
     author_id: number;
     user_id: number;
-    updater_id: unknown;
+    updater_id: number | null;
     updated: string;
     id: number;
     time_spent: number;
@@ -927,17 +891,16 @@ export interface TimelogRemoveWebhookEvent {
     card_id: number;
     author_id: number;
     user_id: number;
-    updater_id: unknown;
+    updater_id: number | null;
     updated: string;
     id: number;
-    ime_spent: number;
+    /** Legacy spelling in Kaiten's published example. */
+    ime_spent?: number;
+    time_spent?: number;
     comment: string;
-    uthor: {
-      id: number;
-      full_name: string;
-      username: string;
-      email: string;
-    };
+    /** Legacy spelling in Kaiten's published example. */
+    uthor?: UserSummary;
+    author?: UserSummary;
   };
 }
 
@@ -952,15 +915,13 @@ export interface TimelogUpdateWebhookEvent {
       card_id: number;
       author_id: number;
       user_id: number;
-      updater_id: unknown;
+      updater_id: number | null;
       updated: string;
       id: number;
       time_spent: number;
       comment: string;
     };
-    changes: {
-      for_date: string;
-    };
+    changes: Partial<TimelogUpdateWebhookEvent["data"]["old"]>;
     author: {
       id: number;
       full_name: string;

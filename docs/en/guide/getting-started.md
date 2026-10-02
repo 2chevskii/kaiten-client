@@ -2,17 +2,25 @@
 
 ## Requirements
 
-- Node.js 20 or newer;
-- TypeScript with ESM compatible `module` and `moduleResolution`;
+- Node.js 24 or newer;
+- for TypeScript projects, `module: "Node20"` is recommended (TypeScript 5.9 or newer);
 - a Kaiten company origin and an API token.
 
-Install version `1.0.0` from GitHub:
+Install a published version from npm:
 
 ```sh
-npm install github:2chevskii/kaiten-client#v1.0.0
+npm install @2chevskii/kaiten-client
 ```
 
-The package is not published to npm yet. GitHub installation runs the `prepare` build.
+The package includes compiled ESM JavaScript and type declarations. Node.js 24 supports both `import` and `require()`:
+
+```js
+const { KaitenClient } = require("@2chevskii/kaiten-client");
+```
+
+Source files and declaration maps are included for editor navigation. Run Node.js with `--enable-source-maps` for stack traces pointing to the original source. No TypeScript runtime loader is required.
+
+When upgrading from the GitHub `1.0.0` version, follow the [migration guide](/en/guide/migration).
 
 ## First request
 
@@ -27,9 +35,7 @@ const client = new KaitenClient({
   token,
 });
 
-const cards = await client.cards.retrieveCardList({
-  query: { limit: 10 },
-});
+const cards = await client.cards.retrieveCardList({ limit: 10 });
 
 for (const card of cards) {
   console.log(card.id, card.title);
