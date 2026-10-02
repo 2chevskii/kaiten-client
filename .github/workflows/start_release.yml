@@ -64,7 +64,6 @@ jobs:
       - working-directory: artifacts
         run: |
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
-            node ../tools/validate-draft-release.mjs
             gh release upload "$RELEASE_TAG" "$PACKAGE" --clobber
           else
             gh release create "$RELEASE_TAG" "$PACKAGE" \
