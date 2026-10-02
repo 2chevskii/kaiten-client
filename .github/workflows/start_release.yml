@@ -58,11 +58,10 @@ jobs:
       - run: npm pack
       - working-directory: artifacts
         run: |
-          sha256sum "$PACKAGE" > SHA256SUMS
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
             node ../tools/validate-draft-release.mjs
-            gh release upload "$RELEASE_TAG" "$PACKAGE" SHA256SUMS --clobber
+            gh release upload "$RELEASE_TAG" "$PACKAGE" --clobber
           else
-            gh release create "$RELEASE_TAG" "$PACKAGE" SHA256SUMS \
+            gh release create "$RELEASE_TAG" "$PACKAGE" \
               --draft --verify-tag --title "Kaiten Client $RELEASE_TAG" --generate-notes
           fi

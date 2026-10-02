@@ -46,9 +46,8 @@ jobs:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
           mkdir -p artifacts
-          gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS --dir artifacts
+          gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --dir artifacts
           cd artifacts
-          sha256sum --check SHA256SUMS
           tar -xOf "$PACKAGE" package/package.json | node ../tools/validate-release.mjs "$RELEASE_TAG" --stdin
       - env:
           NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
