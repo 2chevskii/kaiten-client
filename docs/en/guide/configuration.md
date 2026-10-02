@@ -27,8 +27,10 @@ const request = client.cards.retrieveCardList(
 );
 
 controller.abort();
-await request; // Rejects with the fetch abort error.
+await request; // Rejects with the cancellation error.
 ```
+
+Cancellation also interrupts waiting for an asynchronous token provider, rejecting with the signal's reason. The provider controls cancellation of its own work. A token that resolves later will not start the cancelled HTTP request. This applies to REST, SCIM, and addon OAuth clients.
 
 ## HTTP errors
 
@@ -48,6 +50,6 @@ try {
 }
 ```
 
-`body` is `unknown`: it can contain JSON, text, or `undefined` for an empty response. Network and abort errors come from `fetch`. Requests are never retried automatically; implement retries in your application with the method and Kaiten limits in mind.
+`body` is `unknown`: it can contain JSON, text, or `undefined` for an empty response. Network and token-provider errors propagate unchanged. Requests are never retried automatically; implement retries in your application with the method and Kaiten limits in mind.
 
 Malformed JSON or an unexpectedly empty successful response throws `KaitenResponseError`. It exposes `status`, `headers`, `method`, `url`, the original response text in `body`, and the parsing error in `cause`. Documented operations without a response body return `undefined`.

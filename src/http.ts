@@ -1,3 +1,4 @@
+import { addAbortListener } from "node:events";
 import { KaitenHttpError, KaitenResponseError } from "./errors.ts";
 import { readJsonResponse } from "./http-response.ts";
 
@@ -105,7 +106,9 @@ export class HttpTransport {
     }
 
     const token =
-      typeof this.token === "string" ? this.token : await this.token();
+      typeof this.token === "string"
+        ? this.token
+        : await resolveToken(this.token, operation.signal);
     if (typeof token !== "string" || !token.trim()) {
       throw new TypeError("A non-empty Kaiten token is required");
     }
@@ -164,6 +167,28 @@ export class HttpTransport {
       url.toString(),
       operation.responseMode === "void",
     );
+  }
+}
+
+async function resolveToken(
+  provider: () => string | Promise<string>,
+  signal?: AbortSignal,
+): Promise<string> {
+  signal?.throwIfAborted();
+  if (!signal) {
+    return provider();
+  }
+
+  const { promise: aborted, reject } = Promise.withResolvers<never>();
+  const listener = addAbortListener(signal, () => reject(signal.reason));
+  try {
+    const pendingToken = Promise.resolve().then(() => {
+      signal.throwIfAborted();
+      return provider();
+    });
+    return await Promise.race([pendingToken, aborted]);
+  } finally {
+    listener[Symbol.dispose]();
   }
 }
 
