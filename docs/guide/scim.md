@@ -28,3 +28,21 @@ await scim.groups.getGroup(group.id);
 ```
 
 `updateUser` и `updateGroup` принимают массивы `ScimUserPatchOperation` и `ScimGroupPatchOperation`; клиент формирует поле `Operations` в запросе. ID групп допускают строковые значения, которые возвращает SCIM.
+
+## Автоматическая пагинация
+
+`users.iterate(startIndex?, count?, filter?, options?)` и `groups.iterate(startIndex?, count?, options?)` лениво перебирают списки SCIM:
+
+```ts
+for await (const user of scim.users.iterate(1, 50)) {
+  console.log(user.id, user.userName);
+}
+
+for await (const group of scim.groups.iterate()) {
+  console.log(group.id, group.displayName);
+}
+```
+
+По умолчанию запросы начинаются с индекса 1. Следующий индекс увеличивается на фактически полученное число элементов, поэтому ограничение размера страницы на сервере не приводит к пропускам. Перебор завершается при достижении `totalResults` или пустой странице. Поле `startIndex` ответа не используется для продвижения: примеры Kaiten возвращают 0, хотя индексы запросов документированы как начинающиеся с 1.
+
+До начала перебора запросы не выполняются, а `break` прекращает загрузку следующих страниц. Последний аргумент `{ signal }` отменяет перебор между элементами или во время запроса. Значения `count` и фильтра пользователей сохраняются на каждой странице. Для получения отдельных страниц и их метаданных остаются методы `getUsers` и `getGroups`.

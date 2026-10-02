@@ -2,6 +2,8 @@
 
 Operations are grouped by client resource. Method and type names match the package exports. Use your editor for nested fields and exact TypeScript types. Each entry links to the original Kaiten documentation.
 
+`users.iterate` and `groups.iterate` provide automatic pagination over their list operations. See the [SCIM pagination guide](/en/guide/scim#automatic-pagination).
+
 [`groups`](#groups) · [`users`](#users)
 
 ## groups

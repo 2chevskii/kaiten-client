@@ -41,6 +41,8 @@ pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 `src/card-filter.ts` defines and encodes typed card search filters. Search
 iterators for cards, documents, and document groups share the cursor traversal
 in `src/rest/search.ts`, which handles cancellation and detects repeated cursors.
+SCIM iterators use `src/scim/pagination.ts` to advance one-based request indices
+by the actual page length and stop at the advertised total.
 
 `src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
 
