@@ -45,14 +45,16 @@ jobs:
       - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
-          gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS
+          mkdir -p artifacts
+          gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS --dir artifacts
+          cd artifacts
           sha256sum --check SHA256SUMS
-          tar -xOf "$PACKAGE" package/package.json | node scripts/validate-release.mjs "$RELEASE_TAG" --stdin
+          tar -xOf "$PACKAGE" package/package.json | node ../scripts/validate-release.mjs "$RELEASE_TAG" --stdin
       - env:
           NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
           REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
-          PACKAGE: ${{ steps.version.outputs.package }}
+          PACKAGE: artifacts/${{ steps.version.outputs.package }}
         run: |
           if [ '${{ matrix.registry }}' = npm ]; then
             if [ -z "$NODE_AUTH_TOKEN" ] || [ "$NODE_AUTH_TOKEN" = REPLACE_WITH_REAL_NPM_TOKEN ]; then

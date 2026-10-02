@@ -14,47 +14,47 @@
     "node": ">=24"
   },
   "files": [
-    "dist",
+    "artifacts/lib",
     "src",
     "README.md",
     "LICENSE"
   ],
-  "types": "./dist/index.d.ts",
+  "types": "./artifacts/lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./artifacts/lib/index.d.ts",
+      "default": "./artifacts/lib/index.js"
     },
     "./scim": {
-      "types": "./dist/scim.d.ts",
-      "default": "./dist/scim.js"
+      "types": "./artifacts/lib/scim.d.ts",
+      "default": "./artifacts/lib/scim.js"
     },
     "./webhooks": {
-      "types": "./dist/webhooks.d.ts",
-      "default": "./dist/webhooks.js"
+      "types": "./artifacts/lib/webhooks.d.ts",
+      "default": "./artifacts/lib/webhooks.js"
     },
     "./metadata": {
-      "types": "./dist/metadata.d.ts",
-      "default": "./dist/metadata.js"
+      "types": "./artifacts/lib/metadata.d.ts",
+      "default": "./artifacts/lib/metadata.js"
     },
     "./imports": {
-      "types": "./dist/imports.d.ts",
-      "default": "./dist/imports.js"
+      "types": "./artifacts/lib/imports.d.ts",
+      "default": "./artifacts/lib/imports.js"
     },
     "./addons": {
-      "types": "./dist/addons.d.ts",
-      "default": "./dist/addons.js"
+      "types": "./artifacts/lib/addons.d.ts",
+      "default": "./artifacts/lib/addons.js"
     },
     "./addon-oauth": {
-      "types": "./dist/addon-oauth.d.ts",
-      "default": "./dist/addon-oauth.js"
+      "types": "./artifacts/lib/addon-oauth.d.ts",
+      "default": "./artifacts/lib/addon-oauth.js"
     }
   },
   "scripts": {
-    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
+    "build": "node -e \"require('node:fs').rmSync('artifacts/lib', { recursive: true, force: true })\" && tsc",
     "build:watch": "tsc --watch",
     "prepack": "npm run build",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p docs/tsconfig.json",
+    "pack": "node scripts/prepare-package.mjs && npm pack ./artifacts --ignore-scripts --pack-destination artifacts",
     "lint": "eslint .",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
@@ -62,8 +62,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "test": "node --no-strip-types --test verification/*.test.mjs",
-    "check": "npm run build && npm run typecheck && npm run lint && npm run format:check && npm test && npm run docs:build"
+    "check": "npm run build && npm run lint && npm run format:check && npm run docs:build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

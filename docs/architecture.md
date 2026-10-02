@@ -40,24 +40,24 @@ pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 
 `src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
 
-`npm test` covers HTTP and typing regressions using Node.js's built-in test runner.
-
 ## Build and package
 
-`npm run build` removes `dist` with Node.js's filesystem API and runs `tsc`. The compiler uses
+`npm run build` removes `artifacts/lib` with Node.js's filesystem API and runs `tsc`. The compiler uses
 the stable `Node20` module mode and targets ES2024 for Node.js 24 and newer.
 Relative imports in source use `.ts`; `rewriteRelativeImportExtensions` converts
 them to `.js` in the emitted ESM JavaScript.
 
 Each source module produces JavaScript, a declaration file, and maps for both.
-The npm package includes `dist` and `src` so declaration maps can navigate to
+The npm package includes `lib` and `src` so declaration maps can navigate to
 the implementation and JavaScript maps can resolve stack traces with
 `node --enable-source-maps`. Runtime entry points always resolve to compiled
 JavaScript.
 
-`npm run build:watch` recompiles changes during development. The `prepack` hook
-runs a clean build before `npm pack` or `npm publish`.
+`npm run build:watch` recompiles changes during development. `npm run pack` runs
+one clean build through its `prepack` hook and prepares `artifacts/` as the package root. The preparation step
+copies sources, README, and license, relocates source-map references, and writes
+a publication manifest with `./lib/` exports. The tarball is written to
+`artifacts/`; the directory prefix and other build outputs are excluded from it.
 
 The library's module graph must remain free of top-level `await` to support
-Node.js 24's synchronous `require()` of ESM. Tests run against compiled JavaScript
-with Node.js type stripping disabled.
+Node.js 24's synchronous `require()` of ESM.

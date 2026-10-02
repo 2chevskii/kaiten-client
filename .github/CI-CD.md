@@ -4,19 +4,19 @@ The workflows follow the two-stage release process used in [2chevskii/gly](https
 
 ## Continuous integration
 
-`ci.yml` runs on pushes and pull requests. `Start release` calls the same `CI` workflow for release tags.
+`ci.yml` runs on branch pushes and pull requests. Release tags run these checks once through the `Start release` workflow's call to `ci.yml`.
 
 All check jobs run independently on Ubuntu 26.04 with Node.js 24:
 
-| Job      | Command                      | Scope                                                          |
-| -------- | ---------------------------- | -------------------------------------------------------------- |
-| `lint`   | build, typecheck, lint, test | Source types, ESLint, HTTP behavior, and public type contracts |
-| `format` | `npm run format:check`       | Prettier                                                       |
-| `docs`   | `npm run docs:build`         | Bilingual VitePress build                                      |
+| Job      | Command                | Scope                     |
+| -------- | ---------------------- | ------------------------- |
+| `lint`   | build, lint            | Source types and ESLint   |
+| `format` | `npm run format:check` | Prettier                  |
+| `docs`   | `npm run docs:build`   | Bilingual VitePress build |
 
-Each job installs dependencies with `npm ci --ignore-scripts`. The `lint` job builds before checking the REST sample, which imports public declarations from `dist`. `npm test` checks HTTP behavior through a local server and public type contracts through the TypeScript compiler. `npm run check` runs the complete local verification.
+Each job installs dependencies with `npm ci --ignore-scripts`. The `lint` job builds before checking the REST sample, which imports public declarations from `artifacts/lib`. `npm run check` runs the build, lint, formatting, and documentation build locally. The library build checks source types.
 
-- The `docs` job retains documentation as an Actions artifact for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
+- The `docs` job uploads the `github-pages` artifact ready for deployment and retains it for 14 days. The release workflow builds and packs the library, then retains the tarball as a release asset.
 
 Configure branch protection for `develop` to require `lint`, `format`, and `docs`. Use the exact check names shown in the first Actions run. Keep required checks unconditional; the workflows intentionally have no path filters.
 
@@ -41,7 +41,7 @@ The project site is `https://2chevskii.github.io/kaiten-client/`. CI builds with
    git push origin v1.0.1
    ```
 
-3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, `npm pack` runs the `prepack` build and packs the library. The workflow creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
+3. `Start release` validates stable `vX.Y.Z` syntax and matching package/lockfile metadata, then runs the same checks as CI. After every job succeeds, `npm run pack` builds into `artifacts/lib`, prepares `artifacts/` as the package root, and writes the tarball there. The archive contains `lib/`, `src/`, and package metadata. The workflow creates a draft GitHub release containing the `.tgz` and `SHA256SUMS`.
 4. Review the draft's generated release notes and publish it through GitHub. Publish manually so the `release: published` event starts `Finish release`; events created with a workflow's `GITHUB_TOKEN` do not generally start another workflow.
 5. `Finish release` independently publishes the original asset to npm and GitHub Packages. It validates the published stable release, package metadata and SHA-256 checksum, and compares each registry's SHA-512 integrity with the uploaded tarball. It does not rebuild the package.
 

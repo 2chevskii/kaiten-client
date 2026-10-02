@@ -201,8 +201,13 @@ The [CI/CD guide](https://github.com/2chevskii/kaiten-client/blob/develop/.githu
 ```sh
 npm ci
 npm run check
-npm pack --dry-run
+npm run pack
 ```
+
+`npm run build` writes JavaScript, declarations, and source maps to `artifacts/lib/`.
+`npm run pack` creates `artifacts/2chevskii-kaiten-client-<version>.tgz`.
+The archive contains `lib/` and `src/` at its package root, with declaration maps
+pointing to the included sources.
 
 The [documentation audit](https://github.com/2chevskii/kaiten-client/blob/develop/docs/documentation-audit.md) records 310 pages reviewed for this release. No live Kaiten account or token was available for this release, so server behavior has not been verified against a real tenant. Types represent documented schemas and examples; fields Kaiten leaves unspecified use `unknown`.
 

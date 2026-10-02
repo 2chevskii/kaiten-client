@@ -55,8 +55,9 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm pack
-      - run: |
+      - run: npm run pack
+      - working-directory: artifacts
+        run: |
           sha256sum "$PACKAGE" > SHA256SUMS
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
             node -e 'if (!JSON.parse(require("fs").readFileSync("release.json")).isDraft) throw new Error("Release is already published");'
