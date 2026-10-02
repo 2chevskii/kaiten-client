@@ -1,6 +1,6 @@
 on:
   push:
-    branches: ["**"]
+    branches: [develop]
   pull_request:
   workflow_call:
 
