@@ -135,6 +135,7 @@ export class HttpTransport {
       response.status < 400
     ) {
       const location = response.headers.get("Location");
+      await response.body?.cancel();
       if (!location) {
         throw new KaitenHttpError(
           response,
