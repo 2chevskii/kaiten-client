@@ -4,6 +4,7 @@
     "tsBuildInfoFile": "artifacts/tsconfig.tsbuildinfo",
     "target": "ES2024",
     "lib": ["ES2024", "DOM"],
+    "types": ["node"],
     "module": "Node20",
     "strict": true,
     "noUncheckedIndexedAccess": true,

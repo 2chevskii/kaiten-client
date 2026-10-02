@@ -2,6 +2,8 @@
 
 Операции сгруппированы по ресурсам клиента. Имена методов и типов совпадают с экспортами пакета. Для вложенных полей и точных TypeScript-типов используйте подсказки редактора. Ссылки ведут на первичную документацию Kaiten.
 
+`cards.iterate`, `documents.iterate` и `documentGroups.iterate` обеспечивают автоматическую пагинацию соответствующих поисковых операций. Примеры — в [руководстве по пагинации и типизированным фильтрам](/guide/rest#автоматическая-пагинация).
+
 Маршруты здесь приведены в версии, указанной в документации Kaiten. REST-клиент использует `/api/v1` по умолчанию; `apiVersion: "latest"` переключает префикс на `/api/latest`.
 
 [`auditLogs`](#auditlogs) · [`automations`](#automations) · [`boards`](#boards) · [`cardAllowedUsers`](#cardallowedusers) · [`cardBlockerCategories`](#cardblockercategories) · [`cardBlockerUsers`](#cardblockerusers) · [`cardBlockers`](#cardblockers) · [`cardChecklistItems`](#cardchecklistitems) · [`cardChecklists`](#cardchecklists) · [`cardChildren`](#cardchildren) · [`cardComments`](#cardcomments) · [`cardExternalLinks`](#cardexternallinks) · [`cardFiles`](#cardfiles) · [`cardMembers`](#cardmembers) · [`cardServiceDeskExternalRecipients`](#cardservicedeskexternalrecipients) · [`cardSla`](#cardsla) · [`cardTags`](#cardtags) · [`cardTimeLogs`](#cardtimelogs) · [`cardTypeTreeEntities`](#cardtypetreeentities) · [`cardTypes`](#cardtypes) · [`cards`](#cards) · [`checklistItems`](#checklistitems) · [`checklists`](#checklists) · [`columns`](#columns) · [`companyUsers`](#companyusers) · [`customDirectories`](#customdirectories) · [`customDirectoryFields`](#customdirectoryfields) · [`customDirectoryRecords`](#customdirectoryrecords) · [`customProperties`](#customproperties) · [`customPropertyCatalogValues`](#custompropertycatalogvalues) · [`customPropertyCollectiveScoreValues`](#custompropertycollectivescorevalues) · [`customPropertyCollectiveVoteValues`](#custompropertycollectivevotevalues) · [`customPropertySelectValues`](#custompropertyselectvalues) · [`customPropertyTreeEntities`](#custompropertytreeentities) · [`documentGroups`](#documentgroups) · [`documentSchemas`](#documentschemas) · [`documents`](#documents) · [`groupAdmins`](#groupadmins) · [`groupEntities`](#groupentities) · [`groupUsers`](#groupusers) · [`groups`](#groups) · [`iterations`](#iterations) · [`lanes`](#lanes) · [`restrictedAccessCardFiles`](#restrictedaccesscardfiles) · [`restrictedAccessCommentFiles`](#restrictedaccesscommentfiles) · [`restrictedAccessCustomPropertyFiles`](#restrictedaccesscustompropertyfiles) · [`serviceDeskServices`](#servicedeskservices) · [`spaceBoards`](#spaceboards) · [`spaceTemplateChecklistItems`](#spacetemplatechecklistitems) · [`spaceTemplateChecklist`](#spacetemplatechecklist) · [`spaceUsers`](#spaceusers) · [`spaces`](#spaces) · [`sprints`](#sprints) · [`subcolumn`](#subcolumn) · [`tags`](#tags) · [`timesheet`](#timesheet) · [`treeEntities`](#treeentities) · [`treeEntityRoles`](#treeentityroles) · [`userRoles`](#userroles) · [`users`](#users)
@@ -2210,60 +2212,60 @@ declare const retrieveCardList: {
 
 **Параметры запроса**
 
-| Поле                             | Тип           | Обязательность |
-| -------------------------------- | ------------- | -------------- |
-| `created_before`                 | string        | Необязательно  |
-| `created_after`                  | string        | Необязательно  |
-| `updated_before`                 | string        | Необязательно  |
-| `updated_after`                  | string        | Необязательно  |
-| `first_moved_in_progress_after`  | string        | Необязательно  |
-| `first_moved_in_progress_before` | string        | Необязательно  |
-| `last_moved_to_done_at_after`    | string        | Необязательно  |
-| `last_moved_to_done_at_before`   | string        | Необязательно  |
-| `due_date_after`                 | string        | Необязательно  |
-| `due_date_before`                | string        | Необязательно  |
-| `query`                          | string        | Необязательно  |
-| `version`                        | integer       | Необязательно  |
-| `tag`                            | string        | Необязательно  |
-| `tag_ids`                        | string        | Необязательно  |
-| `type_ids`                       | string        | Необязательно  |
-| `exclude_board_ids`              | string        | Необязательно  |
-| `exclude_lane_ids`               | string        | Необязательно  |
-| `exclude_column_ids`             | string        | Необязательно  |
-| `column_ids`                     | string        | Необязательно  |
-| `member_ids`                     | string        | Необязательно  |
-| `owner_ids`                      | string        | Необязательно  |
-| `responsible_ids`                | string        | Необязательно  |
-| `states`                         | string        | Необязательно  |
-| `external_id`                    | string        | Необязательно  |
-| `additional_card_fields`         | string        | Необязательно  |
-| `search_fields`                  | string        | Необязательно  |
-| `space_id`                       | integer       | Необязательно  |
-| `limit`                          | integer       | Необязательно  |
-| `offset`                         | integer       | Необязательно  |
-| `start_position`                 | string        | Необязательно  |
-| `include_search_preview`         | boolean       | Необязательно  |
-| `order_space_id`                 | integer       | Необязательно  |
-| `board_id`                       | integer       | Необязательно  |
-| `column_id`                      | integer       | Необязательно  |
-| `lane_id`                        | integer       | Необязательно  |
-| `condition`                      | integer       | Необязательно  |
-| `type_id`                        | integer       | Необязательно  |
-| `responsible_id`                 | integer       | Необязательно  |
-| `owner_id`                       | integer       | Необязательно  |
-| `archived`                       | boolean       | Необязательно  |
-| `asap`                           | boolean       | Необязательно  |
-| `overdue`                        | boolean       | Необязательно  |
-| `done_on_time`                   | boolean       | Необязательно  |
-| `with_due_date`                  | boolean       | Необязательно  |
-| `filter`                         | string Schema | Необязательно  |
-| `order_by`                       | string        | Необязательно  |
-| `order_direction`                | string        | Необязательно  |
-| `is_request`                     | boolean       | Необязательно  |
-| `exclude_owner_ids`              | string        | Необязательно  |
-| `exclude_card_ids`               | string        | Необязательно  |
-| `organizations_ids`              | string        | Необязательно  |
-| `broken_api`                     | boolean       | Необязательно  |
+| Поле                             | Тип                 | Обязательность |
+| -------------------------------- | ------------------- | -------------- |
+| `created_before`                 | string              | Необязательно  |
+| `created_after`                  | string              | Необязательно  |
+| `updated_before`                 | string              | Необязательно  |
+| `updated_after`                  | string              | Необязательно  |
+| `first_moved_in_progress_after`  | string              | Необязательно  |
+| `first_moved_in_progress_before` | string              | Необязательно  |
+| `last_moved_to_done_at_after`    | string              | Необязательно  |
+| `last_moved_to_done_at_before`   | string              | Необязательно  |
+| `due_date_after`                 | string              | Необязательно  |
+| `due_date_before`                | string              | Необязательно  |
+| `query`                          | string              | Необязательно  |
+| `version`                        | integer             | Необязательно  |
+| `tag`                            | string              | Необязательно  |
+| `tag_ids`                        | string              | Необязательно  |
+| `type_ids`                       | string              | Необязательно  |
+| `exclude_board_ids`              | string              | Необязательно  |
+| `exclude_lane_ids`               | string              | Необязательно  |
+| `exclude_column_ids`             | string              | Необязательно  |
+| `column_ids`                     | string              | Необязательно  |
+| `member_ids`                     | string              | Необязательно  |
+| `owner_ids`                      | string              | Необязательно  |
+| `responsible_ids`                | string              | Необязательно  |
+| `states`                         | string              | Необязательно  |
+| `external_id`                    | string              | Необязательно  |
+| `additional_card_fields`         | string              | Необязательно  |
+| `search_fields`                  | string              | Необязательно  |
+| `space_id`                       | integer             | Необязательно  |
+| `limit`                          | integer             | Необязательно  |
+| `offset`                         | integer             | Необязательно  |
+| `start_position`                 | string              | Необязательно  |
+| `include_search_preview`         | boolean             | Необязательно  |
+| `order_space_id`                 | integer             | Необязательно  |
+| `board_id`                       | integer             | Необязательно  |
+| `column_id`                      | integer             | Необязательно  |
+| `lane_id`                        | integer             | Необязательно  |
+| `condition`                      | integer             | Необязательно  |
+| `type_id`                        | integer             | Необязательно  |
+| `responsible_id`                 | integer             | Необязательно  |
+| `owner_id`                       | integer             | Необязательно  |
+| `archived`                       | boolean             | Необязательно  |
+| `asap`                           | boolean             | Необязательно  |
+| `overdue`                        | boolean             | Необязательно  |
+| `done_on_time`                   | boolean             | Необязательно  |
+| `with_due_date`                  | boolean             | Необязательно  |
+| `filter`                         | string / CardFilter | Необязательно  |
+| `order_by`                       | string              | Необязательно  |
+| `order_direction`                | string              | Необязательно  |
+| `is_request`                     | boolean             | Необязательно  |
+| `exclude_owner_ids`              | string              | Необязательно  |
+| `exclude_card_ids`               | string              | Необязательно  |
+| `organizations_ids`              | string              | Необязательно  |
+| `broken_api`                     | boolean             | Необязательно  |
 
 **Ответ:** Массив. Поля: `id`, `uid`, `created`, `updated`, `archived`, `title`, `asap`, `due_date`, `sort_order`, `fifo_order`, `state`, `condition`, `expires_later`, `parents_count`, `children_count`, `children_done`, `has_blocked_children`, `goals_total`, `goals_done`, `time_spent_sum`, `time_blocked_sum`, `children_number_properties_sum`, `calculated_planned_start`, `calculated_planned_end`, `parent_checklist_ids`, `children_ids`, `parents_ids`, `blocking_card`, `blocked`, `size`, `size_unit`, `size_text`, `due_date_time_present`, `board_id`, `column_id`, `lane_id`, `owner_id`, `type_id`, `version`, `updater_id`, `completed_on_time`, `completed_at`, `last_moved_at`, `lane_changed_at`, `column_changed_at`, `first_moved_to_in_progress_at`, `last_moved_to_done_at`, `sprint_id`, `external_id`, `comments_total`, `comment_last_added_at`, `properties`, `planned_start`, `planned_end`, `ignore_planned_dates_recalculation`, `service_id`, `sd_new_comment`, `public`, `share_settings`, `share_id`, `external_user_emails`, `description_filled`, `estimate_workload`, `owner`, `board`, `members`, `column`, `lane`, `type`, `path_data`.
 

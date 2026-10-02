@@ -24,7 +24,7 @@ const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Methods take IDs as separate arguments. Small sets of body fields are separate too: `client.cardComments.addComment(cardId, text)`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Every method returns a `Promise`. `Params` types describe the method's argument tuple, which can be passed with `...args`.
+Methods take IDs as separate arguments. Small sets of body fields are separate too: `client.cardComments.addComment(cardId, text)`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Endpoint methods return a `Promise`; `iterate` methods return an async iterator. `Params` types describe the method's argument tuple, which can be passed with `...args`.
 
 `client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types and [reference](/en/reference/rest).
 
@@ -62,8 +62,50 @@ console.log(firstPage.result, nextPage.result);
 
 The root package exports `SearchResponseV2<Result>`. Pass literal `1` or `2` so TypeScript infers the matching result type. A normal list call without `version: 2` returns an array.
 
+## Automatic pagination
+
+`cards.iterate`, `documents.iterate`, and `documentGroups.iterate` fetch version 2 search pages as you consume their items:
+
+```ts
+for await (const card of client.cards.iterate({ board_id: 10, limit: 50 })) {
+  console.log(card.id, card.title);
+  if (card.asap) break;
+}
+```
+
+No request starts until iteration begins. Breaking the loop prevents further page requests. Use the last `{ signal }` argument to cancel, including between items of an already fetched page. `start_position` resumes from an existing cursor. `version` and `offset` are omitted from the iterator query types because iteration uses cursor pagination with version 2.
+
+Iteration ends on an empty page or an empty cursor. A repeated cursor throws an error instead of requesting the same pages indefinitely. Single-page methods remain available when you need to control pagination yourself.
+
+## Typed card filters
+
+The `filter` field accepts a `CardFilter` object or an existing base64 string. Object filters are encoded automatically using UTF-8:
+
+```ts
+import type { CardFilter } from "@2chevskii/kaiten-client";
+
+const filter = {
+  key: "and",
+  value: [
+    {
+      key: "or",
+      value: [
+        { key: "owner_id", comparison: "eq", value: 123 },
+        { key: "asap", comparison: "true" },
+      ],
+    },
+  ],
+} satisfies CardFilter;
+
+for await (const card of client.cards.iterate({ filter })) {
+  console.log(card.title);
+}
+```
+
+The types follow Kaiten's [filter schema](https://developers.kaiten.ru/cards/retrieve-card-list): a top-level `and`/`or` contains groups of conditions, and each condition's key and comparison determine its value type. Numeric custom-property comparisons use string values; checkbox and attachment comparisons require `value: null`. `encodeCardFilter(filter)` is exported when you need the encoded string separately. Other API operations that accept filter strings keep their existing contracts.
+
 ## IDs and responses
 
 Kaiten uses both numeric IDs and UUIDs. Pass the identifier type required by the particular method, such as `card_id: number` or `card_uid: string`. Dates remain strings, documented nullable fields allow `null`, and incomplete schemas use `unknown`.
 
-The client does not paginate automatically: use `limit`, `offset`, or a cursor where supported. Read the [file guide](/en/guide/files) for file routes.
+For operations without an iterator, use `limit`, `offset`, or a cursor where supported. Read the [file guide](/en/guide/files) for file routes.

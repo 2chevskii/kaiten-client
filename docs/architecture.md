@@ -38,6 +38,10 @@ incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 Contracts are maintained in source code alongside their operations. Reference
 pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 
+`src/card-filter.ts` defines and encodes typed card search filters. Search
+iterators for cards, documents, and document groups share the cursor traversal
+in `src/rest/search.ts`, which handles cancellation and detects repeated cursors.
+
 `src/entities.ts` defines shared response projections. `src/types.ts` contains JSON values, dynamic custom-property maps, and the utility for schema `anyOf` requirements. `src/document-data.ts` describes ProseMirror document data and version-independent schema responses. Operation `Params` exports are tuples derived from their method signatures.
 
 ## Build and package

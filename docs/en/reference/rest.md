@@ -2,6 +2,8 @@
 
 Operations are grouped by client resource. Method and type names match the package exports. Use your editor for nested fields and exact TypeScript types. Each entry links to the original Kaiten documentation.
 
+`cards.iterate`, `documents.iterate`, and `documentGroups.iterate` provide automatic pagination over the corresponding search operations. See the [pagination and typed filter guide](/en/guide/rest#automatic-pagination).
+
 Paths below use the version shown in Kaiten's documentation. The REST client defaults to `/api/v1`; `apiVersion: "latest"` switches the prefix to `/api/latest`.
 
 [`auditLogs`](#auditlogs) · [`automations`](#automations) · [`boards`](#boards) · [`cardAllowedUsers`](#cardallowedusers) · [`cardBlockerCategories`](#cardblockercategories) · [`cardBlockerUsers`](#cardblockerusers) · [`cardBlockers`](#cardblockers) · [`cardChecklistItems`](#cardchecklistitems) · [`cardChecklists`](#cardchecklists) · [`cardChildren`](#cardchildren) · [`cardComments`](#cardcomments) · [`cardExternalLinks`](#cardexternallinks) · [`cardFiles`](#cardfiles) · [`cardMembers`](#cardmembers) · [`cardServiceDeskExternalRecipients`](#cardservicedeskexternalrecipients) · [`cardSla`](#cardsla) · [`cardTags`](#cardtags) · [`cardTimeLogs`](#cardtimelogs) · [`cardTypeTreeEntities`](#cardtypetreeentities) · [`cardTypes`](#cardtypes) · [`cards`](#cards) · [`checklistItems`](#checklistitems) · [`checklists`](#checklists) · [`columns`](#columns) · [`companyUsers`](#companyusers) · [`customDirectories`](#customdirectories) · [`customDirectoryFields`](#customdirectoryfields) · [`customDirectoryRecords`](#customdirectoryrecords) · [`customProperties`](#customproperties) · [`customPropertyCatalogValues`](#custompropertycatalogvalues) · [`customPropertyCollectiveScoreValues`](#custompropertycollectivescorevalues) · [`customPropertyCollectiveVoteValues`](#custompropertycollectivevotevalues) · [`customPropertySelectValues`](#custompropertyselectvalues) · [`customPropertyTreeEntities`](#custompropertytreeentities) · [`documentGroups`](#documentgroups) · [`documentSchemas`](#documentschemas) · [`documents`](#documents) · [`groupAdmins`](#groupadmins) · [`groupEntities`](#groupentities) · [`groupUsers`](#groupusers) · [`groups`](#groups) · [`iterations`](#iterations) · [`lanes`](#lanes) · [`restrictedAccessCardFiles`](#restrictedaccesscardfiles) · [`restrictedAccessCommentFiles`](#restrictedaccesscommentfiles) · [`restrictedAccessCustomPropertyFiles`](#restrictedaccesscustompropertyfiles) · [`serviceDeskServices`](#servicedeskservices) · [`spaceBoards`](#spaceboards) · [`spaceTemplateChecklistItems`](#spacetemplatechecklistitems) · [`spaceTemplateChecklist`](#spacetemplatechecklist) · [`spaceUsers`](#spaceusers) · [`spaces`](#spaces) · [`sprints`](#sprints) · [`subcolumn`](#subcolumn) · [`tags`](#tags) · [`timesheet`](#timesheet) · [`treeEntities`](#treeentities) · [`treeEntityRoles`](#treeentityroles) · [`userRoles`](#userroles) · [`users`](#users)
@@ -2210,60 +2212,60 @@ With `query.version: 2`, the result is `SearchResponseV2<...>` containing `resul
 
 **Query parameters**
 
-| Field                            | Type          | Presence |
-| -------------------------------- | ------------- | -------- |
-| `created_before`                 | string        | Optional |
-| `created_after`                  | string        | Optional |
-| `updated_before`                 | string        | Optional |
-| `updated_after`                  | string        | Optional |
-| `first_moved_in_progress_after`  | string        | Optional |
-| `first_moved_in_progress_before` | string        | Optional |
-| `last_moved_to_done_at_after`    | string        | Optional |
-| `last_moved_to_done_at_before`   | string        | Optional |
-| `due_date_after`                 | string        | Optional |
-| `due_date_before`                | string        | Optional |
-| `query`                          | string        | Optional |
-| `version`                        | integer       | Optional |
-| `tag`                            | string        | Optional |
-| `tag_ids`                        | string        | Optional |
-| `type_ids`                       | string        | Optional |
-| `exclude_board_ids`              | string        | Optional |
-| `exclude_lane_ids`               | string        | Optional |
-| `exclude_column_ids`             | string        | Optional |
-| `column_ids`                     | string        | Optional |
-| `member_ids`                     | string        | Optional |
-| `owner_ids`                      | string        | Optional |
-| `responsible_ids`                | string        | Optional |
-| `states`                         | string        | Optional |
-| `external_id`                    | string        | Optional |
-| `additional_card_fields`         | string        | Optional |
-| `search_fields`                  | string        | Optional |
-| `space_id`                       | integer       | Optional |
-| `limit`                          | integer       | Optional |
-| `offset`                         | integer       | Optional |
-| `start_position`                 | string        | Optional |
-| `include_search_preview`         | boolean       | Optional |
-| `order_space_id`                 | integer       | Optional |
-| `board_id`                       | integer       | Optional |
-| `column_id`                      | integer       | Optional |
-| `lane_id`                        | integer       | Optional |
-| `condition`                      | integer       | Optional |
-| `type_id`                        | integer       | Optional |
-| `responsible_id`                 | integer       | Optional |
-| `owner_id`                       | integer       | Optional |
-| `archived`                       | boolean       | Optional |
-| `asap`                           | boolean       | Optional |
-| `overdue`                        | boolean       | Optional |
-| `done_on_time`                   | boolean       | Optional |
-| `with_due_date`                  | boolean       | Optional |
-| `filter`                         | string Schema | Optional |
-| `order_by`                       | string        | Optional |
-| `order_direction`                | string        | Optional |
-| `is_request`                     | boolean       | Optional |
-| `exclude_owner_ids`              | string        | Optional |
-| `exclude_card_ids`               | string        | Optional |
-| `organizations_ids`              | string        | Optional |
-| `broken_api`                     | boolean       | Optional |
+| Field                            | Type                | Presence |
+| -------------------------------- | ------------------- | -------- |
+| `created_before`                 | string              | Optional |
+| `created_after`                  | string              | Optional |
+| `updated_before`                 | string              | Optional |
+| `updated_after`                  | string              | Optional |
+| `first_moved_in_progress_after`  | string              | Optional |
+| `first_moved_in_progress_before` | string              | Optional |
+| `last_moved_to_done_at_after`    | string              | Optional |
+| `last_moved_to_done_at_before`   | string              | Optional |
+| `due_date_after`                 | string              | Optional |
+| `due_date_before`                | string              | Optional |
+| `query`                          | string              | Optional |
+| `version`                        | integer             | Optional |
+| `tag`                            | string              | Optional |
+| `tag_ids`                        | string              | Optional |
+| `type_ids`                       | string              | Optional |
+| `exclude_board_ids`              | string              | Optional |
+| `exclude_lane_ids`               | string              | Optional |
+| `exclude_column_ids`             | string              | Optional |
+| `column_ids`                     | string              | Optional |
+| `member_ids`                     | string              | Optional |
+| `owner_ids`                      | string              | Optional |
+| `responsible_ids`                | string              | Optional |
+| `states`                         | string              | Optional |
+| `external_id`                    | string              | Optional |
+| `additional_card_fields`         | string              | Optional |
+| `search_fields`                  | string              | Optional |
+| `space_id`                       | integer             | Optional |
+| `limit`                          | integer             | Optional |
+| `offset`                         | integer             | Optional |
+| `start_position`                 | string              | Optional |
+| `include_search_preview`         | boolean             | Optional |
+| `order_space_id`                 | integer             | Optional |
+| `board_id`                       | integer             | Optional |
+| `column_id`                      | integer             | Optional |
+| `lane_id`                        | integer             | Optional |
+| `condition`                      | integer             | Optional |
+| `type_id`                        | integer             | Optional |
+| `responsible_id`                 | integer             | Optional |
+| `owner_id`                       | integer             | Optional |
+| `archived`                       | boolean             | Optional |
+| `asap`                           | boolean             | Optional |
+| `overdue`                        | boolean             | Optional |
+| `done_on_time`                   | boolean             | Optional |
+| `with_due_date`                  | boolean             | Optional |
+| `filter`                         | string / CardFilter | Optional |
+| `order_by`                       | string              | Optional |
+| `order_direction`                | string              | Optional |
+| `is_request`                     | boolean             | Optional |
+| `exclude_owner_ids`              | string              | Optional |
+| `exclude_card_ids`               | string              | Optional |
+| `organizations_ids`              | string              | Optional |
+| `broken_api`                     | boolean             | Optional |
 
 **Response:** Array. Fields: `id`, `uid`, `created`, `updated`, `archived`, `title`, `asap`, `due_date`, `sort_order`, `fifo_order`, `state`, `condition`, `expires_later`, `parents_count`, `children_count`, `children_done`, `has_blocked_children`, `goals_total`, `goals_done`, `time_spent_sum`, `time_blocked_sum`, `children_number_properties_sum`, `calculated_planned_start`, `calculated_planned_end`, `parent_checklist_ids`, `children_ids`, `parents_ids`, `blocking_card`, `blocked`, `size`, `size_unit`, `size_text`, `due_date_time_present`, `board_id`, `column_id`, `lane_id`, `owner_id`, `type_id`, `version`, `updater_id`, `completed_on_time`, `completed_at`, `last_moved_at`, `lane_changed_at`, `column_changed_at`, `first_moved_to_in_progress_at`, `last_moved_to_done_at`, `sprint_id`, `external_id`, `comments_total`, `comment_last_added_at`, `properties`, `planned_start`, `planned_end`, `ignore_planned_dates_recalculation`, `service_id`, `sd_new_comment`, `public`, `share_settings`, `share_id`, `external_user_emails`, `description_filled`, `estimate_workload`, `owner`, `board`, `members`, `column`, `lane`, `type`, `path_data`.
 
