@@ -15,7 +15,9 @@ const users = await scim.users.getUsers(1, 20);
 console.log(users.Resources, users.totalResults);
 ```
 
-SCIM fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Methods accept IDs and small sets of fields separately, filters as `Query` objects, and cancellation through the last `{ signal }` argument. `KaitenHttpError` works as it does in the REST client. The [SCIM reference](/en/reference/scim) lists every method and type.
+SCIM fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Methods accept IDs, pagination, and filters as positional arguments, and cancellation through the last `{ signal }` argument. `KaitenHttpError` works as it does in the REST client. The [SCIM reference](/en/reference/scim) lists every method and type.
+
+Responses share the exported `ScimName`, `ScimEmail`, `ScimResourceMeta`, and `ScimResourceReference` contracts. Group members and user group memberships use numeric `value` IDs, while group resources expose a string `id`.
 
 ```ts
 await scim.users.updateUser(123, [

@@ -3,6 +3,25 @@ export interface ScimName {
   familyName: string;
 }
 
+export interface ScimResourceMeta {
+  resourceType: string;
+  created: string;
+  lastModified: string;
+  location: string;
+}
+
+export interface ScimEmail {
+  value: string;
+  type: string;
+  primary: boolean;
+}
+
+export interface ScimResourceReference {
+  value: number;
+  $ref: string;
+  display: string;
+}
+
 export type ScimUserPatchOperation =
   | { op: "replace"; path: "active"; value: boolean }
   | { op: "add" | "replace"; path: "name"; value: Partial<ScimName> }

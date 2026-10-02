@@ -1,8 +1,11 @@
 import type { HttpTransport, OperationOptions } from "../http.ts";
 import { pathSegment } from "../http.ts";
 import type {
+  ScimEmail,
   ScimGroupPatchOperation,
   ScimName,
+  ScimResourceMeta,
+  ScimResourceReference,
   ScimUserPatchOperation,
 } from "./types.ts";
 import type { JsonValue } from "../types.ts";
@@ -15,12 +18,7 @@ export interface GroupsAddGroupResponse {
   schemas: string[];
   id: string;
   displayName: string;
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
+  meta: ScimResourceMeta;
 }
 
 export type GroupsAddGroupParams = Parameters<
@@ -31,17 +29,8 @@ export interface GroupsGetGroupResponse {
   schemas: string[];
   id: string;
   displayName: string;
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
-  members: {
-    value: number;
-    $ref: string;
-    display: string;
-  }[];
+  meta: ScimResourceMeta;
+  members: ScimResourceReference[];
 }
 
 export type GroupsGetGroupParams = Parameters<
@@ -55,22 +44,7 @@ export interface GroupsGetGroupsQuery {
 
 export interface GroupsGetGroupsResponse {
   schemas: string[];
-  Resources: {
-    schemas: string[];
-    id: string;
-    displayName: string;
-    meta: {
-      resourceType: string;
-      created: string;
-      lastModified: string;
-      location: string;
-    };
-    members: {
-      value: number;
-      $ref: string;
-      display: string;
-    }[];
-  }[];
+  Resources: GroupsGetGroupResponse[];
   totalResults: number;
   itemsPerPage: number;
   startIndex: number;
@@ -88,17 +62,8 @@ export interface GroupsUpdateGroupResponse {
   schemas: string[];
   id: string;
   displayName: string;
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
-  members: {
-    value: number;
-    $ref: string;
-    display: string;
-  }[];
+  meta: ScimResourceMeta;
+  members: ScimResourceReference[];
 }
 
 export type GroupsUpdateGroupParams = Parameters<
@@ -113,24 +78,12 @@ export interface UsersAddUserBody {
 
 export interface UsersAddUserResponse {
   schemas: string[];
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
+  meta: ScimResourceMeta;
   id: number;
-  name: {
-    givenName: string;
-    familyName: string;
-  };
+  name: ScimName;
   userName: string;
   active: boolean;
-  emails: {
-    value: string;
-    type: string;
-    primary: boolean;
-  }[];
+  emails: ScimEmail[];
 }
 
 export type UsersAddUserParams = Parameters<
@@ -139,29 +92,13 @@ export type UsersAddUserParams = Parameters<
 
 export interface UsersGetUserResponse {
   schemas: string[];
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
+  meta: ScimResourceMeta;
   id: number;
-  name: {
-    givenName: string;
-    familyName: string;
-  };
+  name: ScimName;
   userName: string;
   active: boolean;
-  emails: {
-    value: string;
-    type: string;
-    primary: boolean;
-  }[];
-  groups: {
-    value: number;
-    display: string;
-    $ref: string;
-  }[];
+  emails: ScimEmail[];
+  groups: ScimResourceReference[];
 }
 
 export type UsersGetUserParams = Parameters<
@@ -176,27 +113,7 @@ export interface UsersGetUsersQuery {
 
 export interface UsersGetUsersResponse {
   schemas: string[];
-  Resources: {
-    schemas: string[];
-    meta: {
-      resourceType: string;
-      created: string;
-      lastModified: string;
-      location: string;
-    };
-    id: number;
-    name: {
-      givenName: string;
-      familyName: string;
-    };
-    userName: string;
-    active: boolean;
-    emails: {
-      value: string;
-      type: string;
-      primary: boolean;
-    }[];
-  }[];
+  Resources: UsersAddUserResponse[];
   totalResults: number;
   itemsPerPage: number;
   startIndex: number;
@@ -212,24 +129,12 @@ export interface UsersUpdateUserBody {
 
 export interface UsersUpdateUserResponse {
   schemas: string[];
-  meta: {
-    resourceType: string;
-    created: string;
-    lastModified: string;
-    location: string;
-  };
+  meta: ScimResourceMeta;
   id: number;
-  name: {
-    givenName: string;
-    familyName: string;
-  };
+  name: ScimName;
   userName: string;
   active: boolean;
-  emails: {
-    value: string;
-    type: string;
-    primary: boolean;
-  }[];
+  emails: ScimEmail[];
   groups: unknown[];
 }
 
