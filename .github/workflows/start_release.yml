@@ -55,7 +55,7 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm run pack
+      - run: npm pack
       - working-directory: artifacts
         run: |
           sha256sum "$PACKAGE" > SHA256SUMS

@@ -8,6 +8,7 @@ export default defineConfig(
   {
     ignores: [
       "artifacts/**",
+      "lib/**",
       "dist/**",
       "node_modules/**",
       "docs/.vitepress/cache/**",

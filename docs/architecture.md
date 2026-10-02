@@ -42,7 +42,7 @@ pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 
 ## Build and package
 
-`npm run build` removes `artifacts/lib` with Node.js's filesystem API and runs `tsc`. The compiler uses
+`npm run build` runs `tsc -b` to build the library incrementally. The compiler uses
 the stable `Node20` module mode and targets ES2024 for Node.js 24 and newer.
 Relative imports in source use `.ts`; `rewriteRelativeImportExtensions` converts
 them to `.js` in the emitted ESM JavaScript.
@@ -53,11 +53,21 @@ the implementation and JavaScript maps can resolve stack traces with
 `node --enable-source-maps`. Runtime entry points always resolve to compiled
 JavaScript.
 
-`npm run build:watch` recompiles changes during development. `npm run pack` runs
-one clean build through its `prepack` hook and prepares `artifacts/` as the package root. The preparation step
-copies sources, README, and license, relocates source-map references, and writes
-a publication manifest with `./lib/` exports. The tarball is written to
-`artifacts/`; the directory prefix and other build outputs are excluded from it.
+The library is a composite TypeScript project. The REST sample references it,
+so `npx tsc -b samples/kaiten-rest` builds the library before the sample, including
+on a clean checkout. Build mode skips projects that are already up to date.
+Build state is stored in `artifacts/tsconfig.tsbuildinfo` for the library and
+`samples/kaiten-rest/dist/tsconfig.tsbuildinfo` for the sample, outside source control
+and the published package. The documentation config remains a separate non-composite project.
+
+`npm run build:watch` uses build mode to recompile changes during development. `npm pack` runs
+one clean build through its `prepack` hook: it removes `lib` and runs
+`tsc -b --force` so stale outputs from deleted or renamed modules cannot enter the package.
+The repository root is the package root: npm includes `lib/`, `src/`, README,
+license, and the existing package manifest directly. The compiler's source maps
+already point from `lib/` to `src/`. No copying or path rewriting is needed.
+The `.npmrc` setting writes the tarball to `artifacts/`, which is excluded from
+the package along with the compiler's build state.
 
 The library's module graph must remain free of top-level `await` to support
 Node.js 24's synchronous `require()` of ESM.

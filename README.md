@@ -199,11 +199,11 @@ const token = await oauth.getToken("addon-uuid", 1, 1);
 ```sh
 npm ci
 npm run check
-npm run pack
+npm pack
 ```
 
-`npm run build` writes JavaScript, declarations, and source maps to `artifacts/lib/`.
-`npm run pack` creates `artifacts/2chevskii-kaiten-client-<version>.tgz`.
+`npm run build` writes JavaScript, declarations, and source maps to `lib/`.
+`npm pack` creates `artifacts/2chevskii-kaiten-client-<version>.tgz`.
 The archive contains `lib/` and `src/` at its package root, with declaration maps
 pointing to the included sources.
 

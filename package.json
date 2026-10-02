@@ -14,51 +14,50 @@
     "node": ">=24"
   },
   "files": [
-    "artifacts/lib",
+    "lib",
     "src",
     "README.md",
     "LICENSE"
   ],
-  "types": "./artifacts/lib/index.d.ts",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "types": "./artifacts/lib/index.d.ts",
-      "default": "./artifacts/lib/index.js"
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
     },
     "./scim": {
-      "types": "./artifacts/lib/scim.d.ts",
-      "default": "./artifacts/lib/scim.js"
+      "types": "./lib/scim.d.ts",
+      "default": "./lib/scim.js"
     },
     "./webhooks": {
-      "types": "./artifacts/lib/webhooks.d.ts",
-      "default": "./artifacts/lib/webhooks.js"
+      "types": "./lib/webhooks.d.ts",
+      "default": "./lib/webhooks.js"
     },
     "./metadata": {
-      "types": "./artifacts/lib/metadata.d.ts",
-      "default": "./artifacts/lib/metadata.js"
+      "types": "./lib/metadata.d.ts",
+      "default": "./lib/metadata.js"
     },
     "./imports": {
-      "types": "./artifacts/lib/imports.d.ts",
-      "default": "./artifacts/lib/imports.js"
+      "types": "./lib/imports.d.ts",
+      "default": "./lib/imports.js"
     },
     "./addons": {
-      "types": "./artifacts/lib/addons.d.ts",
-      "default": "./artifacts/lib/addons.js"
+      "types": "./lib/addons.d.ts",
+      "default": "./lib/addons.js"
     },
     "./addon-oauth": {
-      "types": "./artifacts/lib/addon-oauth.d.ts",
-      "default": "./artifacts/lib/addon-oauth.js"
+      "types": "./lib/addon-oauth.d.ts",
+      "default": "./lib/addon-oauth.js"
     }
   },
   "scripts": {
-    "build": "node -e \"require('node:fs').rmSync('artifacts/lib', { recursive: true, force: true })\" && tsc",
-    "build:watch": "tsc --watch",
-    "prepack": "npm run build",
-    "pack": "node scripts/prepare-package.mjs && npm pack ./artifacts --ignore-scripts --pack-destination artifacts",
+    "build": "tsc -b",
+    "build:watch": "tsc -b --watch",
+    "prepack": "node -e \"require('node:fs').rmSync('lib', { recursive: true, force: true })\" && tsc -b --force",
     "lint": "eslint .",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
-    "sample:kaiten-rest": "npm run build && tsc -p samples/kaiten-rest/tsconfig.json && node samples/kaiten-rest/dist/index.js",
+    "sample:kaiten-rest": "tsc -b samples/kaiten-rest && node samples/kaiten-rest/dist/index.js",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
