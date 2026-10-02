@@ -40,8 +40,8 @@ jobs:
       - id: version
         run: |
           gh release view "$RELEASE_TAG" --json isDraft,isPrerelease > release.json
-          node -e 'const release = JSON.parse(require("fs").readFileSync("release.json")); if (release.isDraft || release.isPrerelease) throw new Error("A published stable release is required");'
-          node scripts/validate-release.mjs "$RELEASE_TAG"
+          node tools/validate-published-release.mjs
+          node tools/validate-release.mjs "$RELEASE_TAG"
       - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
@@ -49,14 +49,15 @@ jobs:
           gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --pattern SHA256SUMS --dir artifacts
           cd artifacts
           sha256sum --check SHA256SUMS
-          tar -xOf "$PACKAGE" package/package.json | node ../scripts/validate-release.mjs "$RELEASE_TAG" --stdin
+          tar -xOf "$PACKAGE" package/package.json | node ../tools/validate-release.mjs "$RELEASE_TAG" --stdin
       - env:
           NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
+          REGISTRY_KIND: ${{ matrix.registry }}
           REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
           PACKAGE: artifacts/${{ steps.version.outputs.package }}
         run: |
-          if [ '${{ matrix.registry }}' = npm ]; then
+          if [ "$REGISTRY_KIND" = npm ]; then
             if [ -z "$NODE_AUTH_TOKEN" ] || [ "$NODE_AUTH_TOKEN" = REPLACE_WITH_REAL_NPM_TOKEN ]; then
               echo 'Replace repository secret NPM_TOKEN with a real npm publishing token before publishing.' >&2
               exit 1
@@ -64,9 +65,9 @@ jobs:
           else
             export NODE_AUTH_TOKEN="$GITHUB_PACKAGES_TOKEN"
           fi
-          expected=$(node --input-type=module -e 'import { createHash } from "node:crypto"; import { readFileSync } from "node:fs"; console.log("sha512-" + createHash("sha512").update(readFileSync(process.env.PACKAGE)).digest("base64"));')
+          expected=$(node tools/package-integrity.mjs)
           if npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json; then
-            actual=$(node -p '(value => Array.isArray(value) ? value[0] : value)(JSON.parse(require("fs").readFileSync("integrity.json", "utf8")))')
+            actual=$(node tools/registry-integrity.mjs)
             if [ "$actual" != "$expected" ]; then
               echo 'This version already exists with different package contents.' >&2
               exit 1
@@ -74,18 +75,12 @@ jobs:
             echo 'Identical package is already published.'
             exit 0
           fi
-          node --input-type=module <<'NODE'
-          import { readFileSync } from "node:fs";
-          const lookup = JSON.parse(readFileSync("integrity.json", "utf8"));
-          if (lookup?.error?.code !== "E404") {
-            throw new Error(`Registry lookup failed: ${lookup?.error?.code ?? "unknown error"}`);
-          }
-          NODE
-          if [ '${{ matrix.registry }}' = npm ]; then
+          node tools/validate-registry-lookup.mjs
+          if [ "$REGISTRY_KIND" = npm ]; then
             npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance --ignore-scripts
           else
             npm publish "$PACKAGE" --registry "$REGISTRY" --ignore-scripts
           fi
           npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json
-          actual=$(node -p '(value => Array.isArray(value) ? value[0] : value)(JSON.parse(require("fs").readFileSync("integrity.json", "utf8")))')
+          actual=$(node tools/registry-integrity.mjs)
           test "$actual" = "$expected"

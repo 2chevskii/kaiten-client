@@ -26,7 +26,7 @@ jobs:
       - id: version
         env:
           RELEASE_TAG: ${{ github.ref_name }}
-        run: node scripts/validate-release.mjs "$RELEASE_TAG"
+        run: node tools/validate-release.mjs "$RELEASE_TAG"
 
   checks:
     needs: validate-release
@@ -60,7 +60,7 @@ jobs:
         run: |
           sha256sum "$PACKAGE" > SHA256SUMS
           if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
-            node -e 'if (!JSON.parse(require("fs").readFileSync("release.json")).isDraft) throw new Error("Release is already published");'
+            node ../tools/validate-draft-release.mjs
             gh release upload "$RELEASE_TAG" "$PACKAGE" SHA256SUMS --clobber
           else
             gh release create "$RELEASE_TAG" "$PACKAGE" SHA256SUMS \
