@@ -7098,6 +7098,8 @@ declare const addTag: (
 
 **`client.tags.retrieveListOfTags`** · `GET /api/latest/tags`
 
+The client accepts `ids` as a string or a readonly numeric array (`QueryList<number>`).
+
 Retrieve list of tags. [Kaiten documentation](https://developers.kaiten.ru/tags/retrieve-list-of-tags).
 
 `...args: TagsRetrieveListOfTagsParams`
@@ -7130,6 +7132,8 @@ declare const retrieveListOfTags: (
 ### getList
 
 **`client.timesheet.getList`** · `GET /api/latest/time-logs`
+
+The client accepts the eight comma-separated ID filters as strings or readonly numeric arrays (`QueryList<number>`).
 
 Get list. [Kaiten documentation](https://developers.kaiten.ru/timesheet/get-list).
 
@@ -7411,6 +7415,8 @@ declare const retrieveCurrentUser: (
 
 **`client.users.retrieveListOfUsers`** · `GET /api/latest/users`
 
+The client accepts `ids` as a string or a readonly numeric array (`QueryList<number>`).
+
 Retrieve list of users. [Kaiten documentation](https://developers.kaiten.ru/users/retrieve-list-of-users).
 
 `...args: UsersRetrieveListOfUsersParams`
@@ -7438,6 +7444,7 @@ declare const retrieveListOfUsers: (
 | `offset`                                       | integer | Optional |
 | `include_inactive`                             | boolean | Optional |
 | `exclude_directly_added_members_by_entity_uid` | string  | Optional |
+| `exclude_members_by_entity_uid`                | string  | Optional |
 
 **Response:** Array. Fields: `id`, `full_name`, `email`, `username`, `avatar_initials_url`, `avatar_uploaded_url`, `initials`, `avatar_type`, `lng`, `timezone`, `theme`, `created`, `updated`, `activated`, `ui_version`, `company_id`, `user_id`, `default_space_id`, `permissions`, `role`, `email_frequency`, `email_settings`, `slack_id`, `slack_settings`, `notification_settings`, `notification_enabled_channels`, `slack_private_channel_id`, `telegram_sd_bot_enabled`, `invite_last_sent_at`, `apps_permissions`, `external`, `last_request_date`, `last_request_method`.
 

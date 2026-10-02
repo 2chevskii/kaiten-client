@@ -1,4 +1,5 @@
 import type { HttpTransport, OperationOptions } from "../http.ts";
+import type { QueryList } from "../types.ts";
 
 import { pathSegment } from "../http.ts";
 
@@ -70,7 +71,7 @@ export interface TagsRetrieveListOfTagsQuery {
   limit?: number;
   offset?: number;
   space_id?: number;
-  ids?: string;
+  ids?: QueryList<number>;
   query?: string;
 }
 

@@ -123,6 +123,21 @@ The types follow Kaiten's [filter schema](https://developers.kaiten.ru/cards/ret
 
 ## IDs and responses
 
+`users.retrieveListOfUsers` and `tags.retrieveListOfTags` accept `ids` as `QueryList<number>`. The time-log filters `tag_ids`, `user_ids`, `group_ids`, `space_ids`, `board_ids`, `column_ids`, `card_ids`, and `visible_column_ids` use the same type:
+
+```ts
+const users = await client.users.retrieveListOfUsers({ ids: [123, 456] });
+const tags = await client.tags.retrieveListOfTags({ ids: [10, 20] });
+const timeLogs = await client.timesheet.getList({
+  from: "2026-10-01",
+  to: "2026-10-31",
+  user_ids: [123, 456],
+  board_ids: [10],
+});
+```
+
+User queries also support `exclude_members_by_entity_uid` to exclude direct, group, and inherited members of an entity. `exclude_directly_added_members_by_entity_uid` keeps its narrower meaning of excluding direct invitations only.
+
 Kaiten uses both numeric IDs and UUIDs. Pass the identifier type required by the particular method, such as `card_id: number` or `card_uid: string`. Dates remain strings, documented nullable fields allow `null`, and incomplete schemas use `unknown`.
 
 For operations without an iterator, use `limit`, `offset`, or a cursor where supported. Read the [file guide](/en/guide/files) for file routes.

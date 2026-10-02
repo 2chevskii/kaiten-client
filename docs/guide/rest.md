@@ -123,6 +123,21 @@ for await (const card of client.cards.iterate({ filter })) {
 
 ## ID и ответы
 
+`users.retrieveListOfUsers` и `tags.retrieveListOfTags` принимают `ids` как `QueryList<number>`. Фильтры табеля `tag_ids`, `user_ids`, `group_ids`, `space_ids`, `board_ids`, `column_ids`, `card_ids` и `visible_column_ids` используют тот же тип:
+
+```ts
+const users = await client.users.retrieveListOfUsers({ ids: [123, 456] });
+const tags = await client.tags.retrieveListOfTags({ ids: [10, 20] });
+const timeLogs = await client.timesheet.getList({
+  from: "2026-10-01",
+  to: "2026-10-31",
+  user_ids: [123, 456],
+  board_ids: [10],
+});
+```
+
+Запрос пользователей также поддерживает `exclude_members_by_entity_uid` для исключения прямых, групповых и унаследованных участников сущности. `exclude_directly_added_members_by_entity_uid` сохраняет более узкий смысл: исключаются только пользователи, приглашённые напрямую.
+
 Kaiten использует и числовые ID, и UUID. Передавайте тот тип идентификатора, который указан в типе конкретного метода: например, `card_id: number` или `card_uid: string`. Даты остаются строками, документированные nullable-поля допускают `null`, неполные схемы представлены через `unknown`.
 
 Для операций без итератора используйте `limit`, `offset` или курсор там, где их поддерживает операция. Подробности файловых маршрутов — в [отдельном руководстве](/guide/files).
