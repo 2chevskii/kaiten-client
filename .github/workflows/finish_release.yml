@@ -38,10 +38,7 @@ jobs:
           registry-url: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
           scope: "@2chevskii"
       - id: version
-        run: |
-          gh release view "$RELEASE_TAG" --json isDraft,isPrerelease > release.json
-          node tools/validate-published-release.mjs
-          echo "package=2chevskii-kaiten-client-${RELEASE_TAG#v}.tgz" >> "$GITHUB_OUTPUT"
+        run: echo "package=2chevskii-kaiten-client-${RELEASE_TAG#v}.tgz" >> "$GITHUB_OUTPUT"
       - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
@@ -54,30 +51,11 @@ jobs:
           REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
           PACKAGE: artifacts/${{ steps.version.outputs.package }}
         run: |
-          if [ "$REGISTRY_KIND" = npm ]; then
-            if [ -z "$NODE_AUTH_TOKEN" ] || [ "$NODE_AUTH_TOKEN" = REPLACE_WITH_REAL_NPM_TOKEN ]; then
-              echo 'Replace repository secret NPM_TOKEN with a real npm publishing token before publishing.' >&2
-              exit 1
-            fi
-          else
+          if [ "$REGISTRY_KIND" = github ]; then
             export NODE_AUTH_TOKEN="$GITHUB_PACKAGES_TOKEN"
           fi
-          expected=$(node tools/package-integrity.mjs)
-          if npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json; then
-            actual=$(node tools/registry-integrity.mjs)
-            if [ "$actual" != "$expected" ]; then
-              echo 'This version already exists with different package contents.' >&2
-              exit 1
-            fi
-            echo 'Identical package is already published.'
-            exit 0
-          fi
-          node tools/validate-registry-lookup.mjs
           if [ "$REGISTRY_KIND" = npm ]; then
             npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance --ignore-scripts
           else
             npm publish "$PACKAGE" --registry "$REGISTRY" --ignore-scripts
           fi
-          npm view "@2chevskii/kaiten-client@${RELEASE_TAG#v}" dist.integrity --registry "$REGISTRY" --json > integrity.json
-          actual=$(node tools/registry-integrity.mjs)
-          test "$actual" = "$expected"

@@ -63,7 +63,7 @@ jobs:
       - run: npm pack
       - working-directory: artifacts
         run: |
-          if gh release view "$RELEASE_TAG" --json isDraft > release.json; then
+          if gh release view "$RELEASE_TAG" > /dev/null; then
             gh release upload "$RELEASE_TAG" "$PACKAGE" --clobber
           else
             gh release create "$RELEASE_TAG" "$PACKAGE" \
