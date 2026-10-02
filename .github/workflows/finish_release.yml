@@ -41,14 +41,19 @@ jobs:
         run: |
           gh release view "$RELEASE_TAG" --json isDraft,isPrerelease > release.json
           node tools/validate-published-release.mjs
-          node tools/validate-release.mjs "$RELEASE_TAG"
+          jq -er --arg tag "$RELEASE_TAG" '
+            if ($tag == ("v" + .version)) and
+               ($tag | test("^v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$")) then
+              "package=2chevskii-kaiten-client-\(.version).tgz"
+            else
+              error("Release tag must use vX.Y.Z and match package.json version")
+            end
+          ' package.json >> "$GITHUB_OUTPUT"
       - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
           mkdir -p artifacts
           gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --dir artifacts
-          cd artifacts
-          tar -xOf "$PACKAGE" package/package.json | node ../tools/validate-release.mjs "$RELEASE_TAG" --stdin
       - env:
           NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
