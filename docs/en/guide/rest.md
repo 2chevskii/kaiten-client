@@ -79,6 +79,21 @@ Iteration ends on an empty page or an empty cursor. A repeated cursor throws an 
 
 ## Typed card filters
 
+Comma-separated card query fields also accept readonly arrays. Use numeric arrays for ID filters, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`:
+
+```ts
+const page = await client.cards.retrieveCardList({
+  owner_ids: [123, 456],
+  tag_ids: [10, 20],
+  states: [1, 2],
+  additional_card_fields: ["description"],
+  order_by: ["created", "id"],
+  order_direction: ["desc", "asc"],
+});
+```
+
+The exported `QueryList<T>` type accepts a string or `readonly T[]`. The transport joins arrays with commas; existing strings such as `owner_ids: "123,456"` remain valid. The same fields are available on `cards.iterate`.
+
 The `filter` field accepts a `CardFilter` object or an existing base64 string. Object filters are encoded automatically using UTF-8:
 
 ```ts

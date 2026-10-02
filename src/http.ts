@@ -90,8 +90,10 @@ export class HttpTransport {
         if (operation.jsonQuery?.includes(name)) {
           url.searchParams.set(name, JSON.stringify(value));
         } else if (Array.isArray(value)) {
-          if (!value.every(isQueryScalar)) {
-            throw new TypeError(`Unsupported query value for ${name}`);
+          for (const item of value) {
+            if (!isQueryScalar(item)) {
+              throw new TypeError(`Unsupported query value for ${name}`);
+            }
           }
           url.searchParams.set(name, value.join(","));
         } else if (isQueryScalar(value)) {
