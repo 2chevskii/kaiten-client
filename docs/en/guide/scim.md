@@ -28,3 +28,21 @@ await scim.groups.getGroup(group.id);
 ```
 
 `updateUser` and `updateGroup` accept `ScimUserPatchOperation` and `ScimGroupPatchOperation` arrays; the client constructs the request's `Operations` field. Group IDs accept the string values returned by SCIM.
+
+## Automatic pagination
+
+`users.iterate(startIndex?, count?, filter?, options?)` and `groups.iterate(startIndex?, count?, options?)` lazily traverse SCIM lists:
+
+```ts
+for await (const user of scim.users.iterate(1, 50)) {
+  console.log(user.id, user.userName);
+}
+
+for await (const group of scim.groups.iterate()) {
+  console.log(group.id, group.displayName);
+}
+```
+
+Requests start at index 1 by default. The next index advances by the number of resources actually received, so a server-side page-size cap does not skip records. Iteration stops at `totalResults` or an empty page. The response's `startIndex` is not used to advance requests because Kaiten's examples report 0 even though request indices are documented as one-based.
+
+No request starts until iteration begins, and `break` prevents further page requests. Pass `{ signal }` in the final argument to cancel between items or during a request. The iterator preserves `count` and the user filter on every page. `getUsers` and `getGroups` remain available for individual pages or access to their pagination metadata.
