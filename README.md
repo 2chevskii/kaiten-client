@@ -196,8 +196,6 @@ const token = await oauth.getToken("addon-uuid", 1, 1);
 
 ## Development and verification
 
-The [CI/CD guide](https://github.com/2chevskii/kaiten-client/blob/develop/.github/CI-CD.md) describes required checks, GitHub Pages setup, draft releases, and publication to npm and GitHub Packages.
-
 ```sh
 npm ci
 npm run check
