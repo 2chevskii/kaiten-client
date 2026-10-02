@@ -15,7 +15,9 @@ const users = await scim.users.getUsers(1, 20);
 console.log(users.Resources, users.totalResults);
 ```
 
-Поля SCIM сохраняют регистр спецификации: `startIndex`, `displayName`, `Resources`. Методы принимают ID и небольшие наборы полей отдельно, фильтры — объектом `Query`, а отмену — через последний аргумент `{ signal }`. Обработка `KaitenHttpError` работает так же, как в REST-клиенте. Список всех методов и типов — в [SCIM-справочнике](/reference/scim).
+Поля SCIM сохраняют регистр спецификации: `startIndex`, `displayName`, `Resources`. Методы принимают ID, параметры пагинации и фильтры позиционными аргументами, а отмену — через последний аргумент `{ signal }`. Обработка `KaitenHttpError` работает так же, как в REST-клиенте. Список всех методов и типов — в [SCIM-справочнике](/reference/scim).
+
+Ответы используют общие экспортируемые контракты `ScimName`, `ScimEmail`, `ScimResourceMeta` и `ScimResourceReference`. У участников групп и членства пользователя в группах поле `value` числовое, а у самих ресурсов групп поле `id` строковое.
 
 ```ts
 await scim.users.updateUser(123, [
