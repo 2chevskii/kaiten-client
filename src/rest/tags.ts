@@ -2,6 +2,7 @@ import type { HttpTransport, OperationOptions } from "../http.ts";
 import type { QueryList } from "../types.ts";
 
 import { pathSegment } from "../http.ts";
+import { iterateOffsetResults } from "./pagination.ts";
 
 export interface CardTagsAddTagBody {
   name: string;
@@ -89,6 +90,23 @@ export type TagsRetrieveListOfTagsParams = Parameters<
   ReturnType<typeof createTagsResources>["tags"]["retrieveListOfTags"]
 >;
 
+export type TagsIterateParams = Parameters<
+  ReturnType<typeof createTagsResources>["tags"]["iterate"]
+>;
+
+function getTagsPage(
+  transport: HttpTransport,
+  query?: TagsRetrieveListOfTagsQuery,
+  options?: OperationOptions,
+): Promise<TagsRetrieveListOfTagsResponse> {
+  return transport.request<TagsRetrieveListOfTagsResponse>({
+    method: "GET",
+    path: "/tags",
+    query,
+    signal: options?.signal,
+  });
+}
+
 export const createTagsResources = (transport: HttpTransport) => ({
   cardTags: {
     /** @see https://developers.kaiten.ru/card-tags/add-tag */
@@ -122,6 +140,21 @@ export const createTagsResources = (transport: HttpTransport) => ({
     },
   },
   tags: {
+    /** Lazily iterate tags using offset pagination. */
+    iterate: (
+      query?: TagsRetrieveListOfTagsQuery,
+      options?: OperationOptions,
+    ) => {
+      return iterateOffsetResults<
+        TagsRetrieveListOfTagsQuery,
+        TagsRetrieveListOfTagsResponse
+      >(
+        (pageQuery, pageOptions) =>
+          getTagsPage(transport, pageQuery, pageOptions),
+        query ?? {},
+        options,
+      );
+    },
     /** @see https://developers.kaiten.ru/tags/add-tag */
     addTag: (
       name: string,
@@ -141,12 +174,7 @@ export const createTagsResources = (transport: HttpTransport) => ({
       query?: TagsRetrieveListOfTagsQuery,
       options?: OperationOptions,
     ) => {
-      return transport.request<TagsRetrieveListOfTagsResponse>({
-        method: "GET",
-        path: "/tags",
-        query,
-        signal: options?.signal,
-      });
+      return getTagsPage(transport, query, options);
     },
   },
 });

@@ -3,6 +3,7 @@ import type { JsonValue, QueryList, RequireAtLeastOne } from "../types.ts";
 import type { HttpTransport, OperationOptions } from "../http.ts";
 
 import { pathSegment } from "../http.ts";
+import { iterateOffsetResults } from "./pagination.ts";
 
 export interface CompanyUsersGetListOfUsersQuery {
   invitesOnly?: boolean;
@@ -949,6 +950,23 @@ export type UsersUpdateUserParams = Parameters<
   ReturnType<typeof createIdentityResources>["users"]["updateUser"]
 >;
 
+export type UsersIterateParams = Parameters<
+  ReturnType<typeof createIdentityResources>["users"]["iterate"]
+>;
+
+function getUsersPage(
+  transport: HttpTransport,
+  query?: UsersRetrieveListOfUsersQuery,
+  options?: OperationOptions,
+): Promise<UsersRetrieveListOfUsersResponse> {
+  return transport.request<UsersRetrieveListOfUsersResponse>({
+    method: "GET",
+    path: "/users",
+    query,
+    signal: options?.signal,
+  });
+}
+
 export const createIdentityResources = (transport: HttpTransport) => ({
   companyUsers: {
     /** @see https://developers.kaiten.ru/company-users/get-list-of-users */
@@ -1261,6 +1279,21 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
   },
   users: {
+    /** Lazily iterate users using offset pagination. */
+    iterate: (
+      query?: UsersRetrieveListOfUsersQuery,
+      options?: OperationOptions,
+    ) => {
+      return iterateOffsetResults<
+        UsersRetrieveListOfUsersQuery,
+        UsersRetrieveListOfUsersResponse
+      >(
+        (pageQuery, pageOptions) =>
+          getUsersPage(transport, pageQuery, pageOptions),
+        query ?? {},
+        options,
+      );
+    },
     /** @see https://developers.kaiten.ru/users/retrieve-current-user */
     retrieveCurrentUser: (options?: OperationOptions) => {
       return transport.request<UsersRetrieveCurrentUserResponse>({
@@ -1274,12 +1307,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       query?: UsersRetrieveListOfUsersQuery,
       options?: OperationOptions,
     ) => {
-      return transport.request<UsersRetrieveListOfUsersResponse>({
-        method: "GET",
-        path: "/users",
-        query,
-        signal: options?.signal,
-      });
+      return getUsersPage(transport, query, options);
     },
     /** @see https://developers.kaiten.ru/users/update-user */
     updateUser: (
