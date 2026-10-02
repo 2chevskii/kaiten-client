@@ -52,16 +52,28 @@ async function* iterateCursor<Item>(
     signal?.throwIfAborted();
     const page = await fetchPage(position);
     signal?.throwIfAborted();
+    if (
+      typeof page !== "object" ||
+      page === null ||
+      !Array.isArray(page.result) ||
+      typeof page.position !== "string"
+    ) {
+      throw new TypeError("Kaiten returned invalid search pagination metadata");
+    }
+    if (page.result.length === 0) {
+      return;
+    }
+    if (page.position && visitedPositions.has(page.position)) {
+      throw new Error("Kaiten returned a repeated search cursor");
+    }
+
     for (const item of page.result) {
       signal?.throwIfAborted();
       yield item;
     }
 
-    if (page.result.length === 0 || !page.position) {
+    if (!page.position) {
       return;
-    }
-    if (visitedPositions.has(page.position)) {
-      throw new Error("Kaiten returned a repeated search cursor");
     }
     visitedPositions.add(page.position);
     position = page.position;

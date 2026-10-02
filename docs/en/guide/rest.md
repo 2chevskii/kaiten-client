@@ -75,7 +75,7 @@ for await (const card of client.cards.iterate({ board_id: 10, limit: 50 })) {
 
 No request starts until iteration begins. Breaking the loop prevents further page requests. Use the last `{ signal }` argument to cancel, including between items of an already fetched page. `start_position` resumes from an existing cursor. `version` and `offset` are omitted from the iterator query types because iteration uses cursor pagination with version 2.
 
-Iteration ends on an empty page or an empty cursor. A repeated cursor throws an error instead of requesting the same pages indefinitely. Single-page methods remain available when you need to control pagination yourself.
+Iteration ends on an empty page or an empty cursor. Pages must contain a `result` array and a string `position`; invalid pagination metadata throws `TypeError`. A repeated cursor on a nonempty page throws an error before that page's items are yielded. Single-page methods remain available when you need to control pagination yourself.
 
 Iterators copy query values, including arrays and nested filters, and capture the signal when created. Every page uses that snapshot. Abort the captured signal's controller to cancel the iteration.
 
