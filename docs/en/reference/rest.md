@@ -2180,6 +2180,8 @@ declare const retrieveCardBaselines: (
 
 **`client.cards.retrieveCardList`** · `GET /api/latest/cards`
 
+Comma-separated query fields accept `QueryList<T>`: a string or a readonly array of the field's value type. See [typed card filters](/en/guide/rest#typed-card-filters) for examples.
+
 Retrieve card list. [Kaiten documentation](https://developers.kaiten.ru/cards/retrieve-card-list).
 
 `...args: CardsRetrieveCardListParams`

@@ -17,6 +17,7 @@ import type {
 import type {
   CustomPropertyValues,
   JsonValue,
+  QueryList,
   RequireAtLeastOne,
 } from "../types.ts";
 import type { HttpTransport, OperationOptions } from "../http.ts";
@@ -1135,18 +1136,18 @@ export interface CardsRetrieveCardListQuery {
   query?: string;
   version?: 1 | 2;
   tag?: string;
-  tag_ids?: string;
-  type_ids?: string;
-  exclude_board_ids?: string;
-  exclude_lane_ids?: string;
-  exclude_column_ids?: string;
-  column_ids?: string;
-  member_ids?: string;
-  owner_ids?: string;
-  responsible_ids?: string;
-  states?: string;
+  tag_ids?: QueryList<number>;
+  type_ids?: QueryList<number>;
+  exclude_board_ids?: QueryList<number>;
+  exclude_lane_ids?: QueryList<number>;
+  exclude_column_ids?: QueryList<number>;
+  column_ids?: QueryList<number>;
+  member_ids?: QueryList<number>;
+  owner_ids?: QueryList<number>;
+  responsible_ids?: QueryList<number>;
+  states?: QueryList<1 | 2 | 3>;
   external_id?: string;
-  additional_card_fields?: string;
+  additional_card_fields?: QueryList<"description">;
   search_fields?: string;
   space_id?: number;
   limit?: number;
@@ -1167,12 +1168,12 @@ export interface CardsRetrieveCardListQuery {
   done_on_time?: boolean;
   with_due_date?: boolean;
   filter?: string | CardFilter;
-  order_by?: string;
-  order_direction?: string;
+  order_by?: QueryList<string>;
+  order_direction?: QueryList<"asc" | "desc">;
   is_request?: boolean;
-  exclude_owner_ids?: string;
-  exclude_card_ids?: string;
-  organizations_ids?: string;
+  exclude_owner_ids?: QueryList<number>;
+  exclude_card_ids?: QueryList<number>;
+  organizations_ids?: QueryList<number>;
   broken_api?: boolean;
 }
 

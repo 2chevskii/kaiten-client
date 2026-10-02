@@ -79,6 +79,21 @@ for await (const card of client.cards.iterate({ board_id: 10, limit: 50 })) {
 
 ## Типизированные фильтры карточек
 
+Поля запроса карточек со списками через запятую также принимают readonly-массивы. Для ID используются числовые массивы, для состояний — значения `1 | 2 | 3`, для направлений сортировки — `"asc" | "desc"`:
+
+```ts
+const page = await client.cards.retrieveCardList({
+  owner_ids: [123, 456],
+  tag_ids: [10, 20],
+  states: [1, 2],
+  additional_card_fields: ["description"],
+  order_by: ["created", "id"],
+  order_direction: ["desc", "asc"],
+});
+```
+
+Экспортируемый тип `QueryList<T>` допускает строку или `readonly T[]`. Транспорт соединяет элементы массивов запятыми; строки вроде `owner_ids: "123,456"` остаются допустимыми. Эти же поля доступны в `cards.iterate`.
+
 Поле `filter` принимает объект `CardFilter` или готовую строку base64. Объект автоматически кодируется с использованием UTF-8:
 
 ```ts

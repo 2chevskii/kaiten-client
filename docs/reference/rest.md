@@ -2180,6 +2180,8 @@ declare const retrieveCardBaselines: (
 
 **`client.cards.retrieveCardList`** · `GET /api/latest/cards`
 
+Параметры со списками через запятую принимают `QueryList<T>`: строку либо readonly-массив значений соответствующего типа. Примеры — в разделе [типизированных фильтров карточек](/guide/rest#типизированные-фильтры-карточек).
+
 Retrieve card list. [Документация Kaiten](https://developers.kaiten.ru/cards/retrieve-card-list).
 
 `...args: CardsRetrieveCardListParams`
