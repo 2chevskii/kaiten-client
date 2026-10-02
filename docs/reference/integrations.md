@@ -4,7 +4,7 @@
 
 ## Исходящие вебхуки
 
-`@2chevskii/kaiten-client/webhooks` · `KaitenWebhookEvent` · `WEBHOOK_EVENT_METADATA`
+`@2chevskii/kaiten-client/webhooks` · `KaitenWebhookEvent`
 
 | Событие                | Тип                            | Документация                                                                             |
 | ---------------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
@@ -33,7 +33,7 @@
 
 ## Файлы импорта
 
-`@2chevskii/kaiten-client/imports` · `IMPORT_ENTITY_METADATA` · `ImportEntityName` · `ImportColor`
+`@2chevskii/kaiten-client/imports` · `ImportEntityName` · `ImportColor`
 
 | Файл                 | Тип записи                      | Документация                                                               |
 | -------------------- | ------------------------------- | -------------------------------------------------------------------------- |

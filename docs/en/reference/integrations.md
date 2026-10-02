@@ -4,7 +4,7 @@ These exports cover integrations beyond REST and SCIM. Full structures are avail
 
 ## Outgoing webhooks
 
-`@2chevskii/kaiten-client/webhooks` · `KaitenWebhookEvent` · `WEBHOOK_EVENT_METADATA`
+`@2chevskii/kaiten-client/webhooks` · `KaitenWebhookEvent`
 
 | Event                  | Type                           | Documentation                                                                            |
 | ---------------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
@@ -33,7 +33,7 @@ These exports cover integrations beyond REST and SCIM. Full structures are avail
 
 ## Import files
 
-`@2chevskii/kaiten-client/imports` · `IMPORT_ENTITY_METADATA` · `ImportEntityName` · `ImportColor`
+`@2chevskii/kaiten-client/imports` · `ImportEntityName` · `ImportColor`
 
 | File                 | Record type                     | Documentation                                                              |
 | -------------------- | ------------------------------- | -------------------------------------------------------------------------- |

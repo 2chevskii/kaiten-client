@@ -22,4 +22,4 @@ const cards: ImportCardsRecord[] = [
 ];
 ```
 
-`ImportEntityName` перечисляет допустимые имена сущностей, `ImportColor` — допустимые цвета. `IMPORT_ENTITY_METADATA` связывает 15 типов записей с документацией Kaiten; они перечислены в [справочнике](/reference/integrations). Вложенные структуры карточки (`checklists`, `history`, `properties` и другие) имеют отдельные экспортируемые типы. Для порядка файлов, ссылок между ID и полного формата используйте [документацию импорта Kaiten](https://developers.kaiten.ru/imports).
+`ImportEntityName` перечисляет допустимые имена сущностей, `ImportColor` — допустимые цвета. Вложенные структуры карточки (`checklists`, `history`, `properties` и другие) имеют отдельные экспортируемые типы. Для полного формата используйте [документацию импорта Kaiten](https://developers.kaiten.ru/imports).
