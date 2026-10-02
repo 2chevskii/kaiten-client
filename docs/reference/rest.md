@@ -7098,6 +7098,8 @@ declare const addTag: (
 
 **`client.tags.retrieveListOfTags`** · `GET /api/latest/tags`
 
+Клиент принимает `ids` как строку или readonly-массив чисел (`QueryList<number>`).
+
 Retrieve list of tags. [Документация Kaiten](https://developers.kaiten.ru/tags/retrieve-list-of-tags).
 
 `...args: TagsRetrieveListOfTagsParams`
@@ -7130,6 +7132,8 @@ declare const retrieveListOfTags: (
 ### getList
 
 **`client.timesheet.getList`** · `GET /api/latest/time-logs`
+
+Клиент принимает восемь фильтров ID со списками через запятую как строки или readonly-массивы чисел (`QueryList<number>`).
 
 Get list. [Документация Kaiten](https://developers.kaiten.ru/timesheet/get-list).
 
@@ -7411,6 +7415,8 @@ declare const retrieveCurrentUser: (
 
 **`client.users.retrieveListOfUsers`** · `GET /api/latest/users`
 
+Клиент принимает `ids` как строку или readonly-массив чисел (`QueryList<number>`).
+
 Retrieve list of users. [Документация Kaiten](https://developers.kaiten.ru/users/retrieve-list-of-users).
 
 `...args: UsersRetrieveListOfUsersParams`
@@ -7438,6 +7444,7 @@ declare const retrieveListOfUsers: (
 | `offset`                                       | integer | Необязательно  |
 | `include_inactive`                             | boolean | Необязательно  |
 | `exclude_directly_added_members_by_entity_uid` | string  | Необязательно  |
+| `exclude_members_by_entity_uid`                | string  | Необязательно  |
 
 **Ответ:** Массив. Поля: `id`, `full_name`, `email`, `username`, `avatar_initials_url`, `avatar_uploaded_url`, `initials`, `avatar_type`, `lng`, `timezone`, `theme`, `created`, `updated`, `activated`, `ui_version`, `company_id`, `user_id`, `default_space_id`, `permissions`, `role`, `email_frequency`, `email_settings`, `slack_id`, `slack_settings`, `notification_settings`, `notification_enabled_channels`, `slack_private_channel_id`, `telegram_sd_bot_enabled`, `invite_last_sent_at`, `apps_permissions`, `external`, `last_request_date`, `last_request_method`.
 

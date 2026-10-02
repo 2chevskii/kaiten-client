@@ -12,6 +12,7 @@ import type {
 import type {
   CustomPropertyValues,
   JsonValue,
+  QueryList,
   RequireAtLeastOne,
 } from "../types.ts";
 import type { HttpTransport, OperationOptions } from "../http.ts";
@@ -516,14 +517,14 @@ export type SprintsGetSprintsListParams = Parameters<
 export interface TimesheetGetListQuery {
   from: string;
   to: string;
-  tag_ids?: string;
-  user_ids?: string;
-  group_ids?: string;
-  space_ids?: string;
-  board_ids?: string;
-  column_ids?: string;
-  card_ids?: string;
-  visible_column_ids?: string;
+  tag_ids?: QueryList<number>;
+  user_ids?: QueryList<number>;
+  group_ids?: QueryList<number>;
+  space_ids?: QueryList<number>;
+  board_ids?: QueryList<number>;
+  column_ids?: QueryList<number>;
+  card_ids?: QueryList<number>;
+  visible_column_ids?: QueryList<number>;
   limit?: number;
   offset?: number;
   condition?: number;

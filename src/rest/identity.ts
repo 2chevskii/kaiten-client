@@ -1,5 +1,5 @@
 import type { UserRoleSummary, SpaceSummary } from "../entities.ts";
-import type { JsonValue, RequireAtLeastOne } from "../types.ts";
+import type { JsonValue, QueryList, RequireAtLeastOne } from "../types.ts";
 import type { HttpTransport, OperationOptions } from "../http.ts";
 
 import { pathSegment } from "../http.ts";
@@ -822,10 +822,12 @@ export interface UsersRetrieveListOfUsersQuery {
   type?: string;
   query?: string;
   access_type_permissions?: string;
-  ids?: string;
+  ids?: QueryList<number>;
   limit?: number;
   offset?: number;
   include_inactive?: boolean;
+  /** Exclude direct, group, and inherited membership before pagination. */
+  exclude_members_by_entity_uid?: string;
   exclude_directly_added_members_by_entity_uid?: string;
 }
 
