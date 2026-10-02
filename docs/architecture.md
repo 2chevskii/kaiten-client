@@ -41,6 +41,7 @@ pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
 `src/card-filter.ts` defines and encodes typed card search filters. Search
 iterators for cards, documents, and document groups share the cursor traversal
 in `src/rest/search.ts`, which handles cancellation and detects repeated cursors.
+User and tag iterators share the offset traversal in `src/rest/pagination.ts`.
 SCIM iterators use `src/scim/pagination.ts` to advance one-based request indices
 by the actual page length and stop at the advertised total.
 

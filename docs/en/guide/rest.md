@@ -79,6 +79,24 @@ Iteration ends on an empty page or an empty cursor. Pages must contain a `result
 
 Iterators copy query values, including arrays and nested filters, and capture the signal when created. Every page uses that snapshot. Abort the captured signal's controller to cancel the iteration.
 
+### Users and tags
+
+`users.iterate` and `tags.iterate` use offset pagination and accept the same query objects as their single-page list methods:
+
+```ts
+for await (const user of client.users.iterate({ include_inactive: true })) {
+  console.log(user.id, user.full_name);
+}
+
+for await (const tag of client.tags.iterate({ space_id: 10, limit: 50 })) {
+  console.log(tag.id, tag.name);
+}
+```
+
+`offset` defaults to 0 and must be a non-negative safe integer; `limit` defaults to 100 and must be an integer from 1 to 100. The offset advances by the actual page length, including short pages. An empty page ends iteration, so fully consuming the iterator makes a final empty-page request. A non-array response fails with `TypeError`.
+
+These iterators also snapshot their query and signal, support early exit and cancellation, and fetch one page at a time. `users.retrieveListOfUsers` and `tags.retrieveListOfTags` return individual pages as before.
+
 ## Typed card filters
 
 Comma-separated card query fields also accept readonly arrays. Use numeric arrays for ID filters, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`:
