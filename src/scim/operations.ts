@@ -190,10 +190,11 @@ export const createScimResources = (transport: HttpTransport) => {
         count?: number,
         options?: OperationOptions,
       ) => {
+        const requestOptions = { ...options };
         return iterateScimResults(
-          (index) => getGroups(index, count, options),
+          (index) => getGroups(index, count, requestOptions),
           startIndex,
-          options?.signal,
+          requestOptions.signal,
         );
       },
       /** @beta */
@@ -241,10 +242,11 @@ export const createScimResources = (transport: HttpTransport) => {
         filter?: string,
         options?: OperationOptions,
       ) => {
+        const requestOptions = { ...options };
         return iterateScimResults(
-          (index) => getUsers(index, count, filter, options),
+          (index) => getUsers(index, count, filter, requestOptions),
           startIndex,
-          options?.signal,
+          requestOptions.signal,
         );
       },
       /** @see https://developers.kaiten.ru/scim/users/add-user */
