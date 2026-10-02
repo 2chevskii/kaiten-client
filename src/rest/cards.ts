@@ -24,6 +24,9 @@ import type { HttpTransport, OperationOptions } from "../http.ts";
 import { pathSegment } from "../http.ts";
 
 import type { SearchResponseV2 } from "./search.ts";
+import { iterateSearchResults } from "./search.ts";
+import { encodeCardFilter } from "../card-filter.ts";
+import type { CardFilter } from "../card-filter.ts";
 
 export interface CardAllowedUsersRetrieveUsersListQuery {
   type?: string;
@@ -1163,7 +1166,7 @@ export interface CardsRetrieveCardListQuery {
   overdue?: boolean;
   done_on_time?: boolean;
   with_due_date?: boolean;
-  filter?: string;
+  filter?: string | CardFilter;
   order_by?: string;
   order_direction?: string;
   is_request?: boolean;
@@ -1438,6 +1441,15 @@ export type CardsUpdateCardParams = Parameters<
   ReturnType<typeof createCardsResources>["cards"]["updateCard"]
 >;
 
+export type CardsIterateQuery = Omit<
+  CardsRetrieveCardListQuery,
+  "version" | "offset"
+>;
+
+export type CardsIterateParams = Parameters<
+  ReturnType<typeof createCardsResources>["cards"]["iterate"]
+>;
+
 export const createCardsResources = (transport: HttpTransport) => {
   const createNewCard = (
     body: CardsCreateNewCardBody,
@@ -1479,7 +1491,10 @@ export const createCardsResources = (transport: HttpTransport) => {
     >({
       method: "GET",
       path: "/cards",
-      query,
+      query:
+        query?.filter !== undefined && typeof query.filter !== "string"
+          ? { ...query, filter: encodeCardFilter(query.filter) }
+          : query,
       signal: options?.signal,
     });
   }
@@ -1873,6 +1888,22 @@ export const createCardsResources = (transport: HttpTransport) => {
       },
     },
     cards: {
+      /** Lazily iterate version 2 search results using Kaiten's cursor. */
+      iterate: (query?: CardsIterateQuery, options?: OperationOptions) => {
+        const searchQuery = { ...query, version: 2 as const };
+        return iterateSearchResults(
+          (position) =>
+            retrieveCardList(
+              {
+                ...searchQuery,
+                ...(position === undefined ? {} : { start_position: position }),
+              },
+              options,
+            ),
+          query?.start_position,
+          options?.signal,
+        );
+      },
       /** @see https://developers.kaiten.ru/cards/batch-update-for-cards */
       batchUpdateForCards: (
         body: CardsBatchUpdateForCardsBody,

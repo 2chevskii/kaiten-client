@@ -9,6 +9,7 @@ import type { HttpTransport, OperationOptions } from "../http.ts";
 import { pathSegment } from "../http.ts";
 
 import type { SearchResponseV2 } from "./search.ts";
+import { iterateSearchResults } from "./search.ts";
 
 export interface DocumentGroupsCreateNewDocumentGroupBody {
   title: string;
@@ -628,6 +629,24 @@ export type DocumentsUpdateDocumentParams = Parameters<
   ReturnType<typeof createDocumentsResources>["documents"]["updateDocument"]
 >;
 
+export type DocumentsIterateQuery = Omit<
+  DocumentsRetrieveListOfDocumentsQuery,
+  "version" | "offset"
+>;
+
+export type DocumentGroupsIterateQuery = Omit<
+  DocumentGroupsRetrieveListOfDocumentGroupsQuery,
+  "version" | "offset"
+>;
+
+export type DocumentsIterateParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documents"]["iterate"]
+>;
+
+export type DocumentGroupsIterateParams = Parameters<
+  ReturnType<typeof createDocumentsResources>["documentGroups"]["iterate"]
+>;
+
 export const createDocumentsResources = (transport: HttpTransport) => {
   function retrieveListOfDocumentGroups(
     query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & { version: 2 },
@@ -730,6 +749,25 @@ export const createDocumentsResources = (transport: HttpTransport) => {
   }
   return {
     documentGroups: {
+      /** Lazily iterate version 2 search results using Kaiten's cursor. */
+      iterate: (
+        query?: DocumentGroupsIterateQuery,
+        options?: OperationOptions,
+      ) => {
+        const searchQuery = { ...query, version: 2 as const };
+        return iterateSearchResults(
+          (position) =>
+            retrieveListOfDocumentGroups(
+              {
+                ...searchQuery,
+                ...(position === undefined ? {} : { start_position: position }),
+              },
+              options,
+            ),
+          query?.start_position,
+          options?.signal,
+        );
+      },
       /** @see https://developers.kaiten.ru/document-groups/create-new-document-group */
       createNewDocumentGroup: (
         body: DocumentGroupsCreateNewDocumentGroupBody,
@@ -785,6 +823,22 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       getDocumentDataSchema,
     },
     documents: {
+      /** Lazily iterate version 2 search results using Kaiten's cursor. */
+      iterate: (query?: DocumentsIterateQuery, options?: OperationOptions) => {
+        const searchQuery = { ...query, version: 2 as const };
+        return iterateSearchResults(
+          (position) =>
+            retrieveListOfDocuments(
+              {
+                ...searchQuery,
+                ...(position === undefined ? {} : { start_position: position }),
+              },
+              options,
+            ),
+          query?.start_position,
+          options?.signal,
+        );
+      },
       /** @see https://developers.kaiten.ru/documents/create-new-document */
       createNewDocument: (
         body: DocumentsCreateNewDocumentBody,

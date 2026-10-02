@@ -1,4 +1,6 @@
 export { KaitenClient } from "./client.ts";
+export { encodeCardFilter } from "./card-filter.ts";
+export type * from "./card-filter.ts";
 export { KaitenHttpError, KaitenResponseError } from "./http.ts";
 export type {
   ClientOptions,

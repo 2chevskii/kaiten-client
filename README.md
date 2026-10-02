@@ -43,6 +43,10 @@ const nextSearchPage = await client.cards.retrieveCardList({
 });
 console.log(card.id, firstPage.length, nextSearchPage.position);
 
+for await (const item of client.cards.iterate({ board_id: 10, limit: 50 })) {
+  console.log(item.id, item.title);
+}
+
 try {
   await client.cards.retrieveCard(card.id);
 } catch (error) {
