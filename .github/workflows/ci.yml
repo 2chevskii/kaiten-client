@@ -22,9 +22,11 @@ jobs:
         name: Set PR package version
         env:
           PR_NUMBER: ${{ github.event.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          base_version=$(jq -r '.version | split("-")[0]' package.json)
-          npm version "${base_version}-pr.${PR_NUMBER}.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}" --no-git-tag-version --ignore-scripts
+          base_version=$(jq -r '.version' package.json)
+          short_sha=${PR_HEAD_SHA:0:7}
+          npm version "${base_version}-${PR_NUMBER}-${short_sha}" --no-git-tag-version --ignore-scripts
           jq -r '"package=" + (.name | ltrimstr("@") | gsub("/"; "-")) + "-" + .version + ".tgz"' package.json >> "$GITHUB_OUTPUT"
       - run: npm pack
       - uses: actions/upload-artifact@v7
