@@ -9,6 +9,8 @@ jobs:
     name: Build npm tarball
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-26.04
+    outputs:
+      package: ${{ steps.version.outputs.package }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -16,13 +18,45 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
+      - id: version
+        name: Set PR package version
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          base_version=$(jq -r '.version | split("-")[0]' package.json)
+          npm version "${base_version}-pr.${PR_NUMBER}.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}" --no-git-tag-version --ignore-scripts
+          jq -r '"package=" + (.name | ltrimstr("@") | gsub("/"; "-")) + "-" + .version + ".tgz"' package.json >> "$GITHUB_OUTPUT"
       - run: npm pack
       - uses: actions/upload-artifact@v7
         with:
-          name: npm-tarball
-          path: artifacts/*.tgz
+          path: artifacts/${{ steps.version.outputs.package }}
+          archive: false
           if-no-files-found: error
           retention-days: 14
+
+  publish-pr:
+    name: Publish PR package to GitHub Packages
+    needs: [pack, lint, format]
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          scope: "@2chevskii"
+      - uses: actions/download-artifact@v8
+        with:
+          name: ${{ needs.pack.outputs.package }}
+          path: artifacts
+      - env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+          PACKAGE: artifacts/${{ needs.pack.outputs.package }}
+          PR_NUMBER: ${{ github.event.number }}
+        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "pr-${PR_NUMBER}" --ignore-scripts
 
   lint:
     runs-on: ubuntu-26.04

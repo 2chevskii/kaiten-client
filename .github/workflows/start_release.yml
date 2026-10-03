@@ -37,6 +37,7 @@ jobs:
     needs: validate-release
     permissions:
       contents: read
+      packages: write
       pages: write
       id-token: write
     uses: ./.github/workflows/ci.yml
