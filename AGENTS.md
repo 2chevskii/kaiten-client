@@ -20,4 +20,4 @@ Write strict TypeScript using the existing ESM import conventions and explicit p
 
 ## Commits and Pull Requests
 
-Always use the Conventional Commits specification, for example `feat:`, `fix:`, or `docs:`. Use a concise imperative subject and add a scope when useful. Pull requests should explain the user-visible or API impact, link related issues when available, and report relevant validation. Include documentation updates for public API changes and call out breaking changes clearly.
+Always do repository work on a dedicated branch. Commit each completed logical block with a small, controllable change; for larger tasks, commit incrementally instead of waiting until all work is finished. Always use the Conventional Commits specification, for example `feat:`, `fix:`, or `docs:`, with a concise imperative subject and an optional scope. Automatically open a pull request for each task unless the work is purely experimental or research. Pull requests should explain the user-visible or API impact, link related issues when available, and report relevant validation. Include documentation updates for public API changes and call out breaking changes clearly.
