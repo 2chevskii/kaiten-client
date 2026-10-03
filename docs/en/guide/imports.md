@@ -22,4 +22,4 @@ const cards: ImportCardsRecord[] = [
 ];
 ```
 
-`ImportEntityName` lists accepted entity names and `ImportColor` lists color values. `IMPORT_ENTITY_METADATA` links 15 record types to Kaiten's documentation; they are listed in the [reference](/en/reference/integrations). Nested card structures (`checklists`, `history`, `properties`, and others) have their own exported types. See [Kaiten's import documentation](https://developers.kaiten.ru/imports) for file order, ID references, and the full format.
+`ImportEntityName` lists accepted entity names and `ImportColor` lists color values. Nested card structures (`checklists`, `history`, `properties`, and others) have their own exported types. See [Kaiten's import documentation](https://developers.kaiten.ru/imports) for the full format.

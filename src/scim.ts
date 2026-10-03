@@ -3,7 +3,6 @@ import type { ClientOptions } from "./http.ts";
 import type { ScimResources } from "./scim/operations.ts";
 import { createScimResources } from "./scim/operations.ts";
 
-export { SCIM_OPERATION_METADATA } from "./scim/operations.ts";
 export type * from "./scim/operations.ts";
 export type * from "./scim/types.ts";
 

@@ -46,5 +46,3 @@ export const createRestResources = (transport: HttpTransport) => ({
 });
 
 export type RestResources = ReturnType<typeof createRestResources>;
-
-export { REST_OPERATION_METADATA } from "./metadata.ts";

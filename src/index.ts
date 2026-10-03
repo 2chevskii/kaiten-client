@@ -11,7 +11,6 @@ export type {
   RestClientOptions,
   TokenProvider,
 } from "./http.ts";
-export { REST_OPERATION_METADATA } from "./rest/index.ts";
 export type * from "./rest/index.ts";
 export type * from "./automation.ts";
 export type * from "./types.ts";

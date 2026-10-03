@@ -19,7 +19,7 @@ function handleEvent(event: KaitenWebhookEvent): void {
 }
 ```
 
-`KaitenWebhookEvent` is a discriminated union on `event`, which narrows the `data` type. Individual event types and `WEBHOOK_EVENT_METADATA` are also exported and listed in the [reference](/en/reference/integrations). Your server is responsible for HTTP reception, authenticity checks, persistence, and event retry handling. Contracts follow [Kaiten's examples](https://developers.kaiten.ru/external-webhooks).
+`KaitenWebhookEvent` is a discriminated union on `event`, which narrows the `data` type. Individual event types are listed in the [reference](/en/reference/integrations). Your server is responsible for HTTP reception, authenticity checks, persistence, and event retry handling. Contracts follow [Kaiten's examples](https://developers.kaiten.ru/external-webhooks).
 
 ## Incoming card webhook
 
