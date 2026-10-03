@@ -5,6 +5,25 @@ on:
   workflow_call:
 
 jobs:
+  pack:
+    name: Build npm tarball
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm pack
+      - uses: actions/upload-artifact@v7
+        with:
+          name: npm-tarball
+          path: artifacts/*.tgz
+          if-no-files-found: error
+          retention-days: 14
+
   lint:
     runs-on: ubuntu-26.04
     steps:
