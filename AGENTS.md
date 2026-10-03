@@ -18,14 +18,6 @@ Use Node.js 24 or newer and install dependencies with `npm ci`.
 
 Write strict TypeScript using the existing ESM import conventions and explicit public types. Keep REST, SCIM, and webhook behavior in their corresponding modules. Follow the repository's ESLint rules and Prettier configuration; use two spaces, double quotes, and semicolons as shown in existing files. Use descriptive kebab-case filenames and preserve established API naming. Run `npm run check` before submitting.
 
-## Testing
-
-There is no dedicated automated test suite configured. Validate changes with `npm run check`; for client behavior changes, also build or adapt the relevant example in `samples/` and document any live API behavior that cannot be verified locally.
-
 ## Commits and Pull Requests
 
-Recent history follows Conventional Commit prefixes, such as `feat:`, `fix:`, and `ci:`; use a concise imperative subject and add a scope when useful. Pull requests should explain the user-visible or API impact, link related issues when available, and report relevant validation. Include documentation updates for public API changes and call out breaking changes clearly.
-
-## Configuration and Secrets
-
-Keep credentials such as `KAITEN_TOKEN` and `NPM_TOKEN` out of source control. Use environment variables for local examples and GitHub Actions secrets for release workflows.
+Always use the Conventional Commits specification, for example `feat:`, `fix:`, or `docs:`. Use a concise imperative subject and add a scope when useful. Pull requests should explain the user-visible or API impact, link related issues when available, and report relevant validation. Include documentation updates for public API changes and call out breaking changes clearly.
