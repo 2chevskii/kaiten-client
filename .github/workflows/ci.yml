@@ -54,7 +54,7 @@ jobs:
           path: artifacts
       - env:
           NODE_AUTH_TOKEN: ${{ github.token }}
-          PACKAGE: artifacts/${{ needs.pack.outputs.package }}
+          PACKAGE: ./artifacts/${{ needs.pack.outputs.package }}
           PR_NUMBER: ${{ github.event.number }}
         run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "pr-${PR_NUMBER}" --ignore-scripts
 
