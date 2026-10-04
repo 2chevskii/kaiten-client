@@ -27,7 +27,9 @@ jobs:
   publish:
     name: Publish to ${{ matrix.registry }}
     runs-on: ubuntu-26.04
-    environment: production
+    environment:
+      name: ${{ matrix.registry == 'npm' && 'npmjs' || 'github-packages' }}
+      url: ${{ matrix.registry == 'npm' && 'https://www.npmjs.com/package/@2chevskii/kaiten-client' || 'https://github.com/users/2chevskii/packages/npm/package/kaiten-client' }}
     timeout-minutes: 15
     permissions:
       contents: read
