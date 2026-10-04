@@ -1,8 +1,8 @@
-# Вебхуки
+# Webhooks
 
-Экспорт `@2chevskii/kaiten-client/webhooks` содержит типы 22 событий исходящих вебхуков и функцию отправки во входящий вебхук создания карточки.
+`@2chevskii/kaiten-client/webhooks` exports types for 22 outgoing webhook events and a function for posting to an incoming card creation webhook.
 
-## Исходящие события
+## Outgoing events
 
 ```ts
 import type {KaitenWebhookEvent} from '@2chevskii/kaiten-client/webhooks';
@@ -19,15 +19,15 @@ function handleEvent(event: KaitenWebhookEvent): void {
 }
 ```
 
-`KaitenWebhookEvent` — объединение по полю `event`; проверка значения сужает тип `data`. Отдельные типы событий перечислены в [справочнике](/reference/integrations). Приём HTTP, проверка подлинности, хранение и повторная обработка событий остаются ответственностью вашего сервера. Схемы основаны на [примерах Kaiten](https://developers.kaiten.ru/external-webhooks).
+`KaitenWebhookEvent` is a discriminated union on `event`, which narrows the `data` type. Individual event types are listed in the [reference](/reference/integrations). Your server is responsible for HTTP reception, authenticity checks, persistence, and event retry handling. Contracts follow [Kaiten's examples](https://developers.kaiten.ru/external-webhooks).
 
-## Входящий вебхук карточки
+## Incoming card webhook
 
 ```ts
 import {sendCardWebhook} from '@2chevskii/kaiten-client/webhooks';
 
 const card = await sendCardWebhook(process.env.KAITEN_WEBHOOK_URL!, {
-  title: 'Задача из интеграции',
+  title: 'Task from an integration',
   tags: ['integration'],
   properties: {id_42: 'priority'},
 });
@@ -35,4 +35,4 @@ const card = await sendCardWebhook(process.env.KAITEN_WEBHOOK_URL!, {
 console.log(card.id);
 ```
 
-URL берите из настройки входящего вебхука Kaiten. Функция отправляет JSON методом `POST`, поддерживает `fetch` и `signal`, а HTTP-ошибки представлены `KaitenHttpError`. Типы `CardWebhookRequest`, `CardWebhookLink` и `SendCardWebhookOptions` описывают входные данные. [Первичный источник](https://developers.kaiten.ru/webhooks).
+Get the URL from Kaiten's incoming webhook configuration. The function posts JSON, accepts `fetch` and `signal`, and reports HTTP failures as `KaitenHttpError`. `CardWebhookRequest`, `CardWebhookLink`, and `SendCardWebhookOptions` describe the input. [Original documentation](https://developers.kaiten.ru/webhooks).

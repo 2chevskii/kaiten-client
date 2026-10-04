@@ -1,12 +1,12 @@
-# Integration contracts
+# Контракты интеграций
 
-These exports cover integrations beyond REST and SCIM. Full structures are available in the package's TypeScript declarations.
+Здесь перечислены экспорты за пределами REST и SCIM. Полные структуры доступны в TypeScript-объявлениях пакета.
 
-## Outgoing webhooks
+## Исходящие вебхуки
 
 `@2chevskii/kaiten-client/webhooks` · `KaitenWebhookEvent`
 
-| Event                  | Type                           | Documentation                                                                            |
+| Событие                | Тип                            | Документация                                                                             |
 | ---------------------- | ------------------------------ | ---------------------------------------------------------------------------------------- |
 | `block:add`            | `BlockAddWebhookEvent`         | [Kaiten](https://developers.kaiten.ru/external-webhooks/block/block:add)                 |
 | `block:update`         | `BlockUpdateWebhookEvent`      | [Kaiten](https://developers.kaiten.ru/external-webhooks/block/block:update)              |
@@ -31,11 +31,11 @@ These exports cover integrations beyond REST and SCIM. Full structures are avail
 | `card_time_log:remove` | `TimelogRemoveWebhookEvent`    | [Kaiten](https://developers.kaiten.ru/external-webhooks/timelog/timelog:remove)          |
 | `card_time_log:update` | `TimelogUpdateWebhookEvent`    | [Kaiten](https://developers.kaiten.ru/external-webhooks/timelog/timelog:update)          |
 
-## Import files
+## Файлы импорта
 
 `@2chevskii/kaiten-client/imports` · `ImportEntityName` · `ImportColor`
 
-| File                 | Record type                     | Documentation                                                              |
+| Файл                 | Тип записи                      | Документация                                                               |
 | -------------------- | ------------------------------- | -------------------------------------------------------------------------- |
 | `boards`             | `ImportBoardsRecord`            | [Kaiten](https://developers.kaiten.ru/imports/entities/boards)             |
 | `card-timers`        | `ImportCardTimersRecord`        | [Kaiten](https://developers.kaiten.ru/imports/entities/card-timers)        |
@@ -53,10 +53,10 @@ These exports cover integrations beyond REST and SCIM. Full structures are avail
 | `spaces`             | `ImportSpacesRecord`            | [Kaiten](https://developers.kaiten.ru/imports/entities/spaces)             |
 | `users`              | `ImportUsersRecord`             | [Kaiten](https://developers.kaiten.ru/imports/entities/users)              |
 
-## User metadata
+## Метаданные пользователя
 
-`@2chevskii/kaiten-client/metadata` exports `UserMetadataRequest`, `UserMetadataResponse`, `UserMetadataPropertyValue`, and `UserMetadataHandler`. See the [guide](/en/guide/metadata).
+`@2chevskii/kaiten-client/metadata` экспортирует `UserMetadataRequest`, `UserMetadataResponse`, `UserMetadataPropertyValue` и `UserMetadataHandler`. См. [руководство](/ru/guide/metadata).
 
-## Addons
+## Аддоны
 
-`@2chevskii/kaiten-client/addons` exports browser SDK declarations: `KaitenAddonSdk`, `AddonCapabilities`, `AddonContext`, `AddonPlatformApiClient`, `AddonPopupOptions`, `AddonDialogOptions`, and related types. `@2chevskii/kaiten-client/addon-oauth` exports `AddonOAuthClient`, `AddonOAuthOptions`, `AddonTokenKey`, and `AddonTokenResponse`; the `getToken` and `refreshToken` methods are covered in the [guide](/en/guide/addons).
+`@2chevskii/kaiten-client/addons` экспортирует объявления браузерного SDK: `KaitenAddonSdk`, `AddonCapabilities`, `AddonContext`, `AddonPlatformApiClient`, `AddonPopupOptions`, `AddonDialogOptions` и связанные типы. `@2chevskii/kaiten-client/addon-oauth` экспортирует `AddonOAuthClient`, `AddonOAuthOptions`, `AddonTokenKey` и `AddonTokenResponse`; методы `getToken` и `refreshToken` описаны в [руководстве](/ru/guide/addons).

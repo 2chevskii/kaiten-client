@@ -36,7 +36,7 @@ incoming card webhook sender lives in `src/webhooks/incoming.ts`. The public
 `src/scim.ts` and `src/webhooks.ts` entry points re-export these modules.
 
 Contracts are maintained in source code alongside their operations. Reference
-pages are maintained as Markdown under `docs/reference` and `docs/en/reference`.
+pages are maintained as Markdown under `docs/reference` and `docs/ru/reference`.
 
 `src/card-filter.ts` defines and encodes typed card search filters. Search
 iterators for cards, documents, and document groups share the cursor traversal

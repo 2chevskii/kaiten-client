@@ -1,16 +1,16 @@
-# Переход на 2.0
+# Migrating to 2.0
 
-Версия 2.0 требует Node.js 24+ и меняет сигнатуры REST, SCIM и серверного OAuth-клиента. Экспорты пакета сохраняются.
+Version 2.0 requires Node.js 24+ and changes the REST, SCIM, and server OAuth client signatures. Package entry points remain available.
 
-## Аргументы методов
+## Method arguments
 
-ID и небольшие наборы полей передаются отдельно. Большие тела и фильтры остаются объектами. Необязательный последний аргумент содержит настройки операции.
+IDs and small sets of fields are separate arguments. Larger bodies and filters remain objects. The optional last argument contains operation options.
 
 ```ts
 const card = await client.cards.retrieveCard(123);
-await client.cardComments.addComment(card.id, 'Комментарий');
+await client.cardComments.addComment(card.id, 'Comment');
 await client.cardMembers.addMemberToCard(card.id, 456);
-await client.cards.updateCard(card.id, {title: 'Новое название'});
+await client.cards.updateCard(card.id, {title: 'New title'});
 const page = await client.cards.retrieveCardList({version: 2, limit: 50});
 
 const controller = new AbortController();
@@ -19,7 +19,7 @@ await client.cards.retrieveCard(card.id, undefined, {
 });
 ```
 
-Типы с суффиксом `Params` теперь являются кортежами, полученными из сигнатуры метода:
+Types ending in `Params` are now argument tuples derived from the method signature:
 
 ```ts
 import type {CardsRetrieveCardParams} from '@2chevskii/kaiten-client';
@@ -28,9 +28,9 @@ const args: CardsRetrieveCardParams = [123];
 await client.cards.retrieveCard(...args);
 ```
 
-Актуальные сигнатуры всех операций приведены в [REST](/reference/rest) и [SCIM](/reference/scim).
+Current signatures for every operation appear in the [REST](/reference/rest) and [SCIM](/reference/scim) references.
 
-## Файлы, SCIM и OAuth
+## Files, SCIM, and OAuth
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
@@ -50,12 +50,12 @@ await scim.users.updateUser(123, [
 await oauth.getToken('addon-uuid', 123, 1);
 ```
 
-`getCardFile`, `getCommentFile` и `getCustomPropertyFile` выводят тип ответа по `redirect`. Поиск выводит форму ответа по обязательному `version: 2`; переменная с необязательным `version` даёт объединение массива и ответа с курсором.
+`getCardFile`, `getCommentFile`, and `getCustomPropertyFile` infer their result from `redirect`. Search infers its result from a required `version: 2`; a variable with an optional `version` produces a union of an array and a cursor response.
 
-## Ответы и вебхуки
+## Responses and webhooks
 
-Вложенные объекты и массивы имеют соответствующие типы. Nullable-поля допускают `null`. `properties` использует динамические ID пользовательских полей, а `changes` в вебхуках содержит необязательные поля изменяемой сущности. Опечатки из старых примеров Kaiten сохранены как необязательные legacy-поля рядом с правильными именами.
+Nested objects and arrays have matching types. Nullable fields accept `null`. `properties` uses dynamic custom-property IDs, and webhook `changes` contains optional fields of the updated entity. Misspellings from older Kaiten examples remain available as optional legacy fields alongside the correct names.
 
-Браузерный SDK имеет отдельные типы `AddonCard` и `AddonCurrentUser`; связанные сущности карточки загружаются через `getCardProperties`. `window.Addon`, callback-действия диалогов и отсутствие badges через `null` поддерживаются декларациями.
+The browser SDK has separate `AddonCard` and `AddonCurrentUser` contracts; related card entities are loaded through `getCardProperties`. Declarations support `window.Addon`, dialog action callbacks, and absent badges represented by `null`.
 
-Повреждённый JSON и неожиданный пустой успешный ответ вызывают `KaitenResponseError`. Документированные операции без тела ответа возвращают `undefined`. HTTP-ошибки по-прежнему представлены `KaitenHttpError`.
+Malformed JSON and unexpectedly empty successful responses throw `KaitenResponseError`. Documented operations without a response body return `undefined`. HTTP errors continue to use `KaitenHttpError`.

@@ -1,17 +1,17 @@
-# Метаданные пользователя
+# User metadata
 
-Kaiten вызывает настроенный вами сервис для получения метаданных пользователя. Экспорт `@2chevskii/kaiten-client/metadata` содержит контракты запроса, ответа и обработчика; HTTP-сервер вы создаёте самостоятельно.
+Kaiten calls a metadata service that you configure. `@2chevskii/kaiten-client/metadata` exports request, response, and handler contracts; you provide the HTTP server.
 
 ```ts
 import type {UserMetadataHandler} from '@2chevskii/kaiten-client/metadata';
 
 const getMetadata: UserMetadataHandler = ({email, token}) => {
-  // Проверьте token, если он настроен в вашей интеграции.
+  // Validate token if your integration is configured to use one.
   return {
-    description: `Сотрудник: ${email}`,
+    description: `Employee: ${email}`,
     id_42: 'team-a',
   };
 };
 ```
 
-`UserMetadataRequest` содержит `email` и необязательный `token`. `UserMetadataResponse` допускает `description` и поля вида `id_42`; значение поля может быть строкой, числом, `null` или объектом. `UserMetadataHandler` может быть синхронным или асинхронным. Проверяйте входящие запросы и токен на своей стороне. [Документация Kaiten](https://developers.kaiten.ru/user-metadata).
+`UserMetadataRequest` contains `email` and an optional `token`. `UserMetadataResponse` accepts `description` and fields such as `id_42`; a field value can be a string, number, `null`, or object. `UserMetadataHandler` may be synchronous or asynchronous. Validate incoming requests and their token in your service. [Kaiten documentation](https://developers.kaiten.ru/user-metadata).

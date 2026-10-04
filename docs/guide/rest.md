@@ -1,8 +1,8 @@
 # REST API
 
-`KaitenClient` группирует методы по ресурсам: `client.cards`, `client.boards`, `client.users`, `client.cardComments` и другие. [Справочник](/reference/rest) перечисляет все 214 операций: имя метода, HTTP-маршрут, параметры, тело, форму ответа и ссылку на Kaiten.
+`KaitenClient` groups methods by resource: `client.cards`, `client.boards`, `client.users`, `client.cardComments`, and others. The [reference](/reference/rest) lists all 214 operations with method name, HTTP path, parameters, request body, response shape, and a Kaiten source link.
 
-## Запросы и типы
+## Requests and types
 
 ```ts
 import {KaitenClient} from '@2chevskii/kaiten-client';
@@ -17,34 +17,34 @@ const client = new KaitenClient({
 });
 
 const request: CardsCreateNewCardBody = {
-  title: 'Подготовить релиз',
+  title: 'Prepare release',
   board_id: 10,
 };
 const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Методы принимают ID отдельными аргументами. Небольшие наборы полей тела тоже передаются отдельно: `client.cardComments.addComment(cardId, text)`. Большие тела и фильтры сохраняют объекты типов `Body` и `Query`: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. Последний аргумент — необязательный `OperationOptions` с `signal`. Методы API возвращают `Promise`, а методы `iterate` — асинхронный итератор. Типы `Params` описывают кортеж аргументов конкретного метода; его можно передать через `...args`.
+Methods take IDs as separate arguments. Small sets of body fields are separate too: `client.cardComments.addComment(cardId, text)`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Endpoint methods return a `Promise`; `iterate` methods return an async iterator. `Params` types describe the method's argument tuple, which can be passed with `...args`.
 
-`client.cards.create(...)` — короткий псевдоним `client.cards.createNewCard(...)`. Beta- и deprecated-операции остаются доступными и отмечены в типах и [справочнике](/reference/rest).
+`client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types and [reference](/reference/rest).
 
-## Автоматизации
+## Automations
 
-Основной экспорт также содержит `AutomationBody`, `AutomationTrigger`, `AutomationTriggerType`, `AutomationAction`, `AutomationCondition` и `AutomationConditionGroup` для `client.automations`. Триггеры имеют перечисление допустимых имён; данные отдельных действий, которые Kaiten не специфицирует, остаются `unknown`.
+The root export also provides `AutomationBody`, `AutomationTrigger`, `AutomationTriggerType`, `AutomationAction`, `AutomationCondition`, and `AutomationConditionGroup` for `client.automations`. Trigger names are enumerated; action data that Kaiten does not specify remains `unknown`.
 
 ```ts
 import type {AutomationBody} from '@2chevskii/kaiten-client';
 
 const automation: AutomationBody = {
   type: 'on_demand',
-  name: 'Обновить карточку',
+  name: 'Update card',
   actions: [{type: 'change_asap', data: {asap: true}}],
 };
 ```
 
-## Поиск с курсором
+## Cursor based search
 
-Поиск карточек и документов поддерживает две версии ответа. При `version: 1` результат — массив, при `version: 2` — объект `{ result, position }`.
+Card and document search supports two response versions. `version: 1` returns an array, while `version: 2` returns `{ result, position }`.
 
 ```ts
 const firstPage = await client.cards.retrieveCardList({
@@ -60,11 +60,11 @@ const nextPage = await client.cards.retrieveCardList({
 console.log(firstPage.result, nextPage.result);
 ```
 
-Тип `SearchResponseV2<Result>` экспортируется из основного пакета. Передавайте литерал `1` или `2`, чтобы TypeScript вывел подходящий тип результата. Для обычного списка без `version: 2` возвращается массив.
+The root package exports `SearchResponseV2<Result>`. Pass literal `1` or `2` so TypeScript infers the matching result type. A normal list call without `version: 2` returns an array.
 
-## Автоматическая пагинация
+## Automatic pagination
 
-`cards.iterate`, `documents.iterate` и `documentGroups.iterate` запрашивают страницы поиска версии 2 по мере перебора элементов:
+`cards.iterate`, `documents.iterate`, and `documentGroups.iterate` fetch version 2 search pages as you consume their items:
 
 ```ts
 for await (const card of client.cards.iterate({board_id: 10, limit: 50})) {
@@ -73,15 +73,15 @@ for await (const card of client.cards.iterate({board_id: 10, limit: 50})) {
 }
 ```
 
-Первый запрос выполняется при начале перебора. `break` прекращает загрузку следующих страниц. Последний аргумент `{ signal }` позволяет отменить перебор, в том числе между элементами уже загруженной страницы. `start_position` продолжает поиск с имеющегося курсора. Поля `version` и `offset` исключены из типов запросов итераторов: они используют курсорную пагинацию версии 2.
+No request starts until iteration begins. Breaking the loop prevents further page requests. Use the last `{ signal }` argument to cancel, including between items of an already fetched page. `start_position` resumes from an existing cursor. `version` and `offset` are omitted from the iterator query types because iteration uses cursor pagination with version 2.
 
-Перебор завершается при пустой странице или пустом курсоре. Страница должна содержать массив `result` и строковый `position`; некорректные метаданные пагинации вызывают `TypeError`. Повторение курсора на непустой странице вызывает ошибку до выдачи её элементов. Методы получения одной страницы остаются доступны для ручного управления пагинацией.
+Iteration ends on an empty page or an empty cursor. Pages must contain a `result` array and a string `position`; invalid pagination metadata throws `TypeError`. A repeated cursor on a nonempty page throws an error before that page's items are yielded. Single-page methods remain available when you need to control pagination yourself.
 
-При создании итератора значения запроса, включая массивы и вложенные фильтры, копируются, а сигнал сохраняется. Все страницы используют этот снимок параметров. Для отмены вызовите `abort` у контроллера сохранённого сигнала.
+Iterators copy query values, including arrays and nested filters, and capture the signal when created. Every page uses that snapshot. Abort the captured signal's controller to cancel the iteration.
 
-### Пользователи и теги
+### Users and tags
 
-`users.iterate` и `tags.iterate` используют пагинацию через смещение и принимают те же объекты запроса, что и методы получения одной страницы:
+`users.iterate` and `tags.iterate` use offset pagination and accept the same query objects as their single-page list methods:
 
 ```ts
 for await (const user of client.users.iterate({include_inactive: true})) {
@@ -93,13 +93,13 @@ for await (const tag of client.tags.iterate({space_id: 10, limit: 50})) {
 }
 ```
 
-`offset` по умолчанию равен 0 и должен быть неотрицательным безопасным целым числом; `limit` по умолчанию равен 100 и должен быть целым числом от 1 до 100. Смещение увеличивается на фактическое число полученных элементов, в том числе при коротких страницах. Пустая страница завершает перебор, поэтому полный обход делает заключительный запрос пустой страницы. Ответ, который не является массивом, вызывает `TypeError`.
+`offset` defaults to 0 and must be a non-negative safe integer; `limit` defaults to 100 and must be an integer from 1 to 100. The offset advances by the actual page length, including short pages. An empty page ends iteration, so fully consuming the iterator makes a final empty-page request. A non-array response fails with `TypeError`.
 
-Эти итераторы также сохраняют снимок запроса и сигнал, поддерживают ранний выход и отмену и загружают по одной странице. `users.retrieveListOfUsers` и `tags.retrieveListOfTags` по-прежнему возвращают отдельные страницы.
+These iterators also snapshot their query and signal, support early exit and cancellation, and fetch one page at a time. `users.retrieveListOfUsers` and `tags.retrieveListOfTags` return individual pages as before.
 
-## Типизированные фильтры карточек
+## Typed card filters
 
-Поля запроса карточек со списками через запятую также принимают readonly-массивы. Для ID используются числовые массивы, для состояний — значения `1 | 2 | 3`, для направлений сортировки — `"asc" | "desc"`:
+Comma-separated card query fields also accept readonly arrays. Use numeric arrays for ID filters, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`:
 
 ```ts
 const page = await client.cards.retrieveCardList({
@@ -112,9 +112,9 @@ const page = await client.cards.retrieveCardList({
 });
 ```
 
-Экспортируемый тип `QueryList<T>` допускает строку или `readonly T[]`. Транспорт соединяет элементы массивов запятыми; строки вроде `owner_ids: "123,456"` остаются допустимыми. Эти же поля доступны в `cards.iterate`.
+The exported `QueryList<T>` type accepts a string or `readonly T[]`. The transport joins arrays with commas; existing strings such as `owner_ids: "123,456"` remain valid. The same fields are available on `cards.iterate`.
 
-Поле `filter` принимает объект `CardFilter` или готовую строку base64. Объект автоматически кодируется с использованием UTF-8:
+The `filter` field accepts a `CardFilter` object or an existing base64 string. Object filters are encoded automatically using UTF-8:
 
 ```ts
 import type {CardFilter} from '@2chevskii/kaiten-client';
@@ -137,11 +137,11 @@ for await (const card of client.cards.iterate({filter})) {
 }
 ```
 
-Типы следуют [схеме фильтра Kaiten](https://developers.kaiten.ru/cards/retrieve-card-list): верхний `and`/`or` содержит группы условий, а ключ и сравнение определяют тип значения каждого условия. Для числовых пользовательских полей значения сравнений передаются строками; условия checkbox и attachment требуют `value: null`. Функция `encodeCardFilter(filter)` экспортируется для получения закодированной строки отдельно. Контракты других операций, принимающих строковые фильтры, сохраняются.
+The types follow Kaiten's [filter schema](https://developers.kaiten.ru/cards/retrieve-card-list): a top-level `and`/`or` contains groups of conditions, and each condition's key and comparison determine its value type. Numeric custom-property comparisons use string values; checkbox and attachment comparisons require `value: null`. `encodeCardFilter(filter)` is exported when you need the encoded string separately. Other API operations that accept filter strings keep their existing contracts.
 
-## ID и ответы
+## IDs and responses
 
-`users.retrieveListOfUsers` и `tags.retrieveListOfTags` принимают `ids` как `QueryList<number>`. Фильтры табеля `tag_ids`, `user_ids`, `group_ids`, `space_ids`, `board_ids`, `column_ids`, `card_ids` и `visible_column_ids` используют тот же тип:
+`users.retrieveListOfUsers` and `tags.retrieveListOfTags` accept `ids` as `QueryList<number>`. The time-log filters `tag_ids`, `user_ids`, `group_ids`, `space_ids`, `board_ids`, `column_ids`, `card_ids`, and `visible_column_ids` use the same type:
 
 ```ts
 const users = await client.users.retrieveListOfUsers({ids: [123, 456]});
@@ -154,8 +154,8 @@ const timeLogs = await client.timesheet.getList({
 });
 ```
 
-Запрос пользователей также поддерживает `exclude_members_by_entity_uid` для исключения прямых, групповых и унаследованных участников сущности. `exclude_directly_added_members_by_entity_uid` сохраняет более узкий смысл: исключаются только пользователи, приглашённые напрямую.
+User queries also support `exclude_members_by_entity_uid` to exclude direct, group, and inherited members of an entity. `exclude_directly_added_members_by_entity_uid` keeps its narrower meaning of excluding direct invitations only.
 
-Kaiten использует и числовые ID, и UUID. Передавайте тот тип идентификатора, который указан в типе конкретного метода: например, `card_id: number` или `card_uid: string`. Даты остаются строками, документированные nullable-поля допускают `null`, неполные схемы представлены через `unknown`.
+Kaiten uses both numeric IDs and UUIDs. Pass the identifier type required by the particular method, such as `card_id: number` or `card_uid: string`. Dates remain strings, documented nullable fields allow `null`, and incomplete schemas use `unknown`.
 
-Для операций без итератора используйте `limit`, `offset` или курсор там, где их поддерживает операция. Подробности файловых маршрутов — в [отдельном руководстве](/guide/files).
+For operations without an iterator, use `limit`, `offset`, or a cursor where supported. Read the [file guide](/guide/files) for file routes.
