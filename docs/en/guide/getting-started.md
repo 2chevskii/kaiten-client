@@ -44,6 +44,4 @@ for (const card of cards) {
 
 `origin` is the company URL without a path or query. Use HTTPS. Keep the token outside source control.
 
-The repository includes a [runnable sample](https://github.com/2chevskii/kaiten-client/tree/develop/samples/kaiten-rest): set `KAITEN_ORIGIN` and `KAITEN_TOKEN`, then run `npm run sample:kaiten-rest`.
-
 Next: [client configuration](/en/guide/configuration), [REST operations](/en/guide/rest).

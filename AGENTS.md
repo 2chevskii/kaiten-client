@@ -2,7 +2,7 @@
 
 ## Project Structure
 
-`src/` contains the TypeScript ESM client. Shared transport and public contracts live at the top level; REST resources are grouped in `src/rest/`, SCIM code in `src/scim/`, and webhook code in `src/webhooks/`. `samples/kaiten-rest/` is a runnable example. `docs/` contains Russian and English guides and API references. `tools/` holds release helpers. `lib/`, `artifacts/`, `node_modules/`, and `docs/.vitepress/dist/` are generated or installed content; do not edit generated output by hand.
+`src/` contains the TypeScript ESM client. Shared transport and public contracts live at the top level; REST resources are grouped in `src/rest/`, SCIM code in `src/scim/`, and webhook code in `src/webhooks/`. `docs/` is a private npm workspace containing VitePress, Russian and English guides, and API references. `tools/` holds release helpers. `lib/`, `artifacts/`, `node_modules/`, and `docs/.vitepress/dist/` are generated or installed content; do not edit generated output by hand.
 
 ## Build and Development
 
@@ -11,8 +11,7 @@ Use Node.js 24 or newer and install dependencies with `npm ci`.
 - `npm run build` compiles declarations and ESM output into `lib/`.
 - `npm run build:watch` rebuilds as source files change.
 - `npm run check` runs the build, ESLint, Prettier check, and documentation build.
-- `npm run sample:kaiten-rest` builds and runs the REST sample.
-- `npm run docs:dev` serves the documentation locally; `npm run docs:build` builds it.
+- `npm run docs:dev` serves the documentation locally; `npm run docs:build` builds it. These delegate to the `docs/` workspace; `npm run build --workspace docs` also builds the documentation.
 
 ## Coding Style
 
