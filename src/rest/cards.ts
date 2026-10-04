@@ -744,7 +744,7 @@ export type CardMembersRetrieveListOfCardMembersParams = Parameters<
 >;
 
 export interface CardMembersUpdateMemberRoleBody {
-  type: number;
+  type: 2;
 }
 
 export interface CardMembersUpdateMemberRoleResponse {
@@ -1434,7 +1434,7 @@ export interface CardsUpdateCardResponse {
   import_id: number | null;
   owner: UserSummary;
   members: CardMemberSummary[];
-  tags?: string | number;
+  tags?: CardTagSummary[];
   source?: string | null;
 }
 
@@ -1873,7 +1873,7 @@ export const createCardsResources = (transport: HttpTransport) => {
       updateMemberRole: (
         cardId: number,
         memberId: number,
-        type: number,
+        type: 2,
         options?: OperationOptions,
       ) => {
         return transport.request<CardMembersUpdateMemberRoleResponse>({
