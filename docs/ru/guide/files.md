@@ -36,6 +36,18 @@ console.log(file.url);
 console.log(redirect.location);
 ```
 
-`redirect: true` возвращает `{ location: string }` из заголовка `Location`; клиент не следует за перенаправлением. Временную ссылку скачивайте отдельным запросом без токена Kaiten. Старый `client.cardFiles.attachFileToCard` сохранён и помечен `@deprecated`.
+Ссылка предоставляет временный доступ к файлу. Скачайте его через `fetch`; не записывайте ссылку в логи и не храните её:
 
-Операции для карточек, комментариев и полей перечислены в [REST-справочнике](/ru/reference/rest).
+```ts
+const download = await fetch(redirect.location);
+if (!download.ok) {
+  throw new Error(`Не удалось скачать файл: ${download.status}`);
+}
+
+const contents = await download.blob();
+console.log(contents.size, contents.type);
+```
+
+`redirect: true` возвращает `{ location: string }` из заголовка `Location`; клиент не следует за перенаправлением. Выполняйте запрос скачивания без токена Kaiten. Старый `client.cardFiles.attachFileToCard` сохранён и помечен `@deprecated`.
+
+Используйте автодополнение для `restrictedAccessCardFiles`, `restrictedAccessCommentFiles` и `restrictedAccessCustomPropertyFiles`, чтобы изучить доступные операции и их типы.

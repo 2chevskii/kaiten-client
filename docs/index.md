@@ -8,9 +8,6 @@ hero:
     - theme: brand
       text: Get started
       link: /guide/getting-started
-    - theme: alt
-      text: API reference
-      link: /reference/rest
 features:
   - title: REST and SCIM
     details: 214 REST operations and 8 SCIM operations with request and response types.

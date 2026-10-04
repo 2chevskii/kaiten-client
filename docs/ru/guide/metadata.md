@@ -15,3 +15,21 @@ const getMetadata: UserMetadataHandler = ({email, token}) => {
 ```
 
 `UserMetadataRequest` содержит `email` и необязательный `token`. `UserMetadataResponse` допускает `description` и поля вида `id_42`; значение поля может быть строкой, числом, `null` или объектом. `UserMetadataHandler` может быть синхронным или асинхронным. Проверяйте входящие запросы и токен на своей стороне. [Документация Kaiten](https://developers.kaiten.ru/user-metadata).
+
+Асинхронный обработчик может получать профиль из внутреннего каталога сотрудников:
+
+```ts
+const getMetadata: UserMetadataHandler = async ({email, token}) => {
+  if (token !== process.env.METADATA_SHARED_TOKEN) {
+    throw new Error('Недействительный токен метаданных');
+  }
+
+  const profile = await directory.findByEmail(email);
+  if (!profile) return {};
+
+  return {
+    description: profile.jobTitle,
+    id_42: profile.teamCode,
+  };
+};
+```

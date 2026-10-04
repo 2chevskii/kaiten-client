@@ -1,6 +1,6 @@
 # REST API
 
-`KaitenClient` groups methods by resource: `client.cards`, `client.boards`, `client.users`, `client.cardComments`, and others. The [reference](/reference/rest) lists all 214 operations with method name, HTTP path, parameters, request body, response shape, and a Kaiten source link.
+`KaitenClient` groups methods by resource: `client.cards`, `client.boards`, `client.users`, `client.cardComments`, and others. Use editor completion and exported TypeScript types to explore available operations and their request and response shapes.
 
 ## Requests and types
 
@@ -24,9 +24,25 @@ const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Methods take IDs as separate arguments. Small sets of body fields are separate too: `client.cardComments.addComment(cardId, text)`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Endpoint methods return a `Promise`; `iterate` methods return an async iterator. `Params` types describe the method's argument tuple, which can be passed with `...args`.
+Methods take IDs as separate arguments. Request bodies use their `Body` objects, including comments: `client.cardComments.addComment(cardId, {text})`. Larger bodies and filters retain their `Body` and `Query` objects: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. The optional last argument is `OperationOptions`, which carries `signal`. Endpoint methods return a `Promise`; `iterate` methods return an async iterator. `Params` types describe the method's argument tuple, which can be passed with `...args`.
 
-`client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types and [reference](/reference/rest).
+`client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types.
+
+## Create a card and add a comment
+
+The response from one operation can provide the ID needed by another. Small comment fields are positional arguments:
+
+```ts
+const created = await client.cards.createNewCard({
+  title: 'Review the onboarding guide',
+  board_id: 10,
+});
+
+await client.cardComments.addComment(created.id, {
+  text: 'Please review the examples.',
+});
+console.log(`Created card ${created.id}`);
+```
 
 ## Automations
 

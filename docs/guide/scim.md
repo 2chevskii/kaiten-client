@@ -1,6 +1,6 @@
 # SCIM
 
-`KaitenScimClient` is a separate export at `@2chevskii/kaiten-client/scim`. It uses `/scim/v2` and provides eight user and group operations.
+`KaitenScimClient` is a separate export at `@2chevskii/kaiten-client/scim`. It uses `/scim/v2` and provides user and group operations. Use editor completion and the exported SCIM types to explore request and response fields.
 
 ```ts
 import {KaitenScimClient} from '@2chevskii/kaiten-client/scim';
@@ -15,7 +15,7 @@ const users = await scim.users.getUsers(1, 20);
 console.log(users.Resources, users.totalResults);
 ```
 
-SCIM fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Methods accept IDs, pagination, and filters as positional arguments, and cancellation through the last `{ signal }` argument. `KaitenHttpError` works as it does in the REST client. The [SCIM reference](/reference/scim) lists every method and type.
+SCIM fields preserve the specification's casing: `startIndex`, `displayName`, `Resources`. Methods accept IDs, pagination, and filters as positional arguments, and cancellation through the last `{ signal }` argument. `KaitenHttpError` works as it does in the REST client.
 
 Responses share the exported `ScimName`, `ScimEmail`, `ScimResourceMeta`, and `ScimResourceReference` contracts. Group members and user group memberships use numeric `value` IDs, while group resources expose a string `id`.
 
@@ -25,6 +25,23 @@ await scim.users.updateUser(123, [
 ]);
 const group = await scim.groups.addGroup('Developers');
 await scim.groups.getGroup(group.id);
+```
+
+You can also find a user by SCIM filter and deactivate the returned user:
+
+```ts
+const matchingUsers = await scim.users.getUsers(
+  1,
+  20,
+  'userName eq "alex@example.com"',
+);
+const user = matchingUsers.Resources[0];
+
+if (user) {
+  await scim.users.updateUser(user.id, [
+    {op: 'replace', path: 'active', value: false},
+  ]);
+}
 ```
 
 `updateUser` and `updateGroup` accept `ScimUserPatchOperation` and `ScimGroupPatchOperation` arrays; the client constructs the request's `Operations` field. Group IDs accept the string values returned by SCIM.
