@@ -28,7 +28,10 @@ jobs:
           short_sha=${PR_HEAD_SHA:0:7}
           npm version "${base_version}-${PR_NUMBER}-${short_sha}" --no-git-tag-version --ignore-scripts
           jq -r '"package=" + (.name | ltrimstr("@") | gsub("/"; "-")) + "-" + .version + ".tgz"' package.json >> "$GITHUB_OUTPUT"
-      - run: npm pack
+      - run: |
+          npm run build
+          mkdir -p artifacts
+          npm pack
       - uses: actions/upload-artifact@v7
         with:
           path: artifacts/${{ steps.version.outputs.package }}

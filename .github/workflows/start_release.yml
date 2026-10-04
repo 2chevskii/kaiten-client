@@ -59,7 +59,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npm pack
+      - run: |
+          npm run build
+          mkdir -p artifacts
+          npm pack
       - working-directory: artifacts
         run: |
           if gh release view "$RELEASE_TAG" > /dev/null; then
