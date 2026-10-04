@@ -5,9 +5,7 @@ import {writeFileSync, appendFileSync} from 'node:fs';
 const baseVersion = packageJson.version;
 const {PR_NUMBER, COMMIT_SHA, GITHUB_OUTPUT} = process.env;
 
-const packageVersion = PR_NUMBER
-  ? `${baseVersion}-${PR_NUMBER}-${COMMIT_SHA.substring(0, 7)}`
-  : baseVersion;
+const packageVersion = `${baseVersion}-${PR_NUMBER || 'master'}-${COMMIT_SHA.substring(0, 7)}`;
 
 const packageJsonContent = {
   ...packageJson,
