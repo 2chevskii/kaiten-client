@@ -19,7 +19,7 @@ Source files and declaration maps are included for editor navigation. JavaScript
 source maps support debugging with `node --enable-source-maps`. No TypeScript
 runtime loader is needed.
 
-The bilingual [documentation site](https://2chevskii.github.io/kaiten-client/) has Russian and English guides, plus a reference for every REST and SCIM operation. Run it locally with `npm run docs:dev` or build it with `npm run docs:build`. Version 2 uses positional arguments; see the [migration guide](https://2chevskii.github.io/kaiten-client/en/guide/migration).
+The bilingual [documentation site](https://2chevskii.github.io/kaiten-client/) has Russian and English guides, plus a reference for every REST and SCIM operation. Run it locally with `npm run docs:dev` or build it with `npm run docs:build`. The documentation is a private npm workspace in `docs/`; you can also run `npm run dev --workspace docs` or `npm run build --workspace docs`. Version 2 uses positional arguments; see the [migration guide](https://2chevskii.github.io/kaiten-client/en/guide/migration).
 
 ## REST client
 
@@ -65,8 +65,6 @@ Methods are grouped by the sections in Kaiten's REST documentation. For example,
 The client accepts a token string or an async token provider, an optional `fetch` implementation, and `apiVersion: 'v1' | 'latest'` (default: `v1`). Pass `{ signal }` as the last options argument to cancel an operation. Path IDs and small sets of body fields are separate arguments; larger bodies and filters retain their typed objects. HTTP errors expose status, headers, body, method, and URL. `KaitenResponseError` reports malformed or unexpectedly empty successful responses. Requests are not automatically retried.
 
 The [source layout](https://github.com/2chevskii/kaiten-client/blob/develop/docs/architecture.md) maps REST resources to their domain modules.
-
-A runnable TypeScript example is in [samples/kaiten-rest](https://github.com/2chevskii/kaiten-client/tree/develop/samples/kaiten-rest).
 
 ### Files
 

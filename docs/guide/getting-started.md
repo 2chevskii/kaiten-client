@@ -44,6 +44,4 @@ for (const card of cards) {
 
 `origin` — адрес компании без пути и завершающих параметров. Используйте HTTPS. Токен храните вне исходного кода.
 
-В репозитории есть [запускаемый пример](https://github.com/2chevskii/kaiten-client/tree/develop/samples/kaiten-rest): задайте `KAITEN_ORIGIN` и `KAITEN_TOKEN`, затем выполните `npm run sample:kaiten-rest`.
-
 Далее: [настройка клиента](/guide/configuration), [REST-операции](/guide/rest).

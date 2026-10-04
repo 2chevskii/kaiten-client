@@ -60,12 +60,7 @@ the implementation and JavaScript maps can resolve stack traces with
 `node --enable-source-maps`. Runtime entry points always resolve to compiled
 JavaScript.
 
-The library is a composite TypeScript project. The REST sample references it,
-so `npx tsc -b samples/kaiten-rest` builds the library before the sample, including
-on a clean checkout. Build mode skips projects that are already up to date.
-Build state is stored in `artifacts/tsconfig.tsbuildinfo` for the library and
-`samples/kaiten-rest/dist/tsconfig.tsbuildinfo` for the sample, outside source control
-and the published package. The documentation config remains a separate non-composite project.
+The library is a composite TypeScript project. Build mode skips projects that are already up to date. The documentation config remains a separate non-composite project.
 
 `npm run build:watch` uses build mode to recompile changes during development. `npm pack` runs
 one clean build through its `prepack` hook: it removes `lib` and runs
@@ -78,3 +73,7 @@ the package along with the compiler's build state.
 
 The library's module graph must remain free of top-level `await` to support
 Node.js 24's synchronous `require()` of ESM.
+
+## Documentation workspace
+
+The private `docs/` npm workspace owns VitePress and its `dev`, `build`, and `preview` scripts. Run `npm ci` at the repository root to install all workspaces with the shared lockfile. Use `npm run build --workspace docs` to build the site into `docs/.vitepress/dist/`, or use the root `docs:*` shortcuts.

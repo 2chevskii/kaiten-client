@@ -13,6 +13,9 @@
   "engines": {
     "node": ">=24"
   },
+  "workspaces": [
+    "docs"
+  ],
   "files": [
     "lib",
     "src",
@@ -57,10 +60,9 @@
     "lint": "eslint .",
     "format:check": "prettier . --check",
     "format": "prettier . --write",
-    "sample:kaiten-rest": "tsc -b samples/kaiten-rest && node samples/kaiten-rest/dist/index.js",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:dev": "npm run dev --workspace docs",
+    "docs:build": "npm run build --workspace docs",
+    "docs:preview": "npm run preview --workspace docs",
     "check": "npm run build && npm run lint && npm run format:check && npm run docs:build"
   },
   "devDependencies": {
@@ -71,8 +73,7 @@
     "globals": "^17.12.0",
     "prettier": "3.9.9",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.0",
-    "vitepress": "1.6.4"
+    "typescript-eslint": "^8.71.0"
   },
   "overrides": {
     "vite": "6.4.3"
