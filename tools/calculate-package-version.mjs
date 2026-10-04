@@ -1,12 +1,13 @@
 import {fileURLToPath} from 'node:url';
 import packageJson from '../package.json' with {type: 'json'};
 import {writeFileSync, appendFileSync} from 'node:fs';
-import path from 'node:path';
 
 const baseVersion = packageJson.version;
 const {PR_NUMBER, COMMIT_SHA, GITHUB_OUTPUT} = process.env;
 
-const packageVersion = `${baseVersion}-${PR_NUMBER}-${COMMIT_SHA.substring(0, 7)}`;
+const packageVersion = PR_NUMBER
+  ? `${baseVersion}-${PR_NUMBER}-${COMMIT_SHA.substring(0, 7)}`
+  : baseVersion;
 
 const packageJsonContent = {
   ...packageJson,
@@ -15,9 +16,8 @@ const packageJsonContent = {
 
 console.log('PackageJsonContent:', packageJsonContent);
 
-const packageJsonPath = path.resolve(
-  fileURLToPath(import.meta.url),
-  '../package.json',
+const packageJsonPath = fileURLToPath(
+  new URL('../package.json', import.meta.url),
 );
 
 writeFileSync(packageJsonPath, JSON.stringify(packageJsonContent, null, 2), {
