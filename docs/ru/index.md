@@ -20,6 +20,6 @@ features:
     details: Встроенный fetch, AbortSignal, загрузка файлов и настраиваемый токен.
 ---
 
-Пакет `@2chevskii/kaiten-client` требует Node.js 24+ и поставляется только как ESM. Текущая версия — `2.0.0`. Инструкция установки опубликованного пакета — в руководстве.
+Пакет `@2chevskii/kaiten-client` требует Node.js 24+ и поставляется только как ESM. Инструкция установки опубликованного пакета — в руководстве.
 
 [Исходный код](https://github.com/2chevskii/kaiten-client) · [Документация Kaiten](https://developers.kaiten.ru/) · [English](/)

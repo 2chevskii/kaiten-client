@@ -8,7 +8,6 @@ export default defineConfig({
   description: 'Typed TypeScript client for Kaiten',
   cleanUrls: true,
   lastUpdated: true,
-  srcExclude: ['architecture.md', 'documentation-audit.md'],
   themeConfig: {
     socialLinks: [{icon: 'github', link: repository}],
     search: {
