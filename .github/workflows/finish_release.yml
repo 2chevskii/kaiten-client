@@ -15,6 +15,7 @@ jobs:
   publish:
     name: Publish to ${{ matrix.registry }}
     runs-on: ubuntu-26.04
+    environment: production
     timeout-minutes: 15
     permissions:
       contents: read
@@ -35,27 +36,31 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-          registry-url: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
+          registry-url: ${{ matrix.registry == 'github' && 'https://npm.pkg.github.com' || '' }}
           scope: '@2chevskii'
+          package-manager-cache: false
       - id: version
-        run: echo "package=2chevskii-kaiten-client-${RELEASE_TAG#v}.tgz" >> "$GITHUB_OUTPUT"
+        run: |
+          jq -er --arg version "${RELEASE_TAG#v}" '
+            if .version == $version then
+              "package=2chevskii-kaiten-client-\(.version).tgz"
+            else
+              error("Release tag must match package.json version after removing the v prefix")
+            end
+          ' package.json >> "$GITHUB_OUTPUT"
       - env:
           PACKAGE: ${{ steps.version.outputs.package }}
         run: |
           mkdir -p artifacts
           gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --dir artifacts
-      - env:
-          NODE_AUTH_TOKEN: ${{ matrix.registry == 'npm' && secrets.NPM_TOKEN || '' }}
-          GITHUB_PACKAGES_TOKEN: ${{ github.token }}
-          REGISTRY_KIND: ${{ matrix.registry }}
-          REGISTRY: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
-          PACKAGE: artifacts/${{ steps.version.outputs.package }}
-        run: |
-          if [ "$REGISTRY_KIND" = github ]; then
-            export NODE_AUTH_TOKEN="$GITHUB_PACKAGES_TOKEN"
-          fi
-          if [ "$REGISTRY_KIND" = npm ]; then
-            npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance
-          else
-            npm publish "$PACKAGE" --registry "$REGISTRY"
-          fi
+      - name: Publish to npm
+        if: matrix.registry == 'npm'
+        env:
+          PACKAGE: ./artifacts/${{ steps.version.outputs.package }}
+        run: npm publish "$PACKAGE" --registry https://registry.npmjs.org --access public --provenance --tag latest
+      - name: Publish to GitHub Packages
+        if: matrix.registry == 'github'
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+          PACKAGE: ./artifacts/${{ steps.version.outputs.package }}
+        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag latest
