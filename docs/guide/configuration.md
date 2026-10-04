@@ -1,6 +1,6 @@
-# Настройка, отмена и ошибки
+# Configuration, cancellation, and errors
 
-## Параметры клиента
+## Client options
 
 ```ts
 import {KaitenClient} from '@2chevskii/kaiten-client';
@@ -13,11 +13,11 @@ const client = new KaitenClient({
 });
 ```
 
-`token` принимает строку или функцию, возвращающую строку либо `Promise<string>`. Функция вызывается перед каждым запросом. `fetch` можно заменить, например, при тестировании. По умолчанию REST использует `/api/v1`; `apiVersion: "latest"` задаёт `/api/latest`. Для SCIM префикс всегда `/scim/v2`.
+`token` accepts a string or a function returning a string or `Promise<string>`. The function runs before every request. Replace `fetch`, for example, in tests. REST uses `/api/v1` by default; `apiVersion: "latest"` selects `/api/latest`. SCIM always uses `/scim/v2`.
 
-Импортируемые типы: `ClientOptions`, `RestClientOptions`, `TokenProvider`, `OperationOptions`, `QueryValue`. Параметры API сохраняют имена Kaiten в `snake_case`, даты передаются строками. Клиент не проверяет схемы данных во время выполнения.
+Exported types include `ClientOptions`, `RestClientOptions`, `TokenProvider`, `OperationOptions`, and `QueryValue`. API fields retain Kaiten's `snake_case` names and dates stay strings. The client does not validate data schemas at runtime.
 
-## Отмена запроса
+## Cancel a request
 
 ```ts
 const controller = new AbortController();
@@ -27,12 +27,12 @@ const request = client.cards.retrieveCardList(
 );
 
 controller.abort();
-await request; // Отклоняется ошибкой отмены.
+await request; // Rejects with the cancellation error.
 ```
 
-Отмена также прерывает ожидание асинхронного провайдера токена с причиной из сигнала. Отменой собственной работы управляет сам провайдер. Токен, полученный позднее, не запустит отменённый HTTP-запрос. Это действует для REST, SCIM и клиента OAuth аддонов.
+Cancellation also interrupts waiting for an asynchronous token provider, rejecting with the signal's reason. The provider controls cancellation of its own work. A token that resolves later will not start the cancelled HTTP request. This applies to REST, SCIM, and addon OAuth clients.
 
-## HTTP-ошибки
+## HTTP errors
 
 ```ts
 import {KaitenHttpError} from '@2chevskii/kaiten-client';
@@ -50,6 +50,6 @@ try {
 }
 ```
 
-`body` имеет тип `unknown`: это JSON, текст или `undefined` для пустого ответа. Ошибки сети и провайдера токена передаются без изменений. Автоматических повторных запросов нет; если они нужны, управляйте ими в приложении с учётом метода и ограничений Kaiten.
+`body` is `unknown`: it can contain JSON, text, or `undefined` for an empty response. Network and token-provider errors propagate unchanged. Requests are never retried automatically; implement retries in your application with the method and Kaiten limits in mind.
 
-Для успешного ответа с повреждённым JSON или неожиданно пустым телом клиент выбрасывает `KaitenResponseError`. Ошибка содержит `status`, `headers`, `method`, `url`, исходный текст `body` и причину ошибки парсинга в `cause`. Операции с документированным пустым ответом возвращают `undefined`.
+Malformed JSON or an unexpectedly empty successful response throws `KaitenResponseError`. It exposes `status`, `headers`, `method`, `url`, the original response text in `body`, and the parsing error in `cause`. Documented operations without a response body return `undefined`.

@@ -15,7 +15,7 @@ export default defineConfig({
       provider: 'local',
       options: {
         locales: {
-          root: {
+          ru: {
             translations: {
               button: {
                 buttonText: 'Поиск',
@@ -44,14 +44,70 @@ export default defineConfig({
   },
   locales: {
     root: {
+      label: 'English',
+      lang: 'en-US',
+      title: 'Kaiten Client',
+      description: 'Typed TypeScript client for Kaiten',
+      themeConfig: {
+        nav: [
+          {text: 'Guide', link: '/guide/getting-started'},
+          {text: 'API', link: '/reference/rest'},
+        ],
+        sidebar: [
+          {
+            text: 'Getting started',
+            items: [
+              {
+                text: 'Install and first request',
+                link: '/guide/getting-started',
+              },
+              {
+                text: 'Configuration and errors',
+                link: '/guide/configuration',
+              },
+              {text: 'Migrating to 2.0', link: '/guide/migration'},
+            ],
+          },
+          {
+            text: 'Integrations',
+            items: [
+              {text: 'REST API', link: '/guide/rest'},
+              {text: 'Files', link: '/guide/files'},
+              {text: 'SCIM', link: '/guide/scim'},
+              {text: 'Webhooks', link: '/guide/webhooks'},
+              {text: 'User metadata', link: '/guide/metadata'},
+              {text: 'Imports', link: '/guide/imports'},
+              {text: 'Addons', link: '/guide/addons'},
+            ],
+          },
+          {
+            text: 'Reference',
+            items: [
+              {text: 'All REST operations', link: '/reference/rest'},
+              {text: 'All SCIM operations', link: '/reference/scim'},
+              {
+                text: 'Integration contracts',
+                link: '/reference/integrations',
+              },
+            ],
+          },
+        ],
+        outline: {label: 'On this page'},
+        editLink: {
+          pattern: `${repository}/edit/develop/docs/:path`,
+          text: 'Edit this page',
+        },
+      },
+    },
+    ru: {
       label: 'Русский',
       lang: 'ru-RU',
       title: 'Kaiten Client',
       description: 'Типизированный TypeScript-клиент Kaiten',
       themeConfig: {
         nav: [
-          {text: 'Руководство', link: '/guide/getting-started'},
-          {text: 'API', link: '/reference/rest'},
+          {text: 'Руководство', link: '/ru/guide/getting-started'},
+          {text: 'API', link: '/ru/reference/rest'},
         ],
         sidebar: [
           {
@@ -59,30 +115,33 @@ export default defineConfig({
             items: [
               {
                 text: 'Установка и первый запрос',
-                link: '/guide/getting-started',
+                link: '/ru/guide/getting-started',
               },
-              {text: 'Настройка и ошибки', link: '/guide/configuration'},
-              {text: 'Переход на 2.0', link: '/guide/migration'},
+              {text: 'Настройка и ошибки', link: '/ru/guide/configuration'},
+              {text: 'Переход на 2.0', link: '/ru/guide/migration'},
             ],
           },
           {
             text: 'Интеграции',
             items: [
-              {text: 'REST API', link: '/guide/rest'},
-              {text: 'Файлы', link: '/guide/files'},
-              {text: 'SCIM', link: '/guide/scim'},
-              {text: 'Вебхуки', link: '/guide/webhooks'},
-              {text: 'Метаданные пользователя', link: '/guide/metadata'},
-              {text: 'Импорт', link: '/guide/imports'},
-              {text: 'Аддоны', link: '/guide/addons'},
+              {text: 'REST API', link: '/ru/guide/rest'},
+              {text: 'Файлы', link: '/ru/guide/files'},
+              {text: 'SCIM', link: '/ru/guide/scim'},
+              {text: 'Вебхуки', link: '/ru/guide/webhooks'},
+              {text: 'Метаданные пользователя', link: '/ru/guide/metadata'},
+              {text: 'Импорт', link: '/ru/guide/imports'},
+              {text: 'Аддоны', link: '/ru/guide/addons'},
             ],
           },
           {
             text: 'Справочник',
             items: [
-              {text: 'Все REST-операции', link: '/reference/rest'},
-              {text: 'Все SCIM-операции', link: '/reference/scim'},
-              {text: 'Контракты интеграций', link: '/reference/integrations'},
+              {text: 'Все REST-операции', link: '/ru/reference/rest'},
+              {text: 'Все SCIM-операции', link: '/ru/reference/scim'},
+              {
+                text: 'Контракты интеграций',
+                link: '/ru/reference/integrations',
+              },
             ],
           },
         ],
@@ -99,62 +158,6 @@ export default defineConfig({
         editLink: {
           pattern: `${repository}/edit/develop/docs/:path`,
           text: 'Изменить страницу',
-        },
-      },
-    },
-    en: {
-      label: 'English',
-      lang: 'en-US',
-      title: 'Kaiten Client',
-      description: 'Typed TypeScript client for Kaiten',
-      themeConfig: {
-        nav: [
-          {text: 'Guide', link: '/en/guide/getting-started'},
-          {text: 'API', link: '/en/reference/rest'},
-        ],
-        sidebar: [
-          {
-            text: 'Getting started',
-            items: [
-              {
-                text: 'Install and first request',
-                link: '/en/guide/getting-started',
-              },
-              {
-                text: 'Configuration and errors',
-                link: '/en/guide/configuration',
-              },
-              {text: 'Migrating to 2.0', link: '/en/guide/migration'},
-            ],
-          },
-          {
-            text: 'Integrations',
-            items: [
-              {text: 'REST API', link: '/en/guide/rest'},
-              {text: 'Files', link: '/en/guide/files'},
-              {text: 'SCIM', link: '/en/guide/scim'},
-              {text: 'Webhooks', link: '/en/guide/webhooks'},
-              {text: 'User metadata', link: '/en/guide/metadata'},
-              {text: 'Imports', link: '/en/guide/imports'},
-              {text: 'Addons', link: '/en/guide/addons'},
-            ],
-          },
-          {
-            text: 'Reference',
-            items: [
-              {text: 'All REST operations', link: '/en/reference/rest'},
-              {text: 'All SCIM operations', link: '/en/reference/scim'},
-              {
-                text: 'Integration contracts',
-                link: '/en/reference/integrations',
-              },
-            ],
-          },
-        ],
-        outline: {label: 'On this page'},
-        editLink: {
-          pattern: `${repository}/edit/develop/docs/:path`,
-          text: 'Edit this page',
         },
       },
     },

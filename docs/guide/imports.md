@@ -1,6 +1,6 @@
-# Импорт данных
+# Data imports
 
-`@2chevskii/kaiten-client/imports` предоставляет типы файлов импорта Kaiten: метаданные, сущности, сопоставления ID и цвета. Пакет не запускает импорт: подготовленные файлы передаются через процесс импорта Kaiten.
+`@2chevskii/kaiten-client/imports` provides types for Kaiten import files: metadata, entities, ID mappings, and colors. The package does not start an import; submit prepared files through Kaiten's import process.
 
 ```ts
 import type {
@@ -18,8 +18,8 @@ const metadata: ImportMetaDataRecord = {
 };
 
 const cards: ImportCardsRecord[] = [
-  {id: 'external-card-1', column_id: 'external-column-1', title: 'Задача'},
+  {id: 'external-card-1', column_id: 'external-column-1', title: 'Task'},
 ];
 ```
 
-`ImportEntityName` перечисляет допустимые имена сущностей, `ImportColor` — допустимые цвета. Вложенные структуры карточки (`checklists`, `history`, `properties` и другие) имеют отдельные экспортируемые типы. Для полного формата используйте [документацию импорта Kaiten](https://developers.kaiten.ru/imports).
+`ImportEntityName` lists accepted entity names and `ImportColor` lists color values. Nested card structures (`checklists`, `history`, `properties`, and others) have their own exported types. See [Kaiten's import documentation](https://developers.kaiten.ru/imports) for the full format.

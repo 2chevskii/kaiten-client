@@ -1,28 +1,28 @@
-# Установка и первый запрос
+# Install and make your first request
 
-## Требования
+## Requirements
 
-- Node.js 24 или новее;
-- для TypeScript-проектов рекомендуется `module: "Node20"` (TypeScript 5.9 или новее);
-- домен компании Kaiten и API-токен.
+- Node.js 24 or newer;
+- for TypeScript projects, `module: "Node20"` is recommended (TypeScript 5.9 or newer);
+- a Kaiten company origin and an API token.
 
-Установите опубликованную версию из npm:
+Install a published version from npm:
 
 ```sh
 npm install @2chevskii/kaiten-client
 ```
 
-Пакет поставляется со скомпилированным ESM JavaScript и объявлениями типов. В Node.js 24 поддерживаются оба способа подключения: `import` и `require()`.
+The package includes compiled ESM JavaScript and type declarations. Node.js 24 supports both `import` and `require()`:
 
 ```js
 const {KaitenClient} = require('@2chevskii/kaiten-client');
 ```
 
-Исходники и карты объявлений типов включены в пакет для перехода к исходному коду в редакторе. Для отладки со стектрейсами по исходникам запускайте Node.js с `--enable-source-maps`. Загрузчик TypeScript во время исполнения не требуется.
+Source files and declaration maps are included for editor navigation. Run Node.js with `--enable-source-maps` for stack traces pointing to the original source. No TypeScript runtime loader is required.
 
-При переходе с GitHub-версии `1.0.0` используйте [руководство по миграции](/guide/migration).
+When upgrading from the GitHub `1.0.0` version, follow the [migration guide](/guide/migration).
 
-## Первый запрос
+## First request
 
 ```ts
 import {KaitenClient} from '@2chevskii/kaiten-client';
@@ -42,6 +42,6 @@ for (const card of cards) {
 }
 ```
 
-`origin` — адрес компании без пути и завершающих параметров. Используйте HTTPS. Токен храните вне исходного кода.
+`origin` is the company URL without a path or query. Use HTTPS. Keep the token outside source control.
 
-Далее: [настройка клиента](/guide/configuration), [REST-операции](/guide/rest).
+Next: [client configuration](/guide/configuration), [REST operations](/guide/rest).

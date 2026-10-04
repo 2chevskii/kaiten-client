@@ -1,0 +1,256 @@
+# SCIM: все операции
+
+Операции сгруппированы по ресурсам клиента. Имена методов и типов совпадают с экспортами пакета. Для вложенных полей и точных TypeScript-типов используйте подсказки редактора. Ссылки ведут на первичную документацию Kaiten.
+
+`users.iterate` и `groups.iterate` обеспечивают автоматическую пагинацию списков. Примеры — в [руководстве SCIM](/ru/guide/scim#автоматическая-пагинация).
+
+[`groups`](#groups) · [`users`](#users)
+
+## groups
+
+### addGroup
+
+**`client.groups.addGroup`** · `POST /scim/v2/Groups`
+
+Add group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/add-group).
+
+`...args: GroupsAddGroupParams`
+
+```ts
+declare const addGroup: (
+  displayName: string,
+  options?: OperationOptions,
+) => Promise<GroupsAddGroupResponse>;
+```
+
+**Параметры пути**
+
+**нет.**
+
+**Параметры запроса**
+
+**нет.**
+
+**Тело запроса**
+
+| Поле          | Тип    | Обязательность |
+| ------------- | ------ | -------------- |
+| `displayName` | string | Обязательно    |
+
+**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`.
+
+### getGroup
+
+**`client.groups.getGroup`** · `GET /scim/v2/Groups/{group_id}`
+
+Get group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-group).
+
+`...args: GroupsGetGroupParams`
+
+```ts
+declare const getGroup: (
+  groupId: string | number,
+  options?: OperationOptions,
+) => Promise<GroupsGetGroupResponse>;
+```
+
+**Параметры пути**
+
+| Поле       | Тип              | Обязательность |
+| ---------- | ---------------- | -------------- |
+| `group_id` | string \| number | Обязательно    |
+
+**Параметры запроса**
+
+**нет.**
+
+**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`, `members`.
+
+### getGroups
+
+**`client.groups.getGroups`** · `GET /scim/v2/Groups`
+
+Get groups. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-groups).
+
+`...args: GroupsGetGroupsParams`
+
+```ts
+declare const getGroups: (
+  startIndex?: number,
+  count?: number,
+  options?: OperationOptions,
+) => Promise<GroupsGetGroupsResponse>;
+```
+
+**Параметры пути**
+
+**нет.**
+
+**Параметры запроса**
+
+| Поле         | Тип    | Обязательность |
+| ------------ | ------ | -------------- |
+| `startIndex` | number | Необязательно  |
+| `count`      | number | Необязательно  |
+
+**Ответ:** Объект. Поля: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
+
+### updateGroup
+
+**`client.groups.updateGroup`** · `PATCH /scim/v2/Groups/{group_id}`
+
+Update group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/update-group).
+
+`...args: GroupsUpdateGroupParams`
+
+```ts
+declare const updateGroup: (
+  groupId: string | number,
+  operations: ScimGroupPatchOperation[],
+  options?: OperationOptions,
+) => Promise<GroupsUpdateGroupResponse>;
+```
+
+**Параметры пути**
+
+| Поле       | Тип              | Обязательность |
+| ---------- | ---------------- | -------------- |
+| `group_id` | string \| number | Обязательно    |
+
+**Параметры запроса**
+
+**нет.**
+
+**Тело запроса**
+
+| Поле         | Тип              | Обязательность |
+| ------------ | ---------------- | -------------- |
+| `Operations` | array of objects | Обязательно    |
+
+**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`, `members`.
+
+## users
+
+### addUser
+
+**`client.users.addUser`** · `POST /scim/v2/Users`
+
+Add user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/add-user).
+
+`...args: UsersAddUserParams`
+
+```ts
+declare const addUser: (
+  body: UsersAddUserBody,
+  options?: OperationOptions,
+) => Promise<UsersAddUserResponse>;
+```
+
+**Параметры пути**
+
+**нет.**
+
+**Параметры запроса**
+
+**нет.**
+
+**Тело запроса**
+
+| Поле       | Тип                                                               | Обязательность |
+| ---------- | ----------------------------------------------------------------- | -------------- |
+| `userName` | string                                                            | Необязательно  |
+| `emails`   | object Schema Name Type Constraints Description 0 string 1 string | Обязательно    |
+
+**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`.
+
+### getUser
+
+**`client.users.getUser`** · `GET /scim/v2/Users/{user_id}`
+
+Get user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-user).
+
+`...args: UsersGetUserParams`
+
+```ts
+declare const getUser: (
+  userId: number,
+  options?: OperationOptions,
+) => Promise<UsersGetUserResponse>;
+```
+
+**Параметры пути**
+
+| Поле      | Тип    | Обязательность |
+| --------- | ------ | -------------- |
+| `user_id` | number | Обязательно    |
+
+**Параметры запроса**
+
+**нет.**
+
+**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.
+
+### getUsers
+
+**`client.users.getUsers`** · `GET /scim/v2/Users`
+
+Get users. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-users).
+
+`...args: UsersGetUsersParams`
+
+```ts
+declare const getUsers: (
+  startIndex?: number,
+  count?: number,
+  filter?: string,
+  options?: OperationOptions,
+) => Promise<UsersGetUsersResponse>;
+```
+
+**Параметры пути**
+
+**нет.**
+
+**Параметры запроса**
+
+| Поле         | Тип    | Обязательность |
+| ------------ | ------ | -------------- |
+| `startIndex` | number | Необязательно  |
+| `count`      | number | Необязательно  |
+| `filter`     | string | Необязательно  |
+
+**Ответ:** Объект. Поля: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
+
+### updateUser
+
+**`client.users.updateUser`** · `PATCH /scim/v2/Users/{user_id}`
+
+Update user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/update-user).
+
+`...args: UsersUpdateUserParams`
+
+```ts
+declare const updateUser: (
+  userId: number,
+  operations: ScimUserPatchOperation[],
+  options?: OperationOptions,
+) => Promise<UsersUpdateUserResponse>;
+```
+
+**Параметры пути**
+
+| Поле      | Тип    | Обязательность |
+| --------- | ------ | -------------- |
+| `user_id` | number | Обязательно    |
+
+**Параметры запроса**
+
+**нет.**
+
+**Тело запроса**
+
+| Поле         | Тип              | Обязательность |
+| ------------ | ---------------- | -------------- |
+| `Operations` | array of objects | Обязательно    |
+
+**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.

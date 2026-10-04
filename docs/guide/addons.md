@@ -1,10 +1,10 @@
-# Аддоны
+# Addons
 
-Есть два отдельных экспорта: типы браузерного SDK в `@2chevskii/kaiten-client/addons` и серверный OAuth-клиент в `@2chevskii/kaiten-client/addon-oauth`.
+There are two separate exports: browser SDK types at `@2chevskii/kaiten-client/addons` and the server-side OAuth client at `@2chevskii/kaiten-client/addon-oauth`.
 
-## Браузерный SDK
+## Browser SDK
 
-SDK предоставляет Kaiten. Загрузите его в странице аддона:
+Kaiten provides the runtime SDK. Load it in your addon page:
 
 ```html
 <script src="https://files.kaiten.ru/web-sdk/v1.min.js"></script>
@@ -16,7 +16,7 @@ import type {AddonCapabilities} from '@2chevskii/kaiten-client/addons';
 const capabilities: AddonCapabilities = {
   card_buttons: () => [
     {
-      text: 'Открыть карточку',
+      text: 'Open card',
       callback: async context => {
         const card = await context.getCard();
         console.log(card.title);
@@ -28,9 +28,9 @@ const capabilities: AddonCapabilities = {
 Addon.initialize(capabilities);
 ```
 
-Экспорт объявляет глобальный `Addon` и типы `KaitenAddonSdk`, `AddonContext`, `AddonCapabilities`, `AddonPlatformApiClient`, диалогов и меню. Типы не загружают SDK во время выполнения. Для iframe используйте `Addon.iframe()` и методы полученного контекста. [Документация SDK](https://developers.kaiten.ru/addons).
+The export declares the global `Addon` and types for `KaitenAddonSdk`, `AddonContext`, `AddonCapabilities`, `AddonPlatformApiClient`, dialogs, and menus. Importing types does not load the runtime SDK. In an iframe, use `Addon.iframe()` and its context methods. [SDK documentation](https://developers.kaiten.ru/addons).
 
-## Серверный OAuth
+## Server-side OAuth
 
 ```ts
 import {AddonOAuthClient} from '@2chevskii/kaiten-client/addon-oauth';
@@ -47,4 +47,4 @@ if (token.has_token) console.log(token.access_token);
 const refreshed = await oauth.refreshToken(...key);
 ```
 
-`addonSecret` принимает строку или поставщик токена. Обе операции поддерживают `signal`; результат имеет объединение по `has_token`. Храните секрет на сервере. [Документация OAuth Kaiten](https://developers.kaiten.ru/addons/api-access).
+`addonSecret` accepts a string or a token provider. Both operations support `signal`; the result is discriminated by `has_token`. Keep the secret on the server. [Kaiten OAuth documentation](https://developers.kaiten.ru/addons/api-access).

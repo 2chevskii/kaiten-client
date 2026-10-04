@@ -1,8 +1,8 @@
-# SCIM: все операции
+# SCIM: all operations
 
-Операции сгруппированы по ресурсам клиента. Имена методов и типов совпадают с экспортами пакета. Для вложенных полей и точных TypeScript-типов используйте подсказки редактора. Ссылки ведут на первичную документацию Kaiten.
+Operations are grouped by client resource. Method and type names match the package exports. Use your editor for nested fields and exact TypeScript types. Each entry links to the original Kaiten documentation.
 
-`users.iterate` и `groups.iterate` обеспечивают автоматическую пагинацию списков. Примеры — в [руководстве SCIM](/guide/scim#автоматическая-пагинация).
+`users.iterate` and `groups.iterate` provide automatic pagination over their list operations. See the [SCIM pagination guide](/guide/scim#automatic-pagination).
 
 [`groups`](#groups) · [`users`](#users)
 
@@ -12,7 +12,7 @@
 
 **`client.groups.addGroup`** · `POST /scim/v2/Groups`
 
-Add group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/add-group).
+Add group. [Kaiten documentation](https://developers.kaiten.ru/scim/groups/add-group).
 
 `...args: GroupsAddGroupParams`
 
@@ -23,27 +23,27 @@ declare const addGroup: (
 ) => Promise<GroupsAddGroupResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-**нет.**
+**none.**
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Тело запроса**
+**Request body**
 
-| Поле          | Тип    | Обязательность |
-| ------------- | ------ | -------------- |
-| `displayName` | string | Обязательно    |
+| Field         | Type   | Presence |
+| ------------- | ------ | -------- |
+| `displayName` | string | Required |
 
-**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`.
+**Response:** Object. Fields: `schemas`, `id`, `displayName`, `meta`.
 
 ### getGroup
 
 **`client.groups.getGroup`** · `GET /scim/v2/Groups/{group_id}`
 
-Get group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-group).
+Get group. [Kaiten documentation](https://developers.kaiten.ru/scim/groups/get-group).
 
 `...args: GroupsGetGroupParams`
 
@@ -54,23 +54,23 @@ declare const getGroup: (
 ) => Promise<GroupsGetGroupResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-| Поле       | Тип              | Обязательность |
-| ---------- | ---------------- | -------------- |
-| `group_id` | string \| number | Обязательно    |
+| Field      | Type             | Presence |
+| ---------- | ---------------- | -------- |
+| `group_id` | string \| number | Required |
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`, `members`.
+**Response:** Object. Fields: `schemas`, `id`, `displayName`, `meta`, `members`.
 
 ### getGroups
 
 **`client.groups.getGroups`** · `GET /scim/v2/Groups`
 
-Get groups. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/get-groups).
+Get groups. [Kaiten documentation](https://developers.kaiten.ru/scim/groups/get-groups).
 
 `...args: GroupsGetGroupsParams`
 
@@ -82,24 +82,24 @@ declare const getGroups: (
 ) => Promise<GroupsGetGroupsResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-**нет.**
+**none.**
 
-**Параметры запроса**
+**Query parameters**
 
-| Поле         | Тип    | Обязательность |
-| ------------ | ------ | -------------- |
-| `startIndex` | number | Необязательно  |
-| `count`      | number | Необязательно  |
+| Field        | Type   | Presence |
+| ------------ | ------ | -------- |
+| `startIndex` | number | Optional |
+| `count`      | number | Optional |
 
-**Ответ:** Объект. Поля: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
+**Response:** Object. Fields: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
 
 ### updateGroup
 
 **`client.groups.updateGroup`** · `PATCH /scim/v2/Groups/{group_id}`
 
-Update group. [Документация Kaiten](https://developers.kaiten.ru/scim/groups/update-group).
+Update group. [Kaiten documentation](https://developers.kaiten.ru/scim/groups/update-group).
 
 `...args: GroupsUpdateGroupParams`
 
@@ -111,23 +111,23 @@ declare const updateGroup: (
 ) => Promise<GroupsUpdateGroupResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-| Поле       | Тип              | Обязательность |
-| ---------- | ---------------- | -------------- |
-| `group_id` | string \| number | Обязательно    |
+| Field      | Type             | Presence |
+| ---------- | ---------------- | -------- |
+| `group_id` | string \| number | Required |
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Тело запроса**
+**Request body**
 
-| Поле         | Тип              | Обязательность |
-| ------------ | ---------------- | -------------- |
-| `Operations` | array of objects | Обязательно    |
+| Field        | Type             | Presence |
+| ------------ | ---------------- | -------- |
+| `Operations` | array of objects | Required |
 
-**Ответ:** Объект. Поля: `schemas`, `id`, `displayName`, `meta`, `members`.
+**Response:** Object. Fields: `schemas`, `id`, `displayName`, `meta`, `members`.
 
 ## users
 
@@ -135,7 +135,7 @@ declare const updateGroup: (
 
 **`client.users.addUser`** · `POST /scim/v2/Users`
 
-Add user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/add-user).
+Add user. [Kaiten documentation](https://developers.kaiten.ru/scim/users/add-user).
 
 `...args: UsersAddUserParams`
 
@@ -146,28 +146,28 @@ declare const addUser: (
 ) => Promise<UsersAddUserResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-**нет.**
+**none.**
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Тело запроса**
+**Request body**
 
-| Поле       | Тип                                                               | Обязательность |
-| ---------- | ----------------------------------------------------------------- | -------------- |
-| `userName` | string                                                            | Необязательно  |
-| `emails`   | object Schema Name Type Constraints Description 0 string 1 string | Обязательно    |
+| Field      | Type                                                              | Presence |
+| ---------- | ----------------------------------------------------------------- | -------- |
+| `userName` | string                                                            | Optional |
+| `emails`   | object Schema Name Type Constraints Description 0 string 1 string | Required |
 
-**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`.
+**Response:** Object. Fields: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`.
 
 ### getUser
 
 **`client.users.getUser`** · `GET /scim/v2/Users/{user_id}`
 
-Get user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-user).
+Get user. [Kaiten documentation](https://developers.kaiten.ru/scim/users/get-user).
 
 `...args: UsersGetUserParams`
 
@@ -178,23 +178,23 @@ declare const getUser: (
 ) => Promise<UsersGetUserResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-| Поле      | Тип    | Обязательность |
-| --------- | ------ | -------------- |
-| `user_id` | number | Обязательно    |
+| Field     | Type   | Presence |
+| --------- | ------ | -------- |
+| `user_id` | number | Required |
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.
+**Response:** Object. Fields: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.
 
 ### getUsers
 
 **`client.users.getUsers`** · `GET /scim/v2/Users`
 
-Get users. [Документация Kaiten](https://developers.kaiten.ru/scim/users/get-users).
+Get users. [Kaiten documentation](https://developers.kaiten.ru/scim/users/get-users).
 
 `...args: UsersGetUsersParams`
 
@@ -207,25 +207,25 @@ declare const getUsers: (
 ) => Promise<UsersGetUsersResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-**нет.**
+**none.**
 
-**Параметры запроса**
+**Query parameters**
 
-| Поле         | Тип    | Обязательность |
-| ------------ | ------ | -------------- |
-| `startIndex` | number | Необязательно  |
-| `count`      | number | Необязательно  |
-| `filter`     | string | Необязательно  |
+| Field        | Type   | Presence |
+| ------------ | ------ | -------- |
+| `startIndex` | number | Optional |
+| `count`      | number | Optional |
+| `filter`     | string | Optional |
 
-**Ответ:** Объект. Поля: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
+**Response:** Object. Fields: `schemas`, `Resources`, `totalResults`, `itemsPerPage`, `startIndex`.
 
 ### updateUser
 
 **`client.users.updateUser`** · `PATCH /scim/v2/Users/{user_id}`
 
-Update user. [Документация Kaiten](https://developers.kaiten.ru/scim/users/update-user).
+Update user. [Kaiten documentation](https://developers.kaiten.ru/scim/users/update-user).
 
 `...args: UsersUpdateUserParams`
 
@@ -237,20 +237,20 @@ declare const updateUser: (
 ) => Promise<UsersUpdateUserResponse>;
 ```
 
-**Параметры пути**
+**Path parameters**
 
-| Поле      | Тип    | Обязательность |
-| --------- | ------ | -------------- |
-| `user_id` | number | Обязательно    |
+| Field     | Type   | Presence |
+| --------- | ------ | -------- |
+| `user_id` | number | Required |
 
-**Параметры запроса**
+**Query parameters**
 
-**нет.**
+**none.**
 
-**Тело запроса**
+**Request body**
 
-| Поле         | Тип              | Обязательность |
-| ------------ | ---------------- | -------------- |
-| `Operations` | array of objects | Обязательно    |
+| Field        | Type             | Presence |
+| ------------ | ---------------- | -------- |
+| `Operations` | array of objects | Required |
 
-**Ответ:** Объект. Поля: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.
+**Response:** Object. Fields: `schemas`, `meta`, `id`, `name`, `userName`, `active`, `emails`, `groups`.

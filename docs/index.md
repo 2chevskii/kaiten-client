@@ -2,24 +2,24 @@
 layout: home
 hero:
   name: Kaiten Client
-  text: Типизированный клиент Kaiten
-  tagline: REST, SCIM и контракты интеграций для Node.js и TypeScript
+  text: Typed Kaiten client
+  tagline: REST, SCIM, and integration contracts for Node.js and TypeScript
   actions:
     - theme: brand
-      text: Начать работу
+      text: Get started
       link: /guide/getting-started
     - theme: alt
-      text: Справочник API
+      text: API reference
       link: /reference/rest
 features:
-  - title: REST и SCIM
-    details: 214 REST-операций и 8 SCIM-операций с типами запросов и ответов.
-  - title: Интеграции
-    details: Типы вебхуков, метаданных, импорта и браузерного SDK аддонов.
-  - title: Без лишнего транспорта
-    details: Встроенный fetch, AbortSignal, загрузка файлов и настраиваемый токен.
+  - title: REST and SCIM
+    details: 214 REST operations and 8 SCIM operations with request and response types.
+  - title: Integrations
+    details: Contracts for webhooks, metadata, imports, and the browser addon SDK.
+  - title: Simple transport
+    details: Built-in fetch, AbortSignal, file uploads, and configurable tokens.
 ---
 
-Пакет `@2chevskii/kaiten-client` требует Node.js 24+ и поставляется только как ESM. Текущая версия — `2.0.0`. Инструкция установки опубликованного пакета — в руководстве.
+`@2chevskii/kaiten-client` requires Node.js 24+ and is ESM only. The current version is `2.0.0`. See the guide for installing a published package.
 
-[Исходный код](https://github.com/2chevskii/kaiten-client) · [Документация Kaiten](https://developers.kaiten.ru/) · [English](/en/)
+[Source code](https://github.com/2chevskii/kaiten-client) · [Kaiten documentation](https://developers.kaiten.ru/) · [Русский](/ru/)

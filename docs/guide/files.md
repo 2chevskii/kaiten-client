@@ -1,10 +1,10 @@
-# Файлы
+# Files
 
-Kaiten переводит файловые маршруты на ограниченный доступ. Используйте ресурсы `restrictedAccessCardFiles`, `restrictedAccessCommentFiles` и `restrictedAccessCustomPropertyFiles`. Они принимают UUID карточки и связанных сущностей. [Миграция в документации Kaiten](https://developers.kaiten.ru/restricted-access-files-migration).
+Kaiten is migrating file routes to restricted access. Use `restrictedAccessCardFiles`, `restrictedAccessCommentFiles`, and `restrictedAccessCustomPropertyFiles`. These take UUIDs for cards and related entities. See [Kaiten's migration guide](https://developers.kaiten.ru/restricted-access-files-migration).
 
-В примерах `client` — экземпляр `KaitenClient` из [первого запроса](/guide/getting-started).
+In these examples, `client` is a `KaitenClient` instance from the [first request](/guide/getting-started).
 
-## Загрузка
+## Upload
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
@@ -16,9 +16,9 @@ const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
 console.log(uploaded.id);
 ```
 
-Клиент создаёт `multipart/form-data` и сам задаёт границу формы. Передавайте `Blob` и, при необходимости, `filename`; не кодируйте файл как JSON.
+The client creates `multipart/form-data` with its boundary. Pass a `Blob` and, optionally, `filename`; do not encode the file as JSON.
 
-## Получение временной ссылки
+## Get a temporary link
 
 ```ts
 const file = await client.restrictedAccessCardFiles.getCardFile(
@@ -36,6 +36,6 @@ console.log(file.url);
 console.log(redirect.location);
 ```
 
-`redirect: true` возвращает `{ location: string }` из заголовка `Location`; клиент не следует за перенаправлением. Временную ссылку скачивайте отдельным запросом без токена Kaiten. Старый `client.cardFiles.attachFileToCard` сохранён и помечен `@deprecated`.
+`redirect: true` returns `{ location: string }` from the `Location` header; the client does not follow the redirect. Download the temporary URL with a separate request and without the Kaiten token. The legacy `client.cardFiles.attachFileToCard` remains available with `@deprecated`.
 
-Операции для карточек, комментариев и полей перечислены в [REST-справочнике](/reference/rest).
+See the [REST reference](/reference/rest) for all card, comment, and property file operations.
