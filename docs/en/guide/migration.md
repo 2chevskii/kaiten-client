@@ -8,10 +8,10 @@ IDs and small sets of fields are separate arguments. Larger bodies and filters r
 
 ```ts
 const card = await client.cards.retrieveCard(123);
-await client.cardComments.addComment(card.id, "Comment");
+await client.cardComments.addComment(card.id, 'Comment');
 await client.cardMembers.addMemberToCard(card.id, 456);
-await client.cards.updateCard(card.id, { title: "New title" });
-const page = await client.cards.retrieveCardList({ version: 2, limit: 50 });
+await client.cards.updateCard(card.id, {title: 'New title'});
+const page = await client.cards.retrieveCardList({version: 2, limit: 50});
 
 const controller = new AbortController();
 await client.cards.retrieveCard(card.id, undefined, {
@@ -22,7 +22,7 @@ await client.cards.retrieveCard(card.id, undefined, {
 Types ending in `Params` are now argument tuples derived from the method signature:
 
 ```ts
-import type { CardsRetrieveCardParams } from "@2chevskii/kaiten-client";
+import type {CardsRetrieveCardParams} from '@2chevskii/kaiten-client';
 
 const args: CardsRetrieveCardParams = [123];
 await client.cards.retrieveCard(...args);
@@ -34,20 +34,20 @@ Current signatures for every operation appear in the [REST](/en/reference/rest) 
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
-  "card-uuid",
-  new Blob(["report"]),
-  { filename: "report.txt" },
+  'card-uuid',
+  new Blob(['report']),
+  {filename: 'report.txt'},
 );
 const file = await client.restrictedAccessCardFiles.getCardFile(
-  "card-uuid",
+  'card-uuid',
   uploaded.id,
 );
 console.log(file.url);
 
 await scim.users.updateUser(123, [
-  { op: "replace", path: "active", value: false },
+  {op: 'replace', path: 'active', value: false},
 ]);
-await oauth.getToken("addon-uuid", 123, 1);
+await oauth.getToken('addon-uuid', 123, 1);
 ```
 
 `getCardFile`, `getCommentFile`, and `getCustomPropertyFile` infer their result from `redirect`. Search infers its result from a required `version: 2`; a variable with an optional `version` produces a union of an array and a cursor response.

@@ -1,6 +1,6 @@
 /** Values that can cross a Kaiten JSON boundary. */
 export type JsonValue =
-  string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
+  string | number | boolean | null | JsonValue[] | {[key: string]: JsonValue};
 
 export type CustomPropertyValues = Partial<Record<`id_${number}`, JsonValue>>;
 

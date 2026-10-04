@@ -1,15 +1,15 @@
 import type {
   DocumentJsonSchema,
   DocumentProseMirrorSchema,
-} from "../document-data.ts";
-import type { DocumentData } from "../document-data.ts";
-import type { JsonValue, RequireAtLeastOne } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+} from '../document-data.ts';
+import type {DocumentData} from '../document-data.ts';
+import type {JsonValue, RequireAtLeastOne} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
-import type { SearchResponseV2 } from "./search.ts";
-import { iterateSearchResults } from "./search.ts";
+import type {SearchResponseV2} from './search.ts';
+import {iterateSearchResults} from './search.ts';
 
 export interface DocumentGroupsCreateNewDocumentGroupBody {
   title: string;
@@ -62,7 +62,7 @@ export interface DocumentGroupsCreateNewDocumentGroupResponse {
 export type DocumentGroupsCreateNewDocumentGroupParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentGroups"]["createNewDocumentGroup"]
+  >['documentGroups']['createNewDocumentGroup']
 >;
 
 export interface DocumentGroupsRemoveDocumentGroupResponse {
@@ -96,7 +96,7 @@ export interface DocumentGroupsRemoveDocumentGroupResponse {
 export type DocumentGroupsRemoveDocumentGroupParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentGroups"]["removeDocumentGroup"]
+  >['documentGroups']['removeDocumentGroup']
 >;
 
 export interface DocumentGroupsRetrieveDocumentGroupResponse {
@@ -146,7 +146,7 @@ export interface DocumentGroupsRetrieveDocumentGroupResponse {
 export type DocumentGroupsRetrieveDocumentGroupParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentGroups"]["retrieveDocumentGroup"]
+  >['documentGroups']['retrieveDocumentGroup']
 >;
 
 export interface DocumentGroupsRetrieveListOfDocumentGroupsQuery {
@@ -219,7 +219,7 @@ export type DocumentGroupsRetrieveListOfDocumentGroupsResponse = (
 export type DocumentGroupsRetrieveListOfDocumentGroupsParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentGroups"]["retrieveListOfDocumentGroups"]
+  >['documentGroups']['retrieveListOfDocumentGroups']
 >;
 
 export type DocumentGroupsUpdateDocumentGroupBody = RequireAtLeastOne<
@@ -227,28 +227,28 @@ export type DocumentGroupsUpdateDocumentGroupBody = RequireAtLeastOne<
     title?: string;
     parent_entity_uid?: string | null;
     sort_order?: number;
-    access?: "for_everyone" | "by_invite";
+    access?: 'for_everyone' | 'by_invite';
     for_everyone_access_role_id?: string | null;
     hostname?: string | null;
     redirect_url?: string | null;
     key?: string | null;
-    icon_type?: "material_icon" | null;
+    icon_type?: 'material_icon' | null;
     icon_value?: string | null;
     icon_color?: number | null;
     hidden_on_public_site?: boolean;
     news_feed?: boolean;
     index_document_uid?: string | null;
   },
-  | "title"
-  | "parent_entity_uid"
-  | "sort_order"
-  | "access"
-  | "hostname"
-  | "key"
-  | "icon_type"
-  | "hidden_on_public_site"
-  | "news_feed"
-  | "index_document_uid"
+  | 'title'
+  | 'parent_entity_uid'
+  | 'sort_order'
+  | 'access'
+  | 'hostname'
+  | 'key'
+  | 'icon_type'
+  | 'hidden_on_public_site'
+  | 'news_feed'
+  | 'index_document_uid'
 >;
 
 export interface DocumentGroupsUpdateDocumentGroupResponse {
@@ -294,11 +294,11 @@ export interface DocumentGroupsUpdateDocumentGroupResponse {
 export type DocumentGroupsUpdateDocumentGroupParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentGroups"]["updateDocumentGroup"]
+  >['documentGroups']['updateDocumentGroup']
 >;
 
 export interface DocumentSchemasGetDocumentDataSchemaQuery {
-  format?: "draft-06" | "prosemirror";
+  format?: 'draft-06' | 'prosemirror';
 }
 
 export type DocumentSchemasGetDocumentDataSchemaResponse =
@@ -307,7 +307,7 @@ export type DocumentSchemasGetDocumentDataSchemaResponse =
 export type DocumentSchemasGetDocumentDataSchemaParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documentSchemas"]["getDocumentDataSchema"]
+  >['documentSchemas']['getDocumentDataSchema']
 >;
 
 export interface DocumentsCreateNewDocumentBody {
@@ -365,7 +365,7 @@ export interface DocumentsCreateNewDocumentResponse {
 }
 
 export type DocumentsCreateNewDocumentParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documents"]["createNewDocument"]
+  ReturnType<typeof createDocumentsResources>['documents']['createNewDocument']
 >;
 
 export interface DocumentsRemoveDocumentResponse {
@@ -401,7 +401,7 @@ export interface DocumentsRemoveDocumentResponse {
 }
 
 export type DocumentsRemoveDocumentParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documents"]["removeDocument"]
+  ReturnType<typeof createDocumentsResources>['documents']['removeDocument']
 >;
 
 export interface DocumentsRetrieveDocumentResponse {
@@ -449,7 +449,7 @@ export interface DocumentsRetrieveDocumentResponse {
 }
 
 export type DocumentsRetrieveDocumentParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documents"]["retrieveDocument"]
+  ReturnType<typeof createDocumentsResources>['documents']['retrieveDocument']
 >;
 
 export interface DocumentsRetrieveListOfDocumentsQuery {
@@ -531,7 +531,7 @@ export type DocumentsRetrieveListOfDocumentsResponse = (
 export type DocumentsRetrieveListOfDocumentsParams = Parameters<
   ReturnType<
     typeof createDocumentsResources
-  >["documents"]["retrieveListOfDocuments"]
+  >['documents']['retrieveListOfDocuments']
 >;
 
 export type DocumentsUpdateDocumentBody = RequireAtLeastOne<
@@ -540,45 +540,45 @@ export type DocumentsUpdateDocumentBody = RequireAtLeastOne<
     sort_order?: number;
     publish_date?: string | null;
     data?: DocumentData;
-    access?: "for_everyone" | "by_invite";
+    access?: 'for_everyone' | 'by_invite';
     parent_entity_uid?: string | null;
     for_everyone_access_role_id?: string;
     public?: boolean;
     redirect_url?: string | null;
     hidden_on_public_site?: boolean;
     settings?: {
-      content_width?: "default" | "wide";
+      content_width?: 'default' | 'wide';
     };
     backup_version?: number;
-    published_version?: number | null | "current";
+    published_version?: number | null | 'current';
     key?: string | null;
-    icon_type?: "emoji" | "material_icon" | null;
+    icon_type?: 'emoji' | 'material_icon' | null;
     icon_value?: string | null;
     icon_color?: number | null;
     notification_period_start?: string | null;
     notification_period_end?: string | null;
     slug?: string | null;
   },
-  | "title"
-  | "sort_order"
-  | "data"
-  | "access"
-  | "parent_entity_uid"
-  | "for_everyone_access_role_id"
-  | "public"
-  | "publish_date"
-  | "redirect_url"
-  | "hidden_on_public_site"
-  | "settings"
-  | "backup_version"
-  | "published_version"
-  | "key"
-  | "icon_type"
-  | "icon_value"
-  | "icon_color"
-  | "notification_period_start"
-  | "notification_period_end"
-  | "slug"
+  | 'title'
+  | 'sort_order'
+  | 'data'
+  | 'access'
+  | 'parent_entity_uid'
+  | 'for_everyone_access_role_id'
+  | 'public'
+  | 'publish_date'
+  | 'redirect_url'
+  | 'hidden_on_public_site'
+  | 'settings'
+  | 'backup_version'
+  | 'published_version'
+  | 'key'
+  | 'icon_type'
+  | 'icon_value'
+  | 'icon_color'
+  | 'notification_period_start'
+  | 'notification_period_end'
+  | 'slug'
 >;
 
 export interface DocumentsUpdateDocumentResponse {
@@ -626,36 +626,36 @@ export interface DocumentsUpdateDocumentResponse {
 }
 
 export type DocumentsUpdateDocumentParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documents"]["updateDocument"]
+  ReturnType<typeof createDocumentsResources>['documents']['updateDocument']
 >;
 
 export type DocumentsIterateQuery = Omit<
   DocumentsRetrieveListOfDocumentsQuery,
-  "version" | "offset"
+  'version' | 'offset'
 >;
 
 export type DocumentGroupsIterateQuery = Omit<
   DocumentGroupsRetrieveListOfDocumentGroupsQuery,
-  "version" | "offset"
+  'version' | 'offset'
 >;
 
 export type DocumentsIterateParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documents"]["iterate"]
+  ReturnType<typeof createDocumentsResources>['documents']['iterate']
 >;
 
 export type DocumentGroupsIterateParams = Parameters<
-  ReturnType<typeof createDocumentsResources>["documentGroups"]["iterate"]
+  ReturnType<typeof createDocumentsResources>['documentGroups']['iterate']
 >;
 
 export const createDocumentsResources = (transport: HttpTransport) => {
   function retrieveListOfDocumentGroups(
-    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & { version: 2 },
+    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<
     SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
   >;
   function retrieveListOfDocumentGroups(
-    query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, "version"> & {
+    query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, 'version'> & {
       version?: 1;
     },
     options?: OperationOptions,
@@ -678,8 +678,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       | DocumentGroupsRetrieveListOfDocumentGroupsResponse
       | SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
     >({
-      method: "GET",
-      path: "/document-groups",
+      method: 'GET',
+      path: '/document-groups',
       query,
       signal: options?.signal,
     });
@@ -687,38 +687,38 @@ export const createDocumentsResources = (transport: HttpTransport) => {
 
   function getDocumentDataSchema(
     schemaVersion: string,
-    format: "prosemirror",
+    format: 'prosemirror',
     options?: OperationOptions,
   ): Promise<DocumentProseMirrorSchema>;
   function getDocumentDataSchema(
     schemaVersion: string,
-    format?: "draft-06",
+    format?: 'draft-06',
     options?: OperationOptions,
   ): Promise<DocumentJsonSchema>;
   function getDocumentDataSchema(
     schemaVersion: string,
-    format: "draft-06" | "prosemirror" | undefined,
+    format: 'draft-06' | 'prosemirror' | undefined,
     options?: OperationOptions,
   ): Promise<DocumentSchemasGetDocumentDataSchemaResponse>;
   function getDocumentDataSchema(
     schemaVersion: string,
-    format?: "draft-06" | "prosemirror",
+    format?: 'draft-06' | 'prosemirror',
     options?: OperationOptions,
   ): Promise<DocumentSchemasGetDocumentDataSchemaResponse> {
     return transport.request<DocumentSchemasGetDocumentDataSchemaResponse>({
-      method: "GET",
-      path: "/document-schemas/" + pathSegment(schemaVersion),
-      query: { format },
+      method: 'GET',
+      path: '/document-schemas/' + pathSegment(schemaVersion),
+      query: {format},
       signal: options?.signal,
     });
   }
 
   function retrieveListOfDocuments(
-    query: DocumentsRetrieveListOfDocumentsQuery & { version: 2 },
+    query: DocumentsRetrieveListOfDocumentsQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>>;
   function retrieveListOfDocuments(
-    query?: Omit<DocumentsRetrieveListOfDocumentsQuery, "version"> & {
+    query?: Omit<DocumentsRetrieveListOfDocumentsQuery, 'version'> & {
       version?: 1;
     },
     options?: OperationOptions,
@@ -741,8 +741,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       | DocumentsRetrieveListOfDocumentsResponse
       | SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>
     >({
-      method: "GET",
-      path: "/documents",
+      method: 'GET',
+      path: '/documents',
       query,
       signal: options?.signal,
     });
@@ -765,8 +765,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentGroupsCreateNewDocumentGroupResponse>({
-          method: "POST",
-          path: "/document-groups",
+          method: 'POST',
+          path: '/document-groups',
           body,
           signal: options?.signal,
         });
@@ -777,8 +777,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentGroupsRemoveDocumentGroupResponse>({
-          method: "DELETE",
-          path: "/document-groups/" + pathSegment(documentGroupUid),
+          method: 'DELETE',
+          path: '/document-groups/' + pathSegment(documentGroupUid),
           signal: options?.signal,
         });
       },
@@ -788,8 +788,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentGroupsRetrieveDocumentGroupResponse>({
-          method: "GET",
-          path: "/document-groups/" + pathSegment(documentGroupUid),
+          method: 'GET',
+          path: '/document-groups/' + pathSegment(documentGroupUid),
           signal: options?.signal,
         });
       },
@@ -802,8 +802,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentGroupsUpdateDocumentGroupResponse>({
-          method: "PATCH",
-          path: "/document-groups/" + pathSegment(documentGroupUid),
+          method: 'PATCH',
+          path: '/document-groups/' + pathSegment(documentGroupUid),
           body,
           signal: options?.signal,
         });
@@ -827,8 +827,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentsCreateNewDocumentResponse>({
-          method: "POST",
-          path: "/documents",
+          method: 'POST',
+          path: '/documents',
           body,
           signal: options?.signal,
         });
@@ -836,16 +836,16 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/documents/remove-document */
       removeDocument: (documentUid: string, options?: OperationOptions) => {
         return transport.request<DocumentsRemoveDocumentResponse>({
-          method: "DELETE",
-          path: "/documents/" + pathSegment(documentUid),
+          method: 'DELETE',
+          path: '/documents/' + pathSegment(documentUid),
           signal: options?.signal,
         });
       },
       /** @see https://developers.kaiten.ru/documents/retrieve-document */
       retrieveDocument: (documentUid: string, options?: OperationOptions) => {
         return transport.request<DocumentsRetrieveDocumentResponse>({
-          method: "GET",
-          path: "/documents/" + pathSegment(documentUid),
+          method: 'GET',
+          path: '/documents/' + pathSegment(documentUid),
           signal: options?.signal,
         });
       },
@@ -858,8 +858,8 @@ export const createDocumentsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<DocumentsUpdateDocumentResponse>({
-          method: "PATCH",
-          path: "/documents/" + pathSegment(documentUid),
+          method: 'PATCH',
+          path: '/documents/' + pathSegment(documentUid),
           body,
           signal: options?.signal,
         });

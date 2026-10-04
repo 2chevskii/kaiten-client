@@ -1,11 +1,11 @@
-import type { CustomPropertyValues, JsonValue } from "../types.ts";
-import type { UserSummary } from "../entities.ts";
+import type {CustomPropertyValues, JsonValue} from '../types.ts';
+import type {UserSummary} from '../entities.ts';
 
 /** Types for every documented outgoing Kaiten webhook event. */
 
 /** @see https://developers.kaiten.ru/external-webhooks/block/block:add */
 export interface BlockAddWebhookEvent {
-  event: "block:add";
+  event: 'block:add';
   data: {
     blocker_id: number;
     released_by_id: number | null;
@@ -208,7 +208,7 @@ export interface BlockAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/block/block:update */
 export interface BlockUpdateWebhookEvent {
-  event: "block:update";
+  event: 'block:update';
   data: {
     old: {
       blocker_id: number;
@@ -222,7 +222,7 @@ export interface BlockUpdateWebhookEvent {
       id: number;
       released: boolean;
     };
-    changes: Partial<BlockUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<BlockUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -234,7 +234,7 @@ export interface BlockUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/board/board:add */
 export interface BoardAddWebhookEvent {
-  event: "board:add";
+  event: 'board:add';
   data: {
     reset_lane_spent_time: boolean;
     move_parents_to_done: boolean;
@@ -308,9 +308,9 @@ export interface BoardAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/board/board:update */
 export interface BoardUpdateWebhookEvent {
-  event: "board:update";
+  event: 'board:update';
   data: {
-    changes: Partial<BoardUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<BoardUpdateWebhookEvent['data']['old']>;
     old: {
       reset_lane_spent_time: boolean;
       move_parents_to_done: boolean;
@@ -343,7 +343,7 @@ export interface BoardUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/card-members/card_member:add */
 export interface CardMemberAddWebhookEvent {
-  event: "card_member:add";
+  event: 'card_member:add';
   data: {
     id: number;
     full_name: string;
@@ -369,7 +369,7 @@ export interface CardMemberAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/card-members/card_member:remove */
 export interface CardMemberRemoveWebhookEvent {
-  event: "card_member:remove";
+  event: 'card_member:remove';
   data: {
     card_id: number;
     user_id: number;
@@ -384,14 +384,14 @@ export interface CardMemberRemoveWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/card-members/card_member:update */
 export interface CardMemberUpdateWebhookEvent {
-  event: "card_member:update";
+  event: 'card_member:update';
   data: {
     old: {
       card_id: number;
       user_id: number;
       type: number;
     };
-    changes: Partial<CardMemberUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<CardMemberUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -403,7 +403,7 @@ export interface CardMemberUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/card/card:add */
 export interface CardAddWebhookEvent {
-  event: "card:add";
+  event: 'card:add';
   data: {
     type_id: number;
     sprint_id: number | null;
@@ -512,7 +512,7 @@ export interface CardAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/card/card:update */
 export interface CardUpdateWebhookEvent {
-  event: "card:update";
+  event: 'card:update';
   data: {
     old: {
       type_id: number;
@@ -585,7 +585,7 @@ export interface CardUpdateWebhookEvent {
       description: string | null;
       calculated_planned_end: string | null;
     };
-    changes: Partial<CardUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<CardUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -597,7 +597,7 @@ export interface CardUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/comment/comment:add */
 export interface CommentAddWebhookEvent {
-  event: "comment:add";
+  event: 'comment:add';
   data: {
     created: string;
     edited: boolean;
@@ -623,7 +623,7 @@ export interface CommentAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/comment/comment:remove */
 export interface CommentRemoveWebhookEvent {
-  event: "comment:remove";
+  event: 'comment:remove';
   data: {
     sent_slack_messages_data: unknown;
     created: string;
@@ -650,7 +650,7 @@ export interface CommentRemoveWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/comment/comment:update */
 export interface CommentUpdateWebhookEvent {
-  event: "comment:update";
+  event: 'comment:update';
   data: {
     old: {
       sent_slack_messages_data: unknown;
@@ -670,7 +670,7 @@ export interface CommentUpdateWebhookEvent {
       d_external_recipients_cc?: string | null;
       sd_external_recipients_cc?: string | null;
     };
-    changes: Partial<CommentUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<CommentUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -682,7 +682,7 @@ export interface CommentUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/file/file:add */
 export interface FileAddWebhookEvent {
-  event: "file:add";
+  event: 'file:add';
   data: {
     size: number;
     card_cover: boolean;
@@ -712,7 +712,7 @@ export interface FileAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/file/file:remove */
 export interface FileRemoveWebhookEvent {
-  event: "file:remove";
+  event: 'file:remove';
   data: {
     size: number;
     card_cover: boolean;
@@ -740,7 +740,7 @@ export interface FileRemoveWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/file/file:update */
 export interface FileUpdateWebhookEvent {
-  event: "file:update";
+  event: 'file:update';
   data: {
     old: {
       size: number;
@@ -761,7 +761,7 @@ export interface FileUpdateWebhookEvent {
       id: number;
       comment_id: number | null;
     };
-    changes: Partial<FileUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<FileUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -773,9 +773,9 @@ export interface FileUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/space/space:update */
 export interface SpaceUpdateWebhookEvent {
-  event: "space:update";
+  event: 'space:update';
   data: {
-    changes: Partial<SpaceUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<SpaceUpdateWebhookEvent['data']['old']>;
     old: {
       archived: boolean;
       settings: Record<string, JsonValue> | null;
@@ -800,7 +800,7 @@ export interface SpaceUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/tag/tag:add */
 export interface TagAddWebhookEvent {
-  event: "tag:add";
+  event: 'tag:add';
   data: {
     created: string;
     updated: string;
@@ -821,7 +821,7 @@ export interface TagAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/tag/tag:remove */
 export interface TagRemoveWebhookEvent {
-  event: "tag:remove";
+  event: 'tag:remove';
   data: {
     id: number;
     card_id: number;
@@ -836,7 +836,7 @@ export interface TagRemoveWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/tag/tag:update */
 export interface TagUpdateWebhookEvent {
-  event: "tag:update";
+  event: 'tag:update';
   data: {
     old: {
       created: string;
@@ -847,7 +847,7 @@ export interface TagUpdateWebhookEvent {
       company_id: number;
       color: number;
     };
-    changes: Partial<TagUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<TagUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;
@@ -859,7 +859,7 @@ export interface TagUpdateWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/timelog/timelog:add */
 export interface TimelogAddWebhookEvent {
-  event: "card_time_log:add";
+  event: 'card_time_log:add';
   data: {
     for_date: string;
     role_id: number;
@@ -883,7 +883,7 @@ export interface TimelogAddWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/timelog/timelog:remove */
 export interface TimelogRemoveWebhookEvent {
-  event: "card_time_log:remove";
+  event: 'card_time_log:remove';
   data: {
     for_date: string;
     role_id: number;
@@ -906,7 +906,7 @@ export interface TimelogRemoveWebhookEvent {
 
 /** @see https://developers.kaiten.ru/external-webhooks/timelog/timelog:update */
 export interface TimelogUpdateWebhookEvent {
-  event: "card_time_log:update";
+  event: 'card_time_log:update';
   data: {
     old: {
       for_date: string;
@@ -921,7 +921,7 @@ export interface TimelogUpdateWebhookEvent {
       time_spent: number;
       comment: string;
     };
-    changes: Partial<TimelogUpdateWebhookEvent["data"]["old"]>;
+    changes: Partial<TimelogUpdateWebhookEvent['data']['old']>;
     author: {
       id: number;
       full_name: string;

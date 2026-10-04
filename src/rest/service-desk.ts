@@ -1,8 +1,8 @@
-import type { ColumnSummary, LaneSummary, BoardSummary } from "../entities.ts";
-import type { JsonValue } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {ColumnSummary, LaneSummary, BoardSummary} from '../entities.ts';
+import type {JsonValue} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CardServiceDeskExternalRecipientsAddNewRecipientBody {
   email: string;
@@ -21,7 +21,7 @@ export interface CardServiceDeskExternalRecipientsAddNewRecipientResponse {
 export type CardServiceDeskExternalRecipientsAddNewRecipientParams = Parameters<
   ReturnType<
     typeof createServiceDeskResources
-  >["cardServiceDeskExternalRecipients"]["addNewRecipient"]
+  >['cardServiceDeskExternalRecipients']['addNewRecipient']
 >;
 
 export interface CardServiceDeskExternalRecipientsRemoveRecipientResponse {
@@ -38,7 +38,7 @@ export interface CardServiceDeskExternalRecipientsRemoveRecipientResponse {
 export type CardServiceDeskExternalRecipientsRemoveRecipientParams = Parameters<
   ReturnType<
     typeof createServiceDeskResources
-  >["cardServiceDeskExternalRecipients"]["removeRecipient"]
+  >['cardServiceDeskExternalRecipients']['removeRecipient']
 >;
 
 export interface CardSlaRetrieveCardSlaMeasurementsResponse {
@@ -94,7 +94,7 @@ export interface CardSlaRetrieveCardSlaMeasurementsResponse {
 export type CardSlaRetrieveCardSlaMeasurementsParams = Parameters<
   ReturnType<
     typeof createServiceDeskResources
-  >["cardSla"]["retrieveCardSlaMeasurements"]
+  >['cardSla']['retrieveCardSlaMeasurements']
 >;
 
 export type ServiceDeskServicesRetrieveServicesListResponse = {
@@ -130,7 +130,7 @@ export type ServiceDeskServicesRetrieveServicesListResponse = {
 export type ServiceDeskServicesRetrieveServicesListParams = Parameters<
   ReturnType<
     typeof createServiceDeskResources
-  >["serviceDeskServices"]["retrieveServicesList"]
+  >['serviceDeskServices']['retrieveServicesList']
 >;
 
 export const createServiceDeskResources = (transport: HttpTransport) => ({
@@ -143,9 +143,9 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CardServiceDeskExternalRecipientsAddNewRecipientResponse>(
         {
-          method: "POST",
-          path: "/cards/" + pathSegment(cardId) + "/sd-external-recipients",
-          body: { email },
+          method: 'POST',
+          path: '/cards/' + pathSegment(cardId) + '/sd-external-recipients',
+          body: {email},
           signal: options?.signal,
         },
       );
@@ -158,11 +158,11 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CardServiceDeskExternalRecipientsRemoveRecipientResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/sd-external-recipients/" +
+            '/sd-external-recipients/' +
             pathSegment(email),
           signal: options?.signal,
         },
@@ -176,8 +176,8 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardSlaRetrieveCardSlaMeasurementsResponse>({
-        method: "GET",
-        path: "/cards/" + pathSegment(cardId) + "/sla-rules-measurements",
+        method: 'GET',
+        path: '/cards/' + pathSegment(cardId) + '/sla-rules-measurements',
         signal: options?.signal,
       });
     },
@@ -187,8 +187,8 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
     retrieveServicesList: (options?: OperationOptions) => {
       return transport.request<ServiceDeskServicesRetrieveServicesListResponse>(
         {
-          method: "GET",
-          path: "/service-desk/services",
+          method: 'GET',
+          path: '/service-desk/services',
           signal: options?.signal,
         },
       );

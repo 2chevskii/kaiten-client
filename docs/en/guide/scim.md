@@ -3,10 +3,10 @@
 `KaitenScimClient` is a separate export at `@2chevskii/kaiten-client/scim`. It uses `/scim/v2` and provides eight user and group operations.
 
 ```ts
-import { KaitenScimClient } from "@2chevskii/kaiten-client/scim";
+import {KaitenScimClient} from '@2chevskii/kaiten-client/scim';
 
 const scim = new KaitenScimClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   token: process.env.KAITEN_TOKEN!,
 });
 
@@ -21,9 +21,9 @@ Responses share the exported `ScimName`, `ScimEmail`, `ScimResourceMeta`, and `S
 
 ```ts
 await scim.users.updateUser(123, [
-  { op: "replace", path: "active", value: false },
+  {op: 'replace', path: 'active', value: false},
 ]);
-const group = await scim.groups.addGroup("Developers");
+const group = await scim.groups.addGroup('Developers');
 await scim.groups.getGroup(group.id);
 ```
 

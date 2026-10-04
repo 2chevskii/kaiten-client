@@ -3,13 +3,13 @@
 Kaiten calls a metadata service that you configure. `@2chevskii/kaiten-client/metadata` exports request, response, and handler contracts; you provide the HTTP server.
 
 ```ts
-import type { UserMetadataHandler } from "@2chevskii/kaiten-client/metadata";
+import type {UserMetadataHandler} from '@2chevskii/kaiten-client/metadata';
 
-const getMetadata: UserMetadataHandler = ({ email, token }) => {
+const getMetadata: UserMetadataHandler = ({email, token}) => {
   // Validate token if your integration is configured to use one.
   return {
     description: `Employee: ${email}`,
-    id_42: "team-a",
+    id_42: 'team-a',
   };
 };
 ```

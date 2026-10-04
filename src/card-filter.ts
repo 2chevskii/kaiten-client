@@ -1,4 +1,4 @@
-import { Buffer } from "node:buffer";
+import {Buffer} from 'node:buffer';
 
 /** ISO 8601 bounds used by Kaiten's date filter comparisons. */
 export interface CardFilterDateRange {
@@ -8,24 +8,24 @@ export interface CardFilterDateRange {
 
 export interface CardFilterPath {
   id: number;
-  type: "column" | "lane" | "board" | "space";
+  type: 'column' | 'lane' | 'board' | 'space';
   spaceId?: number;
   boardId?: number;
   parentId?: number;
 }
 
 export type CardFilterSource =
-  | "app"
-  | "api"
-  | "email"
-  | "telegram"
-  | "max_messenger"
-  | "slack"
-  | "webhook"
-  | "import"
-  | "schedule"
-  | "automation"
-  | "help_center";
+  | 'app'
+  | 'api'
+  | 'email'
+  | 'telegram'
+  | 'max_messenger'
+  | 'slack'
+  | 'webhook'
+  | 'import'
+  | 'schedule'
+  | 'automation'
+  | 'help_center';
 
 interface Comparison<Operator extends string, Value> {
   comparison: Operator;
@@ -37,104 +37,101 @@ interface FlagComparison<Operator extends string> {
   value?: never;
 }
 
-type PresenceComparison = FlagComparison<"known" | "unknown">;
+type PresenceComparison = FlagComparison<'known' | 'unknown'>;
 
 type DateComparison =
   | Comparison<
-      | "eq"
-      | "eq:relative"
-      | "lt:relative"
-      | "today"
-      | "yesterday"
-      | "prev_seven_days"
-      | "prev_thirty_days",
+      | 'eq'
+      | 'eq:relative'
+      | 'lt:relative'
+      | 'today'
+      | 'yesterday'
+      | 'prev_seven_days'
+      | 'prev_thirty_days',
       CardFilterDateRange
     >
-  | Comparison<"gt" | "lt" | "gt:relative", string>;
+  | Comparison<'gt' | 'lt' | 'gt:relative', string>;
 
 type FutureDateComparison = Comparison<
-  "tomorrow" | "next_seven_days" | "next_thirty_days",
+  'tomorrow' | 'next_seven_days' | 'next_thirty_days',
   CardFilterDateRange
 >;
 
 /** Documented custom-property predicates; numeric property values use strings. */
 export type CardCustomPropertyFilter = {
-  key: "custom_property";
+  key: 'custom_property';
   id: number;
 } & (
-  | ({ type: "string" | "email" | "url" | "phone" } & (
+  | ({type: 'string' | 'email' | 'url' | 'phone'} & (
       | Comparison<
-          | "eq"
-          | "ne"
-          | "starts_with"
-          | "ends_with"
-          | "contains"
-          | "not_contains",
+          | 'eq'
+          | 'ne'
+          | 'starts_with'
+          | 'ends_with'
+          | 'contains'
+          | 'not_contains',
           string
         >
       | PresenceComparison
     ))
-  | ({ type: "number" | "formula" | "collective_vote" } & (
-      Comparison<"eq" | "ne" | "gt" | "lt", string> | PresenceComparison
+  | ({type: 'number' | 'formula' | 'collective_vote'} & (
+      Comparison<'eq' | 'ne' | 'gt' | 'lt', string> | PresenceComparison
     ))
-  | ({ type: "collective_score" } & (
+  | ({type: 'collective_score'} & (
       | Comparison<
-          "eq" | "ne" | "gt" | "lt" | "contains" | "not_contains",
+          'eq' | 'ne' | 'gt' | 'lt' | 'contains' | 'not_contains',
           string
         >
       | PresenceComparison
     ))
-  | ({ type: "date" } & (
-      | Comparison<"eq" | "eq:relative" | "lt:relative", CardFilterDateRange>
-      | Comparison<"gt" | "lt" | "gt:relative", string>
+  | ({type: 'date'} & (
+      | Comparison<'eq' | 'eq:relative' | 'lt:relative', CardFilterDateRange>
+      | Comparison<'gt' | 'lt' | 'gt:relative', string>
       | PresenceComparison
     ))
-  | ({ type: "checkbox" } & Comparison<"true" | "false", null>)
-  | ({ type: "attachment" } & Comparison<"known" | "unknown", null>)
-  | ({ type: "select" | "catalog" } & (
-      Comparison<"eq" | "ne", number> | PresenceComparison
+  | ({type: 'checkbox'} & Comparison<'true' | 'false', null>)
+  | ({type: 'attachment'} & Comparison<'known' | 'unknown', null>)
+  | ({type: 'select' | 'catalog'} & (
+      Comparison<'eq' | 'ne', number> | PresenceComparison
     ))
-  | ({ type: "user" | "vote" } & (
-      Comparison<"eq" | "ne", string> | PresenceComparison
+  | ({type: 'user' | 'vote'} & (
+      Comparison<'eq' | 'ne', string> | PresenceComparison
     ))
 );
 
 export type CardFilterCondition =
-  | ({ key: "id" } & (
-      | Comparison<"eq" | "ne", number>
-      | Comparison<"in" | "not_in", readonly number[]>
+  | ({key: 'id'} & (
+      | Comparison<'eq' | 'ne', number>
+      | Comparison<'in' | 'not_in', readonly number[]>
     ))
-  | ({ key: "owner_id" | "state" | "type_id" } & Comparison<
-      "eq" | "ne",
-      number
-    >)
-  | ({ key: "asap" } & FlagComparison<"true" | "false">)
-  | ({ key: "tag" | "responsible" | "member" } & (
-      Comparison<"eq" | "ne", number> | PresenceComparison
+  | ({key: 'owner_id' | 'state' | 'type_id'} & Comparison<'eq' | 'ne', number>)
+  | ({key: 'asap'} & FlagComparison<'true' | 'false'>)
+  | ({key: 'tag' | 'responsible' | 'member'} & (
+      Comparison<'eq' | 'ne', number> | PresenceComparison
     ))
-  | ({ key: "created" | "updated" | "last_moved_at" } & DateComparison)
-  | ({ key: "first_moved_to_in_progress_at" | "completed_at" } & (
+  | ({key: 'created' | 'updated' | 'last_moved_at'} & DateComparison)
+  | ({key: 'first_moved_to_in_progress_at' | 'completed_at'} & (
       DateComparison | PresenceComparison
     ))
-  | ({ key: "planned_start" | "planned_end" } & (
+  | ({key: 'planned_start' | 'planned_end'} & (
       DateComparison | FutureDateComparison | PresenceComparison
     ))
-  | ({ key: "due_date" } & (
+  | ({key: 'due_date'} & (
       | DateComparison
       | FutureDateComparison
       | PresenceComparison
-      | FlagComparison<"overdue:custom" | "completed_on_time:custom">
+      | FlagComparison<'overdue:custom' | 'completed_on_time:custom'>
     ))
-  | ({ key: "source" } & (
-      Comparison<"eq" | "ne", CardFilterSource> | PresenceComparison
+  | ({key: 'source'} & (
+      Comparison<'eq' | 'ne', CardFilterSource> | PresenceComparison
     ))
-  | ({ key: "partial_path" } & Comparison<"eq" | "ne", CardFilterPath>)
-  | ({ key: "condition" } & Comparison<"eq", number>)
-  | ({ key: "time_spent_sum" } & Comparison<"eq" | "ne" | "gt" | "lt", number>)
+  | ({key: 'partial_path'} & Comparison<'eq' | 'ne', CardFilterPath>)
+  | ({key: 'condition'} & Comparison<'eq', number>)
+  | ({key: 'time_spent_sum'} & Comparison<'eq' | 'ne' | 'gt' | 'lt', number>)
   | CardCustomPropertyFilter;
 
 export interface CardFilterGroup {
-  key: "and" | "or";
+  key: 'and' | 'or';
   value: readonly CardFilterCondition[];
 }
 
@@ -143,11 +140,11 @@ export interface CardFilterGroup {
  * @see https://developers.kaiten.ru/cards/retrieve-card-list
  */
 export interface CardFilter {
-  key: "and" | "or";
+  key: 'and' | 'or';
   value: readonly CardFilterGroup[];
 }
 
 /** Encode a typed filter for Kaiten's base64 query parameter. */
 export function encodeCardFilter(filter: CardFilter): string {
-  return Buffer.from(JSON.stringify(filter), "utf8").toString("base64");
+  return Buffer.from(JSON.stringify(filter), 'utf8').toString('base64');
 }

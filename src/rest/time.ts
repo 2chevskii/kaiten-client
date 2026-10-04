@@ -1,4 +1,4 @@
-import type { IterationReference } from "../entities.ts";
+import type {IterationReference} from '../entities.ts';
 import type {
   UserSummary,
   ColumnSummary,
@@ -8,16 +8,16 @@ import type {
   UserRoleSummary,
   CardMemberSummary,
   BoardCardProperty,
-} from "../entities.ts";
+} from '../entities.ts';
 import type {
   CustomPropertyValues,
   JsonValue,
   QueryList,
   RequireAtLeastOne,
-} from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CardTimeLogsAddTimeLogBody {
   role_id: number;
@@ -41,7 +41,7 @@ export interface CardTimeLogsAddTimeLogResponse {
 }
 
 export type CardTimeLogsAddTimeLogParams = Parameters<
-  ReturnType<typeof createTimeResources>["cardTimeLogs"]["addTimeLog"]
+  ReturnType<typeof createTimeResources>['cardTimeLogs']['addTimeLog']
 >;
 
 export interface CardTimeLogsGetTimeLogsQuery {
@@ -67,7 +67,7 @@ export type CardTimeLogsGetTimeLogsResponse = {
 }[];
 
 export type CardTimeLogsGetTimeLogsParams = Parameters<
-  ReturnType<typeof createTimeResources>["cardTimeLogs"]["getTimeLogs"]
+  ReturnType<typeof createTimeResources>['cardTimeLogs']['getTimeLogs']
 >;
 
 export interface CardTimeLogsRemoveTimeLogResponse {
@@ -75,7 +75,7 @@ export interface CardTimeLogsRemoveTimeLogResponse {
 }
 
 export type CardTimeLogsRemoveTimeLogParams = Parameters<
-  ReturnType<typeof createTimeResources>["cardTimeLogs"]["removeTimeLog"]
+  ReturnType<typeof createTimeResources>['cardTimeLogs']['removeTimeLog']
 >;
 
 export type CardTimeLogsUpdateLogRecordBody = RequireAtLeastOne<
@@ -85,7 +85,7 @@ export type CardTimeLogsUpdateLogRecordBody = RequireAtLeastOne<
     for_date?: string;
     comment?: string;
   },
-  "role_id" | "time_spent" | "for_date" | "comment"
+  'role_id' | 'time_spent' | 'for_date' | 'comment'
 >;
 
 export interface CardTimeLogsUpdateLogRecordResponse {
@@ -103,7 +103,7 @@ export interface CardTimeLogsUpdateLogRecordResponse {
 }
 
 export type CardTimeLogsUpdateLogRecordParams = Parameters<
-  ReturnType<typeof createTimeResources>["cardTimeLogs"]["updateLogRecord"]
+  ReturnType<typeof createTimeResources>['cardTimeLogs']['updateLogRecord']
 >;
 
 export interface IterationsAddCardToIterationBody {
@@ -122,7 +122,7 @@ export interface IterationsAddCardToIterationResponse {
 }
 
 export type IterationsAddCardToIterationParams = Parameters<
-  ReturnType<typeof createTimeResources>["iterations"]["addCardToIteration"]
+  ReturnType<typeof createTimeResources>['iterations']['addCardToIteration']
 >;
 
 export interface IterationsCreateIterationBody {
@@ -150,7 +150,7 @@ export interface IterationsCreateIterationResponse {
 }
 
 export type IterationsCreateIterationParams = Parameters<
-  ReturnType<typeof createTimeResources>["iterations"]["createIteration"]
+  ReturnType<typeof createTimeResources>['iterations']['createIteration']
 >;
 
 export interface IterationsDeleteIterationBody {
@@ -176,7 +176,7 @@ export interface IterationsDeleteIterationResponse {
 }
 
 export type IterationsDeleteIterationParams = Parameters<
-  ReturnType<typeof createTimeResources>["iterations"]["deleteIteration"]
+  ReturnType<typeof createTimeResources>['iterations']['deleteIteration']
 >;
 
 export interface IterationsGetCardIterationsHistoryQuery {
@@ -200,7 +200,7 @@ export type IterationsGetCardIterationsHistoryResponse = {
 export type IterationsGetCardIterationsHistoryParams = Parameters<
   ReturnType<
     typeof createTimeResources
-  >["iterations"]["getCardIterationsHistory"]
+  >['iterations']['getCardIterationsHistory']
 >;
 
 export interface IterationsGetIterationResponse {
@@ -221,7 +221,7 @@ export interface IterationsGetIterationResponse {
 }
 
 export type IterationsGetIterationParams = Parameters<
-  ReturnType<typeof createTimeResources>["iterations"]["getIteration"]
+  ReturnType<typeof createTimeResources>['iterations']['getIteration']
 >;
 
 export interface IterationsRemoveCardFromIterationResponse {
@@ -238,7 +238,7 @@ export interface IterationsRemoveCardFromIterationResponse {
 export type IterationsRemoveCardFromIterationParams = Parameters<
   ReturnType<
     typeof createTimeResources
-  >["iterations"]["removeCardFromIteration"]
+  >['iterations']['removeCardFromIteration']
 >;
 
 export interface IterationsRetrieveCardsInIterationQuery {
@@ -260,7 +260,7 @@ export type IterationsRetrieveCardsInIterationResponse = {
 export type IterationsRetrieveCardsInIterationParams = Parameters<
   ReturnType<
     typeof createTimeResources
-  >["iterations"]["retrieveCardsInIteration"]
+  >['iterations']['retrieveCardsInIteration']
 >;
 
 export interface IterationsRetrieveListOfIterationsQuery {
@@ -292,20 +292,20 @@ export type IterationsRetrieveListOfIterationsResponse = {
 export type IterationsRetrieveListOfIterationsParams = Parameters<
   ReturnType<
     typeof createTimeResources
-  >["iterations"]["retrieveListOfIterations"]
+  >['iterations']['retrieveListOfIterations']
 >;
 
 export type IterationsUpdateIterationBody = RequireAtLeastOne<
   {
     title?: string;
     goal?: string | null;
-    status?: "planned" | "active" | "closed";
+    status?: 'planned' | 'active' | 'closed';
     start_date?: string | null;
     finish_date?: string | null;
     actual_finish_date?: string | null;
     new_iteration_id?: string | null;
   },
-  "title" | "goal" | "status" | "start_date" | "finish_date"
+  'title' | 'goal' | 'status' | 'start_date' | 'finish_date'
 >;
 
 export interface IterationsUpdateIterationResponse {
@@ -327,7 +327,7 @@ export interface IterationsUpdateIterationResponse {
 }
 
 export type IterationsUpdateIterationParams = Parameters<
-  ReturnType<typeof createTimeResources>["iterations"]["updateIteration"]
+  ReturnType<typeof createTimeResources>['iterations']['updateIteration']
 >;
 
 export interface SprintsGetSprintSummaryQuery {
@@ -471,7 +471,7 @@ export interface SprintsGetSprintSummaryResponse {
 }
 
 export type SprintsGetSprintSummaryParams = Parameters<
-  ReturnType<typeof createTimeResources>["sprints"]["getSprintSummary"]
+  ReturnType<typeof createTimeResources>['sprints']['getSprintSummary']
 >;
 
 export interface SprintsGetSprintsListQuery {
@@ -511,7 +511,7 @@ export type SprintsGetSprintsListResponse = {
 }[];
 
 export type SprintsGetSprintsListParams = Parameters<
-  ReturnType<typeof createTimeResources>["sprints"]["getSprintsList"]
+  ReturnType<typeof createTimeResources>['sprints']['getSprintsList']
 >;
 
 export interface TimesheetGetListQuery {
@@ -678,7 +678,7 @@ export type TimesheetGetListResponse = {
 }[];
 
 export type TimesheetGetListParams = Parameters<
-  ReturnType<typeof createTimeResources>["timesheet"]["getList"]
+  ReturnType<typeof createTimeResources>['timesheet']['getList']
 >;
 
 export const createTimeResources = (transport: HttpTransport) => ({
@@ -690,8 +690,8 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTimeLogsAddTimeLogResponse>({
-        method: "POST",
-        path: "/cards/" + pathSegment(cardId) + "/time-logs",
+        method: 'POST',
+        path: '/cards/' + pathSegment(cardId) + '/time-logs',
         body,
         signal: options?.signal,
       });
@@ -704,9 +704,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTimeLogsGetTimeLogsResponse>({
-        method: "GET",
-        path: "/cards/" + pathSegment(cardId) + "/time-logs",
-        query: { for_date: forDate, personal },
+        method: 'GET',
+        path: '/cards/' + pathSegment(cardId) + '/time-logs',
+        query: {for_date: forDate, personal},
         signal: options?.signal,
       });
     },
@@ -717,11 +717,11 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTimeLogsRemoveTimeLogResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/time-logs/" +
+          '/time-logs/' +
           pathSegment(timeLogId),
         signal: options?.signal,
       });
@@ -734,11 +734,11 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTimeLogsUpdateLogRecordResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/time-logs/" +
+          '/time-logs/' +
           pathSegment(timeLogId),
         body,
         signal: options?.signal,
@@ -755,14 +755,14 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsAddCardToIterationResponse>({
-        method: "POST",
+        method: 'POST',
         path:
-          "/spaces/" +
+          '/spaces/' +
           pathSegment(spaceUid) +
-          "/iterations/" +
+          '/iterations/' +
           pathSegment(iterationId) +
-          "/cards",
-        body: { card_uid: cardUid },
+          '/cards',
+        body: {card_uid: cardUid},
         signal: options?.signal,
       });
     },
@@ -774,8 +774,8 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsCreateIterationResponse>({
-        method: "POST",
-        path: "/spaces/" + pathSegment(spaceUid) + "/iterations",
+        method: 'POST',
+        path: '/spaces/' + pathSegment(spaceUid) + '/iterations',
         body,
         signal: options?.signal,
       });
@@ -789,13 +789,13 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsDeleteIterationResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+          '/spaces/' + pathSegment(spaceUid) + '/iterations/' + pathSegment(id),
         body:
           newIterationId === undefined
             ? undefined
-            : { new_iteration_id: newIterationId },
+            : {new_iteration_id: newIterationId},
         signal: options?.signal,
       });
     },
@@ -807,9 +807,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsGetCardIterationsHistoryResponse>({
-        method: "GET",
-        path: "/cards/" + pathSegment(cardUid) + "/iterations-history",
-        query: { with_details: withDetails },
+        method: 'GET',
+        path: '/cards/' + pathSegment(cardUid) + '/iterations-history',
+        query: {with_details: withDetails},
         signal: options?.signal,
       });
     },
@@ -821,9 +821,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsGetIterationResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+          '/spaces/' + pathSegment(spaceUid) + '/iterations/' + pathSegment(id),
         signal: options?.signal,
       });
     },
@@ -836,13 +836,13 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsRemoveCardFromIterationResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/spaces/" +
+          '/spaces/' +
           pathSegment(spaceUid) +
-          "/iterations/" +
+          '/iterations/' +
           pathSegment(iterationId) +
-          "/cards/" +
+          '/cards/' +
           pathSegment(uid),
         signal: options?.signal,
       });
@@ -856,14 +856,14 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsRetrieveCardsInIterationResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/spaces/" +
+          '/spaces/' +
           pathSegment(spaceUid) +
-          "/iterations/" +
+          '/iterations/' +
           pathSegment(iterationId) +
-          "/cards",
-        query: { status },
+          '/cards',
+        query: {status},
         signal: options?.signal,
       });
     },
@@ -875,8 +875,8 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsRetrieveListOfIterationsResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceUid) + "/iterations",
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceUid) + '/iterations',
         query,
         signal: options?.signal,
       });
@@ -890,9 +890,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<IterationsUpdateIterationResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/spaces/" + pathSegment(spaceUid) + "/iterations/" + pathSegment(id),
+          '/spaces/' + pathSegment(spaceUid) + '/iterations/' + pathSegment(id),
         body,
         signal: options?.signal,
       });
@@ -906,9 +906,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SprintsGetSprintSummaryResponse>({
-        method: "GET",
-        path: "/sprints/" + pathSegment(id),
-        query: { exclude_deleted_cards: excludeDeletedCards },
+        method: 'GET',
+        path: '/sprints/' + pathSegment(id),
+        query: {exclude_deleted_cards: excludeDeletedCards},
         signal: options?.signal,
       });
     },
@@ -920,9 +920,9 @@ export const createTimeResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SprintsGetSprintsListResponse>({
-        method: "GET",
-        path: "/sprints",
-        query: { active, limit, offset },
+        method: 'GET',
+        path: '/sprints',
+        query: {active, limit, offset},
         signal: options?.signal,
       });
     },
@@ -931,8 +931,8 @@ export const createTimeResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/timesheet/get-list */
     getList: (query: TimesheetGetListQuery, options?: OperationOptions) => {
       return transport.request<TimesheetGetListResponse>({
-        method: "GET",
-        path: "/time-logs",
+        method: 'GET',
+        path: '/time-logs',
         query,
         signal: options?.signal,
       });

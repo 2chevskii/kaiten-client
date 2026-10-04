@@ -4,15 +4,15 @@ import type {
   LaneSummary,
   BoardSummary,
   BoardCardProperty,
-} from "../entities.ts";
+} from '../entities.ts';
 import type {
   CustomPropertyValues,
   JsonValue,
   RequireAtLeastOne,
-} from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface BoardsGetBoardResponse {
   created: string;
@@ -20,7 +20,7 @@ export interface BoardsGetBoardResponse {
   id: number;
   title: string;
   cell_wip_limits: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   external_id: string | null;
   default_card_type_id: number;
@@ -43,7 +43,7 @@ export interface BoardsGetBoardResponse {
 }
 
 export type BoardsGetBoardParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["boards"]["getBoard"]
+  ReturnType<typeof createWorkspaceResources>['boards']['getBoard']
 >;
 
 export interface ColumnsCreateNewColumnBody {
@@ -89,7 +89,7 @@ export interface ColumnsCreateNewColumnResponse {
 }
 
 export type ColumnsCreateNewColumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["columns"]["createNewColumn"]
+  ReturnType<typeof createWorkspaceResources>['columns']['createNewColumn']
 >;
 
 export type ColumnsGetListOfColumnsResponse = {
@@ -120,7 +120,7 @@ export type ColumnsGetListOfColumnsResponse = {
 }[];
 
 export type ColumnsGetListOfColumnsParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["columns"]["getListOfColumns"]
+  ReturnType<typeof createWorkspaceResources>['columns']['getListOfColumns']
 >;
 
 export interface ColumnsRemoveColumnBody {
@@ -132,7 +132,7 @@ export interface ColumnsRemoveColumnResponse {
 }
 
 export type ColumnsRemoveColumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["columns"]["removeColumn"]
+  ReturnType<typeof createWorkspaceResources>['columns']['removeColumn']
 >;
 
 export type ColumnsUpdateColumnBody = RequireAtLeastOne<
@@ -156,24 +156,24 @@ export type ColumnsUpdateColumnBody = RequireAtLeastOne<
     next_column_id?: number | null;
     pause_sla?: boolean;
   },
-  | "last_moved_warning_after_minutes"
-  | "last_moved_warning_after_hours"
-  | "last_moved_warning_after_days"
-  | "title"
-  | "external_id"
-  | "sort_order"
-  | "type"
-  | "wip_limit"
-  | "wip_limit_type"
-  | "col_count"
-  | "archive_after_days"
-  | "months_to_hide_cards"
-  | "card_hide_after_days"
-  | "rules"
-  | "default_tags"
-  | "prev_column_id"
-  | "next_column_id"
-  | "pause_sla"
+  | 'last_moved_warning_after_minutes'
+  | 'last_moved_warning_after_hours'
+  | 'last_moved_warning_after_days'
+  | 'title'
+  | 'external_id'
+  | 'sort_order'
+  | 'type'
+  | 'wip_limit'
+  | 'wip_limit_type'
+  | 'col_count'
+  | 'archive_after_days'
+  | 'months_to_hide_cards'
+  | 'card_hide_after_days'
+  | 'rules'
+  | 'default_tags'
+  | 'prev_column_id'
+  | 'next_column_id'
+  | 'pause_sla'
 >;
 
 export interface ColumnsUpdateColumnResponse {
@@ -202,7 +202,7 @@ export interface ColumnsUpdateColumnResponse {
 }
 
 export type ColumnsUpdateColumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["columns"]["updateColumn"]
+  ReturnType<typeof createWorkspaceResources>['columns']['updateColumn']
 >;
 
 export interface LanesCreateNewLaneBody {
@@ -238,7 +238,7 @@ export interface LanesCreateNewLaneResponse {
 }
 
 export type LanesCreateNewLaneParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["lanes"]["createNewLane"]
+  ReturnType<typeof createWorkspaceResources>['lanes']['createNewLane']
 >;
 
 export interface LanesGetListOfLanesQuery {
@@ -267,7 +267,7 @@ export type LanesGetListOfLanesResponse = {
 }[];
 
 export type LanesGetListOfLanesParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["lanes"]["getListOfLanes"]
+  ReturnType<typeof createWorkspaceResources>['lanes']['getListOfLanes']
 >;
 
 export interface LanesRemoveLaneBody {
@@ -279,7 +279,7 @@ export interface LanesRemoveLaneResponse {
 }
 
 export type LanesRemoveLaneParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["lanes"]["removeLane"]
+  ReturnType<typeof createWorkspaceResources>['lanes']['removeLane']
 >;
 
 export type LanesUpdateLaneBody = RequireAtLeastOne<
@@ -296,17 +296,17 @@ export type LanesUpdateLaneBody = RequireAtLeastOne<
     default_card_type_id?: number | null;
     condition?: 1 | 2;
   },
-  | "last_moved_warning_after_minutes"
-  | "last_moved_warning_after_hours"
-  | "last_moved_warning_after_days"
-  | "title"
-  | "sort_order"
-  | "wip_limit"
-  | "wip_limit_type"
-  | "row_count"
-  | "default_tags"
-  | "default_card_type_id"
-  | "condition"
+  | 'last_moved_warning_after_minutes'
+  | 'last_moved_warning_after_hours'
+  | 'last_moved_warning_after_days'
+  | 'title'
+  | 'sort_order'
+  | 'wip_limit'
+  | 'wip_limit_type'
+  | 'row_count'
+  | 'default_tags'
+  | 'default_card_type_id'
+  | 'condition'
 >;
 
 export interface LanesUpdateLaneResponse {
@@ -331,7 +331,7 @@ export interface LanesUpdateLaneResponse {
 }
 
 export type LanesUpdateLaneParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["lanes"]["updateLane"]
+  ReturnType<typeof createWorkspaceResources>['lanes']['updateLane']
 >;
 
 export interface SpaceBoardsCreateNewBoardBody {
@@ -375,7 +375,7 @@ export interface SpaceBoardsCreateNewBoardResponse {
   id: number;
   title: string;
   cell_wip_limits: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   external_id: string | null;
   default_card_type_id: number;
@@ -399,7 +399,7 @@ export interface SpaceBoardsCreateNewBoardResponse {
 }
 
 export type SpaceBoardsCreateNewBoardParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceBoards"]["createNewBoard"]
+  ReturnType<typeof createWorkspaceResources>['spaceBoards']['createNewBoard']
 >;
 
 export interface SpaceBoardsGetBoardResponse {
@@ -408,7 +408,7 @@ export interface SpaceBoardsGetBoardResponse {
   id: number;
   title: string;
   cell_wip_limits: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   default_card_type_id: number;
   description: string | null;
@@ -525,7 +525,7 @@ export interface SpaceBoardsGetBoardResponse {
 }
 
 export type SpaceBoardsGetBoardParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceBoards"]["getBoard"]
+  ReturnType<typeof createWorkspaceResources>['spaceBoards']['getBoard']
 >;
 
 export type SpaceBoardsGetListOfBoardsResponse = {
@@ -534,7 +534,7 @@ export type SpaceBoardsGetListOfBoardsResponse = {
   id: number;
   title: string;
   cell_wip_limits: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   external_id: string | null;
   default_card_type_id: number;
@@ -561,7 +561,7 @@ export type SpaceBoardsGetListOfBoardsResponse = {
 }[];
 
 export type SpaceBoardsGetListOfBoardsParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceBoards"]["getListOfBoards"]
+  ReturnType<typeof createWorkspaceResources>['spaceBoards']['getListOfBoards']
 >;
 
 export interface SpaceBoardsRemoveBoardBody {
@@ -573,7 +573,7 @@ export interface SpaceBoardsRemoveBoardResponse {
 }
 
 export type SpaceBoardsRemoveBoardParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceBoards"]["removeBoard"]
+  ReturnType<typeof createWorkspaceResources>['spaceBoards']['removeBoard']
 >;
 
 export type SpaceBoardsUpdateBoardBody = RequireAtLeastOne<
@@ -607,25 +607,25 @@ export type SpaceBoardsUpdateBoardBody = RequireAtLeastOne<
         }[]
       | null;
   },
-  | "title"
-  | "external_id"
-  | "description"
-  | "top"
-  | "left"
-  | "type"
-  | "cell_wip_limits"
-  | "default_card_type_id"
-  | "default_tags"
-  | "first_image_is_cover"
-  | "reset_lane_spent_time"
-  | "automove_cards"
-  | "backward_moves_enabled"
-  | "move_parents_to_done"
-  | "hide_done_policies"
-  | "hide_done_policies_in_done_column"
-  | "auto_assign_enabled"
-  | "move_from_space_id"
-  | "card_properties"
+  | 'title'
+  | 'external_id'
+  | 'description'
+  | 'top'
+  | 'left'
+  | 'type'
+  | 'cell_wip_limits'
+  | 'default_card_type_id'
+  | 'default_tags'
+  | 'first_image_is_cover'
+  | 'reset_lane_spent_time'
+  | 'automove_cards'
+  | 'backward_moves_enabled'
+  | 'move_parents_to_done'
+  | 'hide_done_policies'
+  | 'hide_done_policies_in_done_column'
+  | 'auto_assign_enabled'
+  | 'move_from_space_id'
+  | 'card_properties'
 >;
 
 export interface SpaceBoardsUpdateBoardResponse {
@@ -634,7 +634,7 @@ export interface SpaceBoardsUpdateBoardResponse {
   id: number;
   title: string;
   cell_wip_limits: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   external_id: string | null;
   default_card_type_id: number;
@@ -658,7 +658,7 @@ export interface SpaceBoardsUpdateBoardResponse {
 }
 
 export type SpaceBoardsUpdateBoardParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceBoards"]["updateBoard"]
+  ReturnType<typeof createWorkspaceResources>['spaceBoards']['updateBoard']
 >;
 
 export type SpaceUsersChangeUserRoleAndNotificationSettingsBody =
@@ -669,7 +669,7 @@ export type SpaceUsersChangeUserRoleAndNotificationSettingsBody =
       space_group_id?: number | null;
       settings?: Record<string, JsonValue>;
     },
-    "role_id" | "space_group_id"
+    'role_id' | 'space_group_id'
   >;
 
 export interface SpaceUsersChangeUserRoleAndNotificationSettingsResponse {
@@ -685,7 +685,7 @@ export interface SpaceUsersChangeUserRoleAndNotificationSettingsResponse {
 export type SpaceUsersChangeUserRoleAndNotificationSettingsParams = Parameters<
   ReturnType<
     typeof createWorkspaceResources
-  >["spaceUsers"]["changeUserRoleAndNotificationSettings"]
+  >['spaceUsers']['changeUserRoleAndNotificationSettings']
 >;
 
 export interface SpaceUsersGetListOfUsersQuery {
@@ -722,7 +722,7 @@ export type SpaceUsersGetListOfUsersResponse = {
 }[];
 
 export type SpaceUsersGetListOfUsersParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceUsers"]["getListOfUsers"]
+  ReturnType<typeof createWorkspaceResources>['spaceUsers']['getListOfUsers']
 >;
 
 export interface SpaceUsersGetUserResponse {
@@ -748,7 +748,7 @@ export interface SpaceUsersGetUserResponse {
 }
 
 export type SpaceUsersGetUserParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceUsers"]["getUser"]
+  ReturnType<typeof createWorkspaceResources>['spaceUsers']['getUser']
 >;
 
 export interface SpaceUsersInviteUserToSpaceBody {
@@ -773,7 +773,7 @@ export interface SpaceUsersInviteUserToSpaceResponse {
 }
 
 export type SpaceUsersInviteUserToSpaceParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaceUsers"]["inviteUserToSpace"]
+  ReturnType<typeof createWorkspaceResources>['spaceUsers']['inviteUserToSpace']
 >;
 
 export interface SpaceUsersRemoveUserFromSpaceResponse {
@@ -788,7 +788,7 @@ export interface SpaceUsersRemoveUserFromSpaceResponse {
 export type SpaceUsersRemoveUserFromSpaceParams = Parameters<
   ReturnType<
     typeof createWorkspaceResources
-  >["spaceUsers"]["removeUserFromSpace"]
+  >['spaceUsers']['removeUserFromSpace']
 >;
 
 export interface SpacesCreateNewSpaceBody {
@@ -830,7 +830,7 @@ export interface SpacesCreateNewSpaceResponse {
 }
 
 export type SpacesCreateNewSpaceParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaces"]["createNewSpace"]
+  ReturnType<typeof createWorkspaceResources>['spaces']['createNewSpace']
 >;
 
 export interface SpacesRemoveSpaceResponse {
@@ -838,7 +838,7 @@ export interface SpacesRemoveSpaceResponse {
 }
 
 export type SpacesRemoveSpaceParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaces"]["removeSpace"]
+  ReturnType<typeof createWorkspaceResources>['spaces']['removeSpace']
 >;
 
 export interface SpacesRetrieveListOfSpacesQuery {
@@ -879,7 +879,7 @@ export type SpacesRetrieveListOfSpacesResponse = {
 }[];
 
 export type SpacesRetrieveListOfSpacesParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaces"]["retrieveListOfSpaces"]
+  ReturnType<typeof createWorkspaceResources>['spaces']['retrieveListOfSpaces']
 >;
 
 export interface SpacesRetrieveSpaceResponse {
@@ -911,7 +911,7 @@ export interface SpacesRetrieveSpaceResponse {
 }
 
 export type SpacesRetrieveSpaceParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaces"]["retrieveSpace"]
+  ReturnType<typeof createWorkspaceResources>['spaces']['retrieveSpace']
 >;
 
 export type SpacesUpdateSpaceBody = RequireAtLeastOne<
@@ -920,11 +920,11 @@ export type SpacesUpdateSpaceBody = RequireAtLeastOne<
     external_id?: number | string | null;
     hidden_card_type_uids?: string[];
     settings?: Record<string, JsonValue>;
-    access?: "for_everyone" | "by_invite";
+    access?: 'for_everyone' | 'by_invite';
     parent_entity_uid?: string | null;
     sort_order?: number;
   },
-  "title" | "external_id" | "hidden_card_type_uids"
+  'title' | 'external_id' | 'hidden_card_type_uids'
 >;
 
 export interface SpacesUpdateSpaceResponse {
@@ -948,7 +948,7 @@ export interface SpacesUpdateSpaceResponse {
 }
 
 export type SpacesUpdateSpaceParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["spaces"]["updateSpace"]
+  ReturnType<typeof createWorkspaceResources>['spaces']['updateSpace']
 >;
 
 export interface SubcolumnCreateNewSubcolumnBody {
@@ -992,7 +992,7 @@ export interface SubcolumnCreateNewSubcolumnResponse {
 }
 
 export type SubcolumnCreateNewSubcolumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["subcolumn"]["createNewSubcolumn"]
+  ReturnType<typeof createWorkspaceResources>['subcolumn']['createNewSubcolumn']
 >;
 
 export type SubcolumnGetListOfSubcolumnsResponse = {
@@ -1023,7 +1023,7 @@ export type SubcolumnGetListOfSubcolumnsResponse = {
 export type SubcolumnGetListOfSubcolumnsParams = Parameters<
   ReturnType<
     typeof createWorkspaceResources
-  >["subcolumn"]["getListOfSubcolumns"]
+  >['subcolumn']['getListOfSubcolumns']
 >;
 
 export interface SubcolumnRemoveSubcolumnBody {
@@ -1035,7 +1035,7 @@ export interface SubcolumnRemoveSubcolumnResponse {
 }
 
 export type SubcolumnRemoveSubcolumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["subcolumn"]["removeSubcolumn"]
+  ReturnType<typeof createWorkspaceResources>['subcolumn']['removeSubcolumn']
 >;
 
 export type SubcolumnUpdateSubcolumnBody = RequireAtLeastOne<
@@ -1057,22 +1057,22 @@ export type SubcolumnUpdateSubcolumnBody = RequireAtLeastOne<
     next_column_id?: number | null;
     pause_sla?: boolean;
   },
-  | "title"
-  | "external_id"
-  | "sort_order"
-  | "type"
-  | "col_count"
-  | "rules"
-  | "archive_after_days"
-  | "months_to_hide_cards"
-  | "card_hide_after_days"
-  | "default_tags"
-  | "last_moved_warning_after_minutes"
-  | "last_moved_warning_after_hours"
-  | "last_moved_warning_after_days"
-  | "prev_column_id"
-  | "next_column_id"
-  | "pause_sla"
+  | 'title'
+  | 'external_id'
+  | 'sort_order'
+  | 'type'
+  | 'col_count'
+  | 'rules'
+  | 'archive_after_days'
+  | 'months_to_hide_cards'
+  | 'card_hide_after_days'
+  | 'default_tags'
+  | 'last_moved_warning_after_minutes'
+  | 'last_moved_warning_after_hours'
+  | 'last_moved_warning_after_days'
+  | 'prev_column_id'
+  | 'next_column_id'
+  | 'pause_sla'
 >;
 
 export interface SubcolumnUpdateSubcolumnResponse {
@@ -1101,7 +1101,7 @@ export interface SubcolumnUpdateSubcolumnResponse {
 }
 
 export type SubcolumnUpdateSubcolumnParams = Parameters<
-  ReturnType<typeof createWorkspaceResources>["subcolumn"]["updateSubcolumn"]
+  ReturnType<typeof createWorkspaceResources>['subcolumn']['updateSubcolumn']
 >;
 
 export const createWorkspaceResources = (transport: HttpTransport) => ({
@@ -1109,8 +1109,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/boards/get-board */
     getBoard: (boardId: number, options?: OperationOptions) => {
       return transport.request<BoardsGetBoardResponse>({
-        method: "GET",
-        path: "/boards/" + pathSegment(boardId),
+        method: 'GET',
+        path: '/boards/' + pathSegment(boardId),
         signal: options?.signal,
       });
     },
@@ -1123,8 +1123,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ColumnsCreateNewColumnResponse>({
-        method: "POST",
-        path: "/boards/" + pathSegment(boardId) + "/columns",
+        method: 'POST',
+        path: '/boards/' + pathSegment(boardId) + '/columns',
         body,
         signal: options?.signal,
       });
@@ -1132,8 +1132,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/columns/get-list-of-columns */
     getListOfColumns: (boardId: number, options?: OperationOptions) => {
       return transport.request<ColumnsGetListOfColumnsResponse>({
-        method: "GET",
-        path: "/boards/" + pathSegment(boardId) + "/columns",
+        method: 'GET',
+        path: '/boards/' + pathSegment(boardId) + '/columns',
         signal: options?.signal,
       });
     },
@@ -1145,13 +1145,13 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ColumnsRemoveColumnResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/boards/" +
+          '/boards/' +
           pathSegment(boardId) +
-          "/columns/" +
+          '/columns/' +
           pathSegment(columnId),
-        body: force === undefined ? undefined : { force },
+        body: force === undefined ? undefined : {force},
         signal: options?.signal,
       });
     },
@@ -1163,11 +1163,11 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ColumnsUpdateColumnResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/boards/" +
+          '/boards/' +
           pathSegment(boardId) +
-          "/columns/" +
+          '/columns/' +
           pathSegment(columnId),
         body,
         signal: options?.signal,
@@ -1182,8 +1182,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<LanesCreateNewLaneResponse>({
-        method: "POST",
-        path: "/boards/" + pathSegment(boardId) + "/lanes",
+        method: 'POST',
+        path: '/boards/' + pathSegment(boardId) + '/lanes',
         body,
         signal: options?.signal,
       });
@@ -1195,9 +1195,9 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<LanesGetListOfLanesResponse>({
-        method: "GET",
-        path: "/boards/" + pathSegment(boardId) + "/lanes",
-        query: { condition },
+        method: 'GET',
+        path: '/boards/' + pathSegment(boardId) + '/lanes',
+        query: {condition},
         signal: options?.signal,
       });
     },
@@ -1209,10 +1209,10 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<LanesRemoveLaneResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/boards/" + pathSegment(boardId) + "/lanes/" + pathSegment(laneId),
-        body: force === undefined ? undefined : { force },
+          '/boards/' + pathSegment(boardId) + '/lanes/' + pathSegment(laneId),
+        body: force === undefined ? undefined : {force},
         signal: options?.signal,
       });
     },
@@ -1224,9 +1224,9 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<LanesUpdateLaneResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/boards/" + pathSegment(boardId) + "/lanes/" + pathSegment(laneId),
+          '/boards/' + pathSegment(boardId) + '/lanes/' + pathSegment(laneId),
         body,
         signal: options?.signal,
       });
@@ -1240,8 +1240,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SubcolumnCreateNewSubcolumnResponse>({
-        method: "POST",
-        path: "/columns/" + pathSegment(columnId) + "/subcolumns",
+        method: 'POST',
+        path: '/columns/' + pathSegment(columnId) + '/subcolumns',
         body,
         signal: options?.signal,
       });
@@ -1249,8 +1249,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/subcolumn/get-list-of-subcolumns */
     getListOfSubcolumns: (columnId: number, options?: OperationOptions) => {
       return transport.request<SubcolumnGetListOfSubcolumnsResponse>({
-        method: "GET",
-        path: "/columns/" + pathSegment(columnId) + "/subcolumns",
+        method: 'GET',
+        path: '/columns/' + pathSegment(columnId) + '/subcolumns',
         signal: options?.signal,
       });
     },
@@ -1262,13 +1262,13 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SubcolumnRemoveSubcolumnResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/columns/" +
+          '/columns/' +
           pathSegment(columnId) +
-          "/subcolumns/" +
+          '/subcolumns/' +
           pathSegment(subcolumnId),
-        body: force === undefined ? undefined : { force },
+        body: force === undefined ? undefined : {force},
         signal: options?.signal,
       });
     },
@@ -1280,11 +1280,11 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SubcolumnUpdateSubcolumnResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/columns/" +
+          '/columns/' +
           pathSegment(columnId) +
-          "/subcolumns/" +
+          '/subcolumns/' +
           pathSegment(subcolumnId),
         body,
         signal: options?.signal,
@@ -1299,8 +1299,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceBoardsCreateNewBoardResponse>({
-        method: "POST",
-        path: "/spaces/" + pathSegment(spaceId) + "/boards",
+        method: 'POST',
+        path: '/spaces/' + pathSegment(spaceId) + '/boards',
         body,
         signal: options?.signal,
       });
@@ -1308,16 +1308,16 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/space-boards/get-board */
     getBoard: (spaceId: number, id: number, options?: OperationOptions) => {
       return transport.request<SpaceBoardsGetBoardResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId) + "/boards/" + pathSegment(id),
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId) + '/boards/' + pathSegment(id),
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/space-boards/get-list-of-boards */
     getListOfBoards: (spaceId: number, options?: OperationOptions) => {
       return transport.request<SpaceBoardsGetListOfBoardsResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId) + "/boards",
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId) + '/boards',
         signal: options?.signal,
       });
     },
@@ -1329,9 +1329,9 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceBoardsRemoveBoardResponse>({
-        method: "DELETE",
-        path: "/spaces/" + pathSegment(spaceId) + "/boards/" + pathSegment(id),
-        body: force === undefined ? undefined : { force },
+        method: 'DELETE',
+        path: '/spaces/' + pathSegment(spaceId) + '/boards/' + pathSegment(id),
+        body: force === undefined ? undefined : {force},
         signal: options?.signal,
       });
     },
@@ -1343,8 +1343,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceBoardsUpdateBoardResponse>({
-        method: "PATCH",
-        path: "/spaces/" + pathSegment(spaceId) + "/boards/" + pathSegment(id),
+        method: 'PATCH',
+        path: '/spaces/' + pathSegment(spaceId) + '/boards/' + pathSegment(id),
         body,
         signal: options?.signal,
       });
@@ -1360,8 +1360,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceUsersChangeUserRoleAndNotificationSettingsResponse>(
         {
-          method: "PATCH",
-          path: "/spaces/" + pathSegment(spaceId) + "/users/" + pathSegment(id),
+          method: 'PATCH',
+          path: '/spaces/' + pathSegment(spaceId) + '/users/' + pathSegment(id),
           body,
           signal: options?.signal,
         },
@@ -1374,8 +1374,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceUsersGetListOfUsersResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId) + "/users",
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId) + '/users',
         query,
         signal: options?.signal,
       });
@@ -1383,8 +1383,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/space-users/get-user */
     getUser: (spaceId: number, id: number, options?: OperationOptions) => {
       return transport.request<SpaceUsersGetUserResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId) + "/users/" + pathSegment(id),
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId) + '/users/' + pathSegment(id),
         signal: options?.signal,
       });
     },
@@ -1395,8 +1395,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceUsersInviteUserToSpaceResponse>({
-        method: "POST",
-        path: "/spaces/" + pathSegment(spaceId) + "/users",
+        method: 'POST',
+        path: '/spaces/' + pathSegment(spaceId) + '/users',
         body,
         signal: options?.signal,
       });
@@ -1408,8 +1408,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpaceUsersRemoveUserFromSpaceResponse>({
-        method: "DELETE",
-        path: "/spaces/" + pathSegment(spaceId) + "/users/" + pathSegment(id),
+        method: 'DELETE',
+        path: '/spaces/' + pathSegment(spaceId) + '/users/' + pathSegment(id),
         signal: options?.signal,
       });
     },
@@ -1421,8 +1421,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpacesCreateNewSpaceResponse>({
-        method: "POST",
-        path: "/spaces",
+        method: 'POST',
+        path: '/spaces',
         body,
         signal: options?.signal,
       });
@@ -1430,8 +1430,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/spaces/remove-space */
     removeSpace: (spaceId: number, options?: OperationOptions) => {
       return transport.request<SpacesRemoveSpaceResponse>({
-        method: "DELETE",
-        path: "/spaces/" + pathSegment(spaceId),
+        method: 'DELETE',
+        path: '/spaces/' + pathSegment(spaceId),
         signal: options?.signal,
       });
     },
@@ -1442,17 +1442,17 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpacesRetrieveListOfSpacesResponse>({
-        method: "GET",
-        path: "/spaces",
-        query: { limit, offset },
+        method: 'GET',
+        path: '/spaces',
+        query: {limit, offset},
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/spaces/retrieve-space */
     retrieveSpace: (spaceId: number, options?: OperationOptions) => {
       return transport.request<SpacesRetrieveSpaceResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId),
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId),
         signal: options?.signal,
       });
     },
@@ -1463,8 +1463,8 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<SpacesUpdateSpaceResponse>({
-        method: "PATCH",
-        path: "/spaces/" + pathSegment(spaceId),
+        method: 'PATCH',
+        path: '/spaces/' + pathSegment(spaceId),
         body,
         signal: options?.signal,
       });

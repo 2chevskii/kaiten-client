@@ -1,6 +1,6 @@
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 import type {
   AutomationBody,
@@ -8,7 +8,7 @@ import type {
   AutomationAction,
   AutomationTrigger,
   AutomationConditionGroup,
-} from "../automation.ts";
+} from '../automation.ts';
 
 export type AutomationsCreateAutomationBody = AutomationBody;
 
@@ -31,7 +31,7 @@ export interface AutomationsCreateAutomationResponse {
 export type AutomationsCreateAutomationParams = Parameters<
   ReturnType<
     typeof createAutomationsResources
-  >["automations"]["createAutomation"]
+  >['automations']['createAutomation']
 >;
 
 export interface AutomationsDeleteAutomationResponse {
@@ -41,7 +41,7 @@ export interface AutomationsDeleteAutomationResponse {
 export type AutomationsDeleteAutomationParams = Parameters<
   ReturnType<
     typeof createAutomationsResources
-  >["automations"]["deleteAutomation"]
+  >['automations']['deleteAutomation']
 >;
 
 export type AutomationsGetListOfAutomationsResponse = {
@@ -63,7 +63,7 @@ export type AutomationsGetListOfAutomationsResponse = {
 export type AutomationsGetListOfAutomationsParams = Parameters<
   ReturnType<
     typeof createAutomationsResources
-  >["automations"]["getListOfAutomations"]
+  >['automations']['getListOfAutomations']
 >;
 
 export type AutomationsUpdateAutomationBody = AutomationUpdateBody;
@@ -87,7 +87,7 @@ export interface AutomationsUpdateAutomationResponse {
 export type AutomationsUpdateAutomationParams = Parameters<
   ReturnType<
     typeof createAutomationsResources
-  >["automations"]["updateAutomation"]
+  >['automations']['updateAutomation']
 >;
 
 export const createAutomationsResources = (transport: HttpTransport) => ({
@@ -99,8 +99,8 @@ export const createAutomationsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<AutomationsCreateAutomationResponse>({
-        method: "POST",
-        path: "/spaces/" + pathSegment(spaceId) + "/automations",
+        method: 'POST',
+        path: '/spaces/' + pathSegment(spaceId) + '/automations',
         body,
         signal: options?.signal,
       });
@@ -112,11 +112,11 @@ export const createAutomationsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<AutomationsDeleteAutomationResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/spaces/" +
+          '/spaces/' +
           pathSegment(spaceId) +
-          "/automations/" +
+          '/automations/' +
           pathSegment(automationUid),
         signal: options?.signal,
       });
@@ -124,8 +124,8 @@ export const createAutomationsResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/automations/get-list-of-automations */
     getListOfAutomations: (spaceId: number, options?: OperationOptions) => {
       return transport.request<AutomationsGetListOfAutomationsResponse>({
-        method: "GET",
-        path: "/spaces/" + pathSegment(spaceId) + "/automations",
+        method: 'GET',
+        path: '/spaces/' + pathSegment(spaceId) + '/automations',
         signal: options?.signal,
       });
     },
@@ -137,11 +137,11 @@ export const createAutomationsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<AutomationsUpdateAutomationResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/spaces/" +
+          '/spaces/' +
           pathSegment(spaceId) +
-          "/automations/" +
+          '/automations/' +
           pathSegment(automationUid),
         body,
         signal: options?.signal,

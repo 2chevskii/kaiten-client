@@ -3,10 +3,10 @@
 `KaitenScimClient` доступен через отдельный экспорт `@2chevskii/kaiten-client/scim`. Он использует `/scim/v2` и предоставляет восемь операций для пользователей и групп.
 
 ```ts
-import { KaitenScimClient } from "@2chevskii/kaiten-client/scim";
+import {KaitenScimClient} from '@2chevskii/kaiten-client/scim';
 
 const scim = new KaitenScimClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   token: process.env.KAITEN_TOKEN!,
 });
 
@@ -21,9 +21,9 @@ console.log(users.Resources, users.totalResults);
 
 ```ts
 await scim.users.updateUser(123, [
-  { op: "replace", path: "active", value: false },
+  {op: 'replace', path: 'active', value: false},
 ]);
-const group = await scim.groups.addGroup("Разработчики");
+const group = await scim.groups.addGroup('Разработчики');
 await scim.groups.getGroup(group.id);
 ```
 

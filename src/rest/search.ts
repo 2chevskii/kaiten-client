@@ -1,4 +1,4 @@
-import type { OperationOptions } from "../http.ts";
+import type {OperationOptions} from '../http.ts';
 
 export interface SearchResponseV2<Result extends readonly unknown[]> {
   result: Result;
@@ -7,25 +7,25 @@ export interface SearchResponseV2<Result extends readonly unknown[]> {
 
 /** Capture search parameters and the cancellation signal before iteration. */
 export function iterateSearchResults<
-  Query extends { start_position?: string },
+  Query extends {start_position?: string},
   Result extends readonly unknown[],
 >(
   fetchPage: (
-    query: Query & { version: 2 },
+    query: Query & {version: 2},
     options?: OperationOptions,
   ) => Promise<SearchResponseV2<Result>>,
   query: Query,
   options?: OperationOptions,
 ): AsyncGenerator<Result[number], void> {
   const querySnapshot = structuredClone(query);
-  const requestOptions = { ...options };
+  const requestOptions = {...options};
   return iterateCursor<Result[number]>(
-    (position) =>
+    position =>
       fetchPage(
         {
           ...querySnapshot,
           version: 2,
-          ...(position === undefined ? {} : { start_position: position }),
+          ...(position === undefined ? {} : {start_position: position}),
         },
         requestOptions,
       ),
@@ -53,18 +53,18 @@ async function* iterateCursor<Item>(
     const page = await fetchPage(position);
     signal?.throwIfAborted();
     if (
-      typeof page !== "object" ||
+      typeof page !== 'object' ||
       page === null ||
       !Array.isArray(page.result) ||
-      typeof page.position !== "string"
+      typeof page.position !== 'string'
     ) {
-      throw new TypeError("Kaiten returned invalid search pagination metadata");
+      throw new TypeError('Kaiten returned invalid search pagination metadata');
     }
     if (page.result.length === 0) {
       return;
     }
     if (page.position && visitedPositions.has(page.position)) {
-      throw new Error("Kaiten returned a repeated search cursor");
+      throw new Error('Kaiten returned a repeated search cursor');
     }
 
     for (const item of page.result) {

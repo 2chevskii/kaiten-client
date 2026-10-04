@@ -6,19 +6,19 @@
 import type {
   ImportMetaDataRecord,
   ImportCardsRecord,
-} from "@2chevskii/kaiten-client/imports";
+} from '@2chevskii/kaiten-client/imports';
 
 const metadata: ImportMetaDataRecord = {
-  entities: ["boards", "columns", "cards"],
+  entities: ['boards', 'columns', 'cards'],
   entities_paths_map: {
-    boards: "boards.json",
-    columns: "columns.json",
-    cards: "cards.json",
+    boards: 'boards.json',
+    columns: 'columns.json',
+    cards: 'cards.json',
   },
 };
 
 const cards: ImportCardsRecord[] = [
-  { id: "external-card-1", column_id: "external-column-1", title: "Task" },
+  {id: 'external-card-1', column_id: 'external-column-1', title: 'Task'},
 ];
 ```
 

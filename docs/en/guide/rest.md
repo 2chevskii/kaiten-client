@@ -5,19 +5,19 @@
 ## Requests and types
 
 ```ts
-import { KaitenClient } from "@2chevskii/kaiten-client";
+import {KaitenClient} from '@2chevskii/kaiten-client';
 import type {
   CardsCreateNewCardBody,
   CardsCreateNewCardResponse,
-} from "@2chevskii/kaiten-client";
+} from '@2chevskii/kaiten-client';
 
 const client = new KaitenClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   token: process.env.KAITEN_TOKEN!,
 });
 
 const request: CardsCreateNewCardBody = {
-  title: "Prepare release",
+  title: 'Prepare release',
   board_id: 10,
 };
 const card: CardsCreateNewCardResponse =
@@ -33,12 +33,12 @@ Methods take IDs as separate arguments. Small sets of body fields are separate t
 The root export also provides `AutomationBody`, `AutomationTrigger`, `AutomationTriggerType`, `AutomationAction`, `AutomationCondition`, and `AutomationConditionGroup` for `client.automations`. Trigger names are enumerated; action data that Kaiten does not specify remains `unknown`.
 
 ```ts
-import type { AutomationBody } from "@2chevskii/kaiten-client";
+import type {AutomationBody} from '@2chevskii/kaiten-client';
 
 const automation: AutomationBody = {
-  type: "on_demand",
-  name: "Update card",
-  actions: [{ type: "change_asap", data: { asap: true } }],
+  type: 'on_demand',
+  name: 'Update card',
+  actions: [{type: 'change_asap', data: {asap: true}}],
 };
 ```
 
@@ -67,7 +67,7 @@ The root package exports `SearchResponseV2<Result>`. Pass literal `1` or `2` so 
 `cards.iterate`, `documents.iterate`, and `documentGroups.iterate` fetch version 2 search pages as you consume their items:
 
 ```ts
-for await (const card of client.cards.iterate({ board_id: 10, limit: 50 })) {
+for await (const card of client.cards.iterate({board_id: 10, limit: 50})) {
   console.log(card.id, card.title);
   if (card.asap) break;
 }
@@ -84,11 +84,11 @@ Iterators copy query values, including arrays and nested filters, and capture th
 `users.iterate` and `tags.iterate` use offset pagination and accept the same query objects as their single-page list methods:
 
 ```ts
-for await (const user of client.users.iterate({ include_inactive: true })) {
+for await (const user of client.users.iterate({include_inactive: true})) {
   console.log(user.id, user.full_name);
 }
 
-for await (const tag of client.tags.iterate({ space_id: 10, limit: 50 })) {
+for await (const tag of client.tags.iterate({space_id: 10, limit: 50})) {
   console.log(tag.id, tag.name);
 }
 ```
@@ -106,9 +106,9 @@ const page = await client.cards.retrieveCardList({
   owner_ids: [123, 456],
   tag_ids: [10, 20],
   states: [1, 2],
-  additional_card_fields: ["description"],
-  order_by: ["created", "id"],
-  order_direction: ["desc", "asc"],
+  additional_card_fields: ['description'],
+  order_by: ['created', 'id'],
+  order_direction: ['desc', 'asc'],
 });
 ```
 
@@ -117,22 +117,22 @@ The exported `QueryList<T>` type accepts a string or `readonly T[]`. The transpo
 The `filter` field accepts a `CardFilter` object or an existing base64 string. Object filters are encoded automatically using UTF-8:
 
 ```ts
-import type { CardFilter } from "@2chevskii/kaiten-client";
+import type {CardFilter} from '@2chevskii/kaiten-client';
 
 const filter = {
-  key: "and",
+  key: 'and',
   value: [
     {
-      key: "or",
+      key: 'or',
       value: [
-        { key: "owner_id", comparison: "eq", value: 123 },
-        { key: "asap", comparison: "true" },
+        {key: 'owner_id', comparison: 'eq', value: 123},
+        {key: 'asap', comparison: 'true'},
       ],
     },
   ],
 } satisfies CardFilter;
 
-for await (const card of client.cards.iterate({ filter })) {
+for await (const card of client.cards.iterate({filter})) {
   console.log(card.title);
 }
 ```
@@ -144,11 +144,11 @@ The types follow Kaiten's [filter schema](https://developers.kaiten.ru/cards/ret
 `users.retrieveListOfUsers` and `tags.retrieveListOfTags` accept `ids` as `QueryList<number>`. The time-log filters `tag_ids`, `user_ids`, `group_ids`, `space_ids`, `board_ids`, `column_ids`, `card_ids`, and `visible_column_ids` use the same type:
 
 ```ts
-const users = await client.users.retrieveListOfUsers({ ids: [123, 456] });
-const tags = await client.tags.retrieveListOfTags({ ids: [10, 20] });
+const users = await client.users.retrieveListOfUsers({ids: [123, 456]});
+const tags = await client.tags.retrieveListOfTags({ids: [10, 20]});
 const timeLogs = await client.timesheet.getList({
-  from: "2026-10-01",
-  to: "2026-10-31",
+  from: '2026-10-01',
+  to: '2026-10-31',
   user_ids: [123, 456],
   board_ids: [10],
 });

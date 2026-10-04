@@ -5,14 +5,14 @@
 ## Outgoing events
 
 ```ts
-import type { KaitenWebhookEvent } from "@2chevskii/kaiten-client/webhooks";
+import type {KaitenWebhookEvent} from '@2chevskii/kaiten-client/webhooks';
 
 function handleEvent(event: KaitenWebhookEvent): void {
   switch (event.event) {
-    case "card:add":
+    case 'card:add':
       console.log(event.data.title);
       break;
-    case "card:update":
+    case 'card:update':
       console.log(event.data.old.id, event.data.changes);
       break;
   }
@@ -24,12 +24,12 @@ function handleEvent(event: KaitenWebhookEvent): void {
 ## Incoming card webhook
 
 ```ts
-import { sendCardWebhook } from "@2chevskii/kaiten-client/webhooks";
+import {sendCardWebhook} from '@2chevskii/kaiten-client/webhooks';
 
 const card = await sendCardWebhook(process.env.KAITEN_WEBHOOK_URL!, {
-  title: "Task from an integration",
-  tags: ["integration"],
-  properties: { id_42: "priority" },
+  title: 'Task from an integration',
+  tags: ['integration'],
+  properties: {id_42: 'priority'},
 });
 
 console.log(card.id);

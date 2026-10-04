@@ -15,7 +15,7 @@ npm install @2chevskii/kaiten-client
 Пакет поставляется со скомпилированным ESM JavaScript и объявлениями типов. В Node.js 24 поддерживаются оба способа подключения: `import` и `require()`.
 
 ```js
-const { KaitenClient } = require("@2chevskii/kaiten-client");
+const {KaitenClient} = require('@2chevskii/kaiten-client');
 ```
 
 Исходники и карты объявлений типов включены в пакет для перехода к исходному коду в редакторе. Для отладки со стектрейсами по исходникам запускайте Node.js с `--enable-source-maps`. Загрузчик TypeScript во время исполнения не требуется.
@@ -25,17 +25,17 @@ const { KaitenClient } = require("@2chevskii/kaiten-client");
 ## Первый запрос
 
 ```ts
-import { KaitenClient } from "@2chevskii/kaiten-client";
+import {KaitenClient} from '@2chevskii/kaiten-client';
 
 const token = process.env.KAITEN_TOKEN;
-if (!token) throw new Error("Set KAITEN_TOKEN");
+if (!token) throw new Error('Set KAITEN_TOKEN');
 
 const client = new KaitenClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   token,
 });
 
-const cards = await client.cards.retrieveCardList({ limit: 10 });
+const cards = await client.cards.retrieveCardList({limit: 10});
 
 for (const card of cards) {
   console.log(card.id, card.title);

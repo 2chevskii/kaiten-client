@@ -8,9 +8,9 @@ Kaiten переводит файловые маршруты на огранич�
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
-  "card-uuid",
-  new Blob(["report"], { type: "text/plain" }),
-  { filename: "report.txt" },
+  'card-uuid',
+  new Blob(['report'], {type: 'text/plain'}),
+  {filename: 'report.txt'},
 );
 
 console.log(uploaded.id);
@@ -22,12 +22,12 @@ console.log(uploaded.id);
 
 ```ts
 const file = await client.restrictedAccessCardFiles.getCardFile(
-  "card-uuid",
+  'card-uuid',
   uploaded.id,
 );
 
 const redirect = await client.restrictedAccessCardFiles.getCardFile(
-  "card-uuid",
+  'card-uuid',
   uploaded.id,
   true,
 );

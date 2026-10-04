@@ -3,12 +3,12 @@
 ## Параметры клиента
 
 ```ts
-import { KaitenClient } from "@2chevskii/kaiten-client";
+import {KaitenClient} from '@2chevskii/kaiten-client';
 
 const client = new KaitenClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   token: async () => await getCurrentToken(),
-  apiVersion: "latest",
+  apiVersion: 'latest',
   fetch: globalThis.fetch,
 });
 ```
@@ -22,8 +22,8 @@ const client = new KaitenClient({
 ```ts
 const controller = new AbortController();
 const request = client.cards.retrieveCardList(
-  { limit: 50 },
-  { signal: controller.signal },
+  {limit: 50},
+  {signal: controller.signal},
 );
 
 controller.abort();
@@ -35,14 +35,14 @@ await request; // Отклоняется ошибкой отмены.
 ## HTTP-ошибки
 
 ```ts
-import { KaitenHttpError } from "@2chevskii/kaiten-client";
+import {KaitenHttpError} from '@2chevskii/kaiten-client';
 
 try {
   await client.cards.retrieveCard(123);
 } catch (error) {
   if (error instanceof KaitenHttpError) {
     console.error(error.status, error.method, error.url);
-    console.error(error.headers.get("X-RateLimit-Reset"));
+    console.error(error.headers.get('X-RateLimit-Reset'));
     console.error(error.body);
   } else {
     throw error;

@@ -2191,11 +2191,11 @@ Retrieve card list. [Документация Kaiten](https://developers.kaiten.
 ```ts
 declare const retrieveCardList: {
   (
-    query: CardsRetrieveCardListQuery & { version: 2 },
+    query: CardsRetrieveCardListQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<SearchResponseV2<CardsRetrieveCardListResponse>>;
   (
-    query?: Omit<CardsRetrieveCardListQuery, "version"> & { version?: 1 },
+    query?: Omit<CardsRetrieveCardListQuery, 'version'> & {version?: 1},
     options?: OperationOptions,
   ): Promise<CardsRetrieveCardListResponse>;
   (
@@ -3045,7 +3045,7 @@ Get list of fields. [Документация Kaiten](https://developers.kaiten.
 declare const getListOfFields: (
   directoryId: string,
   includeAuthor?: boolean,
-  conditions?: ("active" | "inactive" | "removed")[],
+  conditions?: ('active' | 'inactive' | 'removed')[],
   options?: OperationOptions,
 ) => Promise<CustomDirectoryFieldsGetListOfFieldsResponse>;
 ```
@@ -4277,13 +4277,13 @@ Retrieve list of document groups. [Документация Kaiten](https://deve
 ```ts
 declare const retrieveListOfDocumentGroups: {
   (
-    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & { version: 2 },
+    query: DocumentGroupsRetrieveListOfDocumentGroupsQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<
     SearchResponseV2<DocumentGroupsRetrieveListOfDocumentGroupsResponse>
   >;
   (
-    query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, "version"> & {
+    query?: Omit<DocumentGroupsRetrieveListOfDocumentGroupsQuery, 'version'> & {
       version?: 1;
     },
     options?: OperationOptions,
@@ -4379,17 +4379,17 @@ Get document data schema. [Документация Kaiten](https://developers.k
 declare const getDocumentDataSchema: {
   (
     schemaVersion: string,
-    format: "prosemirror",
+    format: 'prosemirror',
     options?: OperationOptions,
   ): Promise<DocumentProseMirrorSchema>;
   (
     schemaVersion: string,
-    format?: "draft-06",
+    format?: 'draft-06',
     options?: OperationOptions,
   ): Promise<DocumentJsonSchema>;
   (
     schemaVersion: string,
-    format: "draft-06" | "prosemirror" | undefined,
+    format: 'draft-06' | 'prosemirror' | undefined,
     options?: OperationOptions,
   ): Promise<DocumentSchemasGetDocumentDataSchemaResponse>;
 };
@@ -4513,11 +4513,11 @@ Retrieve list of documents. [Документация Kaiten](https://developers
 ```ts
 declare const retrieveListOfDocuments: {
   (
-    query: DocumentsRetrieveListOfDocumentsQuery & { version: 2 },
+    query: DocumentsRetrieveListOfDocumentsQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<SearchResponseV2<DocumentsRetrieveListOfDocumentsResponse>>;
   (
-    query?: Omit<DocumentsRetrieveListOfDocumentsQuery, "version"> & {
+    query?: Omit<DocumentsRetrieveListOfDocumentsQuery, 'version'> & {
       version?: 1;
     },
     options?: OperationOptions,
@@ -5788,7 +5788,7 @@ declare const getCommentFile: {
     cardUid: string,
     commentUid: string,
     fileUid: string,
-    query: RestrictedAccessCommentFilesGetCommentFileQuery & { redirect: true },
+    query: RestrictedAccessCommentFilesGetCommentFileQuery & {redirect: true},
     options?: OperationOptions,
   ): Promise<FileRedirectResponse>;
   (
@@ -5797,8 +5797,8 @@ declare const getCommentFile: {
     fileUid: string,
     query?: Omit<
       RestrictedAccessCommentFilesGetCommentFileQuery,
-      "redirect"
-    > & { redirect?: false },
+      'redirect'
+    > & {redirect?: false},
     options?: OperationOptions,
   ): Promise<RestrictedAccessCommentFilesGetCommentFileResponse>;
   (
@@ -5963,8 +5963,8 @@ declare const getCustomPropertyFile: {
     fileUid: string,
     query?: Omit<
       RestrictedAccessCustomPropertyFilesGetCustomPropertyFileQuery,
-      "redirect"
-    > & { redirect?: false },
+      'redirect'
+    > & {redirect?: false},
     options?: OperationOptions,
   ): Promise<RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse>;
   (
