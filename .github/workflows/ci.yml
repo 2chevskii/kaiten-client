@@ -72,7 +72,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ github.token }}
           PACKAGE: ./artifacts/${{ needs.build.outputs.package_path }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "pr-${PR_NUMBER}" --ignore-scripts
+        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "pr-${PR_NUMBER}"
 
   build_docs:
     runs-on: ubuntu-26.04
