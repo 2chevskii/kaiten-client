@@ -28,6 +28,12 @@ Methods take IDs as separate arguments. Request bodies use their `Body` objects,
 
 `client.cards.create(...)` is an alias for `client.cards.createNewCard(...)`. Beta and deprecated operations remain available and are marked in the types.
 
+`client.cards.updateCard(...)` returns `tags` as an optional array of tag objects,
+matching the card read response. `client.cardMembers.updateMemberRole(cardId,
+memberId, 2)` makes a member responsible; `2` is the only supported role update.
+Its response contains `card_id`, `user_id`, `type`, `created` and `updated`, without
+a membership `id`.
+
 ## Create a card and add a comment
 
 The response from one operation can provide the ID needed by another. Small comment fields are positional arguments:
