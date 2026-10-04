@@ -1,4 +1,4 @@
-import packageJson from '../package.json';
+import packageJson from '../package.json' with {type: 'json'};
 import {writeFileSync, appendFileSync} from 'node:fs';
 
 const baseVersion = packageJson.version;
