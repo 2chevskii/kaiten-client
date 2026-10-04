@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-26.04
     needs: [lint, format]
     outputs:
-      package_path: ${{ steps.calculate-version.outputs.package }}
+      package_path: ${{ steps.calculate-version.outputs.package_path }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -52,6 +52,7 @@ jobs:
           if-no-files-found: error
 
   publish:
+    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-26.04
     permissions:
@@ -60,12 +61,13 @@ jobs:
     steps:
       - uses: actions/setup-node@v7
         with:
-          node-version-file: package.json
+          node-version: 24
           registry-url: https://npm.pkg.github.com
           scope: '@2chevskii'
       - uses: actions/download-artifact@v8
         with:
           name: ${{ needs.build.outputs.package_path }}
+          path: artifacts
       - env:
           NODE_AUTH_TOKEN: ${{ github.token }}
           PACKAGE: ./artifacts/${{ needs.build.outputs.package_path }}
