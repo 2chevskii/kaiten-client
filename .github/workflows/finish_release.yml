@@ -3,12 +3,24 @@ name: Finish release
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag
+        required: true
+        type: string
+      registry:
+        description: Registry to publish to
+        required: true
+        default: npm
+        type: choice
+        options: [npm, github]
 
 permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.event.release.tag_name }}
+  group: release-${{ inputs.tag || github.event.release.tag_name }}
   cancel-in-progress: false
 
 jobs:
@@ -24,15 +36,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        registry: [npm, github]
+        registry: ${{ github.event_name == 'workflow_dispatch' && fromJSON(format('["{0}"]', inputs.registry)) || fromJSON('["npm", "github"]') }}
     env:
-      RELEASE_TAG: ${{ github.event.release.tag_name }}
+      RELEASE_TAG: ${{ inputs.tag || github.event.release.tag_name }}
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ inputs.tag || github.event.release.tag_name }}
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -53,11 +65,11 @@ jobs:
         run: |
           mkdir -p artifacts
           gh release download "$RELEASE_TAG" --pattern "$PACKAGE" --dir artifacts
-      - name: Publish to npm
+      - name: Stage publication to npm
         if: matrix.registry == 'npm'
         env:
           PACKAGE: ./artifacts/${{ steps.version.outputs.package }}
-        run: npm publish "$PACKAGE" --registry https://registry.npmjs.org --access public --provenance --tag latest
+        run: npm stage publish "$PACKAGE" --registry https://registry.npmjs.org --access public --provenance --tag latest
       - name: Publish to GitHub Packages
         if: matrix.registry == 'github'
         env:
