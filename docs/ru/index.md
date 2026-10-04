@@ -8,9 +8,6 @@ hero:
     - theme: brand
       text: Начать работу
       link: /ru/guide/getting-started
-    - theme: alt
-      text: Справочник API
-      link: /ru/reference/rest
 features:
   - title: REST и SCIM
     details: 214 REST-операций и 8 SCIM-операций с типами запросов и ответов.

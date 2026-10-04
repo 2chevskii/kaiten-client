@@ -36,6 +36,18 @@ console.log(file.url);
 console.log(redirect.location);
 ```
 
-`redirect: true` returns `{ location: string }` from the `Location` header; the client does not follow the redirect. Download the temporary URL with a separate request and without the Kaiten token. The legacy `client.cardFiles.attachFileToCard` remains available with `@deprecated`.
+The redirect URL grants temporary access to the file. Download it with the platform `fetch` API and avoid logging or storing the URL:
 
-See the [REST reference](/reference/rest) for all card, comment, and property file operations.
+```ts
+const download = await fetch(redirect.location);
+if (!download.ok) {
+  throw new Error(`File download failed: ${download.status}`);
+}
+
+const contents = await download.blob();
+console.log(contents.size, contents.type);
+```
+
+`redirect: true` returns `{ location: string }` from the `Location` header; the client does not follow the redirect. Make this download request without the Kaiten token. The legacy `client.cardFiles.attachFileToCard` remains available with `@deprecated`.
+
+Use editor completion on `restrictedAccessCardFiles`, `restrictedAccessCommentFiles`, and `restrictedAccessCustomPropertyFiles` to explore the available file operations and their types.

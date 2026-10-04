@@ -9,10 +9,8 @@ import type {
 } from '@2chevskii/kaiten-client/imports';
 
 const metadata: ImportMetaDataRecord = {
-  entities: ['boards', 'columns', 'cards'],
+  entities: ['cards'],
   entities_paths_map: {
-    boards: 'boards.json',
-    columns: 'columns.json',
     cards: 'cards.json',
   },
 };
@@ -23,3 +21,14 @@ const cards: ImportCardsRecord[] = [
 ```
 
 `ImportEntityName` lists accepted entity names and `ImportColor` lists color values. Nested card structures (`checklists`, `history`, `properties`, and others) have their own exported types. See [Kaiten's import documentation](https://developers.kaiten.ru/imports) for the full format.
+
+Serialize each record set to the corresponding JSON file named in `entities_paths_map`:
+
+```ts
+import {writeFile} from 'node:fs/promises';
+
+await Promise.all([
+  writeFile('metadata.json', JSON.stringify(metadata, null, 2)),
+  writeFile('cards.json', JSON.stringify(cards, null, 2)),
+]);
+```

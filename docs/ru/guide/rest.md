@@ -1,6 +1,6 @@
 # REST API
 
-`KaitenClient` группирует методы по ресурсам: `client.cards`, `client.boards`, `client.users`, `client.cardComments` и другие. [Справочник](/ru/reference/rest) перечисляет все 214 операций: имя метода, HTTP-маршрут, параметры, тело, форму ответа и ссылку на Kaiten.
+`KaitenClient` группирует методы по ресурсам: `client.cards`, `client.boards`, `client.users`, `client.cardComments` и другие. Изучайте доступные операции и формы запросов и ответов через автодополнение редактора и экспортируемые типы TypeScript.
 
 ## Запросы и типы
 
@@ -24,9 +24,23 @@ const card: CardsCreateNewCardResponse =
   await client.cards.createNewCard(request);
 ```
 
-Методы принимают ID отдельными аргументами. Небольшие наборы полей тела тоже передаются отдельно: `client.cardComments.addComment(cardId, text)`. Большие тела и фильтры сохраняют объекты типов `Body` и `Query`: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. Последний аргумент — необязательный `OperationOptions` с `signal`. Методы API возвращают `Promise`, а методы `iterate` — асинхронный итератор. Типы `Params` описывают кортеж аргументов конкретного метода; его можно передать через `...args`.
+Методы принимают ID отдельными аргументами. Тела запросов передаются объектами типа `Body`, в том числе комментарии: `client.cardComments.addComment(cardId, {text})`. Большие тела и фильтры сохраняют объекты типов `Body` и `Query`: `client.cards.create(body)`, `client.cards.retrieveCardList(query)`. Последний аргумент — необязательный `OperationOptions` с `signal`. Методы API возвращают `Promise`, а методы `iterate` — асинхронный итератор. Типы `Params` описывают кортеж аргументов конкретного метода; его можно передать через `...args`.
 
-`client.cards.create(...)` — короткий псевдоним `client.cards.createNewCard(...)`. Beta- и deprecated-операции остаются доступными и отмечены в типах и [справочнике](/ru/reference/rest).
+`client.cards.create(...)` — короткий псевдоним `client.cards.createNewCard(...)`. Beta- и deprecated-операции остаются доступными и отмечены в типах.
+
+## Создать карточку и добавить комментарий
+
+Ответ одной операции может содержать ID, необходимый для следующего запроса. Для комментария небольшие поля передаются позиционными аргументами:
+
+```ts
+const created = await client.cards.createNewCard({
+  title: 'Проверить руководство по началу работы',
+  board_id: 10,
+});
+
+await client.cardComments.addComment(created.id, {text: 'Проверьте примеры.'});
+console.log(`Создана карточка ${created.id}`);
+```
 
 ## Автоматизации
 

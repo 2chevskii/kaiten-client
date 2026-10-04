@@ -15,3 +15,21 @@ const getMetadata: UserMetadataHandler = ({email, token}) => {
 ```
 
 `UserMetadataRequest` contains `email` and an optional `token`. `UserMetadataResponse` accepts `description` and fields such as `id_42`; a field value can be a string, number, `null`, or object. `UserMetadataHandler` may be synchronous or asynchronous. Validate incoming requests and their token in your service. [Kaiten documentation](https://developers.kaiten.ru/user-metadata).
+
+An asynchronous handler can load profile data from your own directory service:
+
+```ts
+const getMetadata: UserMetadataHandler = async ({email, token}) => {
+  if (token !== process.env.METADATA_SHARED_TOKEN) {
+    throw new Error('Invalid metadata token');
+  }
+
+  const profile = await directory.findByEmail(email);
+  if (!profile) return {};
+
+  return {
+    description: profile.jobTitle,
+    id_42: profile.teamCode,
+  };
+};
+```

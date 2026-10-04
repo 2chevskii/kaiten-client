@@ -9,10 +9,8 @@ import type {
 } from '@2chevskii/kaiten-client/imports';
 
 const metadata: ImportMetaDataRecord = {
-  entities: ['boards', 'columns', 'cards'],
+  entities: ['cards'],
   entities_paths_map: {
-    boards: 'boards.json',
-    columns: 'columns.json',
     cards: 'cards.json',
   },
 };
@@ -23,3 +21,14 @@ const cards: ImportCardsRecord[] = [
 ```
 
 `ImportEntityName` перечисляет допустимые имена сущностей, `ImportColor` — допустимые цвета. Вложенные структуры карточки (`checklists`, `history`, `properties` и другие) имеют отдельные экспортируемые типы. Для полного формата используйте [документацию импорта Kaiten](https://developers.kaiten.ru/imports).
+
+Запишите каждый набор записей в JSON-файл, указанный в `entities_paths_map`:
+
+```ts
+import {writeFile} from 'node:fs/promises';
+
+await Promise.all([
+  writeFile('metadata.json', JSON.stringify(metadata, null, 2)),
+  writeFile('cards.json', JSON.stringify(cards, null, 2)),
+]);
+```

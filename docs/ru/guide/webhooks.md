@@ -19,7 +19,7 @@ function handleEvent(event: KaitenWebhookEvent): void {
 }
 ```
 
-`KaitenWebhookEvent` — объединение по полю `event`; проверка значения сужает тип `data`. Отдельные типы событий перечислены в [справочнике](/ru/reference/integrations). Приём HTTP, проверка подлинности, хранение и повторная обработка событий остаются ответственностью вашего сервера. Схемы основаны на [примерах Kaiten](https://developers.kaiten.ru/external-webhooks).
+`KaitenWebhookEvent` — объединение по полю `event`; проверка значения сужает тип `data`. Приём HTTP, проверка подлинности, хранение и повторная обработка событий остаются ответственностью вашего сервера. Схемы основаны на [примерах Kaiten](https://developers.kaiten.ru/external-webhooks).
 
 ## Входящий вебхук карточки
 
