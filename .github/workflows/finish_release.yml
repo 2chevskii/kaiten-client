@@ -55,7 +55,7 @@ jobs:
             export NODE_AUTH_TOKEN="$GITHUB_PACKAGES_TOKEN"
           fi
           if [ "$REGISTRY_KIND" = npm ]; then
-            npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance --ignore-scripts
+            npm publish "$PACKAGE" --registry "$REGISTRY" --access public --provenance
           else
-            npm publish "$PACKAGE" --registry "$REGISTRY" --ignore-scripts
+            npm publish "$PACKAGE" --registry "$REGISTRY"
           fi

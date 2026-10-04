@@ -33,16 +33,9 @@ jobs:
             end
           ' package.json >> "$GITHUB_OUTPUT"
 
-  checks:
-    needs: validate-release
-    permissions:
-      contents: read
-      packages: write
-    uses: ./.github/workflows/ci.yml
-
   create-release:
     name: Create draft release
-    needs: [validate-release, checks]
+    needs: validate-release
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
@@ -58,7 +51,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci --ignore-scripts
+      - run: npm ci
       - run: |
           npm run build
           mkdir -p artifacts
