@@ -1,9 +1,9 @@
-import type { UserRoleSummary, SpaceSummary } from "../entities.ts";
-import type { JsonValue, QueryList, RequireAtLeastOne } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {UserRoleSummary, SpaceSummary} from '../entities.ts';
+import type {JsonValue, QueryList, RequireAtLeastOne} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
-import { iterateOffsetResults } from "./pagination.ts";
+import {pathSegment} from '../http.ts';
+import {iterateOffsetResults} from './pagination.ts';
 
 export interface CompanyUsersGetListOfUsersQuery {
   invitesOnly?: boolean;
@@ -107,7 +107,7 @@ export type CompanyUsersGetListOfUsersResponse = {
 }[];
 
 export type CompanyUsersGetListOfUsersParams = Parameters<
-  ReturnType<typeof createIdentityResources>["companyUsers"]["getListOfUsers"]
+  ReturnType<typeof createIdentityResources>['companyUsers']['getListOfUsers']
 >;
 
 export interface CompanyUsersRemoveVirtualUserResponse {
@@ -117,7 +117,7 @@ export interface CompanyUsersRemoveVirtualUserResponse {
 export type CompanyUsersRemoveVirtualUserParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["companyUsers"]["removeVirtualUser"]
+  >['companyUsers']['removeVirtualUser']
 >;
 
 export interface CompanyUsersUpdateUserBody {
@@ -174,7 +174,7 @@ export interface CompanyUsersUpdateUserResponse {
 }
 
 export type CompanyUsersUpdateUserParams = Parameters<
-  ReturnType<typeof createIdentityResources>["companyUsers"]["updateUser"]
+  ReturnType<typeof createIdentityResources>['companyUsers']['updateUser']
 >;
 
 export interface GroupAdminsAddAdminToGroupBody {
@@ -205,7 +205,7 @@ export interface GroupAdminsAddAdminToGroupResponse {
 }
 
 export type GroupAdminsAddAdminToGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groupAdmins"]["addAdminToGroup"]
+  ReturnType<typeof createIdentityResources>['groupAdmins']['addAdminToGroup']
 >;
 
 export type GroupAdminsGetListOfGroupAdminsResponse = {
@@ -237,7 +237,7 @@ export type GroupAdminsGetListOfGroupAdminsResponse = {
 export type GroupAdminsGetListOfGroupAdminsParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupAdmins"]["getListOfGroupAdmins"]
+  >['groupAdmins']['getListOfGroupAdmins']
 >;
 
 export interface GroupAdminsRemoveAdminFromGroupResponse {
@@ -266,7 +266,7 @@ export interface GroupAdminsRemoveAdminFromGroupResponse {
 export type GroupAdminsRemoveAdminFromGroupParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupAdmins"]["removeAdminFromGroup"]
+  >['groupAdmins']['removeAdminFromGroup']
 >;
 
 export interface GroupEntitiesAddEntityBody {
@@ -371,7 +371,7 @@ export interface GroupEntitiesAddEntityResponse {
 }
 
 export type GroupEntitiesAddEntityParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groupEntities"]["addEntity"]
+  ReturnType<typeof createIdentityResources>['groupEntities']['addEntity']
 >;
 
 export type GroupEntitiesGetListOfGroupEntitiesResponse = {
@@ -385,7 +385,7 @@ export type GroupEntitiesGetListOfGroupEntitiesResponse = {
 export type GroupEntitiesGetListOfGroupEntitiesParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupEntities"]["getListOfGroupEntities"]
+  >['groupEntities']['getListOfGroupEntities']
 >;
 
 export interface GroupEntitiesRemoveEntityResponse {
@@ -401,7 +401,7 @@ export interface GroupEntitiesRemoveEntityResponse {
 }
 
 export type GroupEntitiesRemoveEntityParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groupEntities"]["removeEntity"]
+  ReturnType<typeof createIdentityResources>['groupEntities']['removeEntity']
 >;
 
 export interface GroupEntitiesUpdateGroupEntityBody {
@@ -507,7 +507,7 @@ export interface GroupEntitiesUpdateGroupEntityResponse {
 export type GroupEntitiesUpdateGroupEntityParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupEntities"]["updateGroupEntity"]
+  >['groupEntities']['updateGroupEntity']
 >;
 
 export interface GroupUsersAddUserToGroupBody {
@@ -540,7 +540,7 @@ export interface GroupUsersAddUserToGroupResponse {
 }
 
 export type GroupUsersAddUserToGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groupUsers"]["addUserToGroup"]
+  ReturnType<typeof createIdentityResources>['groupUsers']['addUserToGroup']
 >;
 
 export type GroupUsersGetListOfGroupUsersResponse = {
@@ -572,7 +572,7 @@ export type GroupUsersGetListOfGroupUsersResponse = {
 export type GroupUsersGetListOfGroupUsersParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupUsers"]["getListOfGroupUsers"]
+  >['groupUsers']['getListOfGroupUsers']
 >;
 
 export interface GroupUsersRemoveUserFromGroupResponse {
@@ -601,7 +601,7 @@ export interface GroupUsersRemoveUserFromGroupResponse {
 export type GroupUsersRemoveUserFromGroupParams = Parameters<
   ReturnType<
     typeof createIdentityResources
-  >["groupUsers"]["removeUserFromGroup"]
+  >['groupUsers']['removeUserFromGroup']
 >;
 
 export interface GroupsCreateGroupBody {
@@ -621,7 +621,7 @@ export interface GroupsCreateGroupResponse {
 }
 
 export type GroupsCreateGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groups"]["createGroup"]
+  ReturnType<typeof createIdentityResources>['groups']['createGroup']
 >;
 
 export interface GroupsGetGroupResponse {
@@ -635,7 +635,7 @@ export interface GroupsGetGroupResponse {
 }
 
 export type GroupsGetGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groups"]["getGroup"]
+  ReturnType<typeof createIdentityResources>['groups']['getGroup']
 >;
 
 export interface GroupsGetListOfGroupsQuery {
@@ -659,7 +659,7 @@ export type GroupsGetListOfGroupsResponse = {
 }[];
 
 export type GroupsGetListOfGroupsParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groups"]["getListOfGroups"]
+  ReturnType<typeof createIdentityResources>['groups']['getListOfGroups']
 >;
 
 export interface GroupsRemoveGroupResponse {
@@ -673,7 +673,7 @@ export interface GroupsRemoveGroupResponse {
 }
 
 export type GroupsRemoveGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groups"]["removeGroup"]
+  ReturnType<typeof createIdentityResources>['groups']['removeGroup']
 >;
 
 export interface GroupsUpdateGroupBody {
@@ -693,7 +693,7 @@ export interface GroupsUpdateGroupResponse {
 }
 
 export type GroupsUpdateGroupParams = Parameters<
-  ReturnType<typeof createIdentityResources>["groups"]["updateGroup"]
+  ReturnType<typeof createIdentityResources>['groups']['updateGroup']
 >;
 
 export interface UserRolesCreateUserRoleBody {
@@ -710,7 +710,7 @@ export interface UserRolesCreateUserRoleResponse {
 }
 
 export type UserRolesCreateUserRoleParams = Parameters<
-  ReturnType<typeof createIdentityResources>["userRoles"]["createUserRole"]
+  ReturnType<typeof createIdentityResources>['userRoles']['createUserRole']
 >;
 
 export type UserRolesGetListOfUserRolesResponse = {
@@ -723,7 +723,7 @@ export type UserRolesGetListOfUserRolesResponse = {
 }[];
 
 export type UserRolesGetListOfUserRolesParams = Parameters<
-  ReturnType<typeof createIdentityResources>["userRoles"]["getListOfUserRoles"]
+  ReturnType<typeof createIdentityResources>['userRoles']['getListOfUserRoles']
 >;
 
 export interface UserRolesGetUserRoleResponse {
@@ -736,7 +736,7 @@ export interface UserRolesGetUserRoleResponse {
 }
 
 export type UserRolesGetUserRoleParams = Parameters<
-  ReturnType<typeof createIdentityResources>["userRoles"]["getUserRole"]
+  ReturnType<typeof createIdentityResources>['userRoles']['getUserRole']
 >;
 
 export interface UserRolesRemoveUserRoleBody {
@@ -753,7 +753,7 @@ export interface UserRolesRemoveUserRoleResponse {
 }
 
 export type UserRolesRemoveUserRoleParams = Parameters<
-  ReturnType<typeof createIdentityResources>["userRoles"]["removeUserRole"]
+  ReturnType<typeof createIdentityResources>['userRoles']['removeUserRole']
 >;
 
 export interface UserRolesUpdateUserRoleBody {
@@ -770,7 +770,7 @@ export interface UserRolesUpdateUserRoleResponse {
 }
 
 export type UserRolesUpdateUserRoleParams = Parameters<
-  ReturnType<typeof createIdentityResources>["userRoles"]["updateUserRole"]
+  ReturnType<typeof createIdentityResources>['userRoles']['updateUserRole']
 >;
 
 export interface UsersRetrieveCurrentUserResponse {
@@ -816,7 +816,7 @@ export interface UsersRetrieveCurrentUserResponse {
 }
 
 export type UsersRetrieveCurrentUserParams = Parameters<
-  ReturnType<typeof createIdentityResources>["users"]["retrieveCurrentUser"]
+  ReturnType<typeof createIdentityResources>['users']['retrieveCurrentUser']
 >;
 
 export interface UsersRetrieveListOfUsersQuery {
@@ -870,7 +870,7 @@ export type UsersRetrieveListOfUsersResponse = {
 }[];
 
 export type UsersRetrieveListOfUsersParams = Parameters<
-  ReturnType<typeof createIdentityResources>["users"]["retrieveListOfUsers"]
+  ReturnType<typeof createIdentityResources>['users']['retrieveListOfUsers']
 >;
 
 export type UsersUpdateUserBody = RequireAtLeastOne<
@@ -883,7 +883,7 @@ export type UsersUpdateUserBody = RequireAtLeastOne<
     old_password?: string | null;
     lng?: string;
     default_space_id?: number | null;
-    theme?: "light" | "dark" | "auto";
+    theme?: 'light' | 'dark' | 'auto';
     email_frequency?: 1 | 2;
     timezone?: string;
     subject_by?: 1 | 2;
@@ -891,28 +891,28 @@ export type UsersUpdateUserBody = RequireAtLeastOne<
     telegram_settings?: Record<string, JsonValue>;
     slack_settings?: Record<string, JsonValue>;
     notification_enabled_channels?: (
-      "inner" | "mobile_app" | "email" | "slack" | "telegram"
+      'inner' | 'mobile_app' | 'email' | 'slack' | 'telegram'
     )[];
     notification_settings?: Record<string, JsonValue>;
     ui_version?: 1 | 2;
   },
-  | "username"
-  | "full_name"
-  | "initials"
-  | "avatar_type"
-  | "password"
-  | "lng"
-  | "default_space_id"
-  | "email_frequency"
-  | "timezone"
-  | "subject_by"
-  | "email_settings"
-  | "telegram_settings"
-  | "slack_settings"
-  | "theme"
-  | "notification_enabled_channels"
-  | "notification_settings"
-  | "ui_version"
+  | 'username'
+  | 'full_name'
+  | 'initials'
+  | 'avatar_type'
+  | 'password'
+  | 'lng'
+  | 'default_space_id'
+  | 'email_frequency'
+  | 'timezone'
+  | 'subject_by'
+  | 'email_settings'
+  | 'telegram_settings'
+  | 'slack_settings'
+  | 'theme'
+  | 'notification_enabled_channels'
+  | 'notification_settings'
+  | 'ui_version'
 >;
 
 export interface UsersUpdateUserResponse {
@@ -947,11 +947,11 @@ export interface UsersUpdateUserResponse {
 }
 
 export type UsersUpdateUserParams = Parameters<
-  ReturnType<typeof createIdentityResources>["users"]["updateUser"]
+  ReturnType<typeof createIdentityResources>['users']['updateUser']
 >;
 
 export type UsersIterateParams = Parameters<
-  ReturnType<typeof createIdentityResources>["users"]["iterate"]
+  ReturnType<typeof createIdentityResources>['users']['iterate']
 >;
 
 function getUsersPage(
@@ -960,8 +960,8 @@ function getUsersPage(
   options?: OperationOptions,
 ): Promise<UsersRetrieveListOfUsersResponse> {
   return transport.request<UsersRetrieveListOfUsersResponse>({
-    method: "GET",
-    path: "/users",
+    method: 'GET',
+    path: '/users',
     query,
     signal: options?.signal,
   });
@@ -975,8 +975,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CompanyUsersGetListOfUsersResponse>({
-        method: "GET",
-        path: "/company/users",
+        method: 'GET',
+        path: '/company/users',
         query,
         signal: options?.signal,
       });
@@ -984,8 +984,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/company-users/remove-virtual-user */
     removeVirtualUser: (userId: number, options?: OperationOptions) => {
       return transport.request<CompanyUsersRemoveVirtualUserResponse>({
-        method: "DELETE",
-        path: "/company/users/" + pathSegment(userId),
+        method: 'DELETE',
+        path: '/company/users/' + pathSegment(userId),
         signal: options?.signal,
       });
     },
@@ -997,8 +997,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CompanyUsersUpdateUserResponse>({
-        method: "PATCH",
-        path: "/company/users/" + pathSegment(userId),
+        method: 'PATCH',
+        path: '/company/users/' + pathSegment(userId),
         body: {
           apps_permissions: appsPermissions,
           temporarily_inactive: temporarilyInactive,
@@ -1016,9 +1016,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupAdminsAddAdminToGroupResponse>({
-        method: "POST",
-        path: "/groups/" + pathSegment(groupUid) + "/admins",
-        body: { user_id: userId },
+        method: 'POST',
+        path: '/groups/' + pathSegment(groupUid) + '/admins',
+        body: {user_id: userId},
         signal: options?.signal,
       });
     },
@@ -1026,8 +1026,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/group-admins/get-list-of-group-admins */
     getListOfGroupAdmins: (groupUid: string, options?: OperationOptions) => {
       return transport.request<GroupAdminsGetListOfGroupAdminsResponse>({
-        method: "GET",
-        path: "/groups/" + pathSegment(groupUid) + "/admins",
+        method: 'GET',
+        path: '/groups/' + pathSegment(groupUid) + '/admins',
         signal: options?.signal,
       });
     },
@@ -1039,9 +1039,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupAdminsRemoveAdminFromGroupResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/groups/" + pathSegment(groupUid) + "/admins/" + pathSegment(userId),
+          '/groups/' + pathSegment(groupUid) + '/admins/' + pathSegment(userId),
         signal: options?.signal,
       });
     },
@@ -1056,9 +1056,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupEntitiesAddEntityResponse>({
-        method: "POST",
-        path: "/company/groups/" + pathSegment(groupUid) + "/entities",
-        body: { entity_uid: entityUid, role_ids: roleIds },
+        method: 'POST',
+        path: '/company/groups/' + pathSegment(groupUid) + '/entities',
+        body: {entity_uid: entityUid, role_ids: roleIds},
         signal: options?.signal,
       });
     },
@@ -1066,8 +1066,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/group-entities/get-list-of-group-entities */
     getListOfGroupEntities: (groupUid: string, options?: OperationOptions) => {
       return transport.request<GroupEntitiesGetListOfGroupEntitiesResponse>({
-        method: "GET",
-        path: "/company/groups/" + pathSegment(groupUid) + "/entities",
+        method: 'GET',
+        path: '/company/groups/' + pathSegment(groupUid) + '/entities',
         signal: options?.signal,
       });
     },
@@ -1079,11 +1079,11 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupEntitiesRemoveEntityResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/company/groups/" +
+          '/company/groups/' +
           pathSegment(groupUid) +
-          "/entities/" +
+          '/entities/' +
           pathSegment(uid),
         signal: options?.signal,
       });
@@ -1097,13 +1097,13 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupEntitiesUpdateGroupEntityResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/company/groups/" +
+          '/company/groups/' +
           pathSegment(groupUid) +
-          "/entities/" +
+          '/entities/' +
           pathSegment(uid),
-        body: { role_ids: roleIds },
+        body: {role_ids: roleIds},
         signal: options?.signal,
       });
     },
@@ -1119,8 +1119,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupUsersAddUserToGroupResponse>({
-        method: "POST",
-        path: "/groups/" + pathSegment(groupUid) + "/users",
+        method: 'POST',
+        path: '/groups/' + pathSegment(groupUid) + '/users',
         body: {
           user_id: userId,
           request_id: requestId,
@@ -1133,8 +1133,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/group-users/get-list-of-group-users */
     getListOfGroupUsers: (groupUid: string, options?: OperationOptions) => {
       return transport.request<GroupUsersGetListOfGroupUsersResponse>({
-        method: "GET",
-        path: "/groups/" + pathSegment(groupUid) + "/users",
+        method: 'GET',
+        path: '/groups/' + pathSegment(groupUid) + '/users',
         signal: options?.signal,
       });
     },
@@ -1146,9 +1146,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupUsersRemoveUserFromGroupResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/groups/" + pathSegment(groupUid) + "/users/" + pathSegment(userId),
+          '/groups/' + pathSegment(groupUid) + '/users/' + pathSegment(userId),
         signal: options?.signal,
       });
     },
@@ -1163,8 +1163,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupsCreateGroupResponse>({
-        method: "POST",
-        path: "/company/groups",
+        method: 'POST',
+        path: '/company/groups',
         body: {
           name,
           permissions,
@@ -1177,8 +1177,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/groups/get-group */
     getGroup: (uid: string, options?: OperationOptions) => {
       return transport.request<GroupsGetGroupResponse>({
-        method: "GET",
-        path: "/company/groups/" + pathSegment(uid),
+        method: 'GET',
+        path: '/company/groups/' + pathSegment(uid),
         signal: options?.signal,
       });
     },
@@ -1189,8 +1189,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupsGetListOfGroupsResponse>({
-        method: "GET",
-        path: "/company/groups",
+        method: 'GET',
+        path: '/company/groups',
         query,
         signal: options?.signal,
       });
@@ -1199,8 +1199,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/groups/remove-group */
     removeGroup: (uid: string, options?: OperationOptions) => {
       return transport.request<GroupsRemoveGroupResponse>({
-        method: "DELETE",
-        path: "/company/groups/" + pathSegment(uid),
+        method: 'DELETE',
+        path: '/company/groups/' + pathSegment(uid),
         signal: options?.signal,
       });
     },
@@ -1214,8 +1214,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<GroupsUpdateGroupResponse>({
-        method: "PATCH",
-        path: "/company/groups/" + pathSegment(uid),
+        method: 'PATCH',
+        path: '/company/groups/' + pathSegment(uid),
         body: {
           name,
           permissions,
@@ -1229,25 +1229,25 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/user-roles/create-user-role */
     createUserRole: (name: string, options?: OperationOptions) => {
       return transport.request<UserRolesCreateUserRoleResponse>({
-        method: "POST",
-        path: "/user-roles",
-        body: { name },
+        method: 'POST',
+        path: '/user-roles',
+        body: {name},
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/user-roles/get-list-of-user-roles */
     getListOfUserRoles: (options?: OperationOptions) => {
       return transport.request<UserRolesGetListOfUserRolesResponse>({
-        method: "GET",
-        path: "/user-roles",
+        method: 'GET',
+        path: '/user-roles',
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/user-roles/get-user-role */
     getUserRole: (roleId: number, options?: OperationOptions) => {
       return transport.request<UserRolesGetUserRoleResponse>({
-        method: "GET",
-        path: "/user-roles/" + pathSegment(roleId),
+        method: 'GET',
+        path: '/user-roles/' + pathSegment(roleId),
         signal: options?.signal,
       });
     },
@@ -1258,9 +1258,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<UserRolesRemoveUserRoleResponse>({
-        method: "DELETE",
-        path: "/user-roles/" + pathSegment(roleId),
-        body: { replace_role_id: replaceRoleId },
+        method: 'DELETE',
+        path: '/user-roles/' + pathSegment(roleId),
+        body: {replace_role_id: replaceRoleId},
         signal: options?.signal,
       });
     },
@@ -1271,9 +1271,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<UserRolesUpdateUserRoleResponse>({
-        method: "PATCH",
-        path: "/user-roles/" + pathSegment(roleId),
-        body: { name },
+        method: 'PATCH',
+        path: '/user-roles/' + pathSegment(roleId),
+        body: {name},
         signal: options?.signal,
       });
     },
@@ -1297,8 +1297,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/users/retrieve-current-user */
     retrieveCurrentUser: (options?: OperationOptions) => {
       return transport.request<UsersRetrieveCurrentUserResponse>({
-        method: "GET",
-        path: "/users/current",
+        method: 'GET',
+        path: '/users/current',
         signal: options?.signal,
       });
     },
@@ -1316,8 +1316,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<UsersUpdateUserResponse>({
-        method: "PATCH",
-        path: "/users/" + pathSegment(userId),
+        method: 'PATCH',
+        path: '/users/' + pathSegment(userId),
         body,
         signal: options?.signal,
       });

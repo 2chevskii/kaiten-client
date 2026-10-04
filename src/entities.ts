@@ -1,4 +1,4 @@
-import type { CustomPropertyValues, JsonValue } from "./types.ts";
+import type {CustomPropertyValues, JsonValue} from './types.ts';
 
 export interface BoardCardProperty {
   key: string;
@@ -27,7 +27,7 @@ export interface BlockedCardSummary {
     blocker_email: string;
   };
   block_reason: string | null;
-  categories: { uid: string; name: string; color: number }[];
+  categories: {uid: string; name: string; color: number}[];
   block_created: number;
   updated: string;
   released: boolean;
@@ -49,8 +49,8 @@ export interface IterationSummary {
 }
 
 export type IterationReference =
-  | { id: string; is_accessible: false }
-  | (IterationSummary & { is_accessible: true });
+  | {id: string; is_accessible: false}
+  | (IterationSummary & {is_accessible: true});
 
 export interface TreeEntitySummary {
   uid: string;
@@ -324,7 +324,7 @@ export interface BoardSummary {
   created?: string;
   updated?: string;
   cell_wip_limits?: {
-    limits: { lane_id?: number; column_id?: number; limit?: number }[];
+    limits: {lane_id?: number; column_id?: number; limit?: number}[];
   } | null;
   default_card_type_id?: number;
   description?: string | null;

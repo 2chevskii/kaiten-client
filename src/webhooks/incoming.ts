@@ -1,7 +1,7 @@
-import type { CardsCreateNewCardResponse } from "../rest/index.ts";
-import { readJsonResponse } from "../http-response.ts";
-import type { OperationOptions } from "../http.ts";
-import type { CustomPropertyValues } from "../types.ts";
+import type {CardsCreateNewCardResponse} from '../rest/index.ts';
+import {readJsonResponse} from '../http-response.ts';
+import type {OperationOptions} from '../http.ts';
+import type {CustomPropertyValues} from '../types.ts';
 
 export interface CardWebhookLink {
   url: string;
@@ -33,25 +33,25 @@ export async function sendCardWebhook(
 ): Promise<CardsCreateNewCardResponse> {
   const url = new URL(webhookUrl);
   if (
-    url.protocol !== "https:" &&
+    url.protocol !== 'https:' &&
     !(
-      url.protocol === "http:" &&
-      ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)
+      url.protocol === 'http:' &&
+      ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)
     )
   ) {
-    throw new TypeError("A Kaiten webhook URL must use HTTPS");
+    throw new TypeError('A Kaiten webhook URL must use HTTPS');
   }
 
   const response = await (options.fetch ?? fetch)(url, {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    method: 'POST',
+    headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify(body),
     signal: options.signal ?? null,
-    redirect: "manual",
+    redirect: 'manual',
   });
   return readJsonResponse<CardsCreateNewCardResponse>(
     response,
-    "POST",
+    'POST',
     url.toString(),
   );
 }

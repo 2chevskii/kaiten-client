@@ -8,10 +8,10 @@ ID и небольшие наборы полей передаются отдел
 
 ```ts
 const card = await client.cards.retrieveCard(123);
-await client.cardComments.addComment(card.id, "Комментарий");
+await client.cardComments.addComment(card.id, 'Комментарий');
 await client.cardMembers.addMemberToCard(card.id, 456);
-await client.cards.updateCard(card.id, { title: "Новое название" });
-const page = await client.cards.retrieveCardList({ version: 2, limit: 50 });
+await client.cards.updateCard(card.id, {title: 'Новое название'});
+const page = await client.cards.retrieveCardList({version: 2, limit: 50});
 
 const controller = new AbortController();
 await client.cards.retrieveCard(card.id, undefined, {
@@ -22,7 +22,7 @@ await client.cards.retrieveCard(card.id, undefined, {
 Типы с суффиксом `Params` теперь являются кортежами, полученными из сигнатуры метода:
 
 ```ts
-import type { CardsRetrieveCardParams } from "@2chevskii/kaiten-client";
+import type {CardsRetrieveCardParams} from '@2chevskii/kaiten-client';
 
 const args: CardsRetrieveCardParams = [123];
 await client.cards.retrieveCard(...args);
@@ -34,20 +34,20 @@ await client.cards.retrieveCard(...args);
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
-  "card-uuid",
-  new Blob(["report"]),
-  { filename: "report.txt" },
+  'card-uuid',
+  new Blob(['report']),
+  {filename: 'report.txt'},
 );
 const file = await client.restrictedAccessCardFiles.getCardFile(
-  "card-uuid",
+  'card-uuid',
   uploaded.id,
 );
 console.log(file.url);
 
 await scim.users.updateUser(123, [
-  { op: "replace", path: "active", value: false },
+  {op: 'replace', path: 'active', value: false},
 ]);
-await oauth.getToken("addon-uuid", 123, 1);
+await oauth.getToken('addon-uuid', 123, 1);
 ```
 
 `getCardFile`, `getCommentFile` и `getCustomPropertyFile` выводят тип ответа по `redirect`. Поиск выводит форму ответа по обязательному `version: 2`; переменная с необязательным `version` даёт объединение массива и ответа с курсором.

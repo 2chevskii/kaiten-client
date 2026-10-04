@@ -1,7 +1,7 @@
-import { HttpTransport, pathSegment } from "./http.ts";
-import type { ClientOptions, OperationOptions, TokenProvider } from "./http.ts";
+import {HttpTransport, pathSegment} from './http.ts';
+import type {ClientOptions, OperationOptions, TokenProvider} from './http.ts';
 
-export interface AddonOAuthOptions extends Omit<ClientOptions, "token"> {
+export interface AddonOAuthOptions extends Omit<ClientOptions, 'token'> {
   addonSecret: TokenProvider;
 }
 
@@ -19,7 +19,7 @@ export type AddonTokenResponse =
       expires_at: string;
       domain?: string;
     }
-  | { has_token: false; domain?: string };
+  | {has_token: false; domain?: string};
 
 /** Server-side Kaiten addon OAuth token endpoints. */
 export class AddonOAuthClient {
@@ -32,7 +32,7 @@ export class AddonOAuthClient {
         token: options.addonSecret,
         fetch: options.fetch,
       },
-      "/api/v1",
+      '/api/v1',
     );
   }
 
@@ -44,7 +44,7 @@ export class AddonOAuthClient {
     options?: OperationOptions,
   ): Promise<AddonTokenResponse> {
     return this.transport.request({
-      method: "GET",
+      method: 'GET',
       path: this.tokenPath(addonUid, userId, companyId),
       signal: options?.signal,
     });
@@ -58,7 +58,7 @@ export class AddonOAuthClient {
     options?: OperationOptions,
   ): Promise<AddonTokenResponse> {
     return this.transport.request({
-      method: "POST",
+      method: 'POST',
       path: `${this.tokenPath(addonUid, userId, companyId)}/refresh`,
       signal: options?.signal,
     });

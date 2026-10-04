@@ -7,7 +7,7 @@ export class KaitenHttpError extends Error {
 
   constructor(response: Response, body: unknown, method: string, url: string) {
     super(`Kaiten API request failed with HTTP ${response.status}`);
-    this.name = "KaitenHttpError";
+    this.name = 'KaitenHttpError';
     this.status = response.status;
     this.body = body;
     this.headers = response.headers;
@@ -32,8 +32,8 @@ export class KaitenResponseError extends Error {
     url: string,
     cause?: unknown,
   ) {
-    super(message, { cause });
-    this.name = "KaitenResponseError";
+    super(message, {cause});
+    this.name = 'KaitenResponseError';
     this.status = response.status;
     this.body = body;
     this.headers = response.headers;

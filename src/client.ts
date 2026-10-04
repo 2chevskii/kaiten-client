@@ -1,81 +1,81 @@
-import { HttpTransport } from "./http.ts";
-import type { RestResources } from "./rest/index.ts";
-import { createRestResources } from "./rest/index.ts";
-import type { RestClientOptions } from "./http.ts";
+import {HttpTransport} from './http.ts';
+import type {RestResources} from './rest/index.ts';
+import {createRestResources} from './rest/index.ts';
+import type {RestClientOptions} from './http.ts';
 
 export class KaitenClient {
-  readonly auditLogs: RestResources["auditLogs"];
-  readonly automations: RestResources["automations"];
-  readonly boards: RestResources["boards"];
-  readonly cardAllowedUsers: RestResources["cardAllowedUsers"];
-  readonly cardBlockerCategories: RestResources["cardBlockerCategories"];
-  readonly cardBlockerUsers: RestResources["cardBlockerUsers"];
-  readonly cardBlockers: RestResources["cardBlockers"];
-  readonly cardChecklistItems: RestResources["cardChecklistItems"];
-  readonly cardChecklists: RestResources["cardChecklists"];
-  readonly cardChildren: RestResources["cardChildren"];
-  readonly cardComments: RestResources["cardComments"];
-  readonly cardExternalLinks: RestResources["cardExternalLinks"];
-  readonly cardFiles: RestResources["cardFiles"];
-  readonly cardMembers: RestResources["cardMembers"];
-  readonly cardServiceDeskExternalRecipients: RestResources["cardServiceDeskExternalRecipients"];
-  readonly cardSla: RestResources["cardSla"];
-  readonly cardTags: RestResources["cardTags"];
-  readonly cardTimeLogs: RestResources["cardTimeLogs"];
-  readonly cardTypeTreeEntities: RestResources["cardTypeTreeEntities"];
-  readonly cardTypes: RestResources["cardTypes"];
-  readonly cards: RestResources["cards"];
-  readonly checklistItems: RestResources["checklistItems"];
-  readonly checklists: RestResources["checklists"];
-  readonly columns: RestResources["columns"];
-  readonly companyUsers: RestResources["companyUsers"];
-  readonly customDirectories: RestResources["customDirectories"];
-  readonly customDirectoryFields: RestResources["customDirectoryFields"];
-  readonly customDirectoryRecords: RestResources["customDirectoryRecords"];
-  readonly customProperties: RestResources["customProperties"];
-  readonly customPropertyCatalogValues: RestResources["customPropertyCatalogValues"];
-  readonly customPropertyCollectiveScoreValues: RestResources["customPropertyCollectiveScoreValues"];
-  readonly customPropertyCollectiveVoteValues: RestResources["customPropertyCollectiveVoteValues"];
-  readonly customPropertySelectValues: RestResources["customPropertySelectValues"];
-  readonly customPropertyTreeEntities: RestResources["customPropertyTreeEntities"];
-  readonly documentGroups: RestResources["documentGroups"];
-  readonly documentSchemas: RestResources["documentSchemas"];
-  readonly documents: RestResources["documents"];
-  readonly groupAdmins: RestResources["groupAdmins"];
-  readonly groupEntities: RestResources["groupEntities"];
-  readonly groupUsers: RestResources["groupUsers"];
-  readonly groups: RestResources["groups"];
-  readonly iterations: RestResources["iterations"];
-  readonly lanes: RestResources["lanes"];
-  readonly restrictedAccessCardFiles: RestResources["restrictedAccessCardFiles"];
-  readonly restrictedAccessCommentFiles: RestResources["restrictedAccessCommentFiles"];
-  readonly restrictedAccessCustomPropertyFiles: RestResources["restrictedAccessCustomPropertyFiles"];
-  readonly serviceDeskServices: RestResources["serviceDeskServices"];
-  readonly spaceBoards: RestResources["spaceBoards"];
-  readonly spaceTemplateChecklist: RestResources["spaceTemplateChecklist"];
-  readonly spaceTemplateChecklistItems: RestResources["spaceTemplateChecklistItems"];
-  readonly spaceUsers: RestResources["spaceUsers"];
-  readonly spaces: RestResources["spaces"];
-  readonly sprints: RestResources["sprints"];
-  readonly subcolumn: RestResources["subcolumn"];
-  readonly tags: RestResources["tags"];
-  readonly timesheet: RestResources["timesheet"];
-  readonly treeEntities: RestResources["treeEntities"];
-  readonly treeEntityRoles: RestResources["treeEntityRoles"];
-  readonly userRoles: RestResources["userRoles"];
-  readonly users: RestResources["users"];
+  readonly auditLogs: RestResources['auditLogs'];
+  readonly automations: RestResources['automations'];
+  readonly boards: RestResources['boards'];
+  readonly cardAllowedUsers: RestResources['cardAllowedUsers'];
+  readonly cardBlockerCategories: RestResources['cardBlockerCategories'];
+  readonly cardBlockerUsers: RestResources['cardBlockerUsers'];
+  readonly cardBlockers: RestResources['cardBlockers'];
+  readonly cardChecklistItems: RestResources['cardChecklistItems'];
+  readonly cardChecklists: RestResources['cardChecklists'];
+  readonly cardChildren: RestResources['cardChildren'];
+  readonly cardComments: RestResources['cardComments'];
+  readonly cardExternalLinks: RestResources['cardExternalLinks'];
+  readonly cardFiles: RestResources['cardFiles'];
+  readonly cardMembers: RestResources['cardMembers'];
+  readonly cardServiceDeskExternalRecipients: RestResources['cardServiceDeskExternalRecipients'];
+  readonly cardSla: RestResources['cardSla'];
+  readonly cardTags: RestResources['cardTags'];
+  readonly cardTimeLogs: RestResources['cardTimeLogs'];
+  readonly cardTypeTreeEntities: RestResources['cardTypeTreeEntities'];
+  readonly cardTypes: RestResources['cardTypes'];
+  readonly cards: RestResources['cards'];
+  readonly checklistItems: RestResources['checklistItems'];
+  readonly checklists: RestResources['checklists'];
+  readonly columns: RestResources['columns'];
+  readonly companyUsers: RestResources['companyUsers'];
+  readonly customDirectories: RestResources['customDirectories'];
+  readonly customDirectoryFields: RestResources['customDirectoryFields'];
+  readonly customDirectoryRecords: RestResources['customDirectoryRecords'];
+  readonly customProperties: RestResources['customProperties'];
+  readonly customPropertyCatalogValues: RestResources['customPropertyCatalogValues'];
+  readonly customPropertyCollectiveScoreValues: RestResources['customPropertyCollectiveScoreValues'];
+  readonly customPropertyCollectiveVoteValues: RestResources['customPropertyCollectiveVoteValues'];
+  readonly customPropertySelectValues: RestResources['customPropertySelectValues'];
+  readonly customPropertyTreeEntities: RestResources['customPropertyTreeEntities'];
+  readonly documentGroups: RestResources['documentGroups'];
+  readonly documentSchemas: RestResources['documentSchemas'];
+  readonly documents: RestResources['documents'];
+  readonly groupAdmins: RestResources['groupAdmins'];
+  readonly groupEntities: RestResources['groupEntities'];
+  readonly groupUsers: RestResources['groupUsers'];
+  readonly groups: RestResources['groups'];
+  readonly iterations: RestResources['iterations'];
+  readonly lanes: RestResources['lanes'];
+  readonly restrictedAccessCardFiles: RestResources['restrictedAccessCardFiles'];
+  readonly restrictedAccessCommentFiles: RestResources['restrictedAccessCommentFiles'];
+  readonly restrictedAccessCustomPropertyFiles: RestResources['restrictedAccessCustomPropertyFiles'];
+  readonly serviceDeskServices: RestResources['serviceDeskServices'];
+  readonly spaceBoards: RestResources['spaceBoards'];
+  readonly spaceTemplateChecklist: RestResources['spaceTemplateChecklist'];
+  readonly spaceTemplateChecklistItems: RestResources['spaceTemplateChecklistItems'];
+  readonly spaceUsers: RestResources['spaceUsers'];
+  readonly spaces: RestResources['spaces'];
+  readonly sprints: RestResources['sprints'];
+  readonly subcolumn: RestResources['subcolumn'];
+  readonly tags: RestResources['tags'];
+  readonly timesheet: RestResources['timesheet'];
+  readonly treeEntities: RestResources['treeEntities'];
+  readonly treeEntityRoles: RestResources['treeEntityRoles'];
+  readonly userRoles: RestResources['userRoles'];
+  readonly users: RestResources['users'];
 
   constructor(options: RestClientOptions) {
     if (
       options.apiVersion !== undefined &&
-      options.apiVersion !== "v1" &&
-      options.apiVersion !== "latest"
+      options.apiVersion !== 'v1' &&
+      options.apiVersion !== 'latest'
     ) {
-      throw new TypeError("The REST API version must be v1 or latest");
+      throw new TypeError('The REST API version must be v1 or latest');
     }
     const transport = new HttpTransport(
       options,
-      "/api/" + (options.apiVersion ?? "v1"),
+      '/api/' + (options.apiVersion ?? 'v1'),
     );
     const resources = createRestResources(transport);
     this.auditLogs = resources.auditLogs;

@@ -1,4 +1,4 @@
-import type { CustomPropertyValues, JsonValue } from "./types.ts";
+import type {CustomPropertyValues, JsonValue} from './types.ts';
 
 export interface AddonTokenResponse {
   access_token: string;
@@ -13,7 +13,7 @@ export interface AddonApiResponse<T> {
 
 /** The API client supplied by Kaiten's browser SDK. */
 export interface AddonPlatformApiClient {
-  authorize(options?: { scope?: string }): Promise<AddonTokenResponse>;
+  authorize(options?: {scope?: string}): Promise<AddonTokenResponse>;
   getAccessToken(): Promise<AddonTokenResponse>;
   refreshToken(): Promise<AddonTokenResponse>;
   request<T = unknown>(
@@ -102,8 +102,8 @@ export interface AddonCurrentUser {
   avatar_type: 1 | 2 | 3;
 }
 
-export type AddonDataScope = "card" | "user";
-export type AddonDataVisibility = "private" | "shared";
+export type AddonDataScope = 'card' | 'user';
+export type AddonDataVisibility = 'private' | 'shared';
 
 export interface AddonPermissions {
   card?: {
@@ -188,14 +188,14 @@ export interface AddonPopupSearch {
 
 export type AddonPopupOptions =
   | {
-      type: "iframe";
+      type: 'iframe';
       url: string;
       title?: string;
       height?: number;
       width?: number;
     }
   | {
-      type: "confirm";
+      type: 'confirm';
       text: string;
       title?: string;
       confirmLabel?: string;
@@ -204,16 +204,16 @@ export type AddonPopupOptions =
       cancelCallback?: (context: AddonContext) => void | Promise<void>;
     }
   | {
-      type: "staticList";
+      type: 'staticList';
       items: AddonPopupItem[];
       title?: string;
       search?: AddonPopupSearch;
     }
   | {
-      type: "dynamicList";
+      type: 'dynamicList';
       items: (
         context: AddonContext,
-        options: { data: { searchValue: string } },
+        options: {data: {searchValue: string}},
       ) => AddonPopupItem[] | Promise<AddonPopupItem[]>;
       title?: string;
       loadingLabel?: string;
@@ -231,7 +231,7 @@ export interface AddonDialogOptions {
   url: string;
   title?: string;
   height?: number;
-  width?: "xs" | "sm" | "md" | "lg" | "xl";
+  width?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   fullScreen?: boolean;
   primaryActionCallback?: (context: AddonContext) => void | Promise<void>;
   primaryActionLabel?: string;
@@ -244,34 +244,34 @@ export interface AddonDialogOptions {
 /** Functions made available to addon capability callbacks and iframes. */
 export interface AddonContext {
   setData(
-    scope: "user",
-    visibility: "private",
+    scope: 'user',
+    visibility: 'private',
     values: Record<string, unknown>,
   ): Promise<void>;
   setData(
-    scope: "card",
+    scope: 'card',
     visibility: AddonDataVisibility,
     values: Record<string, unknown>,
   ): Promise<void>;
   setData(
-    scope: "user",
-    visibility: "private",
+    scope: 'user',
+    visibility: 'private',
     key: string,
     value: unknown,
   ): Promise<void>;
   setData(
-    scope: "card",
+    scope: 'card',
     visibility: AddonDataVisibility,
     key: string,
     value: unknown,
   ): Promise<void>;
   getData<T = unknown>(
-    scope: "user",
-    visibility: "private",
+    scope: 'user',
+    visibility: 'private',
     key: string,
   ): Promise<T>;
   getData<T = unknown>(
-    scope: "card",
+    scope: 'card',
     visibility: AddonDataVisibility,
     key: string,
   ): Promise<T>;
@@ -281,20 +281,20 @@ export interface AddonContext {
   getPermissions(): Promise<AddonPermissions>;
   getContext(): Promise<AddonContextData>;
   getCard(): Promise<AddonCard>;
-  getCardProperties(subject: "type"): Promise<AddonCardType>;
-  getCardProperties(subject: "members"): Promise<AddonCardMember[]>;
-  getCardProperties(subject: "tags"): Promise<AddonCardTag[]>;
-  getCardProperties(subject: "customProperties"): Promise<AddonCardProperty[]>;
-  getCardProperties(subject: "files"): Promise<AddonCardFile[]>;
+  getCardProperties(subject: 'type'): Promise<AddonCardType>;
+  getCardProperties(subject: 'members'): Promise<AddonCardMember[]>;
+  getCardProperties(subject: 'tags'): Promise<AddonCardTag[]>;
+  getCardProperties(subject: 'customProperties'): Promise<AddonCardProperty[]>;
+  getCardProperties(subject: 'files'): Promise<AddonCardFile[]>;
   getCurrentUser(): Promise<AddonCurrentUser>;
   signUrl(url: string, args?: Record<string, unknown>): string;
   storeSecret(key: string, value: string): Promise<void>;
   getSecret(key: string): Promise<string | null>;
   clearSecret(key: string): Promise<void>;
-  getLanguage(): "ru" | "en";
+  getLanguage(): 'ru' | 'en';
   /** @deprecated Use getLanguage(). */
-  getLocale(): "ru" | "en";
-  getThemeType(): "light" | "dark";
+  getLocale(): 'ru' | 'en';
+  getThemeType(): 'light' | 'dark';
   render(callback: () => void | Promise<void>): void;
   openPopup(options: AddonPopupOptions): Promise<void>;
   closePopup(): void;
@@ -302,7 +302,7 @@ export interface AddonContext {
   closeDialog(): Promise<void>;
   showSnackbar(
     text: string,
-    level?: "success" | "info" | "warning" | "error",
+    level?: 'success' | 'info' | 'warning' | 'error',
   ): Promise<void>;
   fitSize(elementOrHeight: string | Element | number): Promise<void>;
   authorize(authUrl: string | (() => string)): Promise<string>;
@@ -318,12 +318,12 @@ export interface AddonCardButton {
 
 export interface AddonCardBodySection {
   title: string;
-  content: { type: "iframe"; url: string; height?: number };
+  content: {type: 'iframe'; url: string; height?: number};
 }
 
 export interface AddonCardFacadeBadge {
   text: string;
-  color?: "green" | "red" | "orange";
+  color?: 'green' | 'red' | 'orange';
   icon?: string;
 }
 

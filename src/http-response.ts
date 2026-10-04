@@ -1,4 +1,4 @@
-import { KaitenHttpError, KaitenResponseError } from "./errors.ts";
+import {KaitenHttpError, KaitenResponseError} from './errors.ts';
 
 /** Preserve error payloads while rejecting malformed successful JSON responses. */
 export async function readJsonResponse<T>(
@@ -19,7 +19,7 @@ export async function readJsonResponse<T>(
     } catch (cause) {
       if (response.ok) {
         throw new KaitenResponseError(
-          "Kaiten returned invalid JSON",
+          'Kaiten returned invalid JSON',
           response,
           text,
           method,
@@ -36,7 +36,7 @@ export async function readJsonResponse<T>(
   }
   if (!text) {
     throw new KaitenResponseError(
-      "Kaiten returned an empty response where JSON was expected",
+      'Kaiten returned an empty response where JSON was expected',
       response,
       text,
       method,

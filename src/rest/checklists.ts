@@ -1,9 +1,9 @@
-import type { CustomPropertyValues, JsonValue } from "../types.ts";
-import type { ChecklistItemSummary } from "../entities.ts";
-import type { RequireAtLeastOne } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {CustomPropertyValues, JsonValue} from '../types.ts';
+import type {ChecklistItemSummary} from '../entities.ts';
+import type {RequireAtLeastOne} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CardChecklistItemsAddItemToChecklistBody {
   text: string;
@@ -32,7 +32,7 @@ export interface CardChecklistItemsAddItemToChecklistResponse {
 export type CardChecklistItemsAddItemToChecklistParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklistItems"]["addItemToChecklist"]
+  >['cardChecklistItems']['addItemToChecklist']
 >;
 
 export interface CardChecklistItemsRemoveChecklistItemResponse {
@@ -42,7 +42,7 @@ export interface CardChecklistItemsRemoveChecklistItemResponse {
 export type CardChecklistItemsRemoveChecklistItemParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklistItems"]["removeChecklistItem"]
+  >['cardChecklistItems']['removeChecklistItem']
 >;
 
 export type CardChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
@@ -54,12 +54,12 @@ export type CardChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
     due_date?: string | null;
     responsible_id?: number | null;
   },
-  | "text"
-  | "checked"
-  | "due_date"
-  | "sort_order"
-  | "checklist_id"
-  | "responsible_id"
+  | 'text'
+  | 'checked'
+  | 'due_date'
+  | 'sort_order'
+  | 'checklist_id'
+  | 'responsible_id'
 >;
 
 export interface CardChecklistItemsUpdateChecklistItemResponse {
@@ -81,7 +81,7 @@ export interface CardChecklistItemsUpdateChecklistItemResponse {
 export type CardChecklistItemsUpdateChecklistItemParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklistItems"]["updateChecklistItem"]
+  >['cardChecklistItems']['updateChecklistItem']
 >;
 
 export type CardChecklistsAddChecklistToCardBody = RequireAtLeastOne<
@@ -92,7 +92,7 @@ export type CardChecklistsAddChecklistToCardBody = RequireAtLeastOne<
     exclude_item_ids?: number[];
     source_share_id?: number;
   },
-  "name" | "source_share_id"
+  'name' | 'source_share_id'
 >;
 
 export interface CardChecklistsAddChecklistToCardResponse {
@@ -111,7 +111,7 @@ export interface CardChecklistsAddChecklistToCardResponse {
 export type CardChecklistsAddChecklistToCardParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklists"]["addChecklistToCard"]
+  >['cardChecklists']['addChecklistToCard']
 >;
 
 export interface CardChecklistsRemoveChecklistFromCardResponse {
@@ -121,7 +121,7 @@ export interface CardChecklistsRemoveChecklistFromCardResponse {
 export type CardChecklistsRemoveChecklistFromCardParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklists"]["removeChecklistFromCard"]
+  >['cardChecklists']['removeChecklistFromCard']
 >;
 
 export interface CardChecklistsRetrieveCardChecklistResponse {
@@ -138,7 +138,7 @@ export interface CardChecklistsRetrieveCardChecklistResponse {
 export type CardChecklistsRetrieveCardChecklistParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklists"]["retrieveCardChecklist"]
+  >['cardChecklists']['retrieveCardChecklist']
 >;
 
 export type CardChecklistsUpdateChecklistBody = RequireAtLeastOne<
@@ -147,7 +147,7 @@ export type CardChecklistsUpdateChecklistBody = RequireAtLeastOne<
     sort_order?: number;
     card_id?: number;
   },
-  "name" | "sort_order" | "card_id"
+  'name' | 'sort_order' | 'card_id'
 >;
 
 export interface CardChecklistsUpdateChecklistResponse {
@@ -161,7 +161,7 @@ export interface CardChecklistsUpdateChecklistResponse {
 export type CardChecklistsUpdateChecklistParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["cardChecklists"]["updateChecklist"]
+  >['cardChecklists']['updateChecklist']
 >;
 
 export interface ChecklistItemsAddItemToChecklistBody {
@@ -191,7 +191,7 @@ export interface ChecklistItemsAddItemToChecklistResponse {
 export type ChecklistItemsAddItemToChecklistParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["checklistItems"]["addItemToChecklist"]
+  >['checklistItems']['addItemToChecklist']
 >;
 
 export interface ChecklistItemsRemoveChecklistItemResponse {
@@ -201,7 +201,7 @@ export interface ChecklistItemsRemoveChecklistItemResponse {
 export type ChecklistItemsRemoveChecklistItemParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["checklistItems"]["removeChecklistItem"]
+  >['checklistItems']['removeChecklistItem']
 >;
 
 export type ChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
@@ -213,12 +213,12 @@ export type ChecklistItemsUpdateChecklistItemBody = RequireAtLeastOne<
     due_date?: string | null;
     responsible_id?: number | null;
   },
-  | "text"
-  | "checked"
-  | "due_date"
-  | "sort_order"
-  | "checklist_id"
-  | "responsible_id"
+  | 'text'
+  | 'checked'
+  | 'due_date'
+  | 'sort_order'
+  | 'checklist_id'
+  | 'responsible_id'
 >;
 
 export interface ChecklistItemsUpdateChecklistItemResponse {
@@ -240,7 +240,7 @@ export interface ChecklistItemsUpdateChecklistItemResponse {
 export type ChecklistItemsUpdateChecklistItemParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["checklistItems"]["updateChecklistItem"]
+  >['checklistItems']['updateChecklistItem']
 >;
 
 export interface ChecklistsRetrieveCardsWithChecklistQuery {
@@ -345,7 +345,7 @@ export type ChecklistsRetrieveCardsWithChecklistResponse = {
 export type ChecklistsRetrieveCardsWithChecklistParams = Parameters<
   ReturnType<
     typeof createChecklistsResources
-  >["checklists"]["retrieveCardsWithChecklist"]
+  >['checklists']['retrieveCardsWithChecklist']
 >;
 
 export interface SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemBody {
@@ -366,7 +366,7 @@ export type SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemParams
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklistItems"]["createNewSpaceTemplateChecklistItem"]
+    >['spaceTemplateChecklistItems']['createNewSpaceTemplateChecklistItem']
   >;
 
 export interface SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse {
@@ -377,7 +377,7 @@ export type SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklistItems"]["removeSpaceTemplateChecklistItem"]
+    >['spaceTemplateChecklistItems']['removeSpaceTemplateChecklistItem']
   >;
 
 export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody =
@@ -386,7 +386,7 @@ export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemBody =
       text?: string;
       sort_order?: number;
     },
-    "text" | "sort_order"
+    'text' | 'sort_order'
   >;
 
 export interface SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse {
@@ -402,7 +402,7 @@ export type SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklistItems"]["updateSpaceTemplateChecklistItem"]
+    >['spaceTemplateChecklistItems']['updateSpaceTemplateChecklistItem']
   >;
 
 export interface SpaceTemplateChecklistCreateNewSpaceTemplateChecklistBody {
@@ -423,7 +423,7 @@ export type SpaceTemplateChecklistCreateNewSpaceTemplateChecklistParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklist"]["createNewSpaceTemplateChecklist"]
+    >['spaceTemplateChecklist']['createNewSpaceTemplateChecklist']
   >;
 
 export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse = {
@@ -447,7 +447,7 @@ export type SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklist"]["getListOfSpaceTemplateChecklists"]
+    >['spaceTemplateChecklist']['getListOfSpaceTemplateChecklists']
   >;
 
 export interface SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse {
@@ -458,7 +458,7 @@ export type SpaceTemplateChecklistRemoveSpaceTemplateChecklistParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklist"]["removeSpaceTemplateChecklist"]
+    >['spaceTemplateChecklist']['removeSpaceTemplateChecklist']
   >;
 
 export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody =
@@ -468,7 +468,7 @@ export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistBody =
       sort_order?: number;
       space_uid?: string;
     },
-    "name" | "sort_order"
+    'name' | 'sort_order'
   >;
 
 export interface SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse {
@@ -484,7 +484,7 @@ export type SpaceTemplateChecklistUpdateSpaceTemplateChecklistParams =
   Parameters<
     ReturnType<
       typeof createChecklistsResources
-    >["spaceTemplateChecklist"]["updateSpaceTemplateChecklist"]
+    >['spaceTemplateChecklist']['updateSpaceTemplateChecklist']
   >;
 
 export const createChecklistsResources = (transport: HttpTransport) => ({
@@ -497,13 +497,13 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsAddItemToChecklistResponse>({
-        method: "POST",
+        method: 'POST',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId) +
-          "/items",
+          '/items',
         body,
         signal: options?.signal,
       });
@@ -516,13 +516,13 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsRemoveChecklistItemResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId) +
-          "/items/" +
+          '/items/' +
           pathSegment(itemId),
         signal: options?.signal,
       });
@@ -536,13 +536,13 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistItemsUpdateChecklistItemResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId) +
-          "/items/" +
+          '/items/' +
           pathSegment(itemId),
         body,
         signal: options?.signal,
@@ -557,8 +557,8 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsAddChecklistToCardResponse>({
-        method: "POST",
-        path: "/cards/" + pathSegment(cardId) + "/checklists",
+        method: 'POST',
+        path: '/cards/' + pathSegment(cardId) + '/checklists',
         body,
         signal: options?.signal,
       });
@@ -570,11 +570,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsRemoveChecklistFromCardResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId),
         signal: options?.signal,
       });
@@ -586,11 +586,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsRetrieveCardChecklistResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId),
         signal: options?.signal,
       });
@@ -603,11 +603,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardChecklistsUpdateChecklistResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/cards/" +
+          '/cards/' +
           pathSegment(cardId) +
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId),
         body,
         signal: options?.signal,
@@ -622,8 +622,8 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ChecklistItemsAddItemToChecklistResponse>({
-        method: "POST",
-        path: "/checklists/" + pathSegment(checklistId) + "/items",
+        method: 'POST',
+        path: '/checklists/' + pathSegment(checklistId) + '/items',
         body,
         signal: options?.signal,
       });
@@ -635,11 +635,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ChecklistItemsRemoveChecklistItemResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId) +
-          "/items/" +
+          '/items/' +
           pathSegment(itemId),
         signal: options?.signal,
       });
@@ -652,11 +652,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ChecklistItemsUpdateChecklistItemResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/checklists/" +
+          '/checklists/' +
           pathSegment(checklistId) +
-          "/items/" +
+          '/items/' +
           pathSegment(itemId),
         body,
         signal: options?.signal,
@@ -671,9 +671,9 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<ChecklistsRetrieveCardsWithChecklistResponse>({
-        method: "GET",
-        path: "/checklists/" + pathSegment(id),
-        query: { only_shared_cards: onlySharedCards },
+        method: 'GET',
+        path: '/checklists/' + pathSegment(id),
+        query: {only_shared_cards: onlySharedCards},
         signal: options?.signal,
       });
     },
@@ -688,9 +688,9 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistCreateNewSpaceTemplateChecklistResponse>(
         {
-          method: "POST",
-          path: "/spaces/" + pathSegment(spaceUid) + "/template-checklists",
-          body: { name, sort_order: sortOrder },
+          method: 'POST',
+          path: '/spaces/' + pathSegment(spaceUid) + '/template-checklists',
+          body: {name, sort_order: sortOrder},
           signal: options?.signal,
         },
       );
@@ -702,8 +702,8 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistGetListOfSpaceTemplateChecklistsResponse>(
         {
-          method: "GET",
-          path: "/spaces/" + pathSegment(spaceUid) + "/template-checklists",
+          method: 'GET',
+          path: '/spaces/' + pathSegment(spaceUid) + '/template-checklists',
           signal: options?.signal,
         },
       );
@@ -716,11 +716,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistRemoveSpaceTemplateChecklistResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/spaces/" +
+            '/spaces/' +
             pathSegment(spaceUid) +
-            "/template-checklists/" +
+            '/template-checklists/' +
             pathSegment(templateChecklistUid),
           signal: options?.signal,
         },
@@ -735,11 +735,11 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistUpdateSpaceTemplateChecklistResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/spaces/" +
+            '/spaces/' +
             pathSegment(spaceUid) +
-            "/template-checklists/" +
+            '/template-checklists/' +
             pathSegment(templateChecklistUid),
           body,
           signal: options?.signal,
@@ -758,14 +758,14 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistItemsCreateNewSpaceTemplateChecklistItemResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/spaces/" +
+            '/spaces/' +
             pathSegment(spaceUid) +
-            "/template-checklists/" +
+            '/template-checklists/' +
             pathSegment(templateChecklistUid) +
-            "/items",
-          body: { text, sort_order: sortOrder },
+            '/items',
+          body: {text, sort_order: sortOrder},
           signal: options?.signal,
         },
       );
@@ -779,13 +779,13 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistItemsRemoveSpaceTemplateChecklistItemResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/spaces/" +
+            '/spaces/' +
             pathSegment(spaceUid) +
-            "/template-checklists/" +
+            '/template-checklists/' +
             pathSegment(templateChecklistUid) +
-            "/items/" +
+            '/items/' +
             pathSegment(itemUid),
           signal: options?.signal,
         },
@@ -801,13 +801,13 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<SpaceTemplateChecklistItemsUpdateSpaceTemplateChecklistItemResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/spaces/" +
+            '/spaces/' +
             pathSegment(spaceUid) +
-            "/template-checklists/" +
+            '/template-checklists/' +
             pathSegment(templateChecklistUid) +
-            "/items/" +
+            '/items/' +
             pathSegment(itemUid),
           body,
           signal: options?.signal,

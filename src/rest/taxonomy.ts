@@ -1,10 +1,10 @@
-import type { TreeEntitySummary } from "../entities.ts";
-import type { JsonValue } from "../types.ts";
-import type { CardTypeProperty } from "../entities.ts";
-import type { RequireAtLeastOne } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {TreeEntitySummary} from '../entities.ts';
+import type {JsonValue} from '../types.ts';
+import type {CardTypeProperty} from '../entities.ts';
+import type {RequireAtLeastOne} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeBody {
   tree_entity_uid: string;
@@ -17,7 +17,7 @@ export interface CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse {
 export type CardTypeTreeEntitiesAddTreeEntityToCardTypeParams = Parameters<
   ReturnType<
     typeof createTaxonomyResources
-  >["cardTypeTreeEntities"]["addTreeEntityToCardType"]
+  >['cardTypeTreeEntities']['addTreeEntityToCardType']
 >;
 
 export type CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeResponse = void;
@@ -25,7 +25,7 @@ export type CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeResponse = void;
 export type CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeParams = Parameters<
   ReturnType<
     typeof createTaxonomyResources
-  >["cardTypeTreeEntities"]["deleteTreeEntityFromCardType"]
+  >['cardTypeTreeEntities']['deleteTreeEntityFromCardType']
 >;
 
 export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
@@ -73,7 +73,7 @@ export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse = (
 export type CardTypeTreeEntitiesGetListOfTypeTreeEntitiesParams = Parameters<
   ReturnType<
     typeof createTaxonomyResources
-  >["cardTypeTreeEntities"]["getListOfTypeTreeEntities"]
+  >['cardTypeTreeEntities']['getListOfTypeTreeEntities']
 >;
 
 export interface CardTypesCreateNewCardTypeBody {
@@ -101,7 +101,7 @@ export interface CardTypesCreateNewCardTypeResponse {
 }
 
 export type CardTypesCreateNewCardTypeParams = Parameters<
-  ReturnType<typeof createTaxonomyResources>["cardTypes"]["createNewCardType"]
+  ReturnType<typeof createTaxonomyResources>['cardTypes']['createNewCardType']
 >;
 
 export interface CardTypesGetCardTypeResponse {
@@ -120,7 +120,7 @@ export interface CardTypesGetCardTypeResponse {
 }
 
 export type CardTypesGetCardTypeParams = Parameters<
-  ReturnType<typeof createTaxonomyResources>["cardTypes"]["getCardType"]
+  ReturnType<typeof createTaxonomyResources>['cardTypes']['getCardType']
 >;
 
 export interface CardTypesGetListOfCardTypesQuery {
@@ -144,7 +144,7 @@ export type CardTypesGetListOfCardTypesResponse = {
 }[];
 
 export type CardTypesGetListOfCardTypesParams = Parameters<
-  ReturnType<typeof createTaxonomyResources>["cardTypes"]["getListOfCardTypes"]
+  ReturnType<typeof createTaxonomyResources>['cardTypes']['getListOfCardTypes']
 >;
 
 export interface CardTypesRemoveCardTypeBody {
@@ -167,7 +167,7 @@ export interface CardTypesRemoveCardTypeResponse {
 }
 
 export type CardTypesRemoveCardTypeParams = Parameters<
-  ReturnType<typeof createTaxonomyResources>["cardTypes"]["removeCardType"]
+  ReturnType<typeof createTaxonomyResources>['cardTypes']['removeCardType']
 >;
 
 export type CardTypesUpdateCardTypeBody = RequireAtLeastOne<
@@ -178,7 +178,7 @@ export type CardTypesUpdateCardTypeBody = RequireAtLeastOne<
     properties?: Record<string, JsonValue>;
     card_properties?: {
       regular_property?:
-        "size" | "due_date" | "tags" | "timeline" | "description" | null;
+        'size' | 'due_date' | 'tags' | 'timeline' | 'description' | null;
       property_uid?: string | null;
       sort_order?: number;
       required?: boolean;
@@ -186,7 +186,7 @@ export type CardTypesUpdateCardTypeBody = RequireAtLeastOne<
     }[];
     suggest_fields?: boolean;
   },
-  "letter" | "name" | "color" | "properties"
+  'letter' | 'name' | 'color' | 'properties'
 >;
 
 export interface CardTypesUpdateCardTypeResponse {
@@ -205,7 +205,7 @@ export interface CardTypesUpdateCardTypeResponse {
 }
 
 export type CardTypesUpdateCardTypeParams = Parameters<
-  ReturnType<typeof createTaxonomyResources>["cardTypes"]["updateCardType"]
+  ReturnType<typeof createTaxonomyResources>['cardTypes']['updateCardType']
 >;
 
 export interface TreeEntitiesGetListOfEntitiesQuery {
@@ -220,7 +220,7 @@ export type TreeEntitiesGetListOfEntitiesResponse = TreeEntitySummary[];
 export type TreeEntitiesGetListOfEntitiesParams = Parameters<
   ReturnType<
     typeof createTaxonomyResources
-  >["treeEntities"]["getListOfEntities"]
+  >['treeEntities']['getListOfEntities']
 >;
 
 export type TreeEntityRolesGetListOfTreeEntityRolesResponse = {
@@ -323,7 +323,7 @@ export type TreeEntityRolesGetListOfTreeEntityRolesResponse = {
 export type TreeEntityRolesGetListOfTreeEntityRolesParams = Parameters<
   ReturnType<
     typeof createTaxonomyResources
-  >["treeEntityRoles"]["getListOfTreeEntityRoles"]
+  >['treeEntityRoles']['getListOfTreeEntityRoles']
 >;
 
 export const createTaxonomyResources = (transport: HttpTransport) => ({
@@ -336,9 +336,9 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CardTypeTreeEntitiesAddTreeEntityToCardTypeResponse>(
         {
-          method: "POST",
-          path: "/card-types/" + pathSegment(typeId) + "/tree-entities",
-          body: { tree_entity_uid: treeEntityUid },
+          method: 'POST',
+          path: '/card-types/' + pathSegment(typeId) + '/tree-entities',
+          body: {tree_entity_uid: treeEntityUid},
           signal: options?.signal,
         },
       );
@@ -351,12 +351,12 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CardTypeTreeEntitiesDeleteTreeEntityFromCardTypeResponse>(
         {
-          method: "DELETE",
-          responseMode: "void",
+          method: 'DELETE',
+          responseMode: 'void',
           path:
-            "/card-types/" +
+            '/card-types/' +
             pathSegment(typeId) +
-            "/tree-entities/" +
+            '/tree-entities/' +
             pathSegment(uid),
           signal: options?.signal,
         },
@@ -366,8 +366,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     getListOfTypeTreeEntities: (typeId: number, options?: OperationOptions) => {
       return transport.request<CardTypeTreeEntitiesGetListOfTypeTreeEntitiesResponse>(
         {
-          method: "GET",
-          path: "/card-types/" + pathSegment(typeId) + "/tree-entities",
+          method: 'GET',
+          path: '/card-types/' + pathSegment(typeId) + '/tree-entities',
           signal: options?.signal,
         },
       );
@@ -380,8 +380,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTypesCreateNewCardTypeResponse>({
-        method: "POST",
-        path: "/card-types",
+        method: 'POST',
+        path: '/card-types',
         body,
         signal: options?.signal,
       });
@@ -389,8 +389,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/card-types/get-card-type */
     getCardType: (id: number, options?: OperationOptions) => {
       return transport.request<CardTypesGetCardTypeResponse>({
-        method: "GET",
-        path: "/card-types/" + pathSegment(id),
+        method: 'GET',
+        path: '/card-types/' + pathSegment(id),
         signal: options?.signal,
       });
     },
@@ -401,9 +401,9 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTypesGetListOfCardTypesResponse>({
-        method: "GET",
-        path: "/card-types",
-        query: { limit, offset },
+        method: 'GET',
+        path: '/card-types',
+        query: {limit, offset},
         signal: options?.signal,
       });
     },
@@ -414,9 +414,9 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTypesRemoveCardTypeResponse>({
-        method: "DELETE",
-        path: "/card-types/" + pathSegment(id),
-        body: { replace_type_id: replaceTypeId },
+        method: 'DELETE',
+        path: '/card-types/' + pathSegment(id),
+        body: {replace_type_id: replaceTypeId},
         signal: options?.signal,
       });
     },
@@ -427,8 +427,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTypesUpdateCardTypeResponse>({
-        method: "PATCH",
-        path: "/card-types/" + pathSegment(id),
+        method: 'PATCH',
+        path: '/card-types/' + pathSegment(id),
         body,
         signal: options?.signal,
       });
@@ -442,8 +442,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<TreeEntitiesGetListOfEntitiesResponse>({
-        method: "GET",
-        path: "/tree-entities",
+        method: 'GET',
+        path: '/tree-entities',
         query,
         signal: options?.signal,
       });
@@ -455,8 +455,8 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     getListOfTreeEntityRoles: (options?: OperationOptions) => {
       return transport.request<TreeEntityRolesGetListOfTreeEntityRolesResponse>(
         {
-          method: "GET",
-          path: "/tree-entity-roles",
+          method: 'GET',
+          path: '/tree-entity-roles',
           signal: options?.signal,
         },
       );

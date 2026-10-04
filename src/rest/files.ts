@@ -1,7 +1,7 @@
-import type { FileRedirectResponse, FileUploadOptions } from "../http.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {FileRedirectResponse, FileUploadOptions} from '../http.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CardFilesAttachFileToCardResponse {
   author_id: number;
@@ -23,7 +23,7 @@ export interface CardFilesAttachFileToCardResponse {
 }
 
 export type CardFilesAttachFileToCardParams = Parameters<
-  ReturnType<typeof createFilesResources>["cardFiles"]["attachFileToCard"]
+  ReturnType<typeof createFilesResources>['cardFiles']['attachFileToCard']
 >;
 
 export interface CardFilesDetachFileFromCardResponse {
@@ -31,7 +31,7 @@ export interface CardFilesDetachFileFromCardResponse {
 }
 
 export type CardFilesDetachFileFromCardParams = Parameters<
-  ReturnType<typeof createFilesResources>["cardFiles"]["detachFileFromCard"]
+  ReturnType<typeof createFilesResources>['cardFiles']['detachFileFromCard']
 >;
 
 export interface CardFilesUpdateFileBody {
@@ -41,7 +41,7 @@ export interface CardFilesUpdateFileBody {
 export type CardFilesUpdateFileResponse = Record<string, unknown>;
 
 export type CardFilesUpdateFileParams = Parameters<
-  ReturnType<typeof createFilesResources>["cardFiles"]["updateFile"]
+  ReturnType<typeof createFilesResources>['cardFiles']['updateFile']
 >;
 
 export interface RestrictedAccessCardFilesAttachFileToCardResponse {
@@ -61,7 +61,7 @@ export interface RestrictedAccessCardFilesAttachFileToCardResponse {
 export type RestrictedAccessCardFilesAttachFileToCardParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCardFiles"]["attachFileToCard"]
+  >['restrictedAccessCardFiles']['attachFileToCard']
 >;
 
 export interface RestrictedAccessCardFilesDeleteCardFileResponse {
@@ -71,7 +71,7 @@ export interface RestrictedAccessCardFilesDeleteCardFileResponse {
 export type RestrictedAccessCardFilesDeleteCardFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCardFiles"]["deleteCardFile"]
+  >['restrictedAccessCardFiles']['deleteCardFile']
 >;
 
 export interface RestrictedAccessCardFilesGetCardFileQuery {
@@ -96,7 +96,7 @@ export interface RestrictedAccessCardFilesGetCardFileResponse {
 export type RestrictedAccessCardFilesGetCardFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCardFiles"]["getCardFile"]
+  >['restrictedAccessCardFiles']['getCardFile']
 >;
 
 export interface RestrictedAccessCardFilesUpdateCardFileBody {
@@ -121,7 +121,7 @@ export interface RestrictedAccessCardFilesUpdateCardFileResponse {
 export type RestrictedAccessCardFilesUpdateCardFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCardFiles"]["updateCardFile"]
+  >['restrictedAccessCardFiles']['updateCardFile']
 >;
 
 export interface RestrictedAccessCommentFilesAttachFileToCommentResponse {
@@ -142,7 +142,7 @@ export interface RestrictedAccessCommentFilesAttachFileToCommentResponse {
 export type RestrictedAccessCommentFilesAttachFileToCommentParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCommentFiles"]["attachFileToComment"]
+  >['restrictedAccessCommentFiles']['attachFileToComment']
 >;
 
 export interface RestrictedAccessCommentFilesDeleteCommentFileResponse {
@@ -152,7 +152,7 @@ export interface RestrictedAccessCommentFilesDeleteCommentFileResponse {
 export type RestrictedAccessCommentFilesDeleteCommentFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCommentFiles"]["deleteCommentFile"]
+  >['restrictedAccessCommentFiles']['deleteCommentFile']
 >;
 
 export interface RestrictedAccessCommentFilesGetCommentFileQuery {
@@ -178,7 +178,7 @@ export interface RestrictedAccessCommentFilesGetCommentFileResponse {
 export type RestrictedAccessCommentFilesGetCommentFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCommentFiles"]["getCommentFile"]
+  >['restrictedAccessCommentFiles']['getCommentFile']
 >;
 
 export interface RestrictedAccessCommentFilesUpdateCommentFileBody {
@@ -204,7 +204,7 @@ export interface RestrictedAccessCommentFilesUpdateCommentFileResponse {
 export type RestrictedAccessCommentFilesUpdateCommentFileParams = Parameters<
   ReturnType<
     typeof createFilesResources
-  >["restrictedAccessCommentFiles"]["updateCommentFile"]
+  >['restrictedAccessCommentFiles']['updateCommentFile']
 >;
 
 export interface RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyResponse {
@@ -226,7 +226,7 @@ export type RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyParams 
   Parameters<
     ReturnType<
       typeof createFilesResources
-    >["restrictedAccessCustomPropertyFiles"]["attachFileToCustomProperty"]
+    >['restrictedAccessCustomPropertyFiles']['attachFileToCustomProperty']
   >;
 
 export interface RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileResponse {
@@ -237,7 +237,7 @@ export type RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileParams =
   Parameters<
     ReturnType<
       typeof createFilesResources
-    >["restrictedAccessCustomPropertyFiles"]["deleteCustomPropertyFile"]
+    >['restrictedAccessCustomPropertyFiles']['deleteCustomPropertyFile']
   >;
 
 export interface RestrictedAccessCustomPropertyFilesGetCustomPropertyFileQuery {
@@ -264,7 +264,7 @@ export type RestrictedAccessCustomPropertyFilesGetCustomPropertyFileParams =
   Parameters<
     ReturnType<
       typeof createFilesResources
-    >["restrictedAccessCustomPropertyFiles"]["getCustomPropertyFile"]
+    >['restrictedAccessCustomPropertyFiles']['getCustomPropertyFile']
   >;
 
 export interface RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileBody {
@@ -291,7 +291,7 @@ export type RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileParams =
   Parameters<
     ReturnType<
       typeof createFilesResources
-    >["restrictedAccessCustomPropertyFiles"]["updateCustomPropertyFile"]
+    >['restrictedAccessCustomPropertyFiles']['updateCustomPropertyFile']
   >;
 
 export const createFilesResources = (transport: HttpTransport) => {
@@ -328,12 +328,12 @@ export const createFilesResources = (transport: HttpTransport) => {
     RestrictedAccessCardFilesGetCardFileResponse | FileRedirectResponse
   > {
     return transport.request<
-      RestrictedAccessCardFilesGetCardFileResponse | { location: string }
+      RestrictedAccessCardFilesGetCardFileResponse | {location: string}
     >({
-      method: "GET",
-      path: "/cards/" + pathSegment(cardUid) + "/files/" + pathSegment(fileUid),
-      query: { redirect, download },
-      responseMode: redirect === true ? "redirect" : "json",
+      method: 'GET',
+      path: '/cards/' + pathSegment(cardUid) + '/files/' + pathSegment(fileUid),
+      query: {redirect, download},
+      responseMode: redirect === true ? 'redirect' : 'json',
       signal: options?.signal,
     });
   }
@@ -342,7 +342,7 @@ export const createFilesResources = (transport: HttpTransport) => {
     cardUid: string,
     commentUid: string,
     fileUid: string,
-    query: RestrictedAccessCommentFilesGetCommentFileQuery & { redirect: true },
+    query: RestrictedAccessCommentFilesGetCommentFileQuery & {redirect: true},
     options?: OperationOptions,
   ): Promise<FileRedirectResponse>;
   function getCommentFile(
@@ -351,8 +351,8 @@ export const createFilesResources = (transport: HttpTransport) => {
     fileUid: string,
     query?: Omit<
       RestrictedAccessCommentFilesGetCommentFileQuery,
-      "redirect"
-    > & { redirect?: false },
+      'redirect'
+    > & {redirect?: false},
     options?: OperationOptions,
   ): Promise<RestrictedAccessCommentFilesGetCommentFileResponse>;
   function getCommentFile(
@@ -374,18 +374,18 @@ export const createFilesResources = (transport: HttpTransport) => {
     RestrictedAccessCommentFilesGetCommentFileResponse | FileRedirectResponse
   > {
     return transport.request<
-      RestrictedAccessCommentFilesGetCommentFileResponse | { location: string }
+      RestrictedAccessCommentFilesGetCommentFileResponse | {location: string}
     >({
-      method: "GET",
+      method: 'GET',
       path:
-        "/cards/" +
+        '/cards/' +
         pathSegment(cardUid) +
-        "/comments/" +
+        '/comments/' +
         pathSegment(commentUid) +
-        "/files/" +
+        '/files/' +
         pathSegment(fileUid),
       query,
-      responseMode: query?.redirect === true ? "redirect" : "json",
+      responseMode: query?.redirect === true ? 'redirect' : 'json',
       signal: options?.signal,
     });
   }
@@ -405,8 +405,8 @@ export const createFilesResources = (transport: HttpTransport) => {
     fileUid: string,
     query?: Omit<
       RestrictedAccessCustomPropertyFilesGetCustomPropertyFileQuery,
-      "redirect"
-    > & { redirect?: false },
+      'redirect'
+    > & {redirect?: false},
     options?: OperationOptions,
   ): Promise<RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse>;
   function getCustomPropertyFile(
@@ -432,18 +432,18 @@ export const createFilesResources = (transport: HttpTransport) => {
   > {
     return transport.request<
       | RestrictedAccessCustomPropertyFilesGetCustomPropertyFileResponse
-      | { location: string }
+      | {location: string}
     >({
-      method: "GET",
+      method: 'GET',
       path:
-        "/cards/" +
+        '/cards/' +
         pathSegment(cardUid) +
-        "/custom-properties/" +
+        '/custom-properties/' +
         pathSegment(propertyUid) +
-        "/files/" +
+        '/files/' +
         pathSegment(fileUid),
       query,
-      responseMode: query?.redirect === true ? "redirect" : "json",
+      responseMode: query?.redirect === true ? 'redirect' : 'json',
       signal: options?.signal,
     });
   }
@@ -458,8 +458,8 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         const form = createFileForm(file, options?.filename);
         return transport.request<CardFilesAttachFileToCardResponse>({
-          method: "PUT",
-          path: "/cards/" + pathSegment(cardId) + "/files",
+          method: 'PUT',
+          path: '/cards/' + pathSegment(cardId) + '/files',
           body: form,
           signal: options?.signal,
         });
@@ -471,9 +471,9 @@ export const createFilesResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardFilesDetachFileFromCardResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" + pathSegment(cardId) + "/files/" + pathSegment(fileId),
+            '/cards/' + pathSegment(cardId) + '/files/' + pathSegment(fileId),
           signal: options?.signal,
         });
       },
@@ -485,10 +485,10 @@ export const createFilesResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardFilesUpdateFileResponse>({
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" + pathSegment(cardId) + "/files/" + pathSegment(fileId),
-          body: { card_cover: cardCover },
+            '/cards/' + pathSegment(cardId) + '/files/' + pathSegment(fileId),
+          body: {card_cover: cardCover},
           signal: options?.signal,
         });
       },
@@ -503,8 +503,8 @@ export const createFilesResources = (transport: HttpTransport) => {
         const form = createFileForm(file, options?.filename);
         return transport.request<RestrictedAccessCardFilesAttachFileToCardResponse>(
           {
-            method: "POST",
-            path: "/cards/" + pathSegment(cardUid) + "/files",
+            method: 'POST',
+            path: '/cards/' + pathSegment(cardUid) + '/files',
             body: form,
             signal: options?.signal,
           },
@@ -518,11 +518,11 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCardFilesDeleteCardFileResponse>(
           {
-            method: "DELETE",
+            method: 'DELETE',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
             signal: options?.signal,
           },
@@ -540,13 +540,13 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCardFilesUpdateCardFileResponse>(
           {
-            method: "PATCH",
+            method: 'PATCH',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
-            body: { name, card_cover: cardCover },
+            body: {name, card_cover: cardCover},
             signal: options?.signal,
           },
         );
@@ -563,13 +563,13 @@ export const createFilesResources = (transport: HttpTransport) => {
         const form = createFileForm(file, options?.filename);
         return transport.request<RestrictedAccessCommentFilesAttachFileToCommentResponse>(
           {
-            method: "POST",
+            method: 'POST',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/comments/" +
+              '/comments/' +
               pathSegment(commentUid) +
-              "/files",
+              '/files',
             body: form,
             signal: options?.signal,
           },
@@ -584,13 +584,13 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCommentFilesDeleteCommentFileResponse>(
           {
-            method: "DELETE",
+            method: 'DELETE',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/comments/" +
+              '/comments/' +
               pathSegment(commentUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
             signal: options?.signal,
           },
@@ -608,13 +608,13 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCommentFilesUpdateCommentFileResponse>(
           {
-            method: "PATCH",
+            method: 'PATCH',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/comments/" +
+              '/comments/' +
               pathSegment(commentUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
             body,
             signal: options?.signal,
@@ -633,13 +633,13 @@ export const createFilesResources = (transport: HttpTransport) => {
         const form = createFileForm(file, options?.filename);
         return transport.request<RestrictedAccessCustomPropertyFilesAttachFileToCustomPropertyResponse>(
           {
-            method: "POST",
+            method: 'POST',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/custom-properties/" +
+              '/custom-properties/' +
               pathSegment(propertyUid) +
-              "/files",
+              '/files',
             body: form,
             signal: options?.signal,
           },
@@ -654,13 +654,13 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCustomPropertyFilesDeleteCustomPropertyFileResponse>(
           {
-            method: "DELETE",
+            method: 'DELETE',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/custom-properties/" +
+              '/custom-properties/' +
               pathSegment(propertyUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
             signal: options?.signal,
           },
@@ -678,13 +678,13 @@ export const createFilesResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<RestrictedAccessCustomPropertyFilesUpdateCustomPropertyFileResponse>(
           {
-            method: "PATCH",
+            method: 'PATCH',
             path:
-              "/cards/" +
+              '/cards/' +
               pathSegment(cardUid) +
-              "/custom-properties/" +
+              '/custom-properties/' +
               pathSegment(propertyUid) +
-              "/files/" +
+              '/files/' +
               pathSegment(fileUid),
             body,
             signal: options?.signal,
@@ -698,9 +698,9 @@ export const createFilesResources = (transport: HttpTransport) => {
 function createFileForm(file: Blob, filename?: string): FormData {
   const form = new FormData();
   form.append(
-    "file",
+    'file',
     file,
-    filename ?? (file instanceof File ? file.name : "file"),
+    filename ?? (file instanceof File ? file.name : 'file'),
   );
   return form;
 }

@@ -9,7 +9,7 @@ export async function* iterateScimResults<Item>(
 ): AsyncGenerator<Item, void> {
   signal?.throwIfAborted();
   if (!Number.isSafeInteger(initialStartIndex) || initialStartIndex < 1) {
-    throw new RangeError("SCIM startIndex must be a positive safe integer");
+    throw new RangeError('SCIM startIndex must be a positive safe integer');
   }
 
   let startIndex = initialStartIndex;
@@ -22,7 +22,7 @@ export async function* iterateScimResults<Item>(
       !Number.isSafeInteger(page.totalResults) ||
       page.totalResults < 0
     ) {
-      throw new TypeError("Kaiten returned invalid SCIM pagination metadata");
+      throw new TypeError('Kaiten returned invalid SCIM pagination metadata');
     }
 
     for (const resource of page.Resources) {

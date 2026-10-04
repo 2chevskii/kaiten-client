@@ -1,5 +1,5 @@
-import type { HttpTransport, OperationOptions } from "../http.ts";
-import { pathSegment } from "../http.ts";
+import type {HttpTransport, OperationOptions} from '../http.ts';
+import {pathSegment} from '../http.ts';
 import type {
   ScimEmail,
   ScimGroupPatchOperation,
@@ -7,9 +7,9 @@ import type {
   ScimResourceMeta,
   ScimResourceReference,
   ScimUserPatchOperation,
-} from "./types.ts";
-import type { JsonValue } from "../types.ts";
-import { iterateScimResults } from "./pagination.ts";
+} from './types.ts';
+import type {JsonValue} from '../types.ts';
+import {iterateScimResults} from './pagination.ts';
 
 export interface GroupsAddGroupBody {
   displayName: string;
@@ -23,7 +23,7 @@ export interface GroupsAddGroupResponse {
 }
 
 export type GroupsAddGroupParams = Parameters<
-  ReturnType<typeof createScimResources>["groups"]["addGroup"]
+  ReturnType<typeof createScimResources>['groups']['addGroup']
 >;
 
 export interface GroupsGetGroupResponse {
@@ -35,7 +35,7 @@ export interface GroupsGetGroupResponse {
 }
 
 export type GroupsGetGroupParams = Parameters<
-  ReturnType<typeof createScimResources>["groups"]["getGroup"]
+  ReturnType<typeof createScimResources>['groups']['getGroup']
 >;
 
 export interface GroupsGetGroupsQuery {
@@ -52,7 +52,7 @@ export interface GroupsGetGroupsResponse {
 }
 
 export type GroupsGetGroupsParams = Parameters<
-  ReturnType<typeof createScimResources>["groups"]["getGroups"]
+  ReturnType<typeof createScimResources>['groups']['getGroups']
 >;
 
 export interface GroupsUpdateGroupBody {
@@ -68,7 +68,7 @@ export interface GroupsUpdateGroupResponse {
 }
 
 export type GroupsUpdateGroupParams = Parameters<
-  ReturnType<typeof createScimResources>["groups"]["updateGroup"]
+  ReturnType<typeof createScimResources>['groups']['updateGroup']
 >;
 
 export interface UsersAddUserBody {
@@ -88,7 +88,7 @@ export interface UsersAddUserResponse {
 }
 
 export type UsersAddUserParams = Parameters<
-  ReturnType<typeof createScimResources>["users"]["addUser"]
+  ReturnType<typeof createScimResources>['users']['addUser']
 >;
 
 export interface UsersGetUserResponse {
@@ -103,7 +103,7 @@ export interface UsersGetUserResponse {
 }
 
 export type UsersGetUserParams = Parameters<
-  ReturnType<typeof createScimResources>["users"]["getUser"]
+  ReturnType<typeof createScimResources>['users']['getUser']
 >;
 
 export interface UsersGetUsersQuery {
@@ -121,7 +121,7 @@ export interface UsersGetUsersResponse {
 }
 
 export type UsersGetUsersParams = Parameters<
-  ReturnType<typeof createScimResources>["users"]["getUsers"]
+  ReturnType<typeof createScimResources>['users']['getUsers']
 >;
 
 export interface UsersUpdateUserBody {
@@ -140,15 +140,15 @@ export interface UsersUpdateUserResponse {
 }
 
 export type UsersUpdateUserParams = Parameters<
-  ReturnType<typeof createScimResources>["users"]["updateUser"]
+  ReturnType<typeof createScimResources>['users']['updateUser']
 >;
 
 export type GroupsIterateParams = Parameters<
-  ReturnType<typeof createScimResources>["groups"]["iterate"]
+  ReturnType<typeof createScimResources>['groups']['iterate']
 >;
 
 export type UsersIterateParams = Parameters<
-  ReturnType<typeof createScimResources>["users"]["iterate"]
+  ReturnType<typeof createScimResources>['users']['iterate']
 >;
 
 export const createScimResources = (transport: HttpTransport) => {
@@ -158,9 +158,9 @@ export const createScimResources = (transport: HttpTransport) => {
     options?: OperationOptions,
   ) => {
     return transport.request<GroupsGetGroupsResponse>({
-      method: "GET",
-      path: "/Groups",
-      query: { startIndex, count },
+      method: 'GET',
+      path: '/Groups',
+      query: {startIndex, count},
       signal: options?.signal,
     });
   };
@@ -172,9 +172,9 @@ export const createScimResources = (transport: HttpTransport) => {
     options?: OperationOptions,
   ) => {
     return transport.request<UsersGetUsersResponse>({
-      method: "GET",
-      path: "/Users",
-      query: { startIndex, count, filter },
+      method: 'GET',
+      path: '/Users',
+      query: {startIndex, count, filter},
       signal: options?.signal,
     });
   };
@@ -190,9 +190,9 @@ export const createScimResources = (transport: HttpTransport) => {
         count?: number,
         options?: OperationOptions,
       ) => {
-        const requestOptions = { ...options };
+        const requestOptions = {...options};
         return iterateScimResults(
-          (index) => getGroups(index, count, requestOptions),
+          index => getGroups(index, count, requestOptions),
           startIndex,
           requestOptions.signal,
         );
@@ -201,9 +201,9 @@ export const createScimResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/scim/groups/add-group */
       addGroup: (displayName: string, options?: OperationOptions) => {
         return transport.request<GroupsAddGroupResponse>({
-          method: "POST",
-          path: "/Groups",
-          body: { displayName },
+          method: 'POST',
+          path: '/Groups',
+          body: {displayName},
           signal: options?.signal,
         });
       },
@@ -211,8 +211,8 @@ export const createScimResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/scim/groups/get-group */
       getGroup: (groupId: string | number, options?: OperationOptions) => {
         return transport.request<GroupsGetGroupResponse>({
-          method: "GET",
-          path: "/Groups/" + pathSegment(groupId),
+          method: 'GET',
+          path: '/Groups/' + pathSegment(groupId),
           signal: options?.signal,
         });
       },
@@ -227,9 +227,9 @@ export const createScimResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<GroupsUpdateGroupResponse>({
-          method: "PATCH",
-          path: "/Groups/" + pathSegment(groupId),
-          body: { Operations: operations },
+          method: 'PATCH',
+          path: '/Groups/' + pathSegment(groupId),
+          body: {Operations: operations},
           signal: options?.signal,
         });
       },
@@ -242,9 +242,9 @@ export const createScimResources = (transport: HttpTransport) => {
         filter?: string,
         options?: OperationOptions,
       ) => {
-        const requestOptions = { ...options };
+        const requestOptions = {...options};
         return iterateScimResults(
-          (index) => getUsers(index, count, filter, requestOptions),
+          index => getUsers(index, count, filter, requestOptions),
           startIndex,
           requestOptions.signal,
         );
@@ -252,8 +252,8 @@ export const createScimResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/scim/users/add-user */
       addUser: (body: UsersAddUserBody, options?: OperationOptions) => {
         return transport.request<UsersAddUserResponse>({
-          method: "POST",
-          path: "/Users",
+          method: 'POST',
+          path: '/Users',
           body,
           signal: options?.signal,
         });
@@ -261,8 +261,8 @@ export const createScimResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/scim/users/get-user */
       getUser: (userId: number, options?: OperationOptions) => {
         return transport.request<UsersGetUserResponse>({
-          method: "GET",
-          path: "/Users/" + pathSegment(userId),
+          method: 'GET',
+          path: '/Users/' + pathSegment(userId),
           signal: options?.signal,
         });
       },
@@ -275,9 +275,9 @@ export const createScimResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<UsersUpdateUserResponse>({
-          method: "PATCH",
-          path: "/Users/" + pathSegment(userId),
-          body: { Operations: operations },
+          method: 'PATCH',
+          path: '/Users/' + pathSegment(userId),
+          body: {Operations: operations},
           signal: options?.signal,
         });
       },

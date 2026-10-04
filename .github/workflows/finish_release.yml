@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 24
           registry-url: ${{ matrix.registry == 'npm' && 'https://registry.npmjs.org' || 'https://npm.pkg.github.com' }}
-          scope: "@2chevskii"
+          scope: '@2chevskii'
       - id: version
         run: echo "package=2chevskii-kaiten-client-${RELEASE_TAG#v}.tgz" >> "$GITHUB_OUTPUT"
       - env:

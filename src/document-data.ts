@@ -1,4 +1,4 @@
-import type { JsonValue } from "./types.ts";
+import type {JsonValue} from './types.ts';
 
 export interface DocumentMark {
   type: string;
@@ -15,12 +15,12 @@ export interface DocumentNode {
 }
 
 export interface DocumentData extends DocumentNode {
-  type: "doc";
+  type: 'doc';
   content: DocumentNode[];
 }
 
 export type JsonSchemaType =
-  "null" | "boolean" | "object" | "array" | "number" | "integer" | "string";
+  'null' | 'boolean' | 'object' | 'array' | 'number' | 'integer' | 'string';
 
 export type JsonSchemaDefinition = boolean | JsonSchema;
 
@@ -83,10 +83,10 @@ export interface ProseMirrorMarkSpec {
 }
 
 export interface DocumentProseMirrorSchema {
-  type: "prosemirror-document-data-schema";
+  type: 'prosemirror-document-data-schema';
   version: string;
   topNode: string;
-  data: { type: string; content: string };
+  data: {type: string; content: string};
   nodes: Record<string, ProseMirrorNodeSpec>;
   marks: Record<string, ProseMirrorMarkSpec>;
 }

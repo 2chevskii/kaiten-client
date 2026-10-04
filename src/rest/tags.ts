@@ -1,8 +1,8 @@
-import type { HttpTransport, OperationOptions } from "../http.ts";
-import type { QueryList } from "../types.ts";
+import type {HttpTransport, OperationOptions} from '../http.ts';
+import type {QueryList} from '../types.ts';
 
-import { pathSegment } from "../http.ts";
-import { iterateOffsetResults } from "./pagination.ts";
+import {pathSegment} from '../http.ts';
+import {iterateOffsetResults} from './pagination.ts';
 
 export interface CardTagsAddTagBody {
   name: string;
@@ -19,7 +19,7 @@ export interface CardTagsAddTagResponse {
 }
 
 export type CardTagsAddTagParams = Parameters<
-  ReturnType<typeof createTagsResources>["cardTags"]["addTag"]
+  ReturnType<typeof createTagsResources>['cardTags']['addTag']
 >;
 
 export interface CardTagsRemoveTagFromCardResponse {
@@ -27,7 +27,7 @@ export interface CardTagsRemoveTagFromCardResponse {
 }
 
 export type CardTagsRemoveTagFromCardParams = Parameters<
-  ReturnType<typeof createTagsResources>["cardTags"]["removeTagFromCard"]
+  ReturnType<typeof createTagsResources>['cardTags']['removeTagFromCard']
 >;
 
 export type CardTagsRertrieveListOfTagsResponse = {
@@ -39,7 +39,7 @@ export type CardTagsRertrieveListOfTagsResponse = {
 }[];
 
 export type CardTagsRertrieveListOfTagsParams = Parameters<
-  ReturnType<typeof createTagsResources>["cardTags"]["rertrieveListOfTags"]
+  ReturnType<typeof createTagsResources>['cardTags']['rertrieveListOfTags']
 >;
 
 export interface TagsAddTagQuery {
@@ -65,7 +65,7 @@ export interface TagsAddTagResponse {
 }
 
 export type TagsAddTagParams = Parameters<
-  ReturnType<typeof createTagsResources>["tags"]["addTag"]
+  ReturnType<typeof createTagsResources>['tags']['addTag']
 >;
 
 export interface TagsRetrieveListOfTagsQuery {
@@ -87,11 +87,11 @@ export type TagsRetrieveListOfTagsResponse = {
 }[];
 
 export type TagsRetrieveListOfTagsParams = Parameters<
-  ReturnType<typeof createTagsResources>["tags"]["retrieveListOfTags"]
+  ReturnType<typeof createTagsResources>['tags']['retrieveListOfTags']
 >;
 
 export type TagsIterateParams = Parameters<
-  ReturnType<typeof createTagsResources>["tags"]["iterate"]
+  ReturnType<typeof createTagsResources>['tags']['iterate']
 >;
 
 function getTagsPage(
@@ -100,8 +100,8 @@ function getTagsPage(
   options?: OperationOptions,
 ): Promise<TagsRetrieveListOfTagsResponse> {
   return transport.request<TagsRetrieveListOfTagsResponse>({
-    method: "GET",
-    path: "/tags",
+    method: 'GET',
+    path: '/tags',
     query,
     signal: options?.signal,
   });
@@ -112,9 +112,9 @@ export const createTagsResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/card-tags/add-tag */
     addTag: (cardId: number, name: string, options?: OperationOptions) => {
       return transport.request<CardTagsAddTagResponse>({
-        method: "POST",
-        path: "/cards/" + pathSegment(cardId) + "/tags",
-        body: { name },
+        method: 'POST',
+        path: '/cards/' + pathSegment(cardId) + '/tags',
+        body: {name},
         signal: options?.signal,
       });
     },
@@ -125,16 +125,16 @@ export const createTagsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CardTagsRemoveTagFromCardResponse>({
-        method: "DELETE",
-        path: "/cards/" + pathSegment(cardId) + "/tags/" + pathSegment(tagId),
+        method: 'DELETE',
+        path: '/cards/' + pathSegment(cardId) + '/tags/' + pathSegment(tagId),
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/card-tags/rertrieve-list-of-tags */
     rertrieveListOfTags: (cardId: number, options?: OperationOptions) => {
       return transport.request<CardTagsRertrieveListOfTagsResponse>({
-        method: "GET",
-        path: "/cards/" + pathSegment(cardId) + "/tags",
+        method: 'GET',
+        path: '/cards/' + pathSegment(cardId) + '/tags',
         signal: options?.signal,
       });
     },
@@ -162,10 +162,10 @@ export const createTagsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<TagsAddTagResponse>({
-        method: "POST",
-        path: "/tags",
+        method: 'POST',
+        path: '/tags',
         query,
-        body: { name },
+        body: {name},
         signal: options?.signal,
       });
     },

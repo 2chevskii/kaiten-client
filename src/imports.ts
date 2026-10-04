@@ -33,7 +33,7 @@ export interface ImportCardsRecord {
   child_card_ids?: (string | number)[] | null;
   created?: string | null;
   description?: string | null;
-  description_type?: "markdown" | "html" | null;
+  description_type?: 'markdown' | 'html' | null;
   due_date?: ImportCardsCardDateObject;
   asap?: boolean;
   size_text?: string | null;
@@ -158,7 +158,7 @@ export interface ImportCustomFieldsCatalogField {
 
 /** @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export type ImportCustomFieldsDataField =
-  { count: number; emoji: string } | { emojis: string[] };
+  {count: number; emoji: string} | {emojis: string[]};
 
 /** @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export interface ImportCustomFieldsOptions {
@@ -248,20 +248,20 @@ export interface ImportUsersRecord {
 }
 
 export type ImportEntityName =
-  | "boards"
-  | "card_timers"
-  | "cards"
-  | "columns"
-  | "columns_mapping"
-  | "comments"
-  | "custom_fields"
-  | "document_files"
-  | "documents"
-  | "files"
-  | "folders"
-  | "properties_mapping"
-  | "spaces"
-  | "users";
+  | 'boards'
+  | 'card_timers'
+  | 'cards'
+  | 'columns'
+  | 'columns_mapping'
+  | 'comments'
+  | 'custom_fields'
+  | 'document_files'
+  | 'documents'
+  | 'files'
+  | 'folders'
+  | 'properties_mapping'
+  | 'spaces'
+  | 'users';
 
 export type ImportColor =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;

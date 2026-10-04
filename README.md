@@ -12,7 +12,7 @@ Node.js 24 or newer is required. The package ships compiled ESM JavaScript and
 type declarations. Both `import` and Node.js 24's `require()` are supported:
 
 ```js
-const { KaitenClient } = require("@2chevskii/kaiten-client");
+const {KaitenClient} = require('@2chevskii/kaiten-client');
 ```
 
 Source files and declaration maps are included for editor navigation. JavaScript
@@ -24,26 +24,26 @@ The bilingual [documentation site](https://2chevskii.github.io/kaiten-client/) h
 ## REST client
 
 ```ts
-import { KaitenClient, KaitenHttpError } from "@2chevskii/kaiten-client";
+import {KaitenClient, KaitenHttpError} from '@2chevskii/kaiten-client';
 
 const client = new KaitenClient({
-  origin: "https://acme.kaiten.ru",
+  origin: 'https://acme.kaiten.ru',
   token: process.env.KAITEN_TOKEN!,
 });
 
 const card = await client.cards.create({
-  title: "Prepare release",
+  title: 'Prepare release',
   board_id: 10,
 });
 
-const firstPage = await client.cards.retrieveCardList({ limit: 100 });
+const firstPage = await client.cards.retrieveCardList({limit: 100});
 const nextSearchPage = await client.cards.retrieveCardList({
   version: 2,
-  start_position: "cursor-from-previous-page",
+  start_position: 'cursor-from-previous-page',
 });
 console.log(card.id, firstPage.length, nextSearchPage.position);
 
-for await (const item of client.cards.iterate({ board_id: 10, limit: 50 })) {
+for await (const item of client.cards.iterate({board_id: 10, limit: 50})) {
   console.log(item.id, item.title);
 }
 
@@ -54,7 +54,7 @@ try {
     console.error(
       error.status,
       error.body,
-      error.headers.get("X-RateLimit-Reset"),
+      error.headers.get('X-RateLimit-Reset'),
     );
   }
 }
@@ -72,13 +72,13 @@ Restricted file access uses UUID paths and `Blob` uploads:
 
 ```ts
 const uploaded = await client.restrictedAccessCardFiles.attachFileToCard(
-  "card-uuid",
-  new Blob(["report"], { type: "text/plain" }),
-  { filename: "report.txt" },
+  'card-uuid',
+  new Blob(['report'], {type: 'text/plain'}),
+  {filename: 'report.txt'},
 );
 
 const file = await client.restrictedAccessCardFiles.getCardFile(
-  "card-uuid",
+  'card-uuid',
   uploaded.id,
 );
 ```
@@ -88,10 +88,10 @@ For `redirect: true`, the method returns `{ location: string }` instead of follo
 ## SCIM
 
 ```ts
-import { KaitenScimClient } from "@2chevskii/kaiten-client/scim";
+import {KaitenScimClient} from '@2chevskii/kaiten-client/scim';
 
 const scim = new KaitenScimClient({
-  origin: "https://acme.kaiten.ru",
+  origin: 'https://acme.kaiten.ru',
   token: process.env.KAITEN_TOKEN!,
 });
 
@@ -101,22 +101,22 @@ const users = await scim.users.getUsers();
 ## Webhooks and metadata
 
 ```ts
-import { sendCardWebhook } from "@2chevskii/kaiten-client/webhooks";
-import type { KaitenWebhookEvent } from "@2chevskii/kaiten-client/webhooks";
-import type { UserMetadataHandler } from "@2chevskii/kaiten-client/metadata";
+import {sendCardWebhook} from '@2chevskii/kaiten-client/webhooks';
+import type {KaitenWebhookEvent} from '@2chevskii/kaiten-client/webhooks';
+import type {UserMetadataHandler} from '@2chevskii/kaiten-client/metadata';
 
 await sendCardWebhook(process.env.KAITEN_WEBHOOK_URL!, {
-  title: "Created from an integration",
-  tags: ["integration"],
+  title: 'Created from an integration',
+  tags: ['integration'],
 });
 
 function handleEvent(event: KaitenWebhookEvent) {
-  if (event.event === "card:add") {
+  if (event.event === 'card:add') {
     console.log(event.data.title);
   }
 }
 
-const metadataHandler: UserMetadataHandler = ({ email }) => ({
+const metadataHandler: UserMetadataHandler = ({email}) => ({
   description: `Requested by ${email}`,
 });
 
@@ -132,22 +132,22 @@ Outgoing webhook types follow the 22 documented event payload examples. Kaiten s
 import type {
   ImportMetaDataRecord,
   ImportCardsRecord,
-} from "@2chevskii/kaiten-client/imports";
+} from '@2chevskii/kaiten-client/imports';
 
 const metadata: ImportMetaDataRecord = {
-  entities: ["boards", "columns", "cards"],
+  entities: ['boards', 'columns', 'cards'],
   entities_paths_map: {
-    boards: "boards.json",
-    columns: "columns.json",
-    cards: "cards.json",
+    boards: 'boards.json',
+    columns: 'columns.json',
+    cards: 'cards.json',
   },
 };
 
 const cards: ImportCardsRecord[] = [
   {
-    id: "external-card-1",
-    column_id: "external-column-1",
-    title: "Imported card",
+    id: 'external-card-1',
+    column_id: 'external-column-1',
+    title: 'Imported card',
   },
 ];
 
@@ -166,13 +166,13 @@ The browser types describe Kaiten's [hosted Web SDK](https://developers.kaiten.r
 ```
 
 ```ts
-import type { AddonCapabilities } from "@2chevskii/kaiten-client/addons";
+import type {AddonCapabilities} from '@2chevskii/kaiten-client/addons';
 
 const capabilities: AddonCapabilities = {
   card_buttons: () => [
     {
-      text: "Open card",
-      callback: async (context) => {
+      text: 'Open card',
+      callback: async context => {
         const card = await context.getCard();
         console.log(card.title);
       },
@@ -186,14 +186,14 @@ Addon.initialize(capabilities);
 For an addon backend, use the separate OAuth token endpoints with the addon secret:
 
 ```ts
-import { AddonOAuthClient } from "@2chevskii/kaiten-client/addon-oauth";
+import {AddonOAuthClient} from '@2chevskii/kaiten-client/addon-oauth';
 
 const oauth = new AddonOAuthClient({
-  origin: "https://acme.kaiten.ru",
+  origin: 'https://acme.kaiten.ru',
   addonSecret: process.env.KAITEN_ADDON_SECRET!,
 });
 
-const token = await oauth.getToken("addon-uuid", 1, 1);
+const token = await oauth.getToken('addon-uuid', 1, 1);
 ```
 
 ## Development and verification

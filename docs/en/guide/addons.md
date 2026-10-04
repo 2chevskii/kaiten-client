@@ -11,13 +11,13 @@ Kaiten provides the runtime SDK. Load it in your addon page:
 ```
 
 ```ts
-import type { AddonCapabilities } from "@2chevskii/kaiten-client/addons";
+import type {AddonCapabilities} from '@2chevskii/kaiten-client/addons';
 
 const capabilities: AddonCapabilities = {
   card_buttons: () => [
     {
-      text: "Open card",
-      callback: async (context) => {
+      text: 'Open card',
+      callback: async context => {
         const card = await context.getCard();
         console.log(card.title);
       },
@@ -33,14 +33,14 @@ The export declares the global `Addon` and types for `KaitenAddonSdk`, `AddonCon
 ## Server-side OAuth
 
 ```ts
-import { AddonOAuthClient } from "@2chevskii/kaiten-client/addon-oauth";
+import {AddonOAuthClient} from '@2chevskii/kaiten-client/addon-oauth';
 
 const oauth = new AddonOAuthClient({
-  origin: "https://your-company.kaiten.ru",
+  origin: 'https://your-company.kaiten.ru',
   addonSecret: process.env.KAITEN_ADDON_SECRET!,
 });
 
-const key = ["addon-uuid", 1, 1] as const;
+const key = ['addon-uuid', 1, 1] as const;
 const token = await oauth.getToken(...key);
 if (token.has_token) console.log(token.access_token);
 

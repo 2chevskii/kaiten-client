@@ -1,7 +1,7 @@
-import type { JsonValue, RequireAtLeastOne } from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {JsonValue, RequireAtLeastOne} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
 export interface CustomDirectoriesCreateCustomDirectoryBody {
   name: string;
@@ -12,18 +12,18 @@ export interface CustomDirectoriesCreateCustomDirectoryBody {
   fields?: {
     name: string;
     type:
-      | "string"
-      | "number"
-      | "date"
-      | "email"
-      | "url"
-      | "phone"
-      | "checkbox"
-      | "select"
-      | "user"
-      | "catalog"
-      | "directory_link"
-      | "file";
+      | 'string'
+      | 'number'
+      | 'date'
+      | 'email'
+      | 'url'
+      | 'phone'
+      | 'checkbox'
+      | 'select'
+      | 'user'
+      | 'catalog'
+      | 'directory_link'
+      | 'file';
     required?: boolean;
     sort_order?: number;
     custom_property_uid?: null | string;
@@ -63,7 +63,7 @@ export interface CustomDirectoriesCreateCustomDirectoryResponse {
 export type CustomDirectoriesCreateCustomDirectoryParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectories"]["createCustomDirectory"]
+  >['customDirectories']['createCustomDirectory']
 >;
 
 export interface CustomDirectoriesDeleteCustomDirectoryResponse {
@@ -76,7 +76,7 @@ export interface CustomDirectoriesDeleteCustomDirectoryResponse {
 export type CustomDirectoriesDeleteCustomDirectoryParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectories"]["deleteCustomDirectory"]
+  >['customDirectories']['deleteCustomDirectory']
 >;
 
 export interface CustomDirectoriesGetCustomDirectoryResponse {
@@ -118,7 +118,7 @@ export interface CustomDirectoriesGetCustomDirectoryResponse {
 export type CustomDirectoriesGetCustomDirectoryParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectories"]["getCustomDirectory"]
+  >['customDirectories']['getCustomDirectory']
 >;
 
 export interface CustomDirectoriesGetListOfCustomDirectoriesQuery {
@@ -128,7 +128,7 @@ export interface CustomDirectoriesGetListOfCustomDirectoriesQuery {
   limit?: number;
   offset?: number;
   query?: string;
-  conditions?: ("active" | "inactive" | "removed")[];
+  conditions?: ('active' | 'inactive' | 'removed')[];
 }
 
 export type CustomDirectoriesGetListOfCustomDirectoriesResponse = {
@@ -150,31 +150,31 @@ export type CustomDirectoriesGetListOfCustomDirectoriesResponse = {
 export type CustomDirectoriesGetListOfCustomDirectoriesParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectories"]["getListOfCustomDirectories"]
+  >['customDirectories']['getListOfCustomDirectories']
 >;
 
 export interface CustomDirectoriesUpdateCustomDirectoryBody {
   name?: string;
   description?: null | string;
-  condition?: "active" | "inactive" | "removed";
+  condition?: 'active' | 'inactive' | 'removed';
   multi_select?: boolean;
   allow_editing?: boolean;
   fields?: {
     id?: string;
     name?: string;
     type?:
-      | "string"
-      | "number"
-      | "date"
-      | "email"
-      | "url"
-      | "phone"
-      | "checkbox"
-      | "select"
-      | "user"
-      | "catalog"
-      | "directory_link"
-      | "file";
+      | 'string'
+      | 'number'
+      | 'date'
+      | 'email'
+      | 'url'
+      | 'phone'
+      | 'checkbox'
+      | 'select'
+      | 'user'
+      | 'catalog'
+      | 'directory_link'
+      | 'file';
     required?: boolean;
     is_display?: boolean;
     sort_order?: number;
@@ -222,24 +222,24 @@ export interface CustomDirectoriesUpdateCustomDirectoryResponse {
 export type CustomDirectoriesUpdateCustomDirectoryParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectories"]["updateCustomDirectory"]
+  >['customDirectories']['updateCustomDirectory']
 >;
 
 export interface CustomDirectoryFieldsCreateFieldBody {
   name: string;
   type:
-    | "string"
-    | "number"
-    | "date"
-    | "email"
-    | "url"
-    | "phone"
-    | "checkbox"
-    | "select"
-    | "user"
-    | "catalog"
-    | "directory_link"
-    | "file";
+    | 'string'
+    | 'number'
+    | 'date'
+    | 'email'
+    | 'url'
+    | 'phone'
+    | 'checkbox'
+    | 'select'
+    | 'user'
+    | 'catalog'
+    | 'directory_link'
+    | 'file';
   sort_order?: number;
   required?: boolean;
   is_display?: boolean;
@@ -267,7 +267,7 @@ export interface CustomDirectoryFieldsCreateFieldResponse {
 export type CustomDirectoryFieldsCreateFieldParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryFields"]["createField"]
+  >['customDirectoryFields']['createField']
 >;
 
 export interface CustomDirectoryFieldsDeleteFieldResponse {
@@ -282,7 +282,7 @@ export interface CustomDirectoryFieldsDeleteFieldResponse {
 export type CustomDirectoryFieldsDeleteFieldParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryFields"]["deleteField"]
+  >['customDirectoryFields']['deleteField']
 >;
 
 export interface CustomDirectoryFieldsGetFieldResponse {
@@ -316,12 +316,12 @@ export interface CustomDirectoryFieldsGetFieldResponse {
 export type CustomDirectoryFieldsGetFieldParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryFields"]["getField"]
+  >['customDirectoryFields']['getField']
 >;
 
 export interface CustomDirectoryFieldsGetListOfFieldsQuery {
   include_author?: boolean;
-  conditions?: ("active" | "inactive" | "removed")[];
+  conditions?: ('active' | 'inactive' | 'removed')[];
 }
 
 export type CustomDirectoryFieldsGetListOfFieldsResponse = {
@@ -338,12 +338,12 @@ export type CustomDirectoryFieldsGetListOfFieldsResponse = {
 export type CustomDirectoryFieldsGetListOfFieldsParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryFields"]["getListOfFields"]
+  >['customDirectoryFields']['getListOfFields']
 >;
 
 export interface CustomDirectoryFieldsUpdateFieldBody {
   name?: string;
-  condition?: "active" | "inactive" | "removed";
+  condition?: 'active' | 'inactive' | 'removed';
   sort_order?: number;
   required?: boolean;
   is_display?: boolean;
@@ -371,7 +371,7 @@ export interface CustomDirectoryFieldsUpdateFieldResponse {
 export type CustomDirectoryFieldsUpdateFieldParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryFields"]["updateField"]
+  >['customDirectoryFields']['updateField']
 >;
 
 export interface CustomDirectoryRecordsCreateRecordQuery {
@@ -424,7 +424,7 @@ export interface CustomDirectoryRecordsCreateRecordResponse {
 export type CustomDirectoryRecordsCreateRecordParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["createRecord"]
+  >['customDirectoryRecords']['createRecord']
 >;
 
 export interface CustomDirectoryRecordsDeleteRecordResponse {
@@ -437,7 +437,7 @@ export interface CustomDirectoryRecordsDeleteRecordResponse {
 export type CustomDirectoryRecordsDeleteRecordParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["deleteRecord"]
+  >['customDirectoryRecords']['deleteRecord']
 >;
 
 export interface CustomDirectoryRecordsGetCardsLinkedToRecordQuery {
@@ -455,7 +455,7 @@ export type CustomDirectoryRecordsGetCardsLinkedToRecordResponse = {
 export type CustomDirectoryRecordsGetCardsLinkedToRecordParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["getCardsLinkedToRecord"]
+  >['customDirectoryRecords']['getCardsLinkedToRecord']
 >;
 
 export interface CustomDirectoryRecordsGetListOfRecordsQuery {
@@ -465,7 +465,7 @@ export interface CustomDirectoryRecordsGetListOfRecordsQuery {
   profile?: string;
   include_values?: boolean;
   include_author?: boolean;
-  conditions?: ("active" | "inactive" | "removed")[];
+  conditions?: ('active' | 'inactive' | 'removed')[];
   filters?: Record<string, JsonValue>;
   filter_operator?: string;
 }
@@ -486,7 +486,7 @@ export type CustomDirectoryRecordsGetListOfRecordsResponse = {
 export type CustomDirectoryRecordsGetListOfRecordsParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["getListOfRecords"]
+  >['customDirectoryRecords']['getListOfRecords']
 >;
 
 export interface CustomDirectoryRecordsGetRecordQuery {
@@ -535,7 +535,7 @@ export interface CustomDirectoryRecordsGetRecordResponse {
 export type CustomDirectoryRecordsGetRecordParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["getRecord"]
+  >['customDirectoryRecords']['getRecord']
 >;
 
 export interface CustomDirectoryRecordsUpdateRecordQuery {
@@ -543,7 +543,7 @@ export interface CustomDirectoryRecordsUpdateRecordQuery {
 }
 
 export interface CustomDirectoryRecordsUpdateRecordBody {
-  condition?: "active" | "inactive" | "removed";
+  condition?: 'active' | 'inactive' | 'removed';
   values?: Record<string, unknown>;
 }
 
@@ -589,31 +589,31 @@ export interface CustomDirectoryRecordsUpdateRecordResponse {
 export type CustomDirectoryRecordsUpdateRecordParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customDirectoryRecords"]["updateRecord"]
+  >['customDirectoryRecords']['updateRecord']
 >;
 
 export interface CustomPropertiesCreateNewPropertyFields {
   name?: string;
   show_on_facade?: boolean;
   multiline?: boolean;
-  vote_variant?: null | "rating" | "scale" | "emoji_set";
+  vote_variant?: null | 'rating' | 'scale' | 'emoji_set';
   type?:
-    | "string"
-    | "number"
-    | "date"
-    | "email"
-    | "phone"
-    | "checkbox"
-    | "select"
-    | "formula"
-    | "url"
-    | "collective_score"
-    | "vote"
-    | "collective_vote"
-    | "catalog"
-    | "user"
-    | "attachment";
-  values_type?: null | "number" | "text";
+    | 'string'
+    | 'number'
+    | 'date'
+    | 'email'
+    | 'phone'
+    | 'checkbox'
+    | 'select'
+    | 'formula'
+    | 'url'
+    | 'collective_score'
+    | 'vote'
+    | 'collective_vote'
+    | 'catalog'
+    | 'user'
+    | 'attachment';
+  values_type?: null | 'number' | 'text';
   colorful?: boolean | null;
   multi_select?: boolean | null;
   values_creatable_by_users?: boolean | null;
@@ -632,7 +632,7 @@ export interface CustomPropertiesCreateNewPropertyFields {
     emojis?: string[];
     min?: number;
     max?: number;
-    calculation_method?: "average" | "sum";
+    calculation_method?: 'average' | 'sum';
   };
   formula?: string;
   formula_source_card?: Record<string, JsonValue>;
@@ -643,11 +643,11 @@ export interface CustomPropertiesCreateNewPropertyFields {
 export type CustomPropertiesCreateNewPropertyBody =
   CustomPropertiesCreateNewPropertyFields &
     (
-      | Required<Pick<CustomPropertiesCreateNewPropertyFields, "name" | "type">>
+      | Required<Pick<CustomPropertiesCreateNewPropertyFields, 'name' | 'type'>>
       | Required<
           Pick<
             CustomPropertiesCreateNewPropertyFields,
-            "formula" | "formula_source_card"
+            'formula' | 'formula_source_card'
           >
         >
     );
@@ -678,7 +678,7 @@ export interface CustomPropertiesCreateNewPropertyResponse {
 export type CustomPropertiesCreateNewPropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customProperties"]["createNewProperty"]
+  >['customProperties']['createNewProperty']
 >;
 
 export interface CustomPropertiesGetListOfPropertiesQuery {
@@ -721,7 +721,7 @@ export type CustomPropertiesGetListOfPropertiesResponse = {
 export type CustomPropertiesGetListOfPropertiesParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customProperties"]["getListOfProperties"]
+  >['customProperties']['getListOfProperties']
 >;
 
 export interface CustomPropertiesGetPropertyResponse {
@@ -751,7 +751,7 @@ export interface CustomPropertiesGetPropertyResponse {
 export type CustomPropertiesGetPropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customProperties"]["getProperty"]
+  >['customProperties']['getProperty']
 >;
 
 export interface CustomPropertiesRemovePropertyResponse {
@@ -780,14 +780,14 @@ export interface CustomPropertiesRemovePropertyResponse {
 export type CustomPropertiesRemovePropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customProperties"]["removeProperty"]
+  >['customProperties']['removeProperty']
 >;
 
 export interface CustomPropertiesUpdatePropertyBody {
   name?: string;
   show_on_facade?: boolean;
   multiline?: boolean;
-  condition?: "active" | "inactive";
+  condition?: 'active' | 'inactive';
   colorful?: boolean | null;
   multi_select?: boolean | null;
   values_creatable_by_users?: boolean | null;
@@ -824,7 +824,7 @@ export interface CustomPropertiesUpdatePropertyResponse {
 export type CustomPropertiesUpdatePropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customProperties"]["updateProperty"]
+  >['customProperties']['updateProperty']
 >;
 
 export interface CustomPropertyCatalogValuesCreateNewCatalogValueBody {
@@ -837,7 +837,7 @@ export interface CustomPropertyCatalogValuesCreateNewCatalogValueResponse {
   id: number;
   custom_property_id: number;
   value: {
-    "78a2a419-059e-482c-9d30-fe8b94c7ef6a": string;
+    '78a2a419-059e-482c-9d30-fe8b94c7ef6a': string;
   };
   name: string;
   author_id: number;
@@ -848,7 +848,7 @@ export interface CustomPropertyCatalogValuesCreateNewCatalogValueResponse {
 export type CustomPropertyCatalogValuesCreateNewCatalogValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertyCatalogValues"]["createNewCatalogValue"]
+  >['customPropertyCatalogValues']['createNewCatalogValue']
 >;
 
 export interface CustomPropertyCatalogValuesGetCatalogValueResponse {
@@ -857,7 +857,7 @@ export interface CustomPropertyCatalogValuesGetCatalogValueResponse {
   id: number;
   custom_property_id: number;
   value: {
-    "78a2a419-059e-482c-9d30-fe8b94c7ef6a": string;
+    '78a2a419-059e-482c-9d30-fe8b94c7ef6a': string;
   };
   name: string;
   author_id: number;
@@ -868,7 +868,7 @@ export interface CustomPropertyCatalogValuesGetCatalogValueResponse {
 export type CustomPropertyCatalogValuesGetCatalogValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertyCatalogValues"]["getCatalogValue"]
+  >['customPropertyCatalogValues']['getCatalogValue']
 >;
 
 export interface CustomPropertyCatalogValuesGetListOfCatalogValuesQuery {
@@ -884,7 +884,7 @@ export type CustomPropertyCatalogValuesGetListOfCatalogValuesResponse = {
   id: number;
   custom_property_id: number;
   value: {
-    "78a2a419-059e-482c-9d30-fe8b94c7ef6a": string;
+    '78a2a419-059e-482c-9d30-fe8b94c7ef6a': string;
   };
   name: string;
   author_id: number;
@@ -896,7 +896,7 @@ export type CustomPropertyCatalogValuesGetListOfCatalogValuesParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCatalogValues"]["getListOfCatalogValues"]
+    >['customPropertyCatalogValues']['getListOfCatalogValues']
   >;
 
 export interface CustomPropertyCatalogValuesRemovePropertyResponse {
@@ -905,7 +905,7 @@ export interface CustomPropertyCatalogValuesRemovePropertyResponse {
   id: number;
   custom_property_id: number;
   value: {
-    "78a2a419-059e-482c-9d30-fe8b94c7ef6a": string;
+    '78a2a419-059e-482c-9d30-fe8b94c7ef6a': string;
   };
   name: string;
   author_id: number;
@@ -916,17 +916,17 @@ export interface CustomPropertyCatalogValuesRemovePropertyResponse {
 export type CustomPropertyCatalogValuesRemovePropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertyCatalogValues"]["removeProperty"]
+  >['customPropertyCatalogValues']['removeProperty']
 >;
 
 export type CustomPropertyCatalogValuesUpdateCatalogValueBody =
   RequireAtLeastOne<
     {
-      condition?: "active" | "inactive";
+      condition?: 'active' | 'inactive';
       value?: Record<string, JsonValue>;
       deleted?: boolean;
     },
-    "condition" | "value"
+    'condition' | 'value'
   >;
 
 export interface CustomPropertyCatalogValuesUpdateCatalogValueResponse {
@@ -935,7 +935,7 @@ export interface CustomPropertyCatalogValuesUpdateCatalogValueResponse {
   id: number;
   custom_property_id: number;
   value: {
-    "78a2a419-059e-482c-9d30-fe8b94c7ef6a": string;
+    '78a2a419-059e-482c-9d30-fe8b94c7ef6a': string;
   };
   name: string;
   author_id: number;
@@ -946,7 +946,7 @@ export interface CustomPropertyCatalogValuesUpdateCatalogValueResponse {
 export type CustomPropertyCatalogValuesUpdateCatalogValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertyCatalogValues"]["updateCatalogValue"]
+  >['customPropertyCatalogValues']['updateCatalogValue']
 >;
 
 export interface CustomPropertyCollectiveScoreValuesCreateNewScoreValueBody {
@@ -969,7 +969,7 @@ export type CustomPropertyCollectiveScoreValuesCreateNewScoreValueParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveScoreValues"]["createNewScoreValue"]
+    >['customPropertyCollectiveScoreValues']['createNewScoreValue']
   >;
 
 export type CustomPropertyCollectiveScoreValuesGetListOfScoreValuesResponse = {
@@ -1001,7 +1001,7 @@ export type CustomPropertyCollectiveScoreValuesGetListOfScoreValuesParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveScoreValues"]["getListOfScoreValues"]
+    >['customPropertyCollectiveScoreValues']['getListOfScoreValues']
   >;
 
 export interface CustomPropertyCollectiveScoreValuesUpdateScoreValueBody {
@@ -1024,7 +1024,7 @@ export type CustomPropertyCollectiveScoreValuesUpdateScoreValueParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveScoreValues"]["updateScoreValue"]
+    >['customPropertyCollectiveScoreValues']['updateScoreValue']
   >;
 
 export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueBody =
@@ -1033,7 +1033,7 @@ export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueBody =
       emoji_vote?: string;
       number_vote?: number;
     },
-    "emoji_vote" | "number_vote"
+    'emoji_vote' | 'number_vote'
   >;
 
 export interface CustomPropertyCollectiveVoteValuesCreateNewVoteValueResponse {
@@ -1052,7 +1052,7 @@ export type CustomPropertyCollectiveVoteValuesCreateNewVoteValueParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveVoteValues"]["createNewVoteValue"]
+    >['customPropertyCollectiveVoteValues']['createNewVoteValue']
   >;
 
 export type CustomPropertyCollectiveVoteValuesGetListOfVoteValuesResponse = {
@@ -1085,7 +1085,7 @@ export type CustomPropertyCollectiveVoteValuesGetListOfVoteValuesParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveVoteValues"]["getListOfVoteValues"]
+    >['customPropertyCollectiveVoteValues']['getListOfVoteValues']
   >;
 
 export interface CustomPropertyCollectiveVoteValuesRemoveVoteValueBody {
@@ -1106,7 +1106,7 @@ export type CustomPropertyCollectiveVoteValuesRemoveVoteValueParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveVoteValues"]["removeVoteValue"]
+    >['customPropertyCollectiveVoteValues']['removeVoteValue']
   >;
 
 export interface CustomPropertyCollectiveVoteValuesUpdateVoteValueBody {
@@ -1129,7 +1129,7 @@ export type CustomPropertyCollectiveVoteValuesUpdateVoteValueParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyCollectiveVoteValues"]["updateVoteValue"]
+    >['customPropertyCollectiveVoteValues']['updateVoteValue']
   >;
 
 export interface CustomPropertySelectValuesCreateNewSelectValueBody {
@@ -1154,7 +1154,7 @@ export interface CustomPropertySelectValuesCreateNewSelectValueResponse {
 export type CustomPropertySelectValuesCreateNewSelectValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertySelectValues"]["createNewSelectValue"]
+  >['customPropertySelectValues']['createNewSelectValue']
 >;
 
 export interface CustomPropertySelectValuesGetListOfSelectValuesQuery {
@@ -1162,7 +1162,7 @@ export interface CustomPropertySelectValuesGetListOfSelectValuesQuery {
   query?: string;
   order_by?: string;
   ids?: unknown[];
-  conditions?: ("active" | "inactive" | "removed")[];
+  conditions?: ('active' | 'inactive' | 'removed')[];
   offset?: number;
   limit?: number;
 }
@@ -1181,7 +1181,7 @@ export type CustomPropertySelectValuesGetListOfSelectValuesResponse = {
 export type CustomPropertySelectValuesGetListOfSelectValuesParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertySelectValues"]["getListOfSelectValues"]
+  >['customPropertySelectValues']['getListOfSelectValues']
 >;
 
 export interface CustomPropertySelectValuesGetSelectValueResponse {
@@ -1201,7 +1201,7 @@ export interface CustomPropertySelectValuesGetSelectValueResponse {
 export type CustomPropertySelectValuesGetSelectValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertySelectValues"]["getSelectValue"]
+  >['customPropertySelectValues']['getSelectValue']
 >;
 
 export interface CustomPropertySelectValuesRemovePropertyResponse {
@@ -1221,18 +1221,18 @@ export interface CustomPropertySelectValuesRemovePropertyResponse {
 export type CustomPropertySelectValuesRemovePropertyParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertySelectValues"]["removeProperty"]
+  >['customPropertySelectValues']['removeProperty']
 >;
 
 export type CustomPropertySelectValuesUpdateSelectValueBody = RequireAtLeastOne<
   {
     value?: string;
     color?: number | null;
-    condition?: "active" | "inactive";
+    condition?: 'active' | 'inactive';
     sort_order?: number;
     deleted?: boolean;
   },
-  "value" | "color" | "deleted" | "sort_order" | "condition"
+  'value' | 'color' | 'deleted' | 'sort_order' | 'condition'
 >;
 
 export interface CustomPropertySelectValuesUpdateSelectValueResponse {
@@ -1252,7 +1252,7 @@ export interface CustomPropertySelectValuesUpdateSelectValueResponse {
 export type CustomPropertySelectValuesUpdateSelectValueParams = Parameters<
   ReturnType<
     typeof createCustomFieldsResources
-  >["customPropertySelectValues"]["updateSelectValue"]
+  >['customPropertySelectValues']['updateSelectValue']
 >;
 
 export interface CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyBody {
@@ -1267,7 +1267,7 @@ export type CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyTreeEntities"]["addTreeEntityToCustomProperty"]
+    >['customPropertyTreeEntities']['addTreeEntityToCustomProperty']
   >;
 
 export type CustomPropertyTreeEntitiesDeleteTreeEntityFromCustomPropertyResponse =
@@ -1277,7 +1277,7 @@ export type CustomPropertyTreeEntitiesDeleteTreeEntityFromCustomPropertyParams =
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyTreeEntities"]["deleteTreeEntityFromCustomProperty"]
+    >['customPropertyTreeEntities']['deleteTreeEntityFromCustomProperty']
   >;
 
 export type CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesResponse =
@@ -1327,7 +1327,7 @@ export type CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesParams 
   Parameters<
     ReturnType<
       typeof createCustomFieldsResources
-    >["customPropertyTreeEntities"]["getListOfCustomPropertyTreeEntities"]
+    >['customPropertyTreeEntities']['getListOfCustomPropertyTreeEntities']
   >;
 
 export const createCustomFieldsResources = (transport: HttpTransport) => ({
@@ -1339,8 +1339,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoriesCreateCustomDirectoryResponse>({
-        method: "POST",
-        path: "/company/custom-directories",
+        method: 'POST',
+        path: '/company/custom-directories',
         body,
         signal: options?.signal,
       });
@@ -1352,8 +1352,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoriesDeleteCustomDirectoryResponse>({
-        method: "DELETE",
-        path: "/company/custom-directories/" + pathSegment(directoryId),
+        method: 'DELETE',
+        path: '/company/custom-directories/' + pathSegment(directoryId),
         signal: options?.signal,
       });
     },
@@ -1361,8 +1361,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/custom-directories/get-custom-directory */
     getCustomDirectory: (directoryId: string, options?: OperationOptions) => {
       return transport.request<CustomDirectoriesGetCustomDirectoryResponse>({
-        method: "GET",
-        path: "/company/custom-directories/" + pathSegment(directoryId),
+        method: 'GET',
+        path: '/company/custom-directories/' + pathSegment(directoryId),
         signal: options?.signal,
       });
     },
@@ -1374,8 +1374,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomDirectoriesGetListOfCustomDirectoriesResponse>(
         {
-          method: "GET",
-          path: "/company/custom-directories",
+          method: 'GET',
+          path: '/company/custom-directories',
           query,
           signal: options?.signal,
         },
@@ -1389,8 +1389,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoriesUpdateCustomDirectoryResponse>({
-        method: "PATCH",
-        path: "/company/custom-directories/" + pathSegment(directoryId),
+        method: 'PATCH',
+        path: '/company/custom-directories/' + pathSegment(directoryId),
         body,
         signal: options?.signal,
       });
@@ -1405,9 +1405,9 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryFieldsCreateFieldResponse>({
-        method: "POST",
+        method: 'POST',
         path:
-          "/company/custom-directories/" + pathSegment(directoryId) + "/fields",
+          '/company/custom-directories/' + pathSegment(directoryId) + '/fields',
         body,
         signal: options?.signal,
       });
@@ -1420,11 +1420,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryFieldsDeleteFieldResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/fields/" +
+          '/fields/' +
           pathSegment(fieldId),
         signal: options?.signal,
       });
@@ -1437,11 +1437,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryFieldsGetFieldResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/fields/" +
+          '/fields/' +
           pathSegment(fieldId),
         signal: options?.signal,
       });
@@ -1451,14 +1451,14 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     getListOfFields: (
       directoryId: string,
       includeAuthor?: boolean,
-      conditions?: ("active" | "inactive" | "removed")[],
+      conditions?: ('active' | 'inactive' | 'removed')[],
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryFieldsGetListOfFieldsResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/company/custom-directories/" + pathSegment(directoryId) + "/fields",
-        query: { include_author: includeAuthor, conditions },
+          '/company/custom-directories/' + pathSegment(directoryId) + '/fields',
+        query: {include_author: includeAuthor, conditions},
         signal: options?.signal,
       });
     },
@@ -1471,11 +1471,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryFieldsUpdateFieldResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/fields/" +
+          '/fields/' +
           pathSegment(fieldId),
         body,
         signal: options?.signal,
@@ -1492,12 +1492,12 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryRecordsCreateRecordResponse>({
-        method: "POST",
+        method: 'POST',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/records",
-        query: { response_profile: responseProfile },
+          '/records',
+        query: {response_profile: responseProfile},
         body,
         signal: options?.signal,
       });
@@ -1510,11 +1510,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryRecordsDeleteRecordResponse>({
-        method: "DELETE",
+        method: 'DELETE',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/records/" +
+          '/records/' +
           pathSegment(recordId),
         signal: options?.signal,
       });
@@ -1529,13 +1529,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomDirectoryRecordsGetCardsLinkedToRecordResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-directories/" +
+            '/company/custom-directories/' +
             pathSegment(directoryId) +
-            "/records/" +
+            '/records/' +
             pathSegment(recordId) +
-            "/cards",
+            '/cards',
           query,
           signal: options?.signal,
         },
@@ -1549,13 +1549,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryRecordsGetListOfRecordsResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/records",
+          '/records',
         query,
-        jsonQuery: ["filters"],
+        jsonQuery: ['filters'],
         signal: options?.signal,
       });
     },
@@ -1568,13 +1568,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryRecordsGetRecordResponse>({
-        method: "GET",
+        method: 'GET',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/records/" +
+          '/records/' +
           pathSegment(recordId),
-        query: { profile },
+        query: {profile},
         signal: options?.signal,
       });
     },
@@ -1588,13 +1588,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomDirectoryRecordsUpdateRecordResponse>({
-        method: "PATCH",
+        method: 'PATCH',
         path:
-          "/company/custom-directories/" +
+          '/company/custom-directories/' +
           pathSegment(directoryId) +
-          "/records/" +
+          '/records/' +
           pathSegment(recordId),
-        query: { response_profile: responseProfile },
+        query: {response_profile: responseProfile},
         body,
         signal: options?.signal,
       });
@@ -1607,8 +1607,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomPropertiesCreateNewPropertyResponse>({
-        method: "POST",
-        path: "/company/custom-properties",
+        method: 'POST',
+        path: '/company/custom-properties',
         body,
         signal: options?.signal,
       });
@@ -1619,8 +1619,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomPropertiesGetListOfPropertiesResponse>({
-        method: "GET",
-        path: "/company/custom-properties",
+        method: 'GET',
+        path: '/company/custom-properties',
         query,
         signal: options?.signal,
       });
@@ -1628,16 +1628,16 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     /** @see https://developers.kaiten.ru/custom-properties/get-property */
     getProperty: (propertyId: number, options?: OperationOptions) => {
       return transport.request<CustomPropertiesGetPropertyResponse>({
-        method: "GET",
-        path: "/company/custom-properties/" + pathSegment(propertyId),
+        method: 'GET',
+        path: '/company/custom-properties/' + pathSegment(propertyId),
         signal: options?.signal,
       });
     },
     /** @see https://developers.kaiten.ru/custom-properties/remove-property */
     removeProperty: (propertyId: number, options?: OperationOptions) => {
       return transport.request<CustomPropertiesRemovePropertyResponse>({
-        method: "DELETE",
-        path: "/company/custom-properties/" + pathSegment(propertyId),
+        method: 'DELETE',
+        path: '/company/custom-properties/' + pathSegment(propertyId),
         signal: options?.signal,
       });
     },
@@ -1648,8 +1648,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<CustomPropertiesUpdatePropertyResponse>({
-        method: "PATCH",
-        path: "/company/custom-properties/" + pathSegment(propertyId),
+        method: 'PATCH',
+        path: '/company/custom-properties/' + pathSegment(propertyId),
         body,
         signal: options?.signal,
       });
@@ -1664,11 +1664,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCatalogValuesCreateNewCatalogValueResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/catalog-values",
+            '/catalog-values',
           body,
           signal: options?.signal,
         },
@@ -1682,11 +1682,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCatalogValuesGetCatalogValueResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/catalog-values/" +
+            '/catalog-values/' +
             pathSegment(valueId),
           signal: options?.signal,
         },
@@ -1700,11 +1700,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCatalogValuesGetListOfCatalogValuesResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/catalog-values",
+            '/catalog-values',
           query,
           signal: options?.signal,
         },
@@ -1718,11 +1718,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCatalogValuesRemovePropertyResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/catalog-values/" +
+            '/catalog-values/' +
             pathSegment(valueId),
           signal: options?.signal,
         },
@@ -1737,11 +1737,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCatalogValuesUpdateCatalogValueResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/catalog-values/" +
+            '/catalog-values/' +
             pathSegment(valueId),
           body,
           signal: options?.signal,
@@ -1759,14 +1759,14 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveScoreValuesCreateNewScoreValueResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-score-values",
-          body: { value },
+            '/collective-score-values',
+          body: {value},
           signal: options?.signal,
         },
       );
@@ -1779,13 +1779,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveScoreValuesGetListOfScoreValuesResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-score-values",
+            '/collective-score-values',
           signal: options?.signal,
         },
       );
@@ -1800,15 +1800,15 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveScoreValuesUpdateScoreValueResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-score-values/" +
+            '/collective-score-values/' +
             pathSegment(valueId),
-          body: { value },
+          body: {value},
           signal: options?.signal,
         },
       );
@@ -1824,13 +1824,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveVoteValuesCreateNewVoteValueResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-vote-values",
+            '/collective-vote-values',
           body,
           signal: options?.signal,
         },
@@ -1844,13 +1844,13 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveVoteValuesGetListOfVoteValuesResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-vote-values",
+            '/collective-vote-values',
           signal: options?.signal,
         },
       );
@@ -1865,15 +1865,15 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveVoteValuesRemoveVoteValueResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-vote-values/" +
+            '/collective-vote-values/' +
             pathSegment(id),
-          body: emojiVote === undefined ? undefined : { emoji_vote: emojiVote },
+          body: emojiVote === undefined ? undefined : {emoji_vote: emojiVote},
           signal: options?.signal,
         },
       );
@@ -1888,15 +1888,15 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyCollectiveVoteValuesUpdateVoteValueResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/custom-properties/" +
+            '/custom-properties/' +
             pathSegment(propertyId) +
-            "/collective-vote-values/" +
+            '/collective-vote-values/' +
             pathSegment(id),
-          body: { number_vote: numberVote },
+          body: {number_vote: numberVote},
           signal: options?.signal,
         },
       );
@@ -1912,12 +1912,12 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertySelectValuesCreateNewSelectValueResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/select-values",
-          body: { value, color },
+            '/select-values',
+          body: {value, color},
           signal: options?.signal,
         },
       );
@@ -1930,11 +1930,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertySelectValuesGetListOfSelectValuesResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/select-values",
+            '/select-values',
           query,
           signal: options?.signal,
         },
@@ -1948,11 +1948,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertySelectValuesGetSelectValueResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/select-values/" +
+            '/select-values/' +
             pathSegment(valueId),
           signal: options?.signal,
         },
@@ -1966,11 +1966,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertySelectValuesRemovePropertyResponse>(
         {
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/select-values/" +
+            '/select-values/' +
             pathSegment(valueId),
           signal: options?.signal,
         },
@@ -1985,11 +1985,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertySelectValuesUpdateSelectValueResponse>(
         {
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/select-values/" +
+            '/select-values/' +
             pathSegment(valueId),
           body,
           signal: options?.signal,
@@ -2006,12 +2006,12 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyTreeEntitiesAddTreeEntityToCustomPropertyResponse>(
         {
-          method: "POST",
+          method: 'POST',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/tree-entities",
-          body: { tree_entity_uid: treeEntityUid },
+            '/tree-entities',
+          body: {tree_entity_uid: treeEntityUid},
           signal: options?.signal,
         },
       );
@@ -2024,12 +2024,12 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyTreeEntitiesDeleteTreeEntityFromCustomPropertyResponse>(
         {
-          method: "DELETE",
-          responseMode: "void",
+          method: 'DELETE',
+          responseMode: 'void',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/tree-entities/" +
+            '/tree-entities/' +
             pathSegment(uid),
           signal: options?.signal,
         },
@@ -2042,11 +2042,11 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     ) => {
       return transport.request<CustomPropertyTreeEntitiesGetListOfCustomPropertyTreeEntitiesResponse>(
         {
-          method: "GET",
+          method: 'GET',
           path:
-            "/company/custom-properties/" +
+            '/company/custom-properties/' +
             pathSegment(propertyId) +
-            "/tree-entities",
+            '/tree-entities',
           signal: options?.signal,
         },
       );

@@ -1,5 +1,5 @@
-import type { BlockedCardSummary } from "../entities.ts";
-import type { CardFileSummary } from "../entities.ts";
+import type {BlockedCardSummary} from '../entities.ts';
+import type {CardFileSummary} from '../entities.ts';
 import type {
   UserSummary,
   ColumnSummary,
@@ -13,21 +13,21 @@ import type {
   BoardCardProperty,
   CardTagSummary,
   ExternalLinkSummary,
-} from "../entities.ts";
+} from '../entities.ts';
 import type {
   CustomPropertyValues,
   JsonValue,
   QueryList,
   RequireAtLeastOne,
-} from "../types.ts";
-import type { HttpTransport, OperationOptions } from "../http.ts";
+} from '../types.ts';
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
-import { pathSegment } from "../http.ts";
+import {pathSegment} from '../http.ts';
 
-import type { SearchResponseV2 } from "./search.ts";
-import { iterateSearchResults } from "./search.ts";
-import { encodeCardFilter } from "../card-filter.ts";
-import type { CardFilter } from "../card-filter.ts";
+import type {SearchResponseV2} from './search.ts';
+import {iterateSearchResults} from './search.ts';
+import {encodeCardFilter} from '../card-filter.ts';
+import type {CardFilter} from '../card-filter.ts';
 
 export interface CardAllowedUsersRetrieveUsersListQuery {
   type?: string;
@@ -59,7 +59,7 @@ export type CardAllowedUsersRetrieveUsersListResponse = {
 export type CardAllowedUsersRetrieveUsersListParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardAllowedUsers"]["retrieveUsersList"]
+  >['cardAllowedUsers']['retrieveUsersList']
 >;
 
 export interface CardBlockerCategoriesAddBlockerCategoryBody {
@@ -75,7 +75,7 @@ export interface CardBlockerCategoriesAddBlockerCategoryResponse {
 export type CardBlockerCategoriesAddBlockerCategoryParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockerCategories"]["addBlockerCategory"]
+  >['cardBlockerCategories']['addBlockerCategory']
 >;
 
 export interface CardBlockerCategoriesRemoveCategoryResponse {
@@ -85,7 +85,7 @@ export interface CardBlockerCategoriesRemoveCategoryResponse {
 export type CardBlockerCategoriesRemoveCategoryParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockerCategories"]["removeCategory"]
+  >['cardBlockerCategories']['removeCategory']
 >;
 
 export type CardBlockerCategoriesRetrieveListOfCategoriesResponse = {
@@ -97,7 +97,7 @@ export type CardBlockerCategoriesRetrieveListOfCategoriesResponse = {
 export type CardBlockerCategoriesRetrieveListOfCategoriesParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockerCategories"]["retrieveListOfCategories"]
+  >['cardBlockerCategories']['retrieveListOfCategories']
 >;
 
 export interface CardBlockerUsersAddUserToTheCardBlockerBody {
@@ -130,7 +130,7 @@ export interface CardBlockerUsersAddUserToTheCardBlockerResponse {
 export type CardBlockerUsersAddUserToTheCardBlockerParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockerUsers"]["addUserToTheCardBlocker"]
+  >['cardBlockerUsers']['addUserToTheCardBlocker']
 >;
 
 export interface CardBlockerUsersRemoveUserResponse {
@@ -138,7 +138,7 @@ export interface CardBlockerUsersRemoveUserResponse {
 }
 
 export type CardBlockerUsersRemoveUserParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardBlockerUsers"]["removeUser"]
+  ReturnType<typeof createCardsResources>['cardBlockerUsers']['removeUser']
 >;
 
 export interface CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse {
@@ -154,7 +154,7 @@ export type CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserParams =
   Parameters<
     ReturnType<
       typeof createCardsResources
-    >["cardBlockerUsers"]["retrieveBlockersCardsListOnCurrentUser"]
+    >['cardBlockerUsers']['retrieveBlockersCardsListOnCurrentUser']
   >;
 
 export type CardBlockerUsersRetrieveListOfUsersResponse = {
@@ -193,7 +193,7 @@ export type CardBlockerUsersRetrieveListOfUsersResponse = {
 export type CardBlockerUsersRetrieveListOfUsersParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockerUsers"]["retrieveListOfUsers"]
+  >['cardBlockerUsers']['retrieveListOfUsers']
 >;
 
 export type CardBlockersBlockCardBody = RequireAtLeastOne<
@@ -201,7 +201,7 @@ export type CardBlockersBlockCardBody = RequireAtLeastOne<
     reason?: string;
     blocker_card_id?: number;
   },
-  "reason" | "blocker_card_id"
+  'reason' | 'blocker_card_id'
 >;
 
 export interface CardBlockersBlockCardResponse {
@@ -224,7 +224,7 @@ export interface CardBlockersBlockCardResponse {
 }
 
 export type CardBlockersBlockCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardBlockers"]["blockCard"]
+  ReturnType<typeof createCardsResources>['cardBlockers']['blockCard']
 >;
 
 export interface CardBlockersDeleteCardBlockersResponse {
@@ -247,7 +247,7 @@ export interface CardBlockersDeleteCardBlockersResponse {
 }
 
 export type CardBlockersDeleteCardBlockersParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardBlockers"]["deleteCardBlockers"]
+  ReturnType<typeof createCardsResources>['cardBlockers']['deleteCardBlockers']
 >;
 
 export type CardBlockersRetrieveCardBlockersListResponse = {
@@ -272,7 +272,7 @@ export type CardBlockersRetrieveCardBlockersListResponse = {
 export type CardBlockersRetrieveCardBlockersListParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardBlockers"]["retrieveCardBlockersList"]
+  >['cardBlockers']['retrieveCardBlockersList']
 >;
 
 export type CardBlockersUpdateCardBlockersBody = RequireAtLeastOne<
@@ -282,7 +282,7 @@ export type CardBlockersUpdateCardBlockersBody = RequireAtLeastOne<
     due_date?: string | null;
     due_date_time_present?: boolean | null;
   },
-  "reason" | "blocker_card_id"
+  'reason' | 'blocker_card_id'
 >;
 
 export interface CardBlockersUpdateCardBlockersResponse {
@@ -302,7 +302,7 @@ export interface CardBlockersUpdateCardBlockersResponse {
 }
 
 export type CardBlockersUpdateCardBlockersParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardBlockers"]["updateCardBlockers"]
+  ReturnType<typeof createCardsResources>['cardBlockers']['updateCardBlockers']
 >;
 
 export interface CardChildrenAddChildrenBody {
@@ -406,7 +406,7 @@ export interface CardChildrenAddChildrenResponse {
 }
 
 export type CardChildrenAddChildrenParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardChildren"]["addChildren"]
+  ReturnType<typeof createCardsResources>['cardChildren']['addChildren']
 >;
 
 export interface CardChildrenRemoveChildrenResponse {
@@ -414,7 +414,7 @@ export interface CardChildrenRemoveChildrenResponse {
 }
 
 export type CardChildrenRemoveChildrenParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardChildren"]["removeChildren"]
+  ReturnType<typeof createCardsResources>['cardChildren']['removeChildren']
 >;
 
 export type CardChildrenRetrieveCardChildrenListResponse = {
@@ -494,7 +494,7 @@ export type CardChildrenRetrieveCardChildrenListResponse = {
 export type CardChildrenRetrieveCardChildrenListParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardChildren"]["retrieveCardChildrenList"]
+  >['cardChildren']['retrieveCardChildrenList']
 >;
 
 export interface CardCommentsAddCommentBody {
@@ -536,7 +536,7 @@ export interface CardCommentsAddCommentResponse {
 }
 
 export type CardCommentsAddCommentParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardComments"]["addComment"]
+  ReturnType<typeof createCardsResources>['cardComments']['addComment']
 >;
 
 export interface CardCommentsRemoveCommentResponse {
@@ -544,7 +544,7 @@ export interface CardCommentsRemoveCommentResponse {
 }
 
 export type CardCommentsRemoveCommentParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardComments"]["removeComment"]
+  ReturnType<typeof createCardsResources>['cardComments']['removeComment']
 >;
 
 export type CardCommentsRetrieveCardCommentsResponse = {
@@ -571,7 +571,7 @@ export type CardCommentsRetrieveCardCommentsResponse = {
 export type CardCommentsRetrieveCardCommentsParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardComments"]["retrieveCardComments"]
+  >['cardComments']['retrieveCardComments']
 >;
 
 export interface CardCommentsUpdateCommentBody {
@@ -613,7 +613,7 @@ export interface CardCommentsUpdateCommentResponse {
 }
 
 export type CardCommentsUpdateCommentParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardComments"]["updateComment"]
+  ReturnType<typeof createCardsResources>['cardComments']['updateComment']
 >;
 
 export interface CardExternalLinksAddExternalLinkBody {
@@ -632,7 +632,7 @@ export interface CardExternalLinksAddExternalLinkResponse {
 export type CardExternalLinksAddExternalLinkParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardExternalLinks"]["addExternalLink"]
+  >['cardExternalLinks']['addExternalLink']
 >;
 
 export interface CardExternalLinksRemoveExternalLinkResponse {
@@ -642,7 +642,7 @@ export interface CardExternalLinksRemoveExternalLinkResponse {
 export type CardExternalLinksRemoveExternalLinkParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardExternalLinks"]["removeExternalLink"]
+  >['cardExternalLinks']['removeExternalLink']
 >;
 
 export type CardExternalLinksRetrieveCardExternalLinksResponse = {
@@ -658,7 +658,7 @@ export type CardExternalLinksRetrieveCardExternalLinksResponse = {
 export type CardExternalLinksRetrieveCardExternalLinksParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardExternalLinks"]["retrieveCardExternalLinks"]
+  >['cardExternalLinks']['retrieveCardExternalLinks']
 >;
 
 export type CardExternalLinksUpdateExternalLinkBody = RequireAtLeastOne<
@@ -666,7 +666,7 @@ export type CardExternalLinksUpdateExternalLinkBody = RequireAtLeastOne<
     url?: string;
     description?: string | null;
   },
-  "url" | "description"
+  'url' | 'description'
 >;
 
 export interface CardExternalLinksUpdateExternalLinkResponse {
@@ -680,7 +680,7 @@ export interface CardExternalLinksUpdateExternalLinkResponse {
 export type CardExternalLinksUpdateExternalLinkParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardExternalLinks"]["updateExternalLink"]
+  >['cardExternalLinks']['updateExternalLink']
 >;
 
 export interface CardMembersAddMemberToCardBody {
@@ -704,7 +704,7 @@ export interface CardMembersAddMemberToCardResponse {
 }
 
 export type CardMembersAddMemberToCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardMembers"]["addMemberToCard"]
+  ReturnType<typeof createCardsResources>['cardMembers']['addMemberToCard']
 >;
 
 export interface CardMembersRemoveMemberFromCardResponse {
@@ -712,7 +712,7 @@ export interface CardMembersRemoveMemberFromCardResponse {
 }
 
 export type CardMembersRemoveMemberFromCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardMembers"]["removeMemberFromCard"]
+  ReturnType<typeof createCardsResources>['cardMembers']['removeMemberFromCard']
 >;
 
 export type CardMembersRetrieveListOfCardMembersResponse = {
@@ -740,7 +740,7 @@ export type CardMembersRetrieveListOfCardMembersResponse = {
 export type CardMembersRetrieveListOfCardMembersParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cardMembers"]["retrieveListOfCardMembers"]
+  >['cardMembers']['retrieveListOfCardMembers']
 >;
 
 export interface CardMembersUpdateMemberRoleBody {
@@ -756,7 +756,7 @@ export interface CardMembersUpdateMemberRoleResponse {
 }
 
 export type CardMembersUpdateMemberRoleParams = Parameters<
-  ReturnType<typeof createCardsResources>["cardMembers"]["updateMemberRole"]
+  ReturnType<typeof createCardsResources>['cardMembers']['updateMemberRole']
 >;
 
 export interface CardsBatchUpdateForCardsFields {
@@ -786,24 +786,24 @@ export interface CardsBatchUpdateForCardsFields {
     external_id?: number | string | null;
   };
   order_by?: {
-    field_type?: "cp" | "size" | "created" | "due_date" | "title";
+    field_type?: 'cp' | 'size' | 'created' | 'due_date' | 'title';
     id?: number;
-    direction?: "asc" | "desc";
+    direction?: 'asc' | 'desc';
   };
 }
 
 export type CardsBatchUpdateForCardsBody = CardsBatchUpdateForCardsFields &
   (
-    | Required<Pick<CardsBatchUpdateForCardsFields, "board_id" | "attributes">>
-    | Required<Pick<CardsBatchUpdateForCardsFields, "column_id" | "attributes">>
-    | Required<Pick<CardsBatchUpdateForCardsFields, "lane_id" | "attributes">>
-    | Required<Pick<CardsBatchUpdateForCardsFields, "owner_id" | "attributes">>
-    | Required<Pick<CardsBatchUpdateForCardsFields, "type_id" | "attributes">>
-    | Required<Pick<CardsBatchUpdateForCardsFields, "condition" | "attributes">>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'board_id' | 'attributes'>>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'column_id' | 'attributes'>>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'lane_id' | 'attributes'>>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'owner_id' | 'attributes'>>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'type_id' | 'attributes'>>
+    | Required<Pick<CardsBatchUpdateForCardsFields, 'condition' | 'attributes'>>
     | Required<
         Pick<
           CardsBatchUpdateForCardsFields,
-          "column_id" | "lane_id" | "order_by"
+          'column_id' | 'lane_id' | 'order_by'
         >
       >
   );
@@ -813,7 +813,7 @@ export interface CardsBatchUpdateForCardsResponse {
 }
 
 export type CardsBatchUpdateForCardsParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["batchUpdateForCards"]
+  ReturnType<typeof createCardsResources>['cards']['batchUpdateForCards']
 >;
 
 export interface CardsCreateNewCardBody {
@@ -910,7 +910,7 @@ export interface CardsCreateNewCardResponse {
 }
 
 export type CardsCreateNewCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["createNewCard"]
+  ReturnType<typeof createCardsResources>['cards']['createNewCard']
 >;
 
 export interface CardsDeleteCardResponse {
@@ -986,7 +986,7 @@ export interface CardsDeleteCardResponse {
 }
 
 export type CardsDeleteCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["deleteCard"]
+  ReturnType<typeof createCardsResources>['cards']['deleteCard']
 >;
 
 export interface CardsRetrieveCardQuery {
@@ -1097,7 +1097,7 @@ export interface CardsRetrieveCardResponse {
 }
 
 export type CardsRetrieveCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["retrieveCard"]
+  ReturnType<typeof createCardsResources>['cards']['retrieveCard']
 >;
 
 export type CardsRetrieveCardBaselinesResponse = (
@@ -1119,7 +1119,7 @@ export type CardsRetrieveCardBaselinesResponse = (
 )[];
 
 export type CardsRetrieveCardBaselinesParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["retrieveCardBaselines"]
+  ReturnType<typeof createCardsResources>['cards']['retrieveCardBaselines']
 >;
 
 export interface CardsRetrieveCardListQuery {
@@ -1147,7 +1147,7 @@ export interface CardsRetrieveCardListQuery {
   responsible_ids?: QueryList<number>;
   states?: QueryList<1 | 2 | 3>;
   external_id?: string;
-  additional_card_fields?: QueryList<"description">;
+  additional_card_fields?: QueryList<'description'>;
   search_fields?: string;
   space_id?: number;
   limit?: number;
@@ -1169,7 +1169,7 @@ export interface CardsRetrieveCardListQuery {
   with_due_date?: boolean;
   filter?: string | CardFilter;
   order_by?: QueryList<string>;
-  order_direction?: QueryList<"asc" | "desc">;
+  order_direction?: QueryList<'asc' | 'desc'>;
   is_request?: boolean;
   exclude_owner_ids?: QueryList<number>;
   exclude_card_ids?: QueryList<number>;
@@ -1315,7 +1315,7 @@ export type CardsRetrieveCardListResponse = {
 }[];
 
 export type CardsRetrieveCardListParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["retrieveCardList"]
+  ReturnType<typeof createCardsResources>['cards']['retrieveCardList']
 >;
 
 export type CardsRetrieveCardLocationHistoryResponse = {
@@ -1335,7 +1335,7 @@ export type CardsRetrieveCardLocationHistoryResponse = {
 export type CardsRetrieveCardLocationHistoryParams = Parameters<
   ReturnType<
     typeof createCardsResources
-  >["cards"]["retrieveCardLocationHistory"]
+  >['cards']['retrieveCardLocationHistory']
 >;
 
 export interface CardsUpdateCardBody {
@@ -1439,16 +1439,16 @@ export interface CardsUpdateCardResponse {
 }
 
 export type CardsUpdateCardParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["updateCard"]
+  ReturnType<typeof createCardsResources>['cards']['updateCard']
 >;
 
 export type CardsIterateQuery = Omit<
   CardsRetrieveCardListQuery,
-  "version" | "offset"
+  'version' | 'offset'
 >;
 
 export type CardsIterateParams = Parameters<
-  ReturnType<typeof createCardsResources>["cards"]["iterate"]
+  ReturnType<typeof createCardsResources>['cards']['iterate']
 >;
 
 export const createCardsResources = (transport: HttpTransport) => {
@@ -1457,19 +1457,19 @@ export const createCardsResources = (transport: HttpTransport) => {
     options?: OperationOptions,
   ) => {
     return transport.request<CardsCreateNewCardResponse>({
-      method: "POST",
-      path: "/cards",
+      method: 'POST',
+      path: '/cards',
       body,
       signal: options?.signal,
     });
   };
 
   function retrieveCardList(
-    query: CardsRetrieveCardListQuery & { version: 2 },
+    query: CardsRetrieveCardListQuery & {version: 2},
     options?: OperationOptions,
   ): Promise<SearchResponseV2<CardsRetrieveCardListResponse>>;
   function retrieveCardList(
-    query?: Omit<CardsRetrieveCardListQuery, "version"> & { version?: 1 },
+    query?: Omit<CardsRetrieveCardListQuery, 'version'> & {version?: 1},
     options?: OperationOptions,
   ): Promise<CardsRetrieveCardListResponse>;
   function retrieveCardList(
@@ -1490,11 +1490,11 @@ export const createCardsResources = (transport: HttpTransport) => {
       | CardsRetrieveCardListResponse
       | SearchResponseV2<CardsRetrieveCardListResponse>
     >({
-      method: "GET",
-      path: "/cards",
+      method: 'GET',
+      path: '/cards',
       query:
-        query?.filter !== undefined && typeof query.filter !== "string"
-          ? { ...query, filter: encodeCardFilter(query.filter) }
+        query?.filter !== undefined && typeof query.filter !== 'string'
+          ? {...query, filter: encodeCardFilter(query.filter)}
           : query,
       signal: options?.signal,
     });
@@ -1508,8 +1508,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardAllowedUsersRetrieveUsersListResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/allowed-users",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/allowed-users',
           query,
           signal: options?.signal,
         });
@@ -1524,9 +1524,9 @@ export const createCardsResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<CardBlockerCategoriesAddBlockerCategoryResponse>(
           {
-            method: "POST",
-            path: "/blockers/" + pathSegment(blockerId) + "/categories",
-            body: { name },
+            method: 'POST',
+            path: '/blockers/' + pathSegment(blockerId) + '/categories',
+            body: {name},
             signal: options?.signal,
           },
         );
@@ -1538,11 +1538,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockerCategoriesRemoveCategoryResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/blockers/" +
+            '/blockers/' +
             pathSegment(blockerId) +
-            "/categories/" +
+            '/categories/' +
             pathSegment(categoryUuid),
           signal: options?.signal,
         });
@@ -1551,8 +1551,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       retrieveListOfCategories: (options?: OperationOptions) => {
         return transport.request<CardBlockerCategoriesRetrieveListOfCategoriesResponse>(
           {
-            method: "GET",
-            path: "/categories",
+            method: 'GET',
+            path: '/categories',
             signal: options?.signal,
           },
         );
@@ -1567,9 +1567,9 @@ export const createCardsResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<CardBlockerUsersAddUserToTheCardBlockerResponse>(
           {
-            method: "POST",
-            path: "/blockers/" + pathSegment(blockerId) + "/users",
-            body: { user_id: userId },
+            method: 'POST',
+            path: '/blockers/' + pathSegment(blockerId) + '/users',
+            body: {user_id: userId},
             signal: options?.signal,
           },
         );
@@ -1581,11 +1581,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockerUsersRemoveUserResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/blockers/" +
+            '/blockers/' +
             pathSegment(blockerId) +
-            "/users/" +
+            '/users/' +
             pathSegment(userId),
           signal: options?.signal,
         });
@@ -1594,8 +1594,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       retrieveBlockersCardsListOnCurrentUser: (options?: OperationOptions) => {
         return transport.request<CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse>(
           {
-            method: "GET",
-            path: "/users/current/blockers",
+            method: 'GET',
+            path: '/users/current/blockers',
             signal: options?.signal,
           },
         );
@@ -1603,8 +1603,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/card-blocker-users/retrieve-list-of-users */
       retrieveListOfUsers: (blockerId: number, options?: OperationOptions) => {
         return transport.request<CardBlockerUsersRetrieveListOfUsersResponse>({
-          method: "GET",
-          path: "/blockers/" + pathSegment(blockerId) + "/users",
+          method: 'GET',
+          path: '/blockers/' + pathSegment(blockerId) + '/users',
           signal: options?.signal,
         });
       },
@@ -1617,8 +1617,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockersBlockCardResponse>({
-          method: "POST",
-          path: "/cards/" + pathSegment(cardId) + "/blockers",
+          method: 'POST',
+          path: '/cards/' + pathSegment(cardId) + '/blockers',
           body,
           signal: options?.signal,
         });
@@ -1630,11 +1630,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockersDeleteCardBlockersResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/blockers/" +
+            '/blockers/' +
             pathSegment(blockerId),
           signal: options?.signal,
         });
@@ -1645,8 +1645,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockersRetrieveCardBlockersListResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/blockers",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/blockers',
           signal: options?.signal,
         });
       },
@@ -1658,11 +1658,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardBlockersUpdateCardBlockersResponse>({
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/blockers/" +
+            '/blockers/' +
             pathSegment(blockerId),
           body,
           signal: options?.signal,
@@ -1677,9 +1677,9 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardChildrenAddChildrenResponse>({
-          method: "POST",
-          path: "/cards/" + pathSegment(parentCardId) + "/children",
-          body: { card_id: childCardId },
+          method: 'POST',
+          path: '/cards/' + pathSegment(parentCardId) + '/children',
+          body: {card_id: childCardId},
           signal: options?.signal,
         });
       },
@@ -1690,9 +1690,9 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardChildrenRemoveChildrenResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" + pathSegment(cardId) + "/children/" + pathSegment(id),
+            '/cards/' + pathSegment(cardId) + '/children/' + pathSegment(id),
           signal: options?.signal,
         });
       },
@@ -1702,8 +1702,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardChildrenRetrieveCardChildrenListResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/children",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/children',
           signal: options?.signal,
         });
       },
@@ -1716,8 +1716,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardCommentsAddCommentResponse>({
-          method: "POST",
-          path: "/cards/" + pathSegment(cardId) + "/comments",
+          method: 'POST',
+          path: '/cards/' + pathSegment(cardId) + '/comments',
           body,
           signal: options?.signal,
         });
@@ -1729,11 +1729,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardCommentsRemoveCommentResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/comments/" +
+            '/comments/' +
             pathSegment(commentId),
           signal: options?.signal,
         });
@@ -1741,8 +1741,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/card-comments/retrieve-card-comments */
       retrieveCardComments: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardCommentsRetrieveCardCommentsResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/comments",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/comments',
           signal: options?.signal,
         });
       },
@@ -1754,11 +1754,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardCommentsUpdateCommentResponse>({
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/comments/" +
+            '/comments/' +
             pathSegment(commentId),
           body,
           signal: options?.signal,
@@ -1774,9 +1774,9 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardExternalLinksAddExternalLinkResponse>({
-          method: "POST",
-          path: "/cards/" + pathSegment(cardId) + "/external-links",
-          body: { url, description },
+          method: 'POST',
+          path: '/cards/' + pathSegment(cardId) + '/external-links',
+          body: {url, description},
           signal: options?.signal,
         });
       },
@@ -1787,11 +1787,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardExternalLinksRemoveExternalLinkResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/external-links/" +
+            '/external-links/' +
             pathSegment(id),
           signal: options?.signal,
         });
@@ -1803,8 +1803,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       ) => {
         return transport.request<CardExternalLinksRetrieveCardExternalLinksResponse>(
           {
-            method: "GET",
-            path: "/cards/" + pathSegment(cardId) + "/external-links",
+            method: 'GET',
+            path: '/cards/' + pathSegment(cardId) + '/external-links',
             signal: options?.signal,
           },
         );
@@ -1817,11 +1817,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardExternalLinksUpdateExternalLinkResponse>({
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/external-links/" +
+            '/external-links/' +
             pathSegment(id),
           body,
           signal: options?.signal,
@@ -1836,9 +1836,9 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardMembersAddMemberToCardResponse>({
-          method: "POST",
-          path: "/cards/" + pathSegment(cardId) + "/members",
-          body: { user_id: userId },
+          method: 'POST',
+          path: '/cards/' + pathSegment(cardId) + '/members',
+          body: {user_id: userId},
           signal: options?.signal,
         });
       },
@@ -1849,11 +1849,11 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardMembersRemoveMemberFromCardResponse>({
-          method: "DELETE",
+          method: 'DELETE',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/members/" +
+            '/members/' +
             pathSegment(memberId),
           signal: options?.signal,
         });
@@ -1864,8 +1864,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardMembersRetrieveListOfCardMembersResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/members",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/members',
           signal: options?.signal,
         });
       },
@@ -1877,13 +1877,13 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardMembersUpdateMemberRoleResponse>({
-          method: "PATCH",
+          method: 'PATCH',
           path:
-            "/cards/" +
+            '/cards/' +
             pathSegment(cardId) +
-            "/members/" +
+            '/members/' +
             pathSegment(memberId),
-          body: { type },
+          body: {type},
           signal: options?.signal,
         });
       },
@@ -1902,8 +1902,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardsBatchUpdateForCardsResponse>({
-          method: "PATCH",
-          path: "/cards",
+          method: 'PATCH',
+          path: '/cards',
           body,
           signal: options?.signal,
         });
@@ -1913,8 +1913,8 @@ export const createCardsResources = (transport: HttpTransport) => {
       /** @see https://developers.kaiten.ru/cards/delete-card */
       deleteCard: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardsDeleteCardResponse>({
-          method: "DELETE",
-          path: "/cards/" + pathSegment(cardId),
+          method: 'DELETE',
+          path: '/cards/' + pathSegment(cardId),
           signal: options?.signal,
         });
       },
@@ -1925,17 +1925,17 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardsRetrieveCardResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId),
-          query: { broken_api: brokenApi },
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId),
+          query: {broken_api: brokenApi},
           signal: options?.signal,
         });
       },
       /** @see https://developers.kaiten.ru/cards/retrieve-card-baselines */
       retrieveCardBaselines: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardsRetrieveCardBaselinesResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/baselines",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/baselines',
           signal: options?.signal,
         });
       },
@@ -1947,8 +1947,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardsRetrieveCardLocationHistoryResponse>({
-          method: "GET",
-          path: "/cards/" + pathSegment(cardId) + "/location-history",
+          method: 'GET',
+          path: '/cards/' + pathSegment(cardId) + '/location-history',
           signal: options?.signal,
         });
       },
@@ -1959,8 +1959,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         options?: OperationOptions,
       ) => {
         return transport.request<CardsUpdateCardResponse>({
-          method: "PATCH",
-          path: "/cards/" + pathSegment(cardId),
+          method: 'PATCH',
+          path: '/cards/' + pathSegment(cardId),
           body,
           signal: options?.signal,
         });

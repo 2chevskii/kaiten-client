@@ -1,4 +1,4 @@
-import type { HttpTransport, OperationOptions } from "../http.ts";
+import type {HttpTransport, OperationOptions} from '../http.ts';
 
 export interface AuditLogsRetrieveAuditLogEventsQuery {
   from?: string;
@@ -29,7 +29,7 @@ export type AuditLogsRetrieveAuditLogEventsResponse = {
 }[];
 
 export type AuditLogsRetrieveAuditLogEventsParams = Parameters<
-  ReturnType<typeof createAuditResources>["auditLogs"]["retrieveAuditLogEvents"]
+  ReturnType<typeof createAuditResources>['auditLogs']['retrieveAuditLogEvents']
 >;
 
 export const createAuditResources = (transport: HttpTransport) => ({
@@ -40,8 +40,8 @@ export const createAuditResources = (transport: HttpTransport) => ({
       options?: OperationOptions,
     ) => {
       return transport.request<AuditLogsRetrieveAuditLogEventsResponse>({
-        method: "GET",
-        path: "/audit-logs",
+        method: 'GET',
+        path: '/audit-logs',
         query,
         signal: options?.signal,
       });

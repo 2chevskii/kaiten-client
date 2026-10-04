@@ -1,7 +1,7 @@
 {
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "composite": true,
-    "tsBuildInfoFile": "artifacts/tsconfig.tsbuildinfo",
     "target": "ES2024",
     "lib": ["ES2024", "DOM"],
     "types": ["node"],
@@ -25,6 +25,5 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "lib",
     "rootDir": "src"
-  },
-  "include": ["src/**/*.ts"]
+  }
 }
