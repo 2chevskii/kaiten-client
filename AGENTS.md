@@ -21,7 +21,9 @@ Write strict TypeScript using the existing ESM import conventions and explicit p
 
 PR and `master` builds publish to GitHub Packages with `pr-N` and `edge` tags. A release tag such as `v1.0.1` must match the version in `package.json` after removing the `v` prefix. Update `package-lock.json` when changing the package version.
 
-`start_release.yml` checks the version, lint, formatting, and documentation, then builds the package and attaches the root-level `npm pack` tarball to a draft GitHub release. Publishing that release triggers `finish_release.yml`, which publishes the attached tarball independently to npm and GitHub Packages with `--tag latest` from the `production` environment. npm uses trusted publishing with OIDC; GitHub Packages uses `GITHUB_TOKEN`. If one registry fails, rerun only the failed job.
+`start_release.yml` checks the version, lint, formatting, and documentation, then builds the package and attaches the root-level `npm pack` tarball to a draft GitHub release. Publishing that release triggers `finish_release.yml`, which stages the attached tarball in npm and publishes it to GitHub Packages independently with `--tag latest` from the `production` environment. npm uses `npm stage publish` with OIDC; a maintainer then approves the staged version on npm with 2FA to make it publicly available. GitHub Packages uses `GITHUB_TOKEN`.
+
+If one registry fails, rerun only the failed job. To use an updated workflow for an existing release, manually run `finish_release.yml` from `master` with the release `tag` and the target `registry` (`npm` or `github`).
 
 ## Commits and Pull Requests
 
