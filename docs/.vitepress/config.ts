@@ -64,7 +64,6 @@ export default defineConfig({
                 text: 'Configuration and errors',
                 link: '/guide/configuration',
               },
-              {text: 'Migrating to 2.0', link: '/guide/migration'},
             ],
           },
           {
@@ -93,7 +92,7 @@ export default defineConfig({
         ],
         outline: {label: 'On this page'},
         editLink: {
-          pattern: `${repository}/edit/develop/docs/:path`,
+          pattern: `${repository}/edit/master/docs/:path`,
           text: 'Edit this page',
         },
       },
@@ -117,7 +116,6 @@ export default defineConfig({
                 link: '/ru/guide/getting-started',
               },
               {text: 'Настройка и ошибки', link: '/ru/guide/configuration'},
-              {text: 'Переход на 2.0', link: '/ru/guide/migration'},
             ],
           },
           {
@@ -155,7 +153,7 @@ export default defineConfig({
         returnToTopLabel: 'Наверх',
         skipToContentLabel: 'Перейти к содержимому',
         editLink: {
-          pattern: `${repository}/edit/develop/docs/:path`,
+          pattern: `${repository}/edit/master/docs/:path`,
           text: 'Изменить страницу',
         },
       },

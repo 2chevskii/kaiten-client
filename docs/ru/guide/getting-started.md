@@ -6,10 +6,16 @@
 - для TypeScript-проектов рекомендуется `module: "Node20"` (TypeScript 5.9 или новее);
 - домен компании Kaiten и API-токен.
 
-Установите опубликованную версию из npm:
+Текущая сборка с тегом `edge` опубликована в GitHub Packages. Создайте GitHub personal access token (classic) с разрешением `read:packages` и добавьте его в пользовательский `.npmrc` (вне репозитория). См. [инструкцию GitHub для npm registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry):
+
+```ini
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+Затем установите пакет:
 
 ```sh
-npm install @2chevskii/kaiten-client
+npm install --registry=https://npm.pkg.github.com @2chevskii/kaiten-client@edge
 ```
 
 Пакет поставляется со скомпилированным ESM JavaScript и объявлениями типов. В Node.js 24 поддерживаются оба способа подключения: `import` и `require()`.
@@ -19,8 +25,6 @@ const {KaitenClient} = require('@2chevskii/kaiten-client');
 ```
 
 Исходники и карты объявлений типов включены в пакет для перехода к исходному коду в редакторе. Для отладки со стектрейсами по исходникам запускайте Node.js с `--enable-source-maps`. Загрузчик TypeScript во время исполнения не требуется.
-
-При переходе с GitHub-версии `1.0.0` используйте [руководство по миграции](/ru/guide/migration).
 
 ## Первый запрос
 
