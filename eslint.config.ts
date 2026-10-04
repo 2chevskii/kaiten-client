@@ -9,7 +9,11 @@ import prettier from 'eslint-config-prettier/flat';
 export default defineConfig([
   {
     files: ['**/*.{js,ts,d.ts}'],
-    ignores: ['lib/**/*', 'docs/.vitepress/dist/**/*'],
+    ignores: [
+      'lib/**/*',
+      'docs/.vitepress/dist/**/*',
+      'docs/.vitepress/cache/**/*',
+    ],
     plugins: {js, ts: tseslint.plugin},
     extends: [js.configs.recommended, tseslint.configs.recommended, prettier],
     languageOptions: {globals: globals.node},
