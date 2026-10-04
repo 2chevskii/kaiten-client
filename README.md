@@ -2,7 +2,6 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/2chevskii/kaiten-client/ci.yml?branch=master&label=CI)](https://github.com/2chevskii/kaiten-client/actions/workflows/ci.yml)
 ![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-339933?logo=node.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-client-3178C6?logo=typescript&logoColor=white)
 [![MIT License](https://img.shields.io/github/license/2chevskii/kaiten-client)](LICENSE)
 
 Typed TypeScript clients and API contracts for [Kaiten](https://developers.kaiten.ru/): REST, SCIM, webhooks, imports, user metadata, and addons.
@@ -40,14 +39,4 @@ for (const card of cards) {
 
 ## Documentation
 
-Read the [English guides and API reference](https://2chevskii.github.io/kaiten-client/) or the [Russian documentation](https://2chevskii.github.io/kaiten-client/ru/).
-
-## Development
-
-```sh
-npm ci
-npm run build
-npm run lint
-npm run format:check
-npm run docs:build
-```
+Read the [Documentation website](https://2chevskii.github.io/kaiten-client/) for the detailed package documentation.
