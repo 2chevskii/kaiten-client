@@ -24,18 +24,53 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          jq -er --arg tag "$RELEASE_TAG" '
-            if ($tag == ("v" + .version)) and
-               ($tag | test("^v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$")) then
+          jq -er --arg version "${RELEASE_TAG#v}" '
+            if .version == $version then
               "package=2chevskii-kaiten-client-\(.version).tgz"
             else
-              error("Release tag must use vX.Y.Z and match package.json version")
+              error("Release tag must match package.json version after removing the v prefix")
             end
           ' package.json >> "$GITHUB_OUTPUT"
 
+  lint:
+    needs: validate-release
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  format:
+    needs: validate-release
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+
+  build_docs:
+    needs: validate-release
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          cache: npm
+      - run: npm ci
+      - run: npm run docs:build
+
   create-release:
     name: Create draft release
-    needs: validate-release
+    needs: [validate-release, lint, format, build_docs]
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     permissions:
@@ -54,10 +89,8 @@ jobs:
       - run: npm ci
       - run: |
           npm run build
-          mkdir -p artifacts
           npm pack
-      - working-directory: artifacts
-        run: |
+      - run: |
           if gh release view "$RELEASE_TAG" > /dev/null; then
             gh release upload "$RELEASE_TAG" "$PACKAGE" --clobber
           else
