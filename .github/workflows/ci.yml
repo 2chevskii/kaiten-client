@@ -41,7 +41,7 @@ jobs:
       - id: calculate-version
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
-          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: node tools/calculate-package-version.mjs
       - run: npm run build
       - run: npm pack
@@ -52,7 +52,6 @@ jobs:
           if-no-files-found: error
 
   publish:
-    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-26.04
     permissions:
@@ -71,8 +70,8 @@ jobs:
       - env:
           NODE_AUTH_TOKEN: ${{ github.token }}
           PACKAGE: ./artifacts/${{ needs.build.outputs.package_path }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "pr-${PR_NUMBER}"
+          PACKAGE_TAG: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'edge' }}
+        run: npm publish "$PACKAGE" --registry https://npm.pkg.github.com --tag "$PACKAGE_TAG"
 
   build_docs:
     runs-on: ubuntu-26.04
