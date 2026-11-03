@@ -7,6 +7,7 @@ import {defineConfig} from 'eslint/config';
 import prettier from 'eslint-config-prettier/flat';
 
 export default defineConfig([
+  {ignores: ['.agents/skills/**']},
   {
     files: ['**/*.{js,ts,d.ts}'],
     ignores: [
