@@ -1,34 +1,28 @@
 # Импорт данных
 
-`@2chevskii/kaiten-client/imports` предоставляет типы файлов импорта Kaiten: метаданные, сущности, сопоставления ID и цвета. Пакет не запускает импорт: подготовленные файлы передаются через процесс импорта Kaiten.
+Модуль imports предоставляет контракты TypeScript и не запускает импорт. Universal Format 2.0 находится в бета-версии и рекомендуется для новых интеграций. Типы `Import*` без версии описывают устаревший Universal Import v1 и сохранены для совместимости; поддержка v1 заканчивается 1 декабря 2026 года.
 
 ```ts
 import type {
-  ImportMetaDataRecord,
-  ImportCardsRecord,
+  ImportV2Manifest,
+  ImportV2UsersRecord,
 } from '@2chevskii/kaiten-client/imports';
 
-const metadata: ImportMetaDataRecord = {
-  entities: ['cards'],
-  entities_paths_map: {
-    cards: 'cards.json',
+const manifest: ImportV2Manifest = {
+  profile: {name: 'external'},
+  package_id: 'b6cde3fd-5d39-4fbf-85b8-c57c09e42ff6',
+  source: {
+    system: 'custom',
+    namespace: 'example:tracker',
+    exported_at: '2026-10-07T09:00:00Z',
   },
+  timeline_mode: 'current_state_only',
+  resource_files: [{resource: 'users', path: 'resources/users.json'}],
+  binary_files: {base_path: 'files/'},
 };
-
-const cards: ImportCardsRecord[] = [
-  {id: 'external-card-1', column_id: 'external-column-1', title: 'Задача'},
+const users: ImportV2UsersRecord[] = [
+  {external_id: 'user:1', email: 'ava@example.com'},
 ];
 ```
 
-`ImportEntityName` перечисляет допустимые имена сущностей, `ImportColor` — допустимые цвета. Вложенные структуры карточки (`checklists`, `history`, `properties` и другие) имеют отдельные экспортируемые типы. Для полного формата используйте [документацию импорта Kaiten](https://developers.kaiten.ru/imports).
-
-Запишите каждый набор записей в JSON-файл, указанный в `entities_paths_map`:
-
-```ts
-import {writeFile} from 'node:fs/promises';
-
-await Promise.all([
-  writeFile('metadata.json', JSON.stringify(metadata, null, 2)),
-  writeFile('cards.json', JSON.stringify(cards, null, 2)),
-]);
-```
+Сохраните манифест в `meta-data.json`, а массив пользователей — в `resources/users.json`. Ссылки должны разрешаться внутри пакета. Для проверки и импорта используйте Convertinator. TypeScript не проверяет длины, пути, условные ограничения и ссылки. Полные правила и схемы приведены в [описании формата](https://developers.kaiten.ru/imports/bundle-format).

@@ -1,6 +1,6 @@
 /** Import file contracts documented by Kaiten. */
 
-/** @see https://developers.kaiten.ru/imports/entities/boards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/boards */
 export interface ImportBoardsRecord {
   id: string | number;
   title: string;
@@ -9,7 +9,7 @@ export interface ImportBoardsRecord {
   space_id?: string | number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/card-timers */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/card-timers */
 export interface ImportCardTimersRecord {
   id: string | number;
   author_id: string | number;
@@ -19,7 +19,7 @@ export interface ImportCardTimersRecord {
   comment?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsRecord {
   id: string | number;
   column_id: string | number;
@@ -52,13 +52,13 @@ export interface ImportCardsRecord {
   key?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardChecklist {
   name: string;
   items: ImportCardsCardChecklistItem[];
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardChecklistItem {
   text: string;
   checked?: boolean | null;
@@ -71,13 +71,13 @@ export interface ImportCardsCardChecklistItem {
   sort_order?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardDateObject {
   value: string;
   time_present?: boolean | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardHistory {
   type: string;
   created: string;
@@ -86,32 +86,32 @@ export interface ImportCardsCardHistory {
   author_id?: string | number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardLinks {
   url: string | number;
   created?: string | null;
   description?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardProperties {
   id: string | number;
   value: boolean | string | number | unknown[];
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardTags {
   name: string;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/cards */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/cards */
 export interface ImportCardsCardPlannedPredecessor {
   id: string | number;
   gap?: number;
   gap_type?: string;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/columns */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/columns */
 export interface ImportColumnsRecord {
   id: string | number;
   title: string;
@@ -121,10 +121,10 @@ export interface ImportColumnsRecord {
   sort_order?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/columns-mapping */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/columns-mapping */
 export type ImportColumnsMappingRecord = Record<string, number>;
 
-/** @see https://developers.kaiten.ru/imports/entities/comments */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/comments */
 export interface ImportCommentsRecord {
   id: string | number;
   card_id: string | number;
@@ -136,7 +136,7 @@ export interface ImportCommentsRecord {
   type?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/custom-fields */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export interface ImportCustomFieldsRecord {
   id: string | number;
   type: string;
@@ -148,7 +148,7 @@ export interface ImportCustomFieldsRecord {
   vote_variant?: string;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/custom-fields */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export interface ImportCustomFieldsCatalogField {
   id: string | number;
   name: string;
@@ -156,11 +156,11 @@ export interface ImportCustomFieldsCatalogField {
   sort_order?: number;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/custom-fields */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export type ImportCustomFieldsDataField =
   {count: number; emoji: string} | {emojis: string[]};
 
-/** @see https://developers.kaiten.ru/imports/entities/custom-fields */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export interface ImportCustomFieldsOptions {
   id: string | number;
   value: string | number | unknown[];
@@ -169,13 +169,13 @@ export interface ImportCustomFieldsOptions {
   sort_order?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/custom-fields */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/custom-fields */
 export interface ImportCustomFieldsCatalogItem {
   catalog_field_id: string | number;
   item: string;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/document-files */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/document-files */
 export interface ImportDocumentFilesRecord {
   id: string | number;
   document_id: string | number;
@@ -183,7 +183,7 @@ export interface ImportDocumentFilesRecord {
   name?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/documents */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/documents */
 export interface ImportDocumentsRecord {
   id: string | number;
   title: string;
@@ -194,7 +194,7 @@ export interface ImportDocumentsRecord {
   type?: string | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/files */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/files */
 export interface ImportFilesRecord {
   id: string;
   card_id: string;
@@ -209,7 +209,7 @@ export interface ImportFilesRecord {
   size?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/folders */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/folders */
 export interface ImportFoldersRecord {
   id: string | number;
   title: string;
@@ -220,16 +220,16 @@ export interface ImportFoldersRecord {
   last_sequence_number?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/meta-data */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/meta-data */
 export interface ImportMetaDataRecord {
   entities: ImportEntityName[];
   entities_paths_map: Partial<Record<ImportEntityName, string>>;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/properties-mapping */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/properties-mapping */
 export type ImportPropertiesMappingRecord = Record<string, number>;
 
-/** @see https://developers.kaiten.ru/imports/entities/spaces */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/spaces */
 export interface ImportSpacesRecord {
   id: string | number;
   title: string;
@@ -240,13 +240,14 @@ export interface ImportSpacesRecord {
   last_sequence_number?: number | null;
 }
 
-/** @see https://developers.kaiten.ru/imports/entities/users */
+/** @deprecated Universal Import v1; use ImportV2 types for new integrations. @see https://developers.kaiten.ru/imports/entities/users */
 export interface ImportUsersRecord {
   id: string | number;
   email: string;
   full_name?: string | null;
 }
 
+/** @deprecated Universal Import v1. */
 export type ImportEntityName =
   | 'boards'
   | 'card_timers'
@@ -263,5 +264,9 @@ export type ImportEntityName =
   | 'spaces'
   | 'users';
 
+/** @deprecated Universal Import v1. */
 export type ImportColor =
   1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17;
+
+/** Universal Format 2.0 contracts. Existing unversioned exports above are legacy v1. */
+export type * from './imports-v2.js';

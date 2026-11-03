@@ -1,34 +1,28 @@
 # Data imports
 
-`@2chevskii/kaiten-client/imports` provides types for Kaiten import files: metadata, entities, ID mappings, and colors. The package does not start an import; submit prepared files through Kaiten's import process.
+The imports entry point supplies TypeScript contracts; it does not start imports. Universal Format 2.0 is in beta and recommended for new integrations. The unversioned `Import*` types describe deprecated Universal Import v1 and remain available for compatibility; Kaiten ends v1 support on December 1, 2026.
 
 ```ts
 import type {
-  ImportMetaDataRecord,
-  ImportCardsRecord,
+  ImportV2Manifest,
+  ImportV2UsersRecord,
 } from '@2chevskii/kaiten-client/imports';
 
-const metadata: ImportMetaDataRecord = {
-  entities: ['cards'],
-  entities_paths_map: {
-    cards: 'cards.json',
+const manifest: ImportV2Manifest = {
+  profile: {name: 'external'},
+  package_id: 'b6cde3fd-5d39-4fbf-85b8-c57c09e42ff6',
+  source: {
+    system: 'custom',
+    namespace: 'example:tracker',
+    exported_at: '2026-10-07T09:00:00Z',
   },
+  timeline_mode: 'current_state_only',
+  resource_files: [{resource: 'users', path: 'resources/users.json'}],
+  binary_files: {base_path: 'files/'},
 };
-
-const cards: ImportCardsRecord[] = [
-  {id: 'external-card-1', column_id: 'external-column-1', title: 'Task'},
+const users: ImportV2UsersRecord[] = [
+  {external_id: 'user:1', email: 'ava@example.com'},
 ];
 ```
 
-`ImportEntityName` lists accepted entity names and `ImportColor` lists color values. Nested card structures (`checklists`, `history`, `properties`, and others) have their own exported types. See [Kaiten's import documentation](https://developers.kaiten.ru/imports) for the full format.
-
-Serialize each record set to the corresponding JSON file named in `entities_paths_map`:
-
-```ts
-import {writeFile} from 'node:fs/promises';
-
-await Promise.all([
-  writeFile('metadata.json', JSON.stringify(metadata, null, 2)),
-  writeFile('cards.json', JSON.stringify(cards, null, 2)),
-]);
-```
+Write the manifest to `meta-data.json` and the users array to `resources/users.json`. References must resolve within the package. Use Convertinator to validate and import the package. TypeScript does not validate lengths, paths, conditional constraints, or references. See the [bundle format](https://developers.kaiten.ru/imports/bundle-format) for all rules and schemas.
