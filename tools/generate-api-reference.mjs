@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
 import {readFile, readdir, mkdir, rm, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
@@ -9,13 +10,29 @@ const cachePath = 'docs/.vitepress/cache/api-reference.json';
 const generatedRoots = [
   'docs/reference/rest',
   'docs/reference/scim',
+  'docs/reference/types',
   'docs/ru/reference/rest',
   'docs/ru/reference/scim',
+  'docs/ru/reference/types',
 ];
 const clients = [
   {file: 'src/client.ts', name: 'rest', className: 'KaitenClient'},
   {file: 'src/scim.ts', name: 'scim', className: 'KaitenScimClient'},
 ];
+const packageInfo = JSON.parse(
+  readFileSync(path.join(root, 'package.json'), 'utf8'),
+);
+const entryPoints = Object.entries(packageInfo.exports).map(([key, value]) => {
+  if (!value.types?.startsWith('./lib/') || !value.types.endsWith('.d.ts')) {
+    throw new Error(`Unsupported type entry point: ${key}`);
+  }
+  const suffix = key === '.' ? '' : key.slice(1);
+  return {
+    name: key === '.' ? 'main' : key.slice(2),
+    file: value.types.replace(/^\.\/lib\//, 'src/').replace(/\.d\.ts$/, '.ts'),
+    suffix,
+  };
+});
 
 const hash = content => createHash('sha256').update(content).digest('hex');
 const absolute = file => path.join(root, file);
@@ -53,6 +70,7 @@ async function inputHash() {
     ...(await filesIn('src')).filter(file => file.endsWith('.ts')),
     'tools/generate-api-reference.mjs',
     'tsconfig.json',
+    'package.json',
     'package-lock.json',
   ].sort();
   const digest = createHash('sha256').update(`typescript:${ts.version}\n`);
@@ -103,7 +121,49 @@ function docsFor(symbol, checker) {
   };
 }
 
-function renderMethod(method, checker, client, resource, ru) {
+function signatureParts(code, catalog, entry, route) {
+  const scanner = ts.createScanner(
+    ts.ScriptTarget.Latest,
+    false,
+    ts.LanguageVariant.Standard,
+    code,
+  );
+  const parts = [];
+  for (
+    let token = scanner.scan();
+    token !== ts.SyntaxKind.EndOfFileToken;
+    token = scanner.scan()
+  ) {
+    const text = scanner.getTokenText();
+    const type =
+      token === ts.SyntaxKind.Identifier
+        ? (catalog[entry].get(text) ?? catalog.main.get(text))
+        : undefined;
+    if (type) {
+      parts.push({
+        text,
+        href: `${route}/types/${type.entry}/${type.name}`,
+        preview: type.preview,
+      });
+    } else if (parts.length && !parts[parts.length - 1].href) {
+      parts[parts.length - 1].text += text;
+    } else {
+      parts.push({text});
+    }
+  }
+  return parts;
+}
+
+function signatureComponent(code, catalog, entry, route) {
+  const json = JSON.stringify(signatureParts(code, catalog, entry, route))
+    .replaceAll('&', '&amp;')
+    .replaceAll("'", '&#39;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+  return `<ApiSignature :parts='${json}' />`;
+}
+
+function renderMethod(method, checker, client, resource, ru, catalog, entry) {
   const type = checker.getTypeOfSymbolAtLocation(method, client);
   const signatures = checker.getSignaturesOfType(type, ts.SignatureKind.Call);
   const {description, tags} = docsFor(method, checker);
@@ -139,10 +199,14 @@ function renderMethod(method, checker, client, resource, ru) {
           `: AsyncGenerator<${response}[number], void, any>`;
       }
     }
+    const route = ru ? '/ru/reference' : '/reference';
     lines.push(
-      '```ts',
-      `client.${resource}.${method.name}${rendered}`,
-      '```',
+      signatureComponent(
+        `client.${resource}.${method.name}${rendered}`,
+        catalog,
+        entry,
+        route,
+      ),
       '',
     );
   }
@@ -180,12 +244,175 @@ function generate() {
     );
   const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, root);
   const program = ts.createProgram(
-    clients.map(client => absolute(client.file)),
+    [
+      ...clients.map(client => absolute(client.file)),
+      ...entryPoints.map(entry => absolute(entry.file)),
+    ],
     {...parsed.options, noEmit: true},
   );
   const checker = program.getTypeChecker();
   const output = new Map();
   const sidebar = {en: {}, ru: {}};
+  const catalog = {};
+
+  for (const entry of entryPoints) {
+    const source = program.getSourceFile(absolute(entry.file));
+    const module = source && checker.getSymbolAtLocation(source);
+    if (!module)
+      throw new Error(`Could not resolve public exports from ${entry.file}`);
+    const types = new Map();
+    for (const exported of checker.getExportsOfModule(module)) {
+      const symbol =
+        exported.flags & ts.SymbolFlags.Alias
+          ? checker.getAliasedSymbol(exported)
+          : exported;
+      const declaration = symbol.declarations?.find(
+        node =>
+          ts.isTypeAliasDeclaration(node) ||
+          ts.isInterfaceDeclaration(node) ||
+          ts.isEnumDeclaration(node),
+      );
+      if (!declaration) continue;
+      const definition = declaration.getText();
+      const type = checker.getDeclaredTypeOfSymbol(symbol);
+      const resolved =
+        ts.isTypeAliasDeclaration(declaration) &&
+        exported.name.endsWith('Params')
+          ? checker.typeToString(
+              type,
+              declaration,
+              ts.TypeFormatFlags.NoTruncation | ts.TypeFormatFlags.InTypeAlias,
+            )
+          : undefined;
+      const display = resolved
+        ? `export type ${exported.name} = ${resolved};`
+        : definition;
+      const previewLines = display.split('\n');
+      let preview = previewLines.slice(0, 9).join('\n');
+      if (preview.length > 360) preview = preview.slice(0, 360);
+      if (preview.length < display.length) preview += '\n…';
+      types.set(exported.name, {
+        name: exported.name,
+        entry: entry.name,
+        definition,
+        resolved,
+        preview,
+        symbol,
+      });
+    }
+    catalog[entry.name] = types;
+  }
+
+  for (const ru of [false, true]) {
+    const prefix = ru ? 'docs/ru/reference/types' : 'docs/reference/types';
+    const route = ru ? '/ru/reference/types' : '/reference/types';
+    const title = ru ? 'Типы данных' : 'Data types';
+    const index = [
+      '---',
+      'editLink: false',
+      'lastUpdated: false',
+      '---',
+      '',
+      `# ${title}`,
+      '',
+      ru
+        ? 'Типы сгруппированы по точкам входа пакета.'
+        : 'Types are grouped by package entry point.',
+      '',
+    ];
+    for (const entry of entryPoints) {
+      const packageName = `@2chevskii/kaiten-client${entry.suffix}`;
+      index.push(`- [\`${packageName}\`](${route}/${entry.name}/)`);
+      const section = [
+        '---',
+        'editLink: false',
+        'lastUpdated: false',
+        '---',
+        '',
+        `# ${packageName}`,
+        '',
+        `[${title}](${route}/)`,
+        '',
+      ];
+      const types = [...catalog[entry.name].values()].sort((a, b) =>
+        a.name.localeCompare(b.name, 'en'),
+      );
+      let letter = '';
+      for (const type of types) {
+        const next = type.name[0].toUpperCase();
+        if (next !== letter) {
+          letter = next;
+          section.push('', `## ${letter}`, '');
+        }
+        section.push(
+          `- [\`${type.name}\`](${route}/${entry.name}/${type.name})`,
+        );
+        const description = docsFor(type.symbol, checker).description;
+        const related = [
+          ...new Map(
+            signatureParts(
+              type.definition,
+              catalog,
+              entry.name,
+              ru ? '/ru/reference' : '/reference',
+            )
+              .filter(
+                part =>
+                  part.href &&
+                  !(
+                    part.text === type.name &&
+                    part.href.endsWith(`/${entry.name}/${type.name}`)
+                  ),
+              )
+              .map(part => [part.href, part]),
+          ).values(),
+        ];
+        const page = [
+          '---',
+          'editLink: false',
+          'lastUpdated: false',
+          '---',
+          '',
+          `# ${type.name}`,
+          '',
+          `[\`${packageName}\`](${route}/${entry.name}/)`,
+          '',
+          ...(description ? [markdownText(description), ''] : []),
+          '```ts',
+          `import type {${type.name}} from '${packageName}';`,
+          '```',
+          '',
+          `## ${ru ? 'Определение' : 'Definition'}`,
+          '',
+          '```ts',
+          type.definition,
+          '```',
+          '',
+          ...(type.resolved
+            ? [
+                `## ${ru ? 'Раскрытый тип' : 'Resolved type'}`,
+                '',
+                '```ts',
+                `type ${type.name} = ${type.resolved};`,
+                '```',
+                '',
+              ]
+            : []),
+          ...(related.length
+            ? [
+                `## ${ru ? 'Связанные типы' : 'Related types'}`,
+                '',
+                ...related.map(part => `- [\`${part.text}\`](${part.href})`),
+                '',
+              ]
+            : []),
+        ];
+        output.set(`${prefix}/${entry.name}/${type.name}.md`, page.join('\n'));
+      }
+      output.set(`${prefix}/${entry.name}/index.md`, section.join('\n') + '\n');
+    }
+    output.set(`${prefix}/index.md`, index.join('\n') + '\n');
+  }
 
   for (const {file, name, className} of clients) {
     const source = program.getSourceFile(absolute(file));
@@ -251,7 +478,15 @@ function generate() {
           `[${title}](${route}/${name})`,
           '',
           ...resource.methods.map(method =>
-            renderMethod(method, checker, client, resource.name, ru),
+            renderMethod(
+              method,
+              checker,
+              client,
+              resource.name,
+              ru,
+              catalog,
+              name === 'rest' ? 'main' : 'scim',
+            ),
           ),
         ].join('\n');
         output.set(`${prefix}/${name}/${resource.name}.md`, page);

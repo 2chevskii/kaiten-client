@@ -27,6 +27,7 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
     });
     for (const file of [
       'tsconfig.json',
+      'package.json',
       'package-lock.json',
       'tools/generate-api-reference.mjs',
     ]) {
@@ -54,7 +55,15 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
     const content = await readFile(page, 'utf8');
     assert.match(
       content,
-      /client\.cards\.retrieveCard\(cardId: number, brokenApi\?: boolean, options\?: OperationOptions\): Promise<CardsRetrieveCardResponse>/,
+      /client\.cards\.retrieveCard\(cardId: number, brokenApi\?: boolean, options\?: /,
+    );
+    assert.match(
+      content,
+      /"text":"CardsRetrieveCardResponse","href":"\/reference\/types\/main\/CardsRetrieveCardResponse"/,
+    );
+    assert.match(
+      content,
+      /"text":"CardsCreateNewCardBody","href":"\/reference\/types\/main\/CardsCreateNewCardBody","preview":/,
     );
     assert.equal(
       (content.match(/client\.cards\.retrieveCardList\(/g) ?? []).length,
@@ -64,6 +73,59 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       await readFile(scim, 'utf8'),
       /## addGroup[\s\S]*?\*\*Beta\*\*/,
     );
+    assert.match(
+      await readFile(scim, 'utf8'),
+      /"text":"GroupsGetGroupResponse","href":"\/reference\/types\/scim\/GroupsGetGroupResponse"/,
+    );
+    const mainGroup = await readFile(
+      path.join(fixture, 'docs/reference/types/main/GroupsGetGroupResponse.md'),
+      'utf8',
+    );
+    const scimGroup = await readFile(
+      path.join(fixture, 'docs/reference/types/scim/GroupsGetGroupResponse.md'),
+      'utf8',
+    );
+    assert.match(mainGroup, /permissions: number/);
+    assert.match(scimGroup, /displayName: string/);
+    assert.match(
+      scimGroup,
+      /import type \{GroupsGetGroupResponse\} from '@2chevskii\/kaiten-client\/scim'/,
+    );
+    const params = await readFile(
+      path.join(
+        fixture,
+        'docs/reference/types/main/CardsCreateNewCardParams.md',
+      ),
+      'utf8',
+    );
+    assert.match(
+      params,
+      /## Resolved type[\s\S]*?body: CardsCreateNewCardBody/,
+    );
+    const batch = await readFile(
+      path.join(
+        fixture,
+        'docs/reference/types/main/CardsBatchUpdateForCardsBody.md',
+      ),
+      'utf8',
+    );
+    assert.match(
+      batch,
+      /## Related types[\s\S]*?CardsBatchUpdateForCardsFields/,
+    );
+    const importsIndex = await readFile(
+      path.join(fixture, 'docs/reference/types/imports/index.md'),
+      'utf8',
+    );
+    assert.match(importsIndex, /ImportV2Manifest/);
+    const ruDto = await readFile(
+      path.join(
+        fixture,
+        'docs/ru/reference/types/scim/GroupsGetGroupResponse.md',
+      ),
+      'utf8',
+    );
+    assert.match(ruDto, /## Определение/);
     assert.match(
       content,
       /## createNewCard[\s\S]*?Creates a new Card\.[\s\S]*?\[Kaiten documentation\]\(https:\/\/developers\.kaiten\.ru\/cards\/create-new-card\)/,
@@ -100,6 +162,29 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       /This client method does not expose pagination parameters/,
     );
     assert.match(run(), /up to date/);
+    const packageFile = path.join(fixture, 'package.json');
+    const originalPackage = await readFile(packageFile, 'utf8');
+    const manifest = JSON.parse(originalPackage);
+    manifest.exports['./example'] = {
+      types: './lib/example.d.ts',
+      default: './lib/example.js',
+    };
+    await writeFile(packageFile, JSON.stringify(manifest));
+    await writeFile(
+      path.join(fixture, 'src/example.ts'),
+      'export interface ExampleDto { value: string }\n',
+    );
+    assert.match(run(), /generated/);
+    assert.match(
+      await readFile(
+        path.join(fixture, 'docs/reference/types/example/ExampleDto.md'),
+        'utf8',
+      ),
+      /value: string/,
+    );
+    await writeFile(packageFile, originalPackage);
+    await rm(path.join(fixture, 'src/example.ts'));
+    assert.match(run(), /generated/);
     const before = JSON.parse(await readFile(cache, 'utf8')).input;
     await writeFile(path.join(fixture, 'src/cache-test.ts'), '// hash input\n');
     assert.match(run(), /generated/);

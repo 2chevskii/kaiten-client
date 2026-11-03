@@ -49,3 +49,72 @@
 .VPHome .VPFeature.link:hover {
   border-color: var(--vp-c-brand-1);
 }
+
+.api-signature {
+  position: relative;
+  margin: 16px 0;
+  border-radius: 8px;
+  background: var(--vp-code-block-bg);
+}
+
+.api-signature-copy {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 11px;
+}
+
+.api-signature-copy:hover,
+.api-signature-copy:focus-visible {
+  color: var(--vp-c-brand-1);
+  outline: 1px solid var(--vp-c-brand-1);
+}
+
+.api-signature > pre {
+  overflow-x: auto;
+  padding: 32px 24px 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--vp-code-block-color);
+  font-size: var(--vp-code-font-size);
+  line-height: 1.7;
+}
+
+.api-signature-type {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.api-signature-type:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 3px;
+}
+
+.api-signature-preview {
+  position: fixed;
+  z-index: 100;
+  width: min(380px, calc(100vw - 16px));
+  max-height: 240px;
+  overflow: hidden;
+  padding: 12px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-elv);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.18);
+  pointer-events: none;
+}
+
+.api-signature-preview pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--vp-c-text-1);
+  font-size: 12px;
+  line-height: 1.5;
+}
