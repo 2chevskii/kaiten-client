@@ -65,6 +65,15 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       ),
     );
     assert.ok(signatures.length > 0);
+    assert.ok(
+      signatures.every(
+        parts =>
+          !parts
+            .map(part => part.text)
+            .join('')
+            .startsWith('client.'),
+      ),
+    );
     for (const parts of signatures) {
       for (const part of parts) {
         assert.equal(part.tokens.map(token => token.text).join(''), part.text);
@@ -95,7 +104,7 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
     }
     assert.match(
       content,
-      /client\.cards\.retrieveCard\(cardId: number, brokenApi\?: boolean, options\?: /,
+      /retrieveCard\(cardId: number, brokenApi\?: boolean, options\?: /,
     );
     assert.match(
       content,
@@ -105,10 +114,7 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       content,
       /"text":"CardsCreateNewCardBody","href":"\/reference\/types\/main\/CardsCreateNewCardBody","preview":/,
     );
-    assert.equal(
-      (content.match(/client\.cards\.retrieveCardList\(/g) ?? []).length,
-      3,
-    );
+    assert.equal((content.match(/retrieveCardList\(/g) ?? []).length, 3);
     assert.match(
       await readFile(scim, 'utf8'),
       /## addGroup[\s\S]*?\*\*Beta\*\*/,

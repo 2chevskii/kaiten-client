@@ -217,7 +217,6 @@ function renderMethod(
   method,
   checker,
   client,
-  resource,
   ru,
   catalog,
   entry,
@@ -261,7 +260,7 @@ function renderMethod(
     const route = ru ? '/ru/reference' : '/reference';
     lines.push(
       signatureComponent(
-        `client.${resource}.${method.name}${rendered}`,
+        `${method.name}${rendered}`,
         catalog,
         entry,
         route,
@@ -548,7 +547,6 @@ async function generate() {
               method,
               checker,
               client,
-              resource.name,
               ru,
               catalog,
               name === 'rest' ? 'main' : 'scim',
