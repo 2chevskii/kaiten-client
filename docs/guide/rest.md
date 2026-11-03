@@ -181,3 +181,21 @@ User queries also support `exclude_members_by_entity_uid` to exclude direct, gro
 Kaiten uses both numeric IDs and UUIDs. Pass the identifier type required by the particular method, such as `card_id: number` or `card_uid: string`. Dates remain strings, documented nullable fields allow `null`, and incomplete schemas use `unknown`.
 
 For operations without an iterator, use `limit`, `offset`, or a cursor where supported. Read the [file guide](/guide/files) for file routes.
+
+## Planned card relations
+
+`cardPlannedRelations` links a predecessor to a successor on the Gantt chart. Both cards need planned start and end dates; the caller must be able to edit both when creating a relation. Relations cannot form cycles or duplicate an existing pair in either direction.
+
+```ts
+await client.cardPlannedRelations.addPlannedRelation(10, {
+  target_card_id: 20,
+  type: 'end-start',
+});
+await client.cardPlannedRelations.updatePlannedRelation(10, 20, {
+  gap: 2,
+  gap_type: 'days',
+});
+await client.cardPlannedRelations.removePlannedRelation(10, 20);
+```
+
+The first ID is the predecessor and the second is the successor. A new relation has no gap; set it with an update. The gap is an integer from -1000 to 1000 in working hours or days. To set the first gap, send both fields; to clear it, send both as `null`. Once a gap exists, either field can be updated separately. Updating may move the successor and other linked cards; creating or removing a relation does not change dates. Removing requires edit access to at least one card.
