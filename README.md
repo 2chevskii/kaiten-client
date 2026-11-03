@@ -74,4 +74,4 @@ npm run format:check
 npm run docs:build
 ```
 
-Run `npm run docs:dev` to serve the documentation locally.
+Run `npm run docs:dev` to serve the documentation locally at `http://localhost:5173/kaiten-client/`.
