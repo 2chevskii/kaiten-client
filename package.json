@@ -17,6 +17,7 @@
     "docs"
   ],
   "files": [
+    "assets",
     "lib",
     "src",
     "README.md",

@@ -1,14 +1,23 @@
 import {defineConfig} from 'vitepress';
+import {fileURLToPath} from 'node:url';
 
 const repository = 'https://github.com/2chevskii/kaiten-client';
+const base = '/kaiten-client/';
 
 export default defineConfig({
-  base: '/kaiten-client/',
+  base,
   title: 'Kaiten Client',
   description: 'Typed TypeScript client for Kaiten',
   cleanUrls: true,
   lastUpdated: true,
+  head: [
+    ['link', {rel: 'icon', type: 'image/svg+xml', href: `${base}icon.svg`}],
+  ],
+  vite: {
+    publicDir: fileURLToPath(new URL('../../assets', import.meta.url)),
+  },
   themeConfig: {
+    logo: '/icon.svg',
     socialLinks: [{icon: 'github', link: repository}],
     search: {
       provider: 'local',

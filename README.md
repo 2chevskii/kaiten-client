@@ -1,3 +1,5 @@
+![Kaiten Client — typed connections to Kaiten](assets/readme-banner.svg)
+
 # Kaiten Client
 
 [![CI](https://img.shields.io/github/actions/workflow/status/2chevskii/kaiten-client/ci.yml?branch=master&label=CI)](https://github.com/2chevskii/kaiten-client/actions/workflows/ci.yml)

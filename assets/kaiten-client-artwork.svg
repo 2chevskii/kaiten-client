@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-labelledby="title">
+  <title id="title">Kaiten connected to code</title>
+  <defs>
+    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.25" fill="#bab4d2" opacity=".36"/>
+    </pattern>
+    <radialGradient id="red" cx="0" cy="0" r="1" gradientTransform="scale(330)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e62c3a" stop-opacity=".52"/><stop offset="1" stop-color="#e62c3a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violet" cx="0" cy="720" r="1" gradientTransform="translate(0 720) scale(330) translate(0 -720)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7836d2" stop-opacity=".55"/><stop offset="1" stop-color="#7836d2" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mint" cx="720" cy="720" r="1" gradientTransform="translate(720 720) scale(330) translate(-720 -720)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20bd9c" stop-opacity=".48"/><stop offset="1" stop-color="#20bd9c" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="canvas"><rect x="8" y="8" width="704" height="704" rx="66"/></clipPath>
+  </defs>
+  <g clip-path="url(#canvas)">
+    <rect width="720" height="720" fill="#0c0d15"/>
+    <rect width="720" height="720" fill="url(#red)"/>
+    <rect width="720" height="720" fill="url(#violet)"/>
+    <rect width="720" height="720" fill="url(#mint)"/>
+    <rect width="720" height="720" fill="url(#dots)"/>
+  </g>
+  <rect x="8" y="8" width="704" height="704" rx="66" fill="none" stroke="#30303d" stroke-width="2"/>
+  <circle cx="229" cy="360" r="130" fill="#ff2028"/>
+  <rect x="146" y="277" width="166" height="166" rx="34" transform="rotate(45 229 360)" fill="#8ff1db"/>
+  <circle cx="229" cy="360" r="61" fill="#713ed9"/>
+  <path d="M359 360h48m70-73-68 73 68 73m74-146 68 73-68 73" fill="none" stroke="#f5f3fb" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m529 280-30 160" fill="none" stroke="#8ff1db" stroke-width="18" stroke-linecap="round"/>
+</svg>

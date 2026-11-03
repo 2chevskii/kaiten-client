@@ -4,6 +4,9 @@ hero:
   name: Kaiten Client
   text: Типизированный клиент Kaiten
   tagline: REST, SCIM и контракты интеграций для Node.js и TypeScript
+  image:
+    src: /kaiten-client-artwork.svg
+    alt: Kaiten и программный код
   actions:
     - theme: brand
       text: Начать работу
