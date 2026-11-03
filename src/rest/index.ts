@@ -3,6 +3,7 @@ import type {HttpTransport} from '../http.ts';
 import {createAuditResources} from './audit.ts';
 import {createAutomationsResources} from './automations.ts';
 import {createWorkspaceResources} from './workspace.ts';
+import {createPlannedRelationsResources} from './planned-relations.ts';
 import {createCardsResources} from './cards.ts';
 import {createChecklistsResources} from './checklists.ts';
 import {createFilesResources} from './files.ts';
@@ -18,6 +19,7 @@ export type * from './audit.ts';
 export type * from './automations.ts';
 export type * from './workspace.ts';
 export type * from './cards.ts';
+export type * from './planned-relations.ts';
 export type * from './checklists.ts';
 export type * from './files.ts';
 export type * from './taxonomy.ts';
@@ -34,6 +36,7 @@ export const createRestResources = (transport: HttpTransport) => ({
   ...createAutomationsResources(transport),
   ...createWorkspaceResources(transport),
   ...createCardsResources(transport),
+  ...createPlannedRelationsResources(transport),
   ...createChecklistsResources(transport),
   ...createFilesResources(transport),
   ...createTaxonomyResources(transport),
