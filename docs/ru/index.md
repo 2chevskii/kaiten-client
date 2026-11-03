@@ -10,7 +10,7 @@ hero:
       link: /ru/guide/getting-started
 features:
   - title: REST и SCIM
-    details: 214 REST-операций и 8 SCIM-операций с типами запросов и ответов.
+    details: Типизированные REST-ресурсы и SCIM-операции для пользователей и групп.
   - title: Интеграции
     details: Типы вебхуков, метаданных, импорта и браузерного SDK аддонов.
   - title: Без лишнего транспорта

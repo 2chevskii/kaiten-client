@@ -32,8 +32,7 @@ const redirect = await client.restrictedAccessCardFiles.getCardFile(
   true,
 );
 
-console.log(file.url);
-console.log(redirect.location);
+console.log(file.name);
 ```
 
 The redirect URL grants temporary access to the file. Download it with the platform `fetch` API and avoid logging or storing the URL:

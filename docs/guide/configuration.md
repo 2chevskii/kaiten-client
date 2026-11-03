@@ -52,4 +52,4 @@ try {
 
 `body` is `unknown`: it can contain JSON, text, or `undefined` for an empty response. Network and token-provider errors propagate unchanged. Requests are never retried automatically; implement retries in your application with the method and Kaiten limits in mind.
 
-Malformed JSON or an unexpectedly empty successful response throws `KaitenResponseError`. It exposes `status`, `headers`, `method`, `url`, the original response text in `body`, and the parsing error in `cause`. Documented operations without a response body return `undefined`.
+Malformed JSON, an unexpectedly empty successful response, or a successful response where a file redirect was expected throws `KaitenResponseError`. It exposes `status`, `headers`, `method`, `url`, and the original response text in `body`. For malformed JSON, `cause` contains the parsing error. Documented operations without a response body return `undefined`.

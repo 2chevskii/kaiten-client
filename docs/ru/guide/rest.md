@@ -36,7 +36,7 @@ memberId, 2)` назначает участника ответственным; 
 
 ## Создать карточку и добавить комментарий
 
-Ответ одной операции может содержать ID, необходимый для следующего запроса. Для комментария небольшие поля передаются позиционными аргументами:
+Ответ одной операции может содержать ID, необходимый для следующего запроса. Передайте текст комментария в объекте тела запроса:
 
 ```ts
 const created = await client.cards.createNewCard({
@@ -72,12 +72,15 @@ const firstPage = await client.cards.retrieveCardList({
   limit: 50,
 });
 
-const nextPage = await client.cards.retrieveCardList({
-  version: 2,
-  start_position: firstPage.position,
-});
-
-console.log(firstPage.result, nextPage.result);
+console.log(firstPage.result);
+if (firstPage.result.length && firstPage.position) {
+  const nextPage = await client.cards.retrieveCardList({
+    version: 2,
+    limit: 50,
+    start_position: firstPage.position,
+  });
+  console.log(nextPage.result);
+}
 ```
 
 Тип `SearchResponseV2<Result>` экспортируется из основного пакета. Передавайте литерал `1` или `2`, чтобы TypeScript вывел подходящий тип результата. Для обычного списка без `version: 2` возвращается массив.
@@ -182,6 +185,8 @@ Kaiten использует и числовые ID, и UUID. Передавай�
 
 ## Лента активности
 
+Для ленты активности нужна версия новее npm `1.0.3`; см. [установку](/ru/guide/getting-started).
+
 Используйте `apiVersion: 'latest'` и `client.activity.listCompanyActivity(query)` или `client.activity.listSpaceActivity(spaceId, query)` для получения страницы. Для компании также доступен фильтр `card_id`. Оба метода поддерживают `limit`, `cursor`, `actions` (через запятую), `author_id`, `created_after` и `created_before`. Передавайте `next_cursor` как `cursor`, сохраняя фильтры; `null` означает конец списка. Для активности компании нужен доступ к её журналу активности.
 
 Ленивые итераторы сохраняют фильтры и завершаются при null-курсоре:
@@ -195,6 +200,8 @@ for await (const event of client.activity.iterateSpaceActivity(123, {
 ```
 
 ## Плановые связи карточек
+
+Для плановых связей нужна версия новее npm `1.0.3`; см. [установку](/ru/guide/getting-started).
 
 `cardPlannedRelations` связывает предшествующую и последующую карточки на диаграмме Ганта. Для обеих карточек нужны плановые даты начала и окончания; при создании пользователь должен иметь право редактировать обе карточки. Циклы и повторные связи пары в любом направлении запрещены.
 

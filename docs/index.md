@@ -10,7 +10,7 @@ hero:
       link: /guide/getting-started
 features:
   - title: REST and SCIM
-    details: 214 REST operations and 8 SCIM operations with request and response types.
+    details: Typed REST resources and SCIM user and group operations.
   - title: Integrations
     details: Contracts for webhooks, metadata, imports, and the browser addon SDK.
   - title: Simple transport

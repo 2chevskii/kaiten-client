@@ -2,6 +2,8 @@
 
 The imports entry point supplies TypeScript contracts; it does not start imports. Universal Format 2.0 is in beta and recommended for new integrations. The unversioned `Import*` types describe deprecated Universal Import v1 and remain available for compatibility; Kaiten ends v1 support on December 1, 2026.
 
+Universal Import v2 types require a version newer than npm `1.0.3`; see [installation](/guide/getting-started).
+
 ```ts
 import type {
   ImportV2Manifest,

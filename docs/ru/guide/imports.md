@@ -2,6 +2,8 @@
 
 Модуль imports предоставляет контракты TypeScript и не запускает импорт. Universal Format 2.0 находится в бета-версии и рекомендуется для новых интеграций. Типы `Import*` без версии описывают устаревший Universal Import v1 и сохранены для совместимости; поддержка v1 заканчивается 1 декабря 2026 года.
 
+Для типов Universal Import v2 нужна версия новее npm `1.0.3`; см. [установку](/ru/guide/getting-started).
+
 ```ts
 import type {
   ImportV2Manifest,

@@ -6,13 +6,21 @@
 - for TypeScript projects, `module: "Node20"` is recommended (TypeScript 5.9 or newer);
 - a Kaiten company origin and an API token.
 
-The current `edge` build is published to GitHub Packages. Create a GitHub personal access token (classic) with the `read:packages` scope and add it to your user-level `.npmrc` (outside your repository). See [GitHub's npm registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry):
+Install the released package from npm:
+
+```sh
+npm install @2chevskii/kaiten-client
+```
+
+This documentation follows the latest source. npm version `1.0.3` does not include activity feeds, planned card relations, or Universal Import v2; use a newer release or the development build for those features.
+
+For the latest development build, use the `edge` tag on GitHub Packages instead. Create a GitHub personal access token (classic) with the `read:packages` scope and add it to your user-level `.npmrc` (outside your repository). See [GitHub's npm registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry):
 
 ```ini
 //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
 ```
 
-Then install the package:
+Then install the development build:
 
 ```sh
 npm install --registry=https://npm.pkg.github.com @2chevskii/kaiten-client@edge

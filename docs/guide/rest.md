@@ -36,7 +36,7 @@ a membership `id`.
 
 ## Create a card and add a comment
 
-The response from one operation can provide the ID needed by another. Small comment fields are positional arguments:
+The response from one operation can provide the ID needed by another. Pass the comment text in a body object:
 
 ```ts
 const created = await client.cards.createNewCard({
@@ -74,12 +74,15 @@ const firstPage = await client.cards.retrieveCardList({
   limit: 50,
 });
 
-const nextPage = await client.cards.retrieveCardList({
-  version: 2,
-  start_position: firstPage.position,
-});
-
-console.log(firstPage.result, nextPage.result);
+console.log(firstPage.result);
+if (firstPage.result.length && firstPage.position) {
+  const nextPage = await client.cards.retrieveCardList({
+    version: 2,
+    limit: 50,
+    start_position: firstPage.position,
+  });
+  console.log(nextPage.result);
+}
 ```
 
 The root package exports `SearchResponseV2<Result>`. Pass literal `1` or `2` so TypeScript infers the matching result type. A normal list call without `version: 2` returns an array.
@@ -184,6 +187,8 @@ For operations without an iterator, use `limit`, `offset`, or a cursor where sup
 
 ## Activity feeds
 
+Activity feeds require a version newer than npm `1.0.3`; see [installation](/guide/getting-started).
+
 Use `apiVersion: 'latest'` and `client.activity.listCompanyActivity(query)` or `client.activity.listSpaceActivity(spaceId, query)` to fetch a page. Company activity also supports `card_id`. Both accept `limit`, `cursor`, comma-separated `actions`, `author_id`, `created_after`, and `created_before`. Pass `next_cursor` as `cursor` with the same filters; `null` means the end. Company activity requires access to company activity logs.
 
 The lazy iterators keep filters unchanged and stop on a null cursor:
@@ -197,6 +202,8 @@ for await (const event of client.activity.iterateSpaceActivity(123, {
 ```
 
 ## Planned card relations
+
+Planned relations require a version newer than npm `1.0.3`; see [installation](/guide/getting-started).
 
 `cardPlannedRelations` links a predecessor to a successor on the Gantt chart. Both cards need planned start and end dates; the caller must be able to edit both when creating a relation. Relations cannot form cycles or duplicate an existing pair in either direction.
 
