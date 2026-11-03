@@ -793,7 +793,11 @@ export const createDocumentsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups */
+      /**
+       * Get Document group list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups
+       */
       retrieveListOfDocumentGroups,
       /** @see https://developers.kaiten.ru/document-groups/update-document-group */
       updateDocumentGroup: (
@@ -810,7 +814,12 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       },
     },
     documentSchemas: {
-      /** @see https://developers.kaiten.ru/document-schemas/get-document-data-schema */
+      /**
+       * Returns the schema used to validate and describe document data in ProseMirror JSON format. …
+       *
+       * @warning The latest alias resolves to a concrete version. Choose draft-06 or prosemirror with the format parameter.
+       * @see https://developers.kaiten.ru/document-schemas/get-document-data-schema
+       */
       getDocumentDataSchema,
     },
     documents: {
@@ -849,7 +858,11 @@ export const createDocumentsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/documents/retrieve-list-of-documents */
+      /**
+       * Get Document list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @see https://developers.kaiten.ru/documents/retrieve-list-of-documents
+       */
       retrieveListOfDocuments,
       /** @see https://developers.kaiten.ru/documents/update-document */
       updateDocument: (

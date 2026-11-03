@@ -58,9 +58,17 @@ export const createActivityResources = (transport: HttpTransport) => {
     });
   return {
     activity: {
-      /** @see https://developers.kaiten.ru/activity/list-company-activity */
+      /**
+       * List activity for the current company, newest first. The token owner must have access to company activity logs. …
+       *
+       * @see https://developers.kaiten.ru/activity/list-company-activity
+       */
       listCompanyActivity,
-      /** @see https://developers.kaiten.ru/activity/list-space-activity */
+      /**
+       * List activity in a space, newest first. Pass next_cursor from the previous response as cursor on the next request, keeping the same filters. …
+       *
+       * @see https://developers.kaiten.ru/activity/list-space-activity
+       */
       listSpaceActivity,
       iterateCompanyActivity: (
         query: CompanyActivityQuery = {},

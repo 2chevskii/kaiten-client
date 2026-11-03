@@ -170,7 +170,11 @@ export const createServiceDeskResources = (transport: HttpTransport) => ({
     },
   },
   cardSla: {
-    /** @see https://developers.kaiten.ru/card-sla/retrieve-card-sla-measurements */
+    /**
+     * Returns SLA rule timing metrics for card
+     *
+     * @see https://developers.kaiten.ru/card-sla/retrieve-card-sla-measurements
+     */
     retrieveCardSlaMeasurements: (
       cardId: number,
       options?: OperationOptions,

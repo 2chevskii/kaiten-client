@@ -52,7 +52,6 @@ async function inputHash() {
   const files = [
     ...(await filesIn('src')).filter(file => file.endsWith('.ts')),
     'tools/generate-api-reference.mjs',
-    'tools/kaiten-api-descriptions.json',
     'tsconfig.json',
     'package-lock.json',
   ].sort();
@@ -82,7 +81,7 @@ function docsFor(symbol, checker) {
       for (const tag of doc.tags ?? []) {
         const name = tag.tagName.text;
         if (
-          ['beta', 'deprecated'].includes(name) &&
+          ['beta', 'deprecated', 'warning'].includes(name) &&
           !tags.some(existing => existing.name === name)
         ) {
           tags.push({
@@ -98,11 +97,13 @@ function docsFor(symbol, checker) {
   }
   return {
     description,
-    tags: tags.filter(tag => ['deprecated', 'beta', 'see'].includes(tag.name)),
+    tags: tags.filter(tag =>
+      ['deprecated', 'beta', 'warning', 'see'].includes(tag.name),
+    ),
   };
 }
 
-function renderMethod(method, checker, client, resource, ru, descriptions) {
+function renderMethod(method, checker, client, resource, ru) {
   const type = checker.getTypeOfSymbolAtLocation(method, client);
   const signatures = checker.getSignaturesOfType(type, ts.SignatureKind.Call);
   const {description, tags} = docsFor(method, checker);
@@ -149,15 +150,17 @@ function renderMethod(method, checker, client, resource, ru, descriptions) {
   for (const tag of tags) {
     const value = ts.displayPartsToString(tag.text ?? []).trim();
     if (tag.name === 'see' && /^https?:\/\/\S+$/.test(value)) {
-      const excerpt = descriptions[value];
-      if (excerpt) {
-        const safeExcerpt = markdownText(excerpt)
-          .replaceAll('{{', '&#123;&#123;')
-          .replaceAll('}}', '&#125;&#125;');
-        lines.push(`> ${safeExcerpt}`, '');
-      }
       lines.push(
-        `[${ru ? (excerpt ? 'Документация Kaiten (на английском)' : 'Документация Kaiten') : 'Kaiten documentation'}](${value})`,
+        `[${ru ? 'Документация Kaiten' : 'Kaiten documentation'}](${value})`,
+        '',
+      );
+    } else if (tag.name === 'warning' && value) {
+      lines.push(
+        `::: warning ${ru ? 'Предупреждение' : 'Warning'}`,
+        markdownText(value)
+          .replaceAll('{{', '&#123;&#123;')
+          .replaceAll('}}', '&#125;&#125;'),
+        ':::',
         '',
       );
     } else if (tag.name === 'deprecated' || tag.name === 'beta') {
@@ -169,7 +172,7 @@ function renderMethod(method, checker, client, resource, ru, descriptions) {
   return lines.join('\n');
 }
 
-function generate(descriptions) {
+function generate() {
   const config = ts.readConfigFile(absolute('tsconfig.json'), ts.sys.readFile);
   if (config.error)
     throw new Error(
@@ -248,14 +251,7 @@ function generate(descriptions) {
           `[${title}](${route}/${name})`,
           '',
           ...resource.methods.map(method =>
-            renderMethod(
-              method,
-              checker,
-              client,
-              resource.name,
-              ru,
-              descriptions,
-            ),
+            renderMethod(method, checker, client, resource.name, ru),
           ),
         ].join('\n');
         output.set(`${prefix}/${name}/${resource.name}.md`, page);
@@ -297,10 +293,7 @@ export async function generateApiReference({check = false} = {}) {
     }
   }
 
-  const descriptions = JSON.parse(
-    await readFile(absolute('tools/kaiten-api-descriptions.json'), 'utf8'),
-  ).descriptions;
-  const {output, sidebar} = generate(descriptions);
+  const {output, sidebar} = generate();
   const stale = existingGenerated.filter(file => !output.has(file));
   if (check) {
     const changed = (

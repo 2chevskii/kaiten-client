@@ -1106,7 +1106,12 @@ export type SubcolumnUpdateSubcolumnParams = Parameters<
 
 export const createWorkspaceResources = (transport: HttpTransport) => ({
   boards: {
-    /** @see https://developers.kaiten.ru/boards/get-board */
+    /**
+     * Returns a board with nested entities. Card retrieval from this route is deprecated.
+     *
+     * @warning Since 2026-11-01, this endpoint no longer returns cards. Retrieve them through the cards list endpoint and paginate by offset.
+     * @see https://developers.kaiten.ru/boards/get-board
+     */
     getBoard: (boardId: number, options?: OperationOptions) => {
       return transport.request<BoardsGetBoardResponse>({
         method: 'GET',
@@ -1116,7 +1121,10 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     },
   },
   columns: {
-    /** @see https://developers.kaiten.ru/columns/create-new-column */
+    /**
+     * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+     * @see https://developers.kaiten.ru/columns/create-new-column
+     */
     createNewColumn: (
       boardId: number,
       body: ColumnsCreateNewColumnBody,
@@ -1155,7 +1163,10 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/columns/update-column */
+    /**
+     * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+     * @see https://developers.kaiten.ru/columns/update-column
+     */
     updateColumn: (
       boardId: number,
       columnId: number,
@@ -1233,7 +1244,10 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
     },
   },
   subcolumn: {
-    /** @see https://developers.kaiten.ru/subcolumn/create-new-subcolumn */
+    /**
+     * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+     * @see https://developers.kaiten.ru/subcolumn/create-new-subcolumn
+     */
     createNewSubcolumn: (
       columnId: number,
       body: SubcolumnCreateNewSubcolumnBody,
@@ -1272,7 +1286,10 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/subcolumn/update-subcolumn */
+    /**
+     * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+     * @see https://developers.kaiten.ru/subcolumn/update-subcolumn
+     */
     updateSubcolumn: (
       columnId: number,
       subcolumnId: number,
@@ -1305,7 +1322,12 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/space-boards/get-board */
+    /**
+     * Returns a board in a space with nested entities. Card retrieval from this route is deprecated.
+     *
+     * @warning Since 2026-11-01, this endpoint no longer returns cards. Retrieve them through the cards list endpoint and paginate by offset.
+     * @see https://developers.kaiten.ru/space-boards/get-board
+     */
     getBoard: (spaceId: number, id: number, options?: OperationOptions) => {
       return transport.request<SpaceBoardsGetBoardResponse>({
         method: 'GET',
@@ -1367,7 +1389,12 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
         },
       );
     },
-    /** @see https://developers.kaiten.ru/space-users/get-list-of-users */
+    /**
+     * Get list of space users. Pagination applies to the inactive=true result as well.
+     *
+     * @warning Since 2026-10-01, pages default to 100 users and allow at most 500. Use limit and last_user_id to paginate; X-Pagination-Limit reports the applied limit.
+     * @see https://developers.kaiten.ru/space-users/get-list-of-users
+     */
     getListOfUsers: (
       spaceId: number,
       query?: SpaceUsersGetListOfUsersQuery,
@@ -1435,7 +1462,12 @@ export const createWorkspaceResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/spaces/retrieve-list-of-spaces */
+    /**
+     * Retrieve list of spaces available to the current user.
+     *
+     * @warning Since 2026-10-01, responses contain at most 100 spaces per page. Paginate with limit and offset; X-Pagination-Limit reports the applied limit.
+     * @see https://developers.kaiten.ru/spaces/retrieve-list-of-spaces
+     */
     retrieveListOfSpaces: (
       limit?: number,
       offset?: number,

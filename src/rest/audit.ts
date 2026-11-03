@@ -34,7 +34,11 @@ export type AuditLogsRetrieveAuditLogEventsParams = Parameters<
 
 export const createAuditResources = (transport: HttpTransport) => ({
   auditLogs: {
-    /** @see https://developers.kaiten.ru/audit-logs/retrieve-audit-log-events */
+    /**
+     * Get audit log events for the current company. …
+     *
+     * @see https://developers.kaiten.ru/audit-logs/retrieve-audit-log-events
+     */
     retrieveAuditLogEvents: (
       query?: AuditLogsRetrieveAuditLogEventsQuery,
       options?: OperationOptions,

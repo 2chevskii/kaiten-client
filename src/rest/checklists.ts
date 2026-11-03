@@ -695,7 +695,10 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
         },
       );
     },
-    /** @see https://developers.kaiten.ru/space-template-checklist/get-list-of-space-template-checklists */
+    /**
+     * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+     * @see https://developers.kaiten.ru/space-template-checklist/get-list-of-space-template-checklists
+     */
     getListOfSpaceTemplateChecklists: (
       spaceUid: string,
       options?: OperationOptions,

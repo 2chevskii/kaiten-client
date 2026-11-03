@@ -29,7 +29,6 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       'tsconfig.json',
       'package-lock.json',
       'tools/generate-api-reference.mjs',
-      'tools/kaiten-api-descriptions.json',
     ]) {
       await cp(path.join(root, file), path.join(fixture, file));
     }
@@ -67,38 +66,55 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
     );
     assert.match(
       content,
-      /## createNewCard[\s\S]*?> Creates a new Card\.[\s\S]*?\[Kaiten documentation\]\(https:\/\/developers\.kaiten\.ru\/cards\/create-new-card\)/,
+      /## createNewCard[\s\S]*?Creates a new Card\.[\s\S]*?\[Kaiten documentation\]\(https:\/\/developers\.kaiten\.ru\/cards\/create-new-card\)/,
     );
     const russian = await readFile(
       path.join(fixture, 'docs/ru/reference/rest/cards.md'),
       'utf8',
     );
-    assert.match(russian, /Документация Kaiten \(на английском\)/);
+    assert.match(russian, /::: warning Предупреждение/);
+    assert.match(content, /::: warning Warning[\s\S]*?months_to_hide_cards/);
+    const iterations = await readFile(
+      path.join(fixture, 'docs/reference/rest/iterations.md'),
+      'utf8',
+    );
+    assert.match(
+      iterations,
+      /## createIteration[\s\S]*?\*\*Beta\*\*[\s\S]*?::: warning Warning[\s\S]*?iterations API as beta/,
+    );
+    const records = await readFile(
+      path.join(fixture, 'docs/reference/rest/customDirectoryRecords.md'),
+      'utf8',
+    );
+    const createRecord = records
+      .split('## createRecord')[1]
+      .split('## deleteRecord')[0];
+    assert.equal((createRecord.match(/::: warning Warning/g) ?? []).length, 2);
+    assert.match(createRecord, /settings\.allow_editing=true/);
+    const comments = await readFile(
+      path.join(fixture, 'docs/reference/rest/cardComments.md'),
+      'utf8',
+    );
+    assert.match(
+      comments,
+      /This client method does not expose pagination parameters/,
+    );
     assert.match(run(), /up to date/);
     const before = JSON.parse(await readFile(cache, 'utf8')).input;
     await writeFile(path.join(fixture, 'src/cache-test.ts'), '// hash input\n');
     assert.match(run(), /generated/);
     assert.notEqual(JSON.parse(await readFile(cache, 'utf8')).input, before);
 
-    const descriptionsFile = path.join(
-      fixture,
-      'tools/kaiten-api-descriptions.json',
+    const cardsSource = path.join(fixture, 'src/rest/cards.ts');
+    const originalSource = await readFile(cardsSource, 'utf8');
+    assert.match(originalSource, /Creates a new Card\. …/);
+    await writeFile(
+      cardsSource,
+      originalSource.replace('Creates a new Card. …', 'Updated description.'),
     );
-    const snapshot = JSON.parse(await readFile(descriptionsFile, 'utf8'));
-    const originalDescription =
-      snapshot.descriptions[
-        'https://developers.kaiten.ru/cards/create-new-card'
-      ];
-    snapshot.descriptions[
-      'https://developers.kaiten.ru/cards/create-new-card'
-    ] = 'Updated description.';
-    await writeFile(descriptionsFile, JSON.stringify(snapshot));
     assert.match(run(), /generated/);
-    assert.match(await readFile(page, 'utf8'), /> Updated description\./);
-    snapshot.descriptions[
-      'https://developers.kaiten.ru/cards/create-new-card'
-    ] = originalDescription;
-    await writeFile(descriptionsFile, JSON.stringify(snapshot));
+    assert.match(await readFile(page, 'utf8'), /Updated description\./);
+    await writeFile(cardsSource, originalSource);
     assert.match(run(), /generated/);
 
     await writeFile(page, 'corrupted');

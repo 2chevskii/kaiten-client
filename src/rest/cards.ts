@@ -1501,7 +1501,12 @@ export const createCardsResources = (transport: HttpTransport) => {
   }
   return {
     cardAllowedUsers: {
-      /** @see https://developers.kaiten.ru/card-allowed-users/retrieve-users-list */
+      /**
+       * Returns a list of users with access to card
+       *
+       * @warning Since 2026-10-01, pages default to and are capped at 100 users. Use limit and offset; X-Pagination-Limit reports the applied limit.
+       * @see https://developers.kaiten.ru/card-allowed-users/retrieve-users-list
+       */
       retrieveUsersList: (
         cardId: number,
         query?: CardAllowedUsersRetrieveUsersListQuery,
@@ -1547,7 +1552,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blocker-categories/retrieve-list-of-categories */
+      /**
+       * Returns a list of blocker categories
+       *
+       * @see https://developers.kaiten.ru/card-blocker-categories/retrieve-list-of-categories
+       */
       retrieveListOfCategories: (options?: OperationOptions) => {
         return transport.request<CardBlockerCategoriesRetrieveListOfCategoriesResponse>(
           {
@@ -1590,7 +1599,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user */
+      /**
+       * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user
+       */
       retrieveBlockersCardsListOnCurrentUser: (options?: OperationOptions) => {
         return transport.request<CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse>(
           {
@@ -1639,7 +1651,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list */
+      /**
+       * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list
+       */
       retrieveCardBlockersList: (
         cardId: number,
         options?: OperationOptions,
@@ -1696,7 +1711,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-children/retrieve-card-children-list */
+      /**
+       * @warning Since 2026-10-01, pages default to and are capped at 100 children. Use limit and offset; X-Pagination-Limit reports the applied limit. This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-children/retrieve-card-children-list
+       */
       retrieveCardChildrenList: (
         cardId: number,
         options?: OperationOptions,
@@ -1738,7 +1756,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-comments/retrieve-card-comments */
+      /**
+       * @warning Since 2026-10-01, pages default to and are capped at 100 comments. Use limit and offset; X-Pagination-Limit reports the applied limit. This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-comments/retrieve-card-comments
+       */
       retrieveCardComments: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardCommentsRetrieveCardCommentsResponse>({
           method: 'GET',
@@ -1896,7 +1917,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           CardsRetrieveCardListResponse
         >(retrieveCardList, query ?? {}, options);
       },
-      /** @see https://developers.kaiten.ru/cards/batch-update-for-cards */
+      /**
+       * Update multiple cards by criteria. Runs in the background and returns a job ID.
+       *
+       * @see https://developers.kaiten.ru/cards/batch-update-for-cards
+       */
       batchUpdateForCards: (
         body: CardsBatchUpdateForCardsBody,
         options?: OperationOptions,
@@ -1908,7 +1933,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/create-new-card */
+      /**
+       * Creates a new Card. …
+       *
+       * @see https://developers.kaiten.ru/cards/create-new-card
+       */
       createNewCard,
       /** @see https://developers.kaiten.ru/cards/delete-card */
       deleteCard: (cardId: number, options?: OperationOptions) => {
@@ -1918,7 +1947,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card */
+      /**
+       * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+       * @see https://developers.kaiten.ru/cards/retrieve-card
+       */
       retrieveCard: (
         cardId: number,
         brokenApi?: boolean,
@@ -1931,7 +1963,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-baselines */
+      /**
+       * Get all unarchived baselines of unarchived projects for this card
+       *
+       * @see https://developers.kaiten.ru/cards/retrieve-card-baselines
+       */
       retrieveCardBaselines: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardsRetrieveCardBaselinesResponse>({
           method: 'GET',
@@ -1939,9 +1975,18 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-list */
+      /**
+       * Get Card list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+       * @see https://developers.kaiten.ru/cards/retrieve-card-list
+       */
       retrieveCardList,
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-location-history */
+      /**
+       * Get card location history
+       *
+       * @see https://developers.kaiten.ru/cards/retrieve-card-location-history
+       */
       retrieveCardLocationHistory: (
         cardId: number,
         options?: OperationOptions,

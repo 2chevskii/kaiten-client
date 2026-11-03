@@ -169,7 +169,11 @@ export const createTagsResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/tags/retrieve-list-of-tags */
+    /**
+     * Get tags list filtered by query parameters. …
+     *
+     * @see https://developers.kaiten.ru/tags/retrieve-list-of-tags
+     */
     retrieveListOfTags: (
       query?: TagsRetrieveListOfTagsQuery,
       options?: OperationOptions,

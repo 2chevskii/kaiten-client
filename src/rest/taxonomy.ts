@@ -374,7 +374,10 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     },
   },
   cardTypes: {
-    /** @see https://developers.kaiten.ru/card-types/create-new-card-type */
+    /**
+     * @warning The card type properties field is deprecated; use card_properties. Kaiten announced its removal after 2026-01-31.
+     * @see https://developers.kaiten.ru/card-types/create-new-card-type
+     */
     createNewCardType: (
       body: CardTypesCreateNewCardTypeBody,
       options?: OperationOptions,
@@ -386,7 +389,10 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/card-types/get-card-type */
+    /**
+     * @warning The card type properties field is deprecated; use card_properties. Kaiten announced its removal after 2026-01-31.
+     * @see https://developers.kaiten.ru/card-types/get-card-type
+     */
     getCardType: (id: number, options?: OperationOptions) => {
       return transport.request<CardTypesGetCardTypeResponse>({
         method: 'GET',
@@ -394,7 +400,10 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/card-types/get-list-of-card-types */
+    /**
+     * @warning The card type properties field is deprecated; use card_properties. Kaiten announced its removal after 2026-01-31.
+     * @see https://developers.kaiten.ru/card-types/get-list-of-card-types
+     */
     getListOfCardTypes: (
       limit?: number,
       offset?: number,
@@ -407,7 +416,10 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/card-types/remove-card-type */
+    /**
+     * @warning The card type properties field is deprecated; use card_properties. Kaiten announced its removal after 2026-01-31.
+     * @see https://developers.kaiten.ru/card-types/remove-card-type
+     */
     removeCardType: (
       id: number,
       replaceTypeId: number,
@@ -420,7 +432,10 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/card-types/update-card-type */
+    /**
+     * @warning The card type properties field is deprecated; use card_properties. Kaiten announced its removal after 2026-01-31.
+     * @see https://developers.kaiten.ru/card-types/update-card-type
+     */
     updateCardType: (
       id: number,
       body: CardTypesUpdateCardTypeBody,
@@ -435,8 +450,13 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     },
   },
   treeEntities: {
-    /** @beta */
-    /** @see https://developers.kaiten.ru/tree-entities/get-list-of-entities */
+    /**
+     * Get a paginated list of tree entities readable by the authenticated user. Archived and protected entities are excluded. …
+     *
+     * @beta
+     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @see https://developers.kaiten.ru/tree-entities/get-list-of-entities
+     */
     getListOfEntities: (
       query?: TreeEntitiesGetListOfEntitiesQuery,
       options?: OperationOptions,
@@ -450,8 +470,11 @@ export const createTaxonomyResources = (transport: HttpTransport) => ({
     },
   },
   treeEntityRoles: {
-    /** @beta */
-    /** @see https://developers.kaiten.ru/tree-entity-roles/get-list-of-tree-entity-roles */
+    /**
+     * @beta
+     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @see https://developers.kaiten.ru/tree-entity-roles/get-list-of-tree-entity-roles
+     */
     getListOfTreeEntityRoles: (options?: OperationOptions) => {
       return transport.request<TreeEntityRolesGetListOfTreeEntityRolesResponse>(
         {
