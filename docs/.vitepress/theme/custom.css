@@ -1,0 +1,138 @@
+:root {
+  --vp-c-brand-1: #9b304a;
+  --vp-c-brand-2: #b43e57;
+  --vp-c-brand-3: #80263c;
+  --vp-c-brand-soft: rgba(155, 48, 74, 0.1);
+  --vp-c-bg: #fdfcfd;
+  --vp-c-bg-alt: #f6f4f7;
+  --vp-c-bg-soft: #f7f5f8;
+  --vp-c-text-1: #211c27;
+  --vp-c-text-2: #655d6a;
+  --vp-home-hero-name-color: #9b304a;
+  --vp-nav-logo-height: 2rem;
+}
+
+.dark {
+  --vp-c-brand-1: #ffaab2;
+  --vp-c-brand-2: #ffc1c6;
+  --vp-c-brand-3: #f38a96;
+  --vp-c-brand-soft: rgba(255, 170, 178, 0.12);
+  --vp-c-bg: #17141c;
+  --vp-c-bg-alt: #1d1922;
+  --vp-c-bg-elv: #29232f;
+  --vp-c-bg-soft: #211c27;
+  --vp-c-border: #453c4b;
+  --vp-c-divider: #38303e;
+  --vp-c-gutter: #302a35;
+  --vp-c-text-1: #f5eff6;
+  --vp-c-text-2: #c7bccb;
+  --vp-c-text-3: #a99cac;
+  --vp-home-hero-name-color: #ffaab2;
+  --vp-button-brand-text: #29151e;
+  --vp-button-brand-hover-text: #29151e;
+  --vp-button-brand-active-text: #29151e;
+}
+
+.VPHome .VPHero .image-src {
+  border-radius: 7%;
+  box-shadow: 0 20px 60px rgba(32, 20, 38, 0.18);
+}
+
+.VPHome .VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 0.75rem;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.VPHome .VPFeature.link:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.api-signature {
+  position: relative;
+  margin: 16px 0;
+  border-radius: 8px;
+  background: var(--vp-code-block-bg);
+}
+
+.api-signature-copy {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--vp-code-copy-code-border-color);
+  border-radius: 4px;
+  background-color: var(--vp-code-copy-code-bg);
+  background-image: var(--vp-icon-copy);
+  background-position: center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.api-signature-copy.copied {
+  background-image: var(--vp-icon-copied);
+}
+
+.api-signature-copy:hover,
+.api-signature-copy:focus-visible {
+  border-color: var(--vp-code-copy-code-hover-border-color);
+  background-color: var(--vp-code-copy-code-hover-bg);
+  outline: 1px solid var(--vp-c-brand-1);
+}
+
+.api-signature > pre {
+  overflow-x: auto;
+  padding: 32px 24px 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--vp-code-block-color);
+  font-size: var(--vp-code-font-size);
+  line-height: 1.7;
+}
+
+.api-signature-type {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.api-signature span[style] {
+  color: var(--shiki-light);
+}
+
+.dark .api-signature span[style] {
+  color: var(--shiki-dark);
+}
+
+.api-signature-type:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 3px;
+}
+
+.api-signature-preview {
+  position: fixed;
+  z-index: 100;
+  width: min(380px, calc(100vw - 16px));
+  max-height: 240px;
+  overflow: hidden;
+  padding: 12px 14px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-elv);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.18);
+  pointer-events: none;
+}
+
+.api-signature-preview pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--vp-c-text-1);
+  font-size: 12px;
+  line-height: 1.5;
+}

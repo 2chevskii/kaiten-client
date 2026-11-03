@@ -528,7 +528,11 @@ export const createFilesResources = (transport: HttpTransport) => {
           },
         );
       },
-      /** @see https://developers.kaiten.ru/restricted-access-card-files/get-card-file */
+      /**
+       * Returns file metadata together with a signed URL. Pass redirect=true to get a redirect to the file instead, download=true to force a download.
+       *
+       * @see https://developers.kaiten.ru/restricted-access-card-files/get-card-file
+       */
       getCardFile,
       /** @see https://developers.kaiten.ru/restricted-access-card-files/update-card-file */
       updateCardFile: (
@@ -596,7 +600,11 @@ export const createFilesResources = (transport: HttpTransport) => {
           },
         );
       },
-      /** @see https://developers.kaiten.ru/restricted-access-comment-files/get-comment-file */
+      /**
+       * Returns file metadata together with a signed URL. Pass redirect=true to get a redirect to the file instead, download=true to force a download.
+       *
+       * @see https://developers.kaiten.ru/restricted-access-comment-files/get-comment-file
+       */
       getCommentFile,
       /** @see https://developers.kaiten.ru/restricted-access-comment-files/update-comment-file */
       updateCommentFile: (
@@ -666,7 +674,11 @@ export const createFilesResources = (transport: HttpTransport) => {
           },
         );
       },
-      /** @see https://developers.kaiten.ru/restricted-access-custom-property-files/get-custom-property-file */
+      /**
+       * Returns file metadata together with a signed URL. Pass redirect=true to get a redirect to the file instead, download=true to force a download.
+       *
+       * @see https://developers.kaiten.ru/restricted-access-custom-property-files/get-custom-property-file
+       */
       getCustomPropertyFile,
       /** @see https://developers.kaiten.ru/restricted-access-custom-property-files/update-custom-property-file */
       updateCustomPropertyFile: (

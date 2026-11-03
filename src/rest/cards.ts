@@ -1501,7 +1501,12 @@ export const createCardsResources = (transport: HttpTransport) => {
   }
   return {
     cardAllowedUsers: {
-      /** @see https://developers.kaiten.ru/card-allowed-users/retrieve-users-list */
+      /**
+       * Returns a list of users with access to card
+       *
+       * @warning Starting October 1, 2026, public API requests return 100 users per request by default and at most 100. The response remains an array. Results are ordered by id ascending unless orderBy is used. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer users than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+       * @see https://developers.kaiten.ru/card-allowed-users/retrieve-users-list
+       */
       retrieveUsersList: (
         cardId: number,
         query?: CardAllowedUsersRetrieveUsersListQuery,
@@ -1547,7 +1552,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blocker-categories/retrieve-list-of-categories */
+      /**
+       * Returns a list of blocker categories
+       *
+       * @see https://developers.kaiten.ru/card-blocker-categories/retrieve-list-of-categories
+       */
       retrieveListOfCategories: (options?: OperationOptions) => {
         return transport.request<CardBlockerCategoriesRetrieveListOfCategoriesResponse>(
           {
@@ -1590,7 +1599,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user */
+      /**
+       * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. Before this date, pagination parameters are ignored and the full list is returned.
+       * @warning Client limitation: This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user
+       */
       retrieveBlockersCardsListOnCurrentUser: (options?: OperationOptions) => {
         return transport.request<CardBlockerUsersRetrieveBlockersCardsListOnCurrentUserResponse>(
           {
@@ -1639,7 +1652,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list */
+      /**
+       * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. Before this date, pagination parameters are ignored and the full list is returned.
+       * @warning Client limitation: This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list
+       */
       retrieveCardBlockersList: (
         cardId: number,
         options?: OperationOptions,
@@ -1696,7 +1713,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-children/retrieve-card-children-list */
+      /**
+       * @warning Starting October 1, 2026, public API requests return 100 children per request by default and at most 100. The response remains an array of cards ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer children than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+       * @warning Client limitation: This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-children/retrieve-card-children-list
+       */
       retrieveCardChildrenList: (
         cardId: number,
         options?: OperationOptions,
@@ -1738,7 +1759,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/card-comments/retrieve-card-comments */
+      /**
+       * @warning Starting October 1, 2026, this endpoint returns 100 comments per request by default and at most 100. Before that date, a request without pagination parameters returns the full list. The response remains an array of comments ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer comments than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+       * @warning Client limitation: This client method does not expose pagination parameters.
+       * @see https://developers.kaiten.ru/card-comments/retrieve-card-comments
+       */
       retrieveCardComments: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardCommentsRetrieveCardCommentsResponse>({
           method: 'GET',
@@ -1896,7 +1921,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           CardsRetrieveCardListResponse
         >(retrieveCardList, query ?? {}, options);
       },
-      /** @see https://developers.kaiten.ru/cards/batch-update-for-cards */
+      /**
+       * Update multiple cards by criteria. Runs in the background and returns a job ID.
+       *
+       * @see https://developers.kaiten.ru/cards/batch-update-for-cards
+       */
       batchUpdateForCards: (
         body: CardsBatchUpdateForCardsBody,
         options?: OperationOptions,
@@ -1908,7 +1937,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/create-new-card */
+      /**
+       * Creates a new Card. …
+       *
+       * @see https://developers.kaiten.ru/cards/create-new-card
+       */
       createNewCard,
       /** @see https://developers.kaiten.ru/cards/delete-card */
       deleteCard: (cardId: number, options?: OperationOptions) => {
@@ -1918,7 +1951,10 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card */
+      /**
+       * @warning Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.
+       * @see https://developers.kaiten.ru/cards/retrieve-card
+       */
       retrieveCard: (
         cardId: number,
         brokenApi?: boolean,
@@ -1931,7 +1967,11 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-baselines */
+      /**
+       * Get all unarchived baselines of unarchived projects for this card
+       *
+       * @see https://developers.kaiten.ru/cards/retrieve-card-baselines
+       */
       retrieveCardBaselines: (cardId: number, options?: OperationOptions) => {
         return transport.request<CardsRetrieveCardBaselinesResponse>({
           method: 'GET',
@@ -1939,9 +1979,18 @@ export const createCardsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-list */
+      /**
+       * Get Card list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @warning Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.
+       * @see https://developers.kaiten.ru/cards/retrieve-card-list
+       */
       retrieveCardList,
-      /** @see https://developers.kaiten.ru/cards/retrieve-card-location-history */
+      /**
+       * Get card location history
+       *
+       * @see https://developers.kaiten.ru/cards/retrieve-card-location-history
+       */
       retrieveCardLocationHistory: (
         cardId: number,
         options?: OperationOptions,

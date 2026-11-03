@@ -4,7 +4,7 @@
 
 ## Браузерный SDK
 
-SDK предоставляет Kaiten. Загрузите его в странице аддона:
+SDK предоставляет Kaiten. Загрузите его на странице аддона:
 
 ```html
 <script src="https://files.kaiten.ru/web-sdk/v1.min.js"></script>
@@ -42,7 +42,9 @@ const oauth = new AddonOAuthClient({
 
 const key = ['addon-uuid', 1, 1] as const;
 const token = await oauth.getToken(...key);
-if (token.has_token) console.log(token.access_token);
+if (token.has_token) {
+  // Используйте token.access_token для API-запросов от имени пользователя.
+}
 
 const refreshed = await oauth.refreshToken(...key);
 ```

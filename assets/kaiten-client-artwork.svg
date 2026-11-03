@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-labelledby="title">
+  <title id="title">Kaiten logo inside curly braces</title>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#30223c"/><stop offset=".55" stop-color="#191724"/><stop offset="1" stop-color="#25243a"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#b54c80" stop-opacity=".32"/><stop offset="1" stop-color="#b54c80" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="8" y="8" width="704" height="704" rx="48" fill="url(#background)"/>
+  <circle cx="360" cy="360" r="280" fill="url(#light)"/>
+  <rect x="9" y="9" width="702" height="702" rx="47" fill="none" stroke="#ffffff" stroke-opacity=".1" stroke-width="2"/>
+  <path d="M215 166c-44 0-53 23-53 62v66c0 40-15 56-45 66 30 10 45 26 45 66v66c0 39 9 62 53 62M505 166c44 0 53 23 53 62v66c0 40 15 56 45 66-30 10-45 26-45 66v66c0 39-9 62-53 62" fill="none" stroke="#f9f5fa" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(260 260) scale(5)">
+    <path d="M29.5428 0H10.4572C4.68184 0 0 4.67929 0 10.4515V29.5485C0 35.3207 4.68184 40 10.4572 40H29.5428C35.3182 40 40 35.3207 40 29.5485V10.4515C40 4.67929 35.3182 0 29.5428 0Z" fill="#F11F24"/>
+    <path d="M15.9288 4.36016L4.36016 15.9288C2.13636 18.1526 2.13636 21.7581 4.36016 23.9819L15.9288 35.5505C18.1526 37.7743 21.7581 37.7743 23.9819 35.5505L35.5505 23.9819C37.7743 21.7581 37.7743 18.1526 35.5505 15.9288L23.9819 4.36016C21.7581 2.13636 18.1526 2.13636 15.9288 4.36016Z" fill="#78FFC7"/>
+    <path d="M19.8904 29.7795C25.3527 29.7795 29.7808 25.3517 29.7808 19.8897C29.7808 14.4278 25.3527 10 19.8904 10C14.4281 10 10 14.4278 10 19.8897C10 25.3517 14.4281 29.7795 19.8904 29.7795Z" fill="#7D4CCF"/>
+  </g>
+</svg>

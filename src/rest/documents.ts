@@ -793,7 +793,11 @@ export const createDocumentsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups */
+      /**
+       * Get Document group list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @see https://developers.kaiten.ru/document-groups/retrieve-list-of-document-groups
+       */
       retrieveListOfDocumentGroups,
       /** @see https://developers.kaiten.ru/document-groups/update-document-group */
       updateDocumentGroup: (
@@ -810,7 +814,12 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       },
     },
     documentSchemas: {
-      /** @see https://developers.kaiten.ru/document-schemas/get-document-data-schema */
+      /**
+       * Returns the schema used to validate and describe document data in ProseMirror JSON format. …
+       *
+       * @warning Returns the schema used to validate and describe document data in ProseMirror JSON format. Pass latest to get the current latest document schema, or pass a concrete version in v{number} format. The latest alias is resolved to the actual version in the response. Use format=draft-06 to get JSON Schema draft-06 representation, or format=prosemirror to get sanitized ProseMirror node and mark specs.
+       * @see https://developers.kaiten.ru/document-schemas/get-document-data-schema
+       */
       getDocumentDataSchema,
     },
     documents: {
@@ -849,7 +858,11 @@ export const createDocumentsResources = (transport: HttpTransport) => {
           signal: options?.signal,
         });
       },
-      /** @see https://developers.kaiten.ru/documents/retrieve-list-of-documents */
+      /**
+       * Get Document list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       *
+       * @see https://developers.kaiten.ru/documents/retrieve-list-of-documents
+       */
       retrieveListOfDocuments,
       /** @see https://developers.kaiten.ru/documents/update-document */
       updateDocument: (

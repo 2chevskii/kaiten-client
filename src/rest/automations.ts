@@ -92,7 +92,11 @@ export type AutomationsUpdateAutomationParams = Parameters<
 
 export const createAutomationsResources = (transport: HttpTransport) => ({
   automations: {
-    /** @see https://developers.kaiten.ru/automations/create-automation */
+    /**
+     * Create automation
+     *
+     * @see https://developers.kaiten.ru/automations/create-automation
+     */
     createAutomation: (
       spaceId: number,
       body: AutomationsCreateAutomationBody,
@@ -129,7 +133,11 @@ export const createAutomationsResources = (transport: HttpTransport) => ({
         signal: options?.signal,
       });
     },
-    /** @see https://developers.kaiten.ru/automations/update-automation */
+    /**
+     * Update automation
+     *
+     * @see https://developers.kaiten.ru/automations/update-automation
+     */
     updateAutomation: (
       spaceId: number,
       automationUid: string,

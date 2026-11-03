@@ -17,6 +17,7 @@
     "docs"
   ],
   "files": [
+    "assets",
     "lib",
     "src",
     "README.md",
@@ -73,6 +74,7 @@
     "globals": "^17.13.0",
     "jiti": "^2.7.0",
     "prettier": "^3.9.9",
+    "shiki": "4.5.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0"
   }

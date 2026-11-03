@@ -50,7 +50,11 @@ export type CardPlannedRelationsRemovePlannedRelationParams = Parameters<
 >;
 export const createPlannedRelationsResources = (transport: HttpTransport) => ({
   cardPlannedRelations: {
-    /** @see https://developers.kaiten.ru/card-planned-relations/add-planned-relation */
+    /**
+     * Creates a relation from the card card_id (predecessor) to the card target_card_id (successor). …
+     *
+     * @see https://developers.kaiten.ru/card-planned-relations/add-planned-relation
+     */
     addPlannedRelation: (
       cardId: number,
       body: CardPlannedRelationsAddPlannedRelationBody,
@@ -62,7 +66,11 @@ export const createPlannedRelationsResources = (transport: HttpTransport) => ({
         body,
         signal: options?.signal,
       }),
-    /** @see https://developers.kaiten.ru/card-planned-relations/update-planned-relation */
+    /**
+     * Changes the type or the gap of a relation. Fields that are not sent keep their values. …
+     *
+     * @see https://developers.kaiten.ru/card-planned-relations/update-planned-relation
+     */
     updatePlannedRelation: (
       cardId: number,
       targetCardId: number,
@@ -79,7 +87,11 @@ export const createPlannedRelationsResources = (transport: HttpTransport) => ({
         body,
         signal: options?.signal,
       }),
-    /** @see https://developers.kaiten.ru/card-planned-relations/remove-planned-relation */
+    /**
+     * Deletes the relation between the card card_id (predecessor) and the card id (successor). Card dates do not change. …
+     *
+     * @see https://developers.kaiten.ru/card-planned-relations/remove-planned-relation
+     */
     removePlannedRelation: (
       cardId: number,
       targetCardId: number,

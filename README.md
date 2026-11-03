@@ -1,18 +1,28 @@
+![Kaiten Client — Kaiten logo inside curly braces](assets/readme-banner.svg)
+
 # Kaiten Client
 
 [![CI](https://img.shields.io/github/actions/workflow/status/2chevskii/kaiten-client/ci.yml?branch=master&label=CI)](https://github.com/2chevskii/kaiten-client/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/%402chevskii%2Fkaiten-client)](https://www.npmjs.com/package/@2chevskii/kaiten-client)
 ![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-339933?logo=node.js&logoColor=white)
-[![MIT License](https://img.shields.io/github/license/2chevskii/kaiten-client)](LICENSE)
+![TypeScript](https://img.shields.io/badge/TypeScript-included-3178c6?logo=typescript&logoColor=white)
+[![License](https://img.shields.io/github/license/2chevskii/kaiten-client)](LICENSE)
 
-Typed TypeScript clients and API contracts for [Kaiten](https://developers.kaiten.ru/): REST, SCIM, webhooks, imports, user metadata, and addons.
+A typed TypeScript client for building [Kaiten](https://developers.kaiten.ru/) integrations. Access REST resources and SCIM users and groups, or use the integration contracts for webhooks, imports, metadata, and addons.
 
 ## Install
+
+Requires Node.js 24 or newer, a Kaiten company URL, and an API token.
 
 ```sh
 npm install @2chevskii/kaiten-client
 ```
 
-Requires Node.js 24 or newer. Set `KAITEN_TOKEN` to an API token and use your Kaiten company URL as `origin`:
+The package includes ESM JavaScript and TypeScript declarations. For TypeScript projects, `module: "Node20"` is recommended (TypeScript 5.9 or newer).
+
+## Quick start
+
+Set `KAITEN_TOKEN` in your environment and use your company URL as the origin:
 
 ```ts
 import {KaitenClient} from '@2chevskii/kaiten-client';
@@ -31,12 +41,39 @@ for (const card of cards) {
 }
 ```
 
-## What’s included
+Use an HTTPS origin without a path or query, and keep your token outside source control.
 
-- `KaitenClient` provides typed methods for Kaiten’s REST API.
-- `KaitenScimClient` provides SCIM user and group operations.
-- The `webhooks`, `imports`, `metadata`, `addons`, and `addon-oauth` exports provide helpers and types for Kaiten integrations.
+## Capabilities
+
+- **REST:** Typed operations for cards, boards, users, documents, files, and other resources. Supported lists provide lazy async iterators for pagination.
+- **SCIM:** Manage users and groups through `@2chevskii/kaiten-client/scim`.
+- **Webhooks:** Type outgoing events and send incoming card creation webhooks with `@2chevskii/kaiten-client/webhooks`.
+- **Integrations:** Use the `imports`, `metadata`, `addons`, and `addon-oauth` subpath exports for Kaiten integrations.
+- **Transport:** Configure a token provider or custom `fetch`, cancel requests with `AbortSignal`, and inspect typed HTTP errors.
+
+For example, iterate through cards without managing cursors yourself:
+
+```ts
+for await (const card of client.cards.iterate({board_id: 10, limit: 50})) {
+  console.log(card.id, card.title);
+}
+```
+
+Requests use `/api/v1` by default; set `apiVersion: 'latest'` when an operation requires it. API fields retain Kaiten's naming and dates remain strings. Responses are not validated against schemas at runtime, and requests are not retried automatically.
 
 ## Documentation
 
-Read the [Documentation website](https://2chevskii.github.io/kaiten-client/) for the detailed package documentation.
+Explore the [documentation](https://2chevskii.github.io/kaiten-client/) in English or Russian, including guides for [REST](https://2chevskii.github.io/kaiten-client/guide/rest), [SCIM](https://2chevskii.github.io/kaiten-client/guide/scim), [webhooks](https://2chevskii.github.io/kaiten-client/guide/webhooks), and [configuration and errors](https://2chevskii.github.io/kaiten-client/guide/configuration).
+
+## Development
+
+Install dependencies with `npm ci`, then run the project checks:
+
+```sh
+npm run build
+npm run lint
+npm run format:check
+npm run docs:build
+```
+
+Run `npm run docs:dev` to serve the documentation locally at `http://localhost:5173/kaiten-client/`.

@@ -13,6 +13,8 @@ Use Node.js 24 or newer and install dependencies with `npm ci`.
 - `npm run format:check` checks formatting with Prettier; `npm run format` applies it.
 - `npm run docs:dev` serves the documentation locally; `npm run docs:build` builds it. These delegate to the `docs/` workspace; `npm run build --workspace docs` also builds the documentation.
 
+VitePress generates the REST, SCIM and public type reference from source at startup and build time. Pages under `docs/reference/{rest,scim,types}/` and `docs/ru/reference/{rest,scim,types}/` are generated and ignored by Git; do not edit them. Use the custom `@warning` tag for method-specific cautions. Preserve the original wording of Kaiten warnings and keep client-specific notes separate. Preserve Kaiten source links when updating descriptions. Restart the dev server after changing client source to refresh the reference. Run `node --test tools/api-reference.test.mjs` to check generation and caching.
+
 ## Coding Style
 
 Write strict TypeScript using the existing ESM import conventions and explicit public types. Keep REST, SCIM, and webhook behavior in their corresponding modules. Follow the repository's ESLint rules and Prettier configuration; use two spaces, single quotes, and semicolons as shown in existing files. Use descriptive kebab-case filenames and preserve established API naming. Run `npm run build`, `npm run lint`, `npm run format:check`, and `npm run docs:build` before submitting.
@@ -27,4 +29,4 @@ PR and `master` builds publish to GitHub Packages with `pr-N` and `edge` tags. A
 
 ## Commits and Pull Requests
 
-Always do repository work on a dedicated branch. Commit each completed logical block with a small, controllable change; for larger tasks, commit incrementally instead of waiting until all work is finished. Always use the Conventional Commits specification, for example `feat:`, `fix:`, or `docs:`, with a concise imperative subject and an optional scope. Automatically open a pull request for each task unless the work is purely experimental or research. Pull requests should explain the user-visible or API impact, link related issues when available, and report relevant validation. Include documentation updates for public API changes and call out breaking changes clearly.
+Always do repository work on a dedicated branch. Commit each completed logical block with a small, controllable change; for larger tasks, commit incrementally instead of waiting until all work is finished. Always use the Conventional Commits specification, for example `feat:`, `fix:`, or `docs:`, with a concise imperative subject and an optional scope. Automatically open a pull request for each task unless the work is purely experimental or research. Pull requests should explain the user-visible or API impact and link related issues when available. Do not include validation details in PR descriptions. Include documentation updates for public API changes and call out breaking changes clearly.

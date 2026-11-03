@@ -19,8 +19,11 @@ const getMetadata: UserMetadataHandler = ({email, token}) => {
 An asynchronous handler can load profile data from your own directory service:
 
 ```ts
+const sharedToken = process.env.METADATA_SHARED_TOKEN;
+if (!sharedToken) throw new Error('Set METADATA_SHARED_TOKEN');
+
 const getMetadata: UserMetadataHandler = async ({email, token}) => {
-  if (token !== process.env.METADATA_SHARED_TOKEN) {
+  if (token !== sharedToken) {
     throw new Error('Invalid metadata token');
   }
 

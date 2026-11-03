@@ -42,7 +42,9 @@ const oauth = new AddonOAuthClient({
 
 const key = ['addon-uuid', 1, 1] as const;
 const token = await oauth.getToken(...key);
-if (token.has_token) console.log(token.access_token);
+if (token.has_token) {
+  // Use token.access_token for the user's API requests.
+}
 
 const refreshed = await oauth.refreshToken(...key);
 ```
