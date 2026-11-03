@@ -18,6 +18,19 @@ interface Part {
 const props = defineProps<{parts: Part[]}>();
 const {lang} = useData();
 const copyStatus = ref<'idle' | 'copied' | 'failed'>('idle');
+const copyLabel = computed(() =>
+  copyStatus.value === 'copied'
+    ? lang.value.startsWith('ru')
+      ? 'Скопировано'
+      : 'Copied'
+    : copyStatus.value === 'failed'
+      ? lang.value.startsWith('ru')
+        ? 'Ошибка'
+        : 'Copy failed'
+      : lang.value.startsWith('ru')
+        ? 'Копировать'
+        : 'Copy',
+);
 const active = ref<number>();
 const position = ref({top: 0, left: 0});
 const tooltipId = useId();
@@ -58,21 +71,14 @@ async function copy() {
 
 <template>
   <div class="api-signature">
-    <button type="button" class="api-signature-copy" @click="copy">
-      {{
-        copyStatus === 'copied'
-          ? lang.startsWith('ru')
-            ? 'Скопировано'
-            : 'Copied'
-          : copyStatus === 'failed'
-            ? lang.startsWith('ru')
-              ? 'Ошибка'
-              : 'Copy failed'
-            : lang.startsWith('ru')
-              ? 'Копировать'
-              : 'Copy'
-      }}
-    </button>
+    <button
+      type="button"
+      class="api-signature-copy"
+      :class="{copied: copyStatus === 'copied'}"
+      :aria-label="copyLabel"
+      :title="copyLabel"
+      @click="copy"
+    />
     <pre><code><template v-for="(part, index) in parts" :key="index"><a
       v-if="part.href"
       class="api-signature-type"
