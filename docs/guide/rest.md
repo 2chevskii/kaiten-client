@@ -195,6 +195,7 @@ for await (const event of client.activity.iterateSpaceActivity(123, {
   console.log(event.id, event.action);
 }
 ```
+
 ## Planned card relations
 
 `cardPlannedRelations` links a predecessor to a successor on the Gantt chart. Both cards need planned start and end dates; the caller must be able to edit both when creating a relation. Relations cannot form cycles or duplicate an existing pair in either direction.
