@@ -29,6 +29,7 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       'tsconfig.json',
       'package-lock.json',
       'tools/generate-api-reference.mjs',
+      'tools/kaiten-api-descriptions.json',
     ]) {
       await cp(path.join(root, file), path.join(fixture, file));
     }
@@ -64,11 +65,41 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       await readFile(scim, 'utf8'),
       /## addGroup[\s\S]*?\*\*Beta\*\*/,
     );
+    assert.match(
+      content,
+      /## createNewCard[\s\S]*?> Creates a new Card\.[\s\S]*?\[Kaiten documentation\]\(https:\/\/developers\.kaiten\.ru\/cards\/create-new-card\)/,
+    );
+    const russian = await readFile(
+      path.join(fixture, 'docs/ru/reference/rest/cards.md'),
+      'utf8',
+    );
+    assert.match(russian, /Документация Kaiten \(на английском\)/);
     assert.match(run(), /up to date/);
     const before = JSON.parse(await readFile(cache, 'utf8')).input;
     await writeFile(path.join(fixture, 'src/cache-test.ts'), '// hash input\n');
     assert.match(run(), /generated/);
     assert.notEqual(JSON.parse(await readFile(cache, 'utf8')).input, before);
+
+    const descriptionsFile = path.join(
+      fixture,
+      'tools/kaiten-api-descriptions.json',
+    );
+    const snapshot = JSON.parse(await readFile(descriptionsFile, 'utf8'));
+    const originalDescription =
+      snapshot.descriptions[
+        'https://developers.kaiten.ru/cards/create-new-card'
+      ];
+    snapshot.descriptions[
+      'https://developers.kaiten.ru/cards/create-new-card'
+    ] = 'Updated description.';
+    await writeFile(descriptionsFile, JSON.stringify(snapshot));
+    assert.match(run(), /generated/);
+    assert.match(await readFile(page, 'utf8'), /> Updated description\./);
+    snapshot.descriptions[
+      'https://developers.kaiten.ru/cards/create-new-card'
+    ] = originalDescription;
+    await writeFile(descriptionsFile, JSON.stringify(snapshot));
+    assert.match(run(), /generated/);
 
     await writeFile(page, 'corrupted');
     assert.notEqual(spawnSync(process.execPath, [script, '--check']).status, 0);

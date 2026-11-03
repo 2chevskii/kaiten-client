@@ -52,6 +52,7 @@ async function inputHash() {
   const files = [
     ...(await filesIn('src')).filter(file => file.endsWith('.ts')),
     'tools/generate-api-reference.mjs',
+    'tools/kaiten-api-descriptions.json',
     'tsconfig.json',
     'package-lock.json',
   ].sort();
@@ -101,7 +102,7 @@ function docsFor(symbol, checker) {
   };
 }
 
-function renderMethod(method, checker, client, resource, ru) {
+function renderMethod(method, checker, client, resource, ru, descriptions) {
   const type = checker.getTypeOfSymbolAtLocation(method, client);
   const signatures = checker.getSignaturesOfType(type, ts.SignatureKind.Call);
   const {description, tags} = docsFor(method, checker);
@@ -148,8 +149,15 @@ function renderMethod(method, checker, client, resource, ru) {
   for (const tag of tags) {
     const value = ts.displayPartsToString(tag.text ?? []).trim();
     if (tag.name === 'see' && /^https?:\/\/\S+$/.test(value)) {
+      const excerpt = descriptions[value];
+      if (excerpt) {
+        const safeExcerpt = markdownText(excerpt)
+          .replaceAll('{{', '&#123;&#123;')
+          .replaceAll('}}', '&#125;&#125;');
+        lines.push(`> ${safeExcerpt}`, '');
+      }
       lines.push(
-        `[${ru ? 'Документация Kaiten' : 'Kaiten documentation'}](${value})`,
+        `[${ru ? (excerpt ? 'Документация Kaiten (на английском)' : 'Документация Kaiten') : 'Kaiten documentation'}](${value})`,
         '',
       );
     } else if (tag.name === 'deprecated' || tag.name === 'beta') {
@@ -161,7 +169,7 @@ function renderMethod(method, checker, client, resource, ru) {
   return lines.join('\n');
 }
 
-function generate() {
+function generate(descriptions) {
   const config = ts.readConfigFile(absolute('tsconfig.json'), ts.sys.readFile);
   if (config.error)
     throw new Error(
@@ -240,7 +248,14 @@ function generate() {
           `[${title}](${route}/${name})`,
           '',
           ...resource.methods.map(method =>
-            renderMethod(method, checker, client, resource.name, ru),
+            renderMethod(
+              method,
+              checker,
+              client,
+              resource.name,
+              ru,
+              descriptions,
+            ),
           ),
         ].join('\n');
         output.set(`${prefix}/${name}/${resource.name}.md`, page);
@@ -282,7 +297,10 @@ export async function generateApiReference({check = false} = {}) {
     }
   }
 
-  const {output, sidebar} = generate();
+  const descriptions = JSON.parse(
+    await readFile(absolute('tools/kaiten-api-descriptions.json'), 'utf8'),
+  ).descriptions;
+  const {output, sidebar} = generate(descriptions);
   const stale = existingGenerated.filter(file => !output.has(file));
   if (check) {
     const changed = (
