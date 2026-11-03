@@ -179,3 +179,17 @@ const timeLogs = await client.timesheet.getList({
 Kaiten использует и числовые ID, и UUID. Передавайте тот тип идентификатора, который указан в типе конкретного метода: например, `card_id: number` или `card_uid: string`. Даты остаются строками, документированные nullable-поля допускают `null`, неполные схемы представлены через `unknown`.
 
 Для операций без итератора используйте `limit`, `offset` или курсор там, где их поддерживает операция. Подробности файловых маршрутов — в [отдельном руководстве](/ru/guide/files).
+
+## Лента активности
+
+Используйте `apiVersion: 'latest'` и `client.activity.listCompanyActivity(query)` или `client.activity.listSpaceActivity(spaceId, query)` для получения страницы. Для компании также доступен фильтр `card_id`. Оба метода поддерживают `limit`, `cursor`, `actions` (через запятую), `author_id`, `created_after` и `created_before`. Передавайте `next_cursor` как `cursor`, сохраняя фильтры; `null` означает конец списка. Для активности компании нужен доступ к её журналу активности.
+
+Ленивые итераторы сохраняют фильтры и завершаются при null-курсоре:
+
+```ts
+for await (const event of client.activity.iterateSpaceActivity(123, {
+  actions: 'card_add,card_move',
+})) {
+  console.log(event.id, event.action);
+}
+```

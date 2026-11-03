@@ -4,6 +4,7 @@ import {createRestResources} from './rest/index.ts';
 import type {RestClientOptions} from './http.ts';
 
 export class KaitenClient {
+  readonly activity: RestResources['activity'];
   readonly auditLogs: RestResources['auditLogs'];
   readonly automations: RestResources['automations'];
   readonly boards: RestResources['boards'];
@@ -78,6 +79,7 @@ export class KaitenClient {
       '/api/' + (options.apiVersion ?? 'v1'),
     );
     const resources = createRestResources(transport);
+    this.activity = resources.activity;
     this.auditLogs = resources.auditLogs;
     this.automations = resources.automations;
     this.boards = resources.boards;
