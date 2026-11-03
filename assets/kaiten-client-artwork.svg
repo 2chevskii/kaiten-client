@@ -1,31 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-labelledby="title">
-  <title id="title">Kaiten connected to code</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-labelledby="title desc">
+  <title id="title">Kaiten Client connections</title>
+  <desc id="desc">Structured data flows through a typed code interface.</desc>
   <defs>
-    <pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="3" cy="3" r="1.25" fill="#bab4d2" opacity=".36"/>
-    </pattern>
-    <radialGradient id="red" cx="0" cy="0" r="1" gradientTransform="scale(330)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#e62c3a" stop-opacity=".52"/><stop offset="1" stop-color="#e62c3a" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="violet" cx="0" cy="720" r="1" gradientTransform="translate(0 720) scale(330) translate(0 -720)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7836d2" stop-opacity=".55"/><stop offset="1" stop-color="#7836d2" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="mint" cx="720" cy="720" r="1" gradientTransform="translate(720 720) scale(330) translate(-720 -720)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#20bd9c" stop-opacity=".48"/><stop offset="1" stop-color="#20bd9c" stop-opacity="0"/>
-    </radialGradient>
-    <clipPath id="canvas"><rect x="8" y="8" width="704" height="704" rx="66"/></clipPath>
+    <linearGradient id="canvas" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf3ff"/><stop offset="1" stop-color="#dbe6fa"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#243e8c"/><stop offset="1" stop-color="#122557"/></linearGradient>
+    <clipPath id="clip"><rect x="8" y="8" width="704" height="704" rx="40"/></clipPath>
   </defs>
-  <g clip-path="url(#canvas)">
-    <rect width="720" height="720" fill="#0c0d15"/>
-    <rect width="720" height="720" fill="url(#red)"/>
-    <rect width="720" height="720" fill="url(#violet)"/>
-    <rect width="720" height="720" fill="url(#mint)"/>
-    <rect width="720" height="720" fill="url(#dots)"/>
+  <g clip-path="url(#clip)">
+    <rect width="720" height="720" fill="url(#canvas)"/>
+    <path d="M435-25 745 285M475-25l270 270M515-25l230 230M-25 438 257 720M-25 478 217 720M-25 518 177 720" fill="none" stroke="#a7bae5" stroke-width="2" opacity=".65"/>
+    <circle cx="368" cy="360" r="222" fill="#d1def6"/>
+    <circle cx="368" cy="360" r="182" fill="none" stroke="#aebfe4" stroke-width="2"/>
+    <path d="M108 241h93l52 50m-145 69h123m-123 119h93l52-50M468 291l52-50h92M489 360h123M468 429l52 50h92" fill="none" stroke="#7b98d5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="71" y="223" width="37" height="37" rx="10" fill="#f28c7c"/>
+    <rect x="71" y="342" width="37" height="37" rx="10" fill="#74b9ab"/>
+    <rect x="71" y="461" width="37" height="37" rx="10" fill="#a794df"/>
+    <circle cx="627" cy="241" r="14" fill="#f28c7c"/>
+    <circle cx="627" cy="360" r="14" fill="#74b9ab"/>
+    <circle cx="627" cy="479" r="14" fill="#a794df"/>
+    <rect x="226" y="207" width="280" height="305" rx="28" fill="#9eafe0" opacity=".46"/>
+    <rect x="215" y="195" width="280" height="305" rx="28" fill="url(#card)"/>
+    <path d="M215 259h280" stroke="#7188c2" stroke-width="2" opacity=".65"/>
+    <circle cx="249" cy="227" r="6" fill="#f8a795"/><circle cx="272" cy="227" r="6" fill="#8ed2bf"/><circle cx="295" cy="227" r="6" fill="#b7a8ec"/>
+    <path d="m325 317-40 43 40 43m59-86 40 43-40 43" fill="none" stroke="#f8fbff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="m367 306-24 108" stroke="#ffb495" stroke-width="12" stroke-linecap="round"/>
+    <path d="M284 454h65m17 0h57" stroke="#9db8ed" stroke-width="8" stroke-linecap="round" opacity=".65"/>
   </g>
-  <rect x="8" y="8" width="704" height="704" rx="66" fill="none" stroke="#30303d" stroke-width="2"/>
-  <circle cx="229" cy="360" r="130" fill="#ff2028"/>
-  <rect x="146" y="277" width="166" height="166" rx="34" transform="rotate(45 229 360)" fill="#8ff1db"/>
-  <circle cx="229" cy="360" r="61" fill="#713ed9"/>
-  <path d="M359 360h48m70-73-68 73 68 73m74-146 68 73-68 73" fill="none" stroke="#f5f3fb" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="m529 280-30 160" fill="none" stroke="#8ff1db" stroke-width="18" stroke-linecap="round"/>
+  <rect x="8" y="8" width="704" height="704" rx="40" fill="none" stroke="#c3d1eb" stroke-width="2"/>
 </svg>

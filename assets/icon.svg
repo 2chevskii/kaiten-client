@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
   <title id="title">Kaiten Client</title>
-  <rect width="128" height="128" rx="28" fill="#0c0d15"/>
-  <circle cx="49" cy="64" r="32" fill="#ff2028"/>
-  <rect x="29" y="44" width="40" height="40" rx="9" transform="rotate(45 49 64)" fill="#8ff1db"/>
-  <circle cx="49" cy="64" r="15" fill="#713ed9"/>
-  <path d="M81 64h6m14-16L88 64l13 16" fill="none" stroke="#f5f3fb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="128" height="128" rx="30" fill="#294fbb"/>
+  <path d="M50 38 28 64l22 26M78 38l22 26-22 26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m70 35-13 58" fill="none" stroke="#ffb495" stroke-width="8" stroke-linecap="round"/>
 </svg>
