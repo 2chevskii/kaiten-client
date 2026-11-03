@@ -10,3 +10,9 @@ coverage/
 .env.*
 !.env.example
 *.tsbuildinfo
+
+# Generated API reference pages are rebuilt by VitePress.
+docs/reference/rest/
+docs/reference/scim/
+docs/ru/reference/rest/
+docs/ru/reference/scim/

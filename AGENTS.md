@@ -13,6 +13,8 @@ Use Node.js 24 or newer and install dependencies with `npm ci`.
 - `npm run format:check` checks formatting with Prettier; `npm run format` applies it.
 - `npm run docs:dev` serves the documentation locally; `npm run docs:build` builds it. These delegate to the `docs/` workspace; `npm run build --workspace docs` also builds the documentation.
 
+VitePress generates the REST and SCIM reference from source at startup and build time. Resource pages under `docs/reference/{rest,scim}/` and `docs/ru/reference/{rest,scim}/` are generated and ignored by Git; do not edit them. Restart the dev server after changing client source to refresh the reference. Run `node --test tools/api-reference.test.mjs` to check generation and caching.
+
 ## Coding Style
 
 Write strict TypeScript using the existing ESM import conventions and explicit public types. Keep REST, SCIM, and webhook behavior in their corresponding modules. Follow the repository's ESLint rules and Prettier configuration; use two spaces, single quotes, and semicolons as shown in existing files. Use descriptive kebab-case filenames and preserve established API naming. Run `npm run build`, `npm run lint`, `npm run format:check`, and `npm run docs:build` before submitting.

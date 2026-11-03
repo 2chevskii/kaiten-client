@@ -82,6 +82,7 @@ jobs:
           node-version-file: package.json
           cache: npm
       - run: npm ci
+      - run: node --test tools/api-reference.test.mjs
       - run: npm run docs:build
       - uses: actions/upload-pages-artifact@v5
         with:
