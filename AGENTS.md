@@ -13,7 +13,7 @@ Use Node.js 24 or newer and install dependencies with `npm ci`.
 - `npm run format:check` checks formatting with Prettier; `npm run format` applies it.
 - `npm run docs:dev` serves the documentation locally; `npm run docs:build` builds it. These delegate to the `docs/` workspace; `npm run build --workspace docs` also builds the documentation.
 
-VitePress generates the REST, SCIM and public type reference from source at startup and build time. Pages under `docs/reference/{rest,scim,types}/` and `docs/ru/reference/{rest,scim,types}/` are generated and ignored by Git; do not edit them. Use the custom `@warning` tag for method-specific cautions and preserve Kaiten source links when updating descriptions. Restart the dev server after changing client source to refresh the reference. Run `node --test tools/api-reference.test.mjs` to check generation and caching.
+VitePress generates the REST, SCIM and public type reference from source at startup and build time. Pages under `docs/reference/{rest,scim,types}/` and `docs/ru/reference/{rest,scim,types}/` are generated and ignored by Git; do not edit them. Use the custom `@warning` tag for method-specific cautions. Preserve the original wording of Kaiten warnings and keep client-specific notes separate. Preserve Kaiten source links when updating descriptions. Restart the dev server after changing client source to refresh the reference. Run `node --test tools/api-reference.test.mjs` to check generation and caching.
 
 ## Coding Style
 

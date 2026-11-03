@@ -697,7 +697,8 @@ export const createTimeResources = (transport: HttpTransport) => ({
       });
     },
     /**
-     * @warning Since 2026-10-01, pages default to and are capped at 100 time logs. Use limit and offset; the for_date filter does not remove the limit. This client method does not expose pagination parameters.
+     * @warning Starting October 1, 2026, public API requests return 100 time logs per request by default and at most 100. The response remains an array ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer time logs than that limit. The for_date parameter remains an optional filter and does not remove the page limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+     * @warning Client limitation: This client method does not expose pagination parameters.
      * @see https://developers.kaiten.ru/card-time-logs/get-time-logs
      */
     getTimeLogs: (
@@ -753,7 +754,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Adds a card to an iteration. The card must be active and belong to one of the space's primary boards. …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/add-card-to-iteration
      */
     addCardToIteration: (
@@ -778,7 +779,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Creates a new iteration in a space. A created iteration gets the planned status. The iterations feature must be enabled for the company.
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/create-iteration
      */
     createIteration: (
@@ -797,7 +798,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Deletes an iteration. Links to cards that were part of the iteration are deleted too and cannot be restored. …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/delete-iteration
      */
     deleteIteration: (
@@ -821,7 +822,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Returns all iteration membership records for the card without pagination, ordered by created descending (the date the card was added). …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/get-card-iterations-history
      */
     getCardIterationsHistory: (
@@ -840,7 +841,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Returns a single iteration of a space by its ID. Requires the user to have access to the space.
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/get-iteration
      */
     getIteration: (
@@ -859,7 +860,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Removes a card from an iteration by setting removed_at and removed_by_uid on the iteration card record. Cards cannot be removed from closed iterations.
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/remove-card-from-iteration
      */
     removeCardFromIteration: (
@@ -884,7 +885,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Returns the list of card records of an iteration. Each record links a card to the iteration. …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/retrieve-cards-in-iteration
      */
     retrieveCardsInIteration: (
@@ -909,7 +910,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Returns the list of iterations of a space. Requires the user to have access to the space. …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/retrieve-list-of-iterations
      */
     retrieveListOfIterations: (
@@ -928,7 +929,7 @@ export const createTimeResources = (transport: HttpTransport) => ({
      * Updates an iteration. Status transitions are limited to planned to active and active to closed. Use the DELETE endpoint to remove an iteration. …
      *
      * @beta
-     * @warning Kaiten marks the iterations API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
      * @see https://developers.kaiten.ru/iterations/update-iteration
      */
     updateIteration: (

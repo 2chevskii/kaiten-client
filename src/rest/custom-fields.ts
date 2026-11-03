@@ -1336,8 +1336,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Creates a custom directory (catalog) with optional fields. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
-     * @warning Directory and field writes require custom-properties management permission. Directory, field, and record IDs are UUIDs; using a directory in cards requires a directory custom property.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
+     * @warning All paths in this section are relative to /api/latest and require API authentication. Directory, field and record IDs are UUIDs. Creating, updating or deleting directories and fields requires the company's custom-properties management permission. To use a directory in cards, create a custom property through POST /company/custom-properties with type=directory and directory_id set to the returned directory ID.
      * @see https://developers.kaiten.ru/custom-directories/create-custom-directory
      */
     createCustomDirectory: (
@@ -1355,7 +1355,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Requires custom-properties management permission. Soft-deletes the directory, its fields and records (condition=removed). …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directories/delete-custom-directory
      */
     deleteCustomDirectory: (
@@ -1370,7 +1370,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directories/get-custom-directory
      */
     getCustomDirectory: (directoryId: string, options?: OperationOptions) => {
@@ -1384,7 +1384,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Returns directories in the authenticated company. Use query parameters to include related fields, author and records_count. Results are ordered by created descending before limit/offset.
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directories/get-list-of-custom-directories
      */
     getListOfCustomDirectories: (
@@ -1404,8 +1404,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Updates directory attributes and/or fields. If `fields` is provided, it should contain the full fields list; omitted fields are soft-deleted (condition=removed). …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
-     * @warning Field changes require custom-properties management permission. expected_field_ids detects changes to the field list, not general concurrent updates; certain type and binding changes are rejected.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
+     * @warning Requires custom-properties management permission. Send expected_field_ids together with fields to detect a changed field list (HTTP 409, code 16). This is not a general version check. Changing a field's type or a non-empty select/catalog/directory-link binding is rejected with HTTP 400, code 15, when the field has record values. The response contains fields and author.
      * @see https://developers.kaiten.ru/custom-directories/update-custom-directory
      */
     updateCustomDirectory: (
@@ -1426,7 +1426,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Creates a directory field. Requires custom-properties management permission. This endpoint reads only name, type, sort_order, required and is_display. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-fields/create-field
      */
     createField: (
@@ -1446,7 +1446,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Soft-deletes the field (condition=removed).
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-fields/delete-field
      */
     deleteField: (
@@ -1466,7 +1466,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-fields/get-field
      */
     getField: (
@@ -1488,7 +1488,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Returns fields ordered by sort_order ascending. There is no limit/offset pagination on this endpoint. Equal sort_order values have no unique tie-breaker.
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-fields/get-list-of-fields
      */
     getListOfFields: (
@@ -1509,7 +1509,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Requires custom-properties management permission. Updates name, condition, sort_order, required or is_display. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-fields/update-field
      */
     updateField: (
@@ -1535,8 +1535,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Creates a custom directory record. The request body uses a `values` map where keys are directory field IDs. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
-     * @warning Record writes require custom-properties management permission or directory settings.allow_editing=true. Unknown or missing required fields are rejected; requests use a values map but responses use an array.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
+     * @warning Creating, updating and deleting records requires custom-properties management permission OR settings.allow_editing=true on the directory. This setting is checked by these API endpoints, not only by the card UI. Unknown field IDs are rejected (400, code 3); missing required fields are rejected (400, code 4). Email, phone and URL format errors return 400 with an errors object keyed by field ID. Record values are returned as an array, although the write request uses a map.
      * @see https://developers.kaiten.ru/custom-directory-records/create-record
      */
     createRecord: (
@@ -1560,7 +1560,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Soft-deletes the record and removes reverse directory links. Requires custom-properties management permission or settings.allow_editing=true.
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-records/delete-record
      */
     deleteRecord: (
@@ -1582,7 +1582,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Returns cards accessible to the authenticated user in the current company that reference this record or its ancestor linked records through directory custom properties. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-records/get-cards-linked-to-record
      */
     getCardsLinkedToRecord: (
@@ -1609,8 +1609,8 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Returns records ordered by created descending before limit/offset. Equal timestamps have no unique tie-breaker; offset pagination cannot guarantee a complete, duplicate-free export. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
-     * @warning Filters use nested query parameters, not JSON or Base64. Unsupported comparisons are ignored, so filters must not be used as an access-control boundary.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
+     * @warning Pass filters as nested query parameters, for example filters[0][fieldId]=c1d2e3f4-1111-4aaa-8bbb-ccccdddd0001&filters[0][fieldType]=string&filters[0][comparison]=contains&filters[0][value]=Alice (URL-encode the parameter names and values). A JSON string or Base64 string is not parsed by this endpoint. fieldId is the field UUID and fieldType must match it. Text comparisons: eq, ne, contains, not_contains, starts_with, ends_with, known, unknown. Number/date: eq, ne, gt, lt, known, unknown. Checkbox: true, false. Select/user/catalog/directory_link: eq, ne, known, unknown. File: known, unknown. For select/user/catalog, searchByDisplayValue=true compares display text instead of UID and also supports contains; omit this parameter to search by UID. Unsupported comparisons are ignored, not rejected; do not rely on filters as an access-control boundary.
      * @see https://developers.kaiten.ru/custom-directory-records/get-list-of-records
      */
     getListOfRecords: (
@@ -1633,7 +1633,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Returns a record with author and updater. Default profile: full. …
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-records/get-record
      */
     getRecord: (
@@ -1657,7 +1657,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
      * Updates record values or condition. Requires custom-properties management permission or settings.allow_editing=true. Omitted field IDs retain their values.
      *
      * @beta
-     * @warning Kaiten marks the custom directories API as beta and under development; requests and responses may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Custom directories API is in beta and may change.
      * @see https://developers.kaiten.ru/custom-directory-records/update-record
      */
     updateRecord: (
@@ -1779,7 +1779,7 @@ export const createCustomFieldsResources = (transport: HttpTransport) => ({
     /**
      * Get list of custom property catalog values.
      *
-     * @warning Since 2026-10-01, responses contain at most 100 values per page. Paginate with limit and offset; X-Pagination-Limit reports the applied limit.
+     * @warning Starting October 1, 2026, this endpoint returns a maximum of 100 values per request. Until that date a request without pagination parameters returns the whole list. The applied page size is always returned in X-Pagination-Limit, and a request without pagination parameters also gets X-Pagination-Message. Use limit and offset to page through the result. Public API pages are ordered by id.
      * @see https://developers.kaiten.ru/custom-property-catalog-values/get-list-of-catalog-values
      */
     getListOfCatalogValues: (

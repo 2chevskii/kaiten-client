@@ -817,7 +817,7 @@ export const createDocumentsResources = (transport: HttpTransport) => {
       /**
        * Returns the schema used to validate and describe document data in ProseMirror JSON format. …
        *
-       * @warning The latest alias resolves to a concrete version. Choose draft-06 or prosemirror with the format parameter.
+       * @warning Returns the schema used to validate and describe document data in ProseMirror JSON format. Pass latest to get the current latest document schema, or pass a concrete version in v{number} format. The latest alias is resolved to the actual version in the response. Use format=draft-06 to get JSON Schema draft-06 representation, or format=prosemirror to get sanitized ProseMirror node and mark specs.
        * @see https://developers.kaiten.ru/document-schemas/get-document-data-schema
        */
       getDocumentDataSchema,

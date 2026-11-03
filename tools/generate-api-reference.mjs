@@ -281,6 +281,8 @@ function renderMethod(
       lines.push(
         `::: warning ${ru ? 'Предупреждение' : 'Warning'}`,
         markdownText(value)
+          .replaceAll('[', '\\[')
+          .replaceAll(']', '\\]')
           .replaceAll('{{', '&#123;&#123;')
           .replaceAll('}}', '&#125;&#125;'),
         ':::',

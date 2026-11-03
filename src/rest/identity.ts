@@ -972,7 +972,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /**
      * Get Company Users list filtered by query parameters. To use this route you need access to the Administrative section "Members".
      *
-     * @warning Since 2026-10-01, responses contain at most 100 users per page. Paginate with limit and offset; X-Pagination-Limit reports the applied limit.
+     * @warning Starting October 1, 2026, this endpoint returns a maximum of 100 users per request. Until that date the default, only_paid and for_members_section lists return the whole list when no pagination parameters are passed; the only_virtual list is already paginated. The applied page size is always returned in X-Pagination-Limit, and a request without pagination parameters also gets X-Pagination-Message. Use limit and offset to page through the result. Public API pages are ordered by id.
      * @see https://developers.kaiten.ru/company-users/get-list-of-users
      */
     getListOfUsers: (
@@ -1023,7 +1023,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
   groupAdmins: {
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-admins/add-admin-to-group
      */
     addAdminToGroup: (
@@ -1040,7 +1040,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-admins/get-list-of-group-admins
      */
     getListOfGroupAdmins: (groupUid: string, options?: OperationOptions) => {
@@ -1052,7 +1052,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-admins/remove-admin-from-group
      */
     removeAdminFromGroup: (
@@ -1071,7 +1071,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
   groupEntities: {
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-entities/add-entity
      */
     addEntity: (
@@ -1091,8 +1091,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
      * Get entities directly linked to a group. Requires the company Members permission.
      *
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
-     * @warning Since 2026-11-01, pages default to and are capped at 100 results; invalid limit or offset values return HTTP 400. This client method does not expose pagination parameters.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
+     * @warning Starting from 2026-11-01, this route supports limit and offset with a default and maximum limit of 100. Invalid pagination parameters return 400. Before this date, pagination parameters are ignored and the full list is returned.
+     * @warning Client limitation: This client method does not expose pagination parameters.
      * @see https://developers.kaiten.ru/group-entities/get-list-of-group-entities
      */
     getListOfGroupEntities: (groupUid: string, options?: OperationOptions) => {
@@ -1104,7 +1105,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-entities/remove-entity
      */
     removeEntity: (
@@ -1124,7 +1125,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-entities/update-group-entity
      */
     updateGroupEntity: (
@@ -1148,7 +1149,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
   groupUsers: {
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-users/add-user-to-group
      */
     addUserToGroup: (
@@ -1171,8 +1172,9 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
-     * @warning Since 2026-10-01, responses contain at most 100 users per page. Paginate with limit and offset; X-Pagination-Limit reports the applied limit. This client method does not expose pagination parameters.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
+     * @warning Starting October 1, 2026, this endpoint returns a maximum of 100 users per request. Until that date a request without pagination parameters returns the whole list. The applied page size is always returned in X-Pagination-Limit, and a request without pagination parameters also gets X-Pagination-Message. Use limit and offset to page through the result. Paginated responses are ordered by user id.
+     * @warning Client limitation: This client method does not expose pagination parameters.
      * @see https://developers.kaiten.ru/group-users/get-list-of-group-users
      */
     getListOfGroupUsers: (groupUid: string, options?: OperationOptions) => {
@@ -1184,7 +1186,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/group-users/remove-user-from-group
      */
     removeUserFromGroup: (
@@ -1205,7 +1207,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
      * To use this route you need access to the Administrative section "Members" (members permission) in the current company. The tariff must include groups.
      *
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/groups/create-group
      */
     createGroup: (
@@ -1227,7 +1229,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/groups/get-group
      */
     getGroup: (uid: string, options?: OperationOptions) => {
@@ -1241,8 +1243,8 @@ export const createIdentityResources = (transport: HttpTransport) => ({
      * Get groups list filtered by query params. Use limit and offset to paginate results when with_tree_entities is false.
      *
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
-     * @warning Since 2026-11-01, pages default to and are capped at 100 results. with_tree_entities=true returns HTTP 400; use the group entities endpoint.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
+     * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. with_tree_entities=true returns 400. Use GET /company/groups/{group_uid}/entities with limit and offset instead.
      * @see https://developers.kaiten.ru/groups/get-list-of-groups
      */
     getListOfGroups: (
@@ -1258,7 +1260,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     },
     /**
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/groups/remove-group
      */
     removeGroup: (uid: string, options?: OperationOptions) => {
@@ -1272,7 +1274,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
      * To use this route you need access to the Administrative section "Members" (members permission) in the current company. …
      *
      * @beta
-     * @warning Kaiten marks this endpoint as under development; request and response formats may change.
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change.
      * @see https://developers.kaiten.ru/groups/update-group
      */
     updateGroup: (
@@ -1374,7 +1376,7 @@ export const createIdentityResources = (transport: HttpTransport) => ({
     /**
      * Get users list filtered by query parameters. …
      *
-     * @warning Since 2026-10-01, responses contain at most 100 users per page. Paginate with limit and offset; X-Pagination-Limit reports the applied limit.
+     * @warning Starting mid-July, the /api/users endpoint will return a maximum of 100 users per request. Please update your implementation to support pagination.
      * @see https://developers.kaiten.ru/users/retrieve-list-of-users
      */
     retrieveListOfUsers: (

@@ -182,13 +182,19 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
     );
     assert.match(russian, /::: warning Предупреждение/);
     assert.match(content, /::: warning Warning[\s\S]*?months_to_hide_cards/);
+    assert.ok(
+      content.includes(
+        'Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.',
+      ),
+    );
+    assert.ok(!content.includes('Kaiten warns that'));
     const iterations = await readFile(
       path.join(fixture, 'docs/reference/rest/iterations.md'),
       'utf8',
     );
     assert.match(
       iterations,
-      /## createIteration[\s\S]*?\*\*Beta\*\*[\s\S]*?::: warning Warning[\s\S]*?iterations API as beta/,
+      /## createIteration[\s\S]*?\*\*Beta\*\*[\s\S]*?::: warning Warning[\s\S]*?Iterations API is in beta and may change\./,
     );
     const records = await readFile(
       path.join(fixture, 'docs/reference/rest/customDirectoryRecords.md'),

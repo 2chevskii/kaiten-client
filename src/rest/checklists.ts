@@ -696,7 +696,8 @@ export const createChecklistsResources = (transport: HttpTransport) => ({
       );
     },
     /**
-     * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+     * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. Before this date, pagination parameters are ignored and the full list is returned.
+     * @warning Client limitation: This client method does not expose pagination parameters.
      * @see https://developers.kaiten.ru/space-template-checklist/get-list-of-space-template-checklists
      */
     getListOfSpaceTemplateChecklists: (

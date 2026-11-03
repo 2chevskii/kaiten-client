@@ -1504,7 +1504,7 @@ export const createCardsResources = (transport: HttpTransport) => {
       /**
        * Returns a list of users with access to card
        *
-       * @warning Since 2026-10-01, pages default to and are capped at 100 users. Use limit and offset; X-Pagination-Limit reports the applied limit.
+       * @warning Starting October 1, 2026, public API requests return 100 users per request by default and at most 100. The response remains an array. Results are ordered by id ascending unless orderBy is used. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer users than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
        * @see https://developers.kaiten.ru/card-allowed-users/retrieve-users-list
        */
       retrieveUsersList: (
@@ -1600,7 +1600,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         });
       },
       /**
-       * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+       * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. Before this date, pagination parameters are ignored and the full list is returned.
+       * @warning Client limitation: This client method does not expose pagination parameters.
        * @see https://developers.kaiten.ru/card-blocker-users/retrieve-blockers-cards-list-on-current-user
        */
       retrieveBlockersCardsListOnCurrentUser: (options?: OperationOptions) => {
@@ -1652,7 +1653,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         });
       },
       /**
-       * @warning Since 2026-11-01, pages default to and are capped at 100 results; limit and offset are validated. This client method does not expose pagination parameters.
+       * @warning Starting from 2026-11-01, this route uses a default and maximum limit of 100 and validates limit and offset. Before this date, pagination parameters are ignored and the full list is returned.
+       * @warning Client limitation: This client method does not expose pagination parameters.
        * @see https://developers.kaiten.ru/card-blockers/retrieve-card-blockers-list
        */
       retrieveCardBlockersList: (
@@ -1712,7 +1714,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         });
       },
       /**
-       * @warning Since 2026-10-01, pages default to and are capped at 100 children. Use limit and offset; X-Pagination-Limit reports the applied limit. This client method does not expose pagination parameters.
+       * @warning Starting October 1, 2026, public API requests return 100 children per request by default and at most 100. The response remains an array of cards ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer children than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+       * @warning Client limitation: This client method does not expose pagination parameters.
        * @see https://developers.kaiten.ru/card-children/retrieve-card-children-list
        */
       retrieveCardChildrenList: (
@@ -1757,7 +1760,8 @@ export const createCardsResources = (transport: HttpTransport) => {
         });
       },
       /**
-       * @warning Since 2026-10-01, pages default to and are capped at 100 comments. Use limit and offset; X-Pagination-Limit reports the applied limit. This client method does not expose pagination parameters.
+       * @warning Starting October 1, 2026, this endpoint returns 100 comments per request by default and at most 100. Before that date, a request without pagination parameters returns the full list. The response remains an array of comments ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer comments than that limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
+       * @warning Client limitation: This client method does not expose pagination parameters.
        * @see https://developers.kaiten.ru/card-comments/retrieve-card-comments
        */
       retrieveCardComments: (cardId: number, options?: OperationOptions) => {
@@ -1948,7 +1952,7 @@ export const createCardsResources = (transport: HttpTransport) => {
         });
       },
       /**
-       * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+       * @warning Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.
        * @see https://developers.kaiten.ru/cards/retrieve-card
        */
       retrieveCard: (
@@ -1978,7 +1982,7 @@ export const createCardsResources = (transport: HttpTransport) => {
       /**
        * Get Card list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
        *
-       * @warning Kaiten warns that months_to_hide_cards is deprecated in column schemas; use card_hide_after_days. This change was announced for late August.
+       * @warning Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.
        * @see https://developers.kaiten.ru/cards/retrieve-card-list
        */
       retrieveCardList,
