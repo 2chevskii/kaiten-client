@@ -154,8 +154,58 @@ function signatureParts(code, catalog, entry, route) {
   return parts;
 }
 
-function signatureComponent(code, catalog, entry, route) {
-  const json = JSON.stringify(signatureParts(code, catalog, entry, route))
+function highlightedTokens(code, highlighter) {
+  const {tokens} = highlighter.codeToTokens(code, {
+    lang: 'typescript',
+    themes: {light: 'github-light', dark: 'github-dark'},
+    defaultColor: false,
+  });
+  const result = [];
+  let offset = 0;
+  for (const token of tokens.flat()) {
+    if (token.offset > offset)
+      result.push({text: code.slice(offset, token.offset), offset});
+    result.push({
+      text: token.content,
+      style: token.htmlStyle,
+      offset: token.offset,
+    });
+    offset = token.offset + token.content.length;
+  }
+  if (offset < code.length) result.push({text: code.slice(offset), offset});
+  return result;
+}
+
+function signatureComponent(code, catalog, entry, route, highlighter) {
+  const tokens = highlightedTokens(code, highlighter);
+  let offset = 0;
+  const parts = signatureParts(code, catalog, entry, route).map(part => {
+    const start = offset;
+    offset += part.text.length;
+    return {
+      ...part,
+      tokens: tokens
+        .filter(
+          token =>
+            token.offset < offset && token.offset + token.text.length > start,
+        )
+        .map(token => ({
+          text: token.text.slice(
+            Math.max(0, start - token.offset),
+            offset - token.offset,
+          ),
+          style: token.style,
+        })),
+      ...(part.href
+        ? {
+            previewTokens:
+              catalog[entry].get(part.text)?.previewTokens ??
+              catalog.main.get(part.text)?.previewTokens,
+          }
+        : {}),
+    };
+  });
+  const json = JSON.stringify(parts)
     .replaceAll('&', '&amp;')
     .replaceAll("'", '&#39;')
     .replaceAll('<', '&lt;')
@@ -163,7 +213,16 @@ function signatureComponent(code, catalog, entry, route) {
   return `<ApiSignature :parts='${json}' />`;
 }
 
-function renderMethod(method, checker, client, resource, ru, catalog, entry) {
+function renderMethod(
+  method,
+  checker,
+  client,
+  resource,
+  ru,
+  catalog,
+  entry,
+  highlighter,
+) {
   const type = checker.getTypeOfSymbolAtLocation(method, client);
   const signatures = checker.getSignaturesOfType(type, ts.SignatureKind.Call);
   const {description, tags} = docsFor(method, checker);
@@ -206,6 +265,7 @@ function renderMethod(method, checker, client, resource, ru, catalog, entry) {
         catalog,
         entry,
         route,
+        highlighter,
       ),
       '',
     );
@@ -236,7 +296,12 @@ function renderMethod(method, checker, client, resource, ru, catalog, entry) {
   return lines.join('\n');
 }
 
-function generate() {
+async function generate() {
+  const {createHighlighter} = await import('shiki');
+  const highlighter = await createHighlighter({
+    langs: ['typescript'],
+    themes: ['github-light', 'github-dark'],
+  });
   const config = ts.readConfigFile(absolute('tsconfig.json'), ts.sys.readFile);
   if (config.error)
     throw new Error(
@@ -297,6 +362,7 @@ function generate() {
         definition,
         resolved,
         preview,
+        previewTokens: highlightedTokens(preview, highlighter),
         symbol,
       });
     }
@@ -486,6 +552,7 @@ function generate() {
               ru,
               catalog,
               name === 'rest' ? 'main' : 'scim',
+              highlighter,
             ),
           ),
         ].join('\n');
@@ -494,6 +561,7 @@ function generate() {
       output.set(`${prefix}/${name}.md`, lines.join('\n') + '\n');
     }
   }
+  highlighter.dispose();
   return {output, sidebar};
 }
 
@@ -528,7 +596,7 @@ export async function generateApiReference({check = false} = {}) {
     }
   }
 
-  const {output, sidebar} = generate();
+  const {output, sidebar} = await generate();
   const stale = existingGenerated.filter(file => !output.has(file));
   if (check) {
     const changed = (

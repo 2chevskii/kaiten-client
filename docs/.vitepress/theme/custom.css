@@ -85,10 +85,18 @@
 }
 
 .api-signature-type {
-  color: var(--vp-c-brand-1);
+  color: inherit;
   text-decoration: underline;
   text-decoration-style: dotted;
   text-underline-offset: 3px;
+}
+
+.api-signature span[style] {
+  color: var(--shiki-light);
+}
+
+.dark .api-signature span[style] {
+  color: var(--shiki-dark);
 }
 
 .api-signature-type:focus-visible {

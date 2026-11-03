@@ -2,10 +2,17 @@
 import {computed, ref, useId} from 'vue';
 import {useData, withBase} from 'vitepress';
 
+interface Token {
+  text: string;
+  style?: Record<string, string>;
+}
+
 interface Part {
   text: string;
+  tokens: Token[];
   href?: string;
   preview?: string;
+  previewTokens?: Token[];
 }
 
 const props = defineProps<{parts: Part[]}>();
@@ -15,7 +22,9 @@ const active = ref<number>();
 const position = ref({top: 0, left: 0});
 const tooltipId = useId();
 const preview = computed(() =>
-  active.value === undefined ? '' : props.parts[active.value]?.preview,
+  active.value === undefined
+    ? undefined
+    : props.parts[active.value]?.previewTokens,
 );
 
 function show(index: number, event: Event) {
@@ -74,7 +83,7 @@ async function copy() {
       @focus="show(index, $event)"
       @blur="hide(index)"
       @keydown.esc="hide(index)"
-    >{{ part.text }}</a><template v-else>{{ part.text }}</template></template></code></pre>
+    ><span v-for="(token, tokenIndex) in part.tokens" :key="tokenIndex" :style="token.style">{{ token.text }}</span></a><template v-else><span v-for="(token, tokenIndex) in part.tokens" :key="tokenIndex" :style="token.style">{{ token.text }}</span></template></template></code></pre>
     <div
       v-if="preview"
       :id="tooltipId"
@@ -82,7 +91,7 @@ async function copy() {
       role="tooltip"
       :style="{top: position.top + 'px', left: position.left + 'px'}"
     >
-      <pre>{{ preview }}</pre>
+      <pre><code><span v-for="(token, index) in preview" :key="index" :style="token.style">{{ token.text }}</span></code></pre>
     </div>
   </div>
 </template>

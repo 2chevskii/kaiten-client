@@ -53,6 +53,46 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
 
     assert.match(run(), /generated/);
     const content = await readFile(page, 'utf8');
+    const signatures = [
+      ...content.matchAll(/<ApiSignature :parts='(.*?)' \/>/g),
+    ].map(match =>
+      JSON.parse(
+        match[1]
+          .replaceAll('&#39;', "'")
+          .replaceAll('&lt;', '<')
+          .replaceAll('&gt;', '>')
+          .replaceAll('&amp;', '&'),
+      ),
+    );
+    assert.ok(signatures.length > 0);
+    for (const parts of signatures) {
+      for (const part of parts) {
+        assert.equal(part.tokens.map(token => token.text).join(''), part.text);
+        if (part.href) {
+          assert.equal(
+            part.previewTokens.map(token => token.text).join(''),
+            part.preview,
+          );
+          assert.ok(
+            part.previewTokens.some(
+              token =>
+                token.style?.['--shiki-light'] && token.style?.['--shiki-dark'],
+            ),
+          );
+        }
+      }
+      const colors = new Set(
+        parts
+          .flatMap(part =>
+            part.tokens.map(token => token.style?.['--shiki-light']),
+          )
+          .filter(Boolean),
+      );
+      assert.ok(
+        colors.size > 1,
+        'Signatures should have multiple syntax colors',
+      );
+    }
     assert.match(
       content,
       /client\.cards\.retrieveCard\(cardId: number, brokenApi\?: boolean, options\?: /,
