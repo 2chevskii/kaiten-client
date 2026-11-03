@@ -19,6 +19,7 @@ export class KaitenClient {
   readonly cardExternalLinks: RestResources['cardExternalLinks'];
   readonly cardFiles: RestResources['cardFiles'];
   readonly cardMembers: RestResources['cardMembers'];
+  readonly cardPlannedRelations: RestResources['cardPlannedRelations'];
   readonly cardServiceDeskExternalRecipients: RestResources['cardServiceDeskExternalRecipients'];
   readonly cardSla: RestResources['cardSla'];
   readonly cardTags: RestResources['cardTags'];
@@ -94,6 +95,7 @@ export class KaitenClient {
     this.cardExternalLinks = resources.cardExternalLinks;
     this.cardFiles = resources.cardFiles;
     this.cardMembers = resources.cardMembers;
+    this.cardPlannedRelations = resources.cardPlannedRelations;
     this.cardServiceDeskExternalRecipients =
       resources.cardServiceDeskExternalRecipients;
     this.cardSla = resources.cardSla;

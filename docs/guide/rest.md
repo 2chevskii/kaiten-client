@@ -195,3 +195,20 @@ for await (const event of client.activity.iterateSpaceActivity(123, {
   console.log(event.id, event.action);
 }
 ```
+## Planned card relations
+
+`cardPlannedRelations` links a predecessor to a successor on the Gantt chart. Both cards need planned start and end dates; the caller must be able to edit both when creating a relation. Relations cannot form cycles or duplicate an existing pair in either direction.
+
+```ts
+await client.cardPlannedRelations.addPlannedRelation(10, {
+  target_card_id: 20,
+  type: 'end-start',
+});
+await client.cardPlannedRelations.updatePlannedRelation(10, 20, {
+  gap: 2,
+  gap_type: 'days',
+});
+await client.cardPlannedRelations.removePlannedRelation(10, 20);
+```
+
+The first ID is the predecessor and the second is the successor. A new relation has no gap; set it with an update. The gap is an integer from -1000 to 1000 in working hours or days. To set the first gap, send both fields; to clear it, send both as `null`. Once a gap exists, either field can be updated separately. Updating may move the successor and other linked cards; creating or removing a relation does not change dates. Removing requires edit access to at least one card.
