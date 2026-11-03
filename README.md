@@ -1,4 +1,4 @@
-![Kaiten Client — typed connections to Kaiten](assets/readme-banner.svg)
+![Kaiten Client — Kaiten logo inside curly braces](assets/readme-banner.svg)
 
 # Kaiten Client
 

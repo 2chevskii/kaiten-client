@@ -1,6 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
-  <title id="title">Kaiten Client</title>
-  <rect width="128" height="128" rx="30" fill="#294fbb"/>
-  <path d="M50 38 28 64l22 26M78 38l22 26-22 26" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="m70 35-13 58" fill="none" stroke="#ffb495" stroke-width="8" stroke-linecap="round"/>
+  <title id="title">Kaiten Client: Kaiten logo inside curly braces</title>
+  <rect width="128" height="128" rx="27" fill="#211b2b"/>
+  <path d="M29 24c-9 0-10 5-10 13v13c0 9-4 12-9 14 5 2 9 5 9 14v13c0 8 1 13 10 13M99 24c9 0 10 5 10 13v13c0 9 4 12 9 14-5 2-9 5-9 14v13c0 8-1 13-10 13" fill="none" stroke="#f9f5fa" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(34 34) scale(1.5)">
+    <path d="M29.5428 0H10.4572C4.68184 0 0 4.67929 0 10.4515V29.5485C0 35.3207 4.68184 40 10.4572 40H29.5428C35.3182 40 40 35.3207 40 29.5485V10.4515C40 4.67929 35.3182 0 29.5428 0Z" fill="#F11F24"/>
+    <path d="M15.9288 4.36016L4.36016 15.9288C2.13636 18.1526 2.13636 21.7581 4.36016 23.9819L15.9288 35.5505C18.1526 37.7743 21.7581 37.7743 23.9819 35.5505L35.5505 23.9819C37.7743 21.7581 37.7743 18.1526 35.5505 15.9288L23.9819 4.36016C21.7581 2.13636 18.1526 2.13636 15.9288 4.36016Z" fill="#78FFC7"/>
+    <path d="M19.8904 29.7795C25.3527 29.7795 29.7808 25.3517 29.7808 19.8897C29.7808 14.4278 25.3527 10 19.8904 10C14.4281 10 10 14.4278 10 19.8897C10 25.3517 14.4281 29.7795 19.8904 29.7795Z" fill="#7D4CCF"/>
+  </g>
 </svg>

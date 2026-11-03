@@ -1,45 +1,51 @@
 :root {
-  --vp-c-brand-1: #3159b6;
-  --vp-c-brand-2: #426bc7;
-  --vp-c-brand-3: #264b9d;
-  --vp-c-brand-soft: rgba(49, 89, 182, 0.1);
-  --vp-c-bg: #fff;
-  --vp-c-bg-alt: #f6f8fc;
-  --vp-c-bg-soft: #f3f6fb;
-  --vp-c-text-1: #172a47;
-  --vp-c-text-2: #50627d;
-  --vp-home-hero-name-color: #3159b6;
+  --vp-c-brand-1: #9b304a;
+  --vp-c-brand-2: #b43e57;
+  --vp-c-brand-3: #80263c;
+  --vp-c-brand-soft: rgba(155, 48, 74, 0.1);
+  --vp-c-bg: #fdfcfd;
+  --vp-c-bg-alt: #f6f4f7;
+  --vp-c-bg-soft: #f7f5f8;
+  --vp-c-text-1: #211c27;
+  --vp-c-text-2: #655d6a;
+  --vp-home-hero-name-color: #9b304a;
   --vp-nav-logo-height: 2rem;
 }
 
 .dark {
-  --vp-c-brand-1: #a8c2ff;
-  --vp-c-brand-2: #c0d1ff;
-  --vp-c-brand-3: #88aaf5;
-  --vp-c-brand-soft: rgba(135, 169, 246, 0.15);
-  --vp-c-bg: #101722;
-  --vp-c-bg-alt: #151e2c;
-  --vp-c-bg-elv: #202b3b;
-  --vp-c-bg-soft: #1a2535;
-  --vp-c-border: #394b62;
-  --vp-c-divider: #2c3a4d;
-  --vp-c-gutter: #263345;
-  --vp-c-text-1: #edf3fc;
-  --vp-c-text-2: #bccbdd;
-  --vp-c-text-3: #9eafc5;
-  --vp-home-hero-name-color: #a8c2ff;
-  --vp-button-brand-text: #10203d;
-  --vp-button-brand-hover-text: #10203d;
-  --vp-button-brand-active-text: #10203d;
+  --vp-c-brand-1: #ffaab2;
+  --vp-c-brand-2: #ffc1c6;
+  --vp-c-brand-3: #f38a96;
+  --vp-c-brand-soft: rgba(255, 170, 178, 0.12);
+  --vp-c-bg: #17141c;
+  --vp-c-bg-alt: #1d1922;
+  --vp-c-bg-elv: #29232f;
+  --vp-c-bg-soft: #211c27;
+  --vp-c-border: #453c4b;
+  --vp-c-divider: #38303e;
+  --vp-c-gutter: #302a35;
+  --vp-c-text-1: #f5eff6;
+  --vp-c-text-2: #c7bccb;
+  --vp-c-text-3: #a99cac;
+  --vp-home-hero-name-color: #ffaab2;
+  --vp-button-brand-text: #29151e;
+  --vp-button-brand-hover-text: #29151e;
+  --vp-button-brand-active-text: #29151e;
 }
 
 .VPHome .VPHero .image-src {
-  border-radius: 6%;
-  box-shadow: 0 20px 50px rgba(29, 51, 90, 0.14);
+  border-radius: 7%;
+  box-shadow: 0 20px 60px rgba(32, 20, 38, 0.18);
 }
 
 .VPHome .VPFeature {
   border: 1px solid var(--vp-c-divider);
-  border-top: 3px solid var(--vp-c-brand-1);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.VPHome .VPFeature.link:hover {
+  border-color: var(--vp-c-brand-1);
 }
