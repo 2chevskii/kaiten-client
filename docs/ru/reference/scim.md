@@ -8,5 +8,5 @@
 
 ## Ресурсы
 
-- [`client.groups`](/ru/reference/scim/groups)
-- [`client.users`](/ru/reference/scim/users)
+- [`groups`](/ru/reference/scim/groups)
+- [`users`](/ru/reference/scim/users)

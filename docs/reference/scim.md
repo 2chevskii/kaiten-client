@@ -8,5 +8,5 @@ Methods are grouped by client resource. Select a resource to see its method sign
 
 ## Resources
 
-- [`client.groups`](/reference/scim/groups)
-- [`client.users`](/reference/scim/users)
+- [`groups`](/reference/scim/groups)
+- [`users`](/reference/scim/users)
