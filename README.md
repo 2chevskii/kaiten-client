@@ -1,7 +1,10 @@
 # Kaiten Client
 
 [![CI](https://img.shields.io/github/actions/workflow/status/2chevskii/kaiten-client/ci.yml?branch=master&label=CI)](https://github.com/2chevskii/kaiten-client/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/%402chevskii%2Fkaiten-client)](https://www.npmjs.com/package/@2chevskii/kaiten-client)
 ![Node.js 24+](https://img.shields.io/badge/Node.js-24%2B-339933?logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-included-3178c6?logo=typescript&logoColor=white)
+[![License](https://img.shields.io/github/license/2chevskii/kaiten-client)](LICENSE)
 
 A typed TypeScript client for building [Kaiten](https://developers.kaiten.ru/) integrations. Access REST resources and SCIM users and groups, or use the integration contracts for webhooks, imports, metadata, and addons.
 
