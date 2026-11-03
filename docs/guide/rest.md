@@ -182,6 +182,20 @@ Kaiten uses both numeric IDs and UUIDs. Pass the identifier type required by the
 
 For operations without an iterator, use `limit`, `offset`, or a cursor where supported. Read the [file guide](/guide/files) for file routes.
 
+## Activity feeds
+
+Use `apiVersion: 'latest'` and `client.activity.listCompanyActivity(query)` or `client.activity.listSpaceActivity(spaceId, query)` to fetch a page. Company activity also supports `card_id`. Both accept `limit`, `cursor`, comma-separated `actions`, `author_id`, `created_after`, and `created_before`. Pass `next_cursor` as `cursor` with the same filters; `null` means the end. Company activity requires access to company activity logs.
+
+The lazy iterators keep filters unchanged and stop on a null cursor:
+
+```ts
+for await (const event of client.activity.iterateSpaceActivity(123, {
+  actions: 'card_add,card_move',
+})) {
+  console.log(event.id, event.action);
+}
+```
+
 ## Planned card relations
 
 `cardPlannedRelations` links a predecessor to a successor on the Gantt chart. Both cards need planned start and end dates; the caller must be able to edit both when creating a relation. Relations cannot form cycles or duplicate an existing pair in either direction.

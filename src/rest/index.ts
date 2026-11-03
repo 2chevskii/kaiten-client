@@ -1,5 +1,6 @@
 /** REST operations grouped by Kaiten domain. */
 import type {HttpTransport} from '../http.ts';
+import {createActivityResources} from './activity.ts';
 import {createAuditResources} from './audit.ts';
 import {createAutomationsResources} from './automations.ts';
 import {createWorkspaceResources} from './workspace.ts';
@@ -15,6 +16,7 @@ import {createTimeResources} from './time.ts';
 import {createServiceDeskResources} from './service-desk.ts';
 import {createTagsResources} from './tags.ts';
 
+export type * from './activity.ts';
 export type * from './audit.ts';
 export type * from './automations.ts';
 export type * from './workspace.ts';
@@ -32,6 +34,7 @@ export type * from './tags.ts';
 export type {SearchResponseV2} from './search.ts';
 
 export const createRestResources = (transport: HttpTransport) => ({
+  ...createActivityResources(transport),
   ...createAuditResources(transport),
   ...createAutomationsResources(transport),
   ...createWorkspaceResources(transport),
