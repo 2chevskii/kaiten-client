@@ -534,52 +534,42 @@ export type DocumentsRetrieveListOfDocumentsParams = Parameters<
   >['documents']['retrieveListOfDocuments']
 >;
 
-export type DocumentsUpdateDocumentBody = RequireAtLeastOne<
-  {
-    title?: string;
-    sort_order?: number;
-    publish_date?: string | null;
-    data?: DocumentData;
-    access?: 'for_everyone' | 'by_invite';
-    parent_entity_uid?: string | null;
-    for_everyone_access_role_id?: string;
-    public?: boolean;
-    redirect_url?: string | null;
-    hidden_on_public_site?: boolean;
-    settings?: {
-      content_width?: 'default' | 'wide';
-    };
-    backup_version?: number;
-    published_version?: number | null | 'current';
-    key?: string | null;
-    icon_type?: 'emoji' | 'material_icon' | null;
-    icon_value?: string | null;
-    icon_color?: number | null;
-    notification_period_start?: string | null;
-    notification_period_end?: string | null;
-    slug?: string | null;
-  },
-  | 'title'
-  | 'sort_order'
-  | 'data'
-  | 'access'
-  | 'parent_entity_uid'
-  | 'for_everyone_access_role_id'
-  | 'public'
-  | 'publish_date'
-  | 'redirect_url'
-  | 'hidden_on_public_site'
-  | 'settings'
-  | 'backup_version'
-  | 'published_version'
-  | 'key'
-  | 'icon_type'
-  | 'icon_value'
-  | 'icon_color'
-  | 'notification_period_start'
-  | 'notification_period_end'
-  | 'slug'
->;
+export interface DocumentsUpdateDocumentFields {
+  title?: string;
+  sort_order?: number;
+  publish_date?: string | null;
+  data?: DocumentData;
+  access?: 'for_everyone' | 'by_invite';
+  parent_entity_uid?: string | null;
+  for_everyone_access_role_id?: string;
+  public?: boolean;
+  redirect_url?: string | null;
+  hidden_on_public_site?: boolean;
+  settings?: {
+    content_width?: 'default' | 'wide';
+  };
+  backup_version?: number;
+  published_version?: number | null | 'current';
+  key?: string | null;
+  icon_type?: 'emoji' | 'material_icon' | null;
+  icon_value?: string | null;
+  icon_color?: number | null;
+  notification_period_start?: string | null;
+  notification_period_end?: string | null;
+  slug?: string | null;
+}
+
+export type DocumentsUpdateDocumentBody =
+  | (RequireAtLeastOne<DocumentsUpdateDocumentFields> & {
+      schema_version?: never;
+    })
+  | (DocumentsUpdateDocumentFields & {
+      /** Concrete version returned by documentSchemas, for example v28. */
+      schema_version: string;
+      /** Full ProseMirror content already valid against the requested schema. */
+      data: DocumentData;
+      backup_version?: never;
+    });
 
 export interface DocumentsUpdateDocumentResponse {
   uid: string;
@@ -864,7 +854,16 @@ export const createDocumentsResources = (transport: HttpTransport) => {
        * @see https://developers.kaiten.ru/documents/retrieve-list-of-documents
        */
       retrieveListOfDocuments,
-      /** @see https://developers.kaiten.ru/documents/update-document */
+      /**
+       * Update document metadata, replace content, or restore a backup version.
+       *
+       * For explicit schema selection, read a document schema and use its
+       * concrete version with full, compatible ProseMirror data. Kaiten accepts
+       * the current or a newer supported version and saves it together with the
+       * content. Prepare any content migration on the caller side.
+       *
+       * @see https://developers.kaiten.ru/documents/update-document
+       */
       updateDocument: (
         documentUid: string,
         body: DocumentsUpdateDocumentBody,
