@@ -1,4 +1,14 @@
-/** Trigger names listed in the Kaiten automation documentation. */
+/**
+ * Trigger names for creating and updating Kaiten automations.
+ *
+ * Iteration triggers require the Iterations feature. Use `iteration_card_added`
+ * and `iteration_card_removed` for membership events. Use
+ * `iteration_start_date_on_date` and `iteration_finish_date_on_date` for start
+ * and finish date rules in the automation's space.
+ *
+ * @see https://developers.kaiten.ru/automations/create-automation
+ * @see https://developers.kaiten.ru/automations/update-automation
+ */
 export type AutomationTriggerType =
   | 'card_moved_in_path'
   | 'card_created'
@@ -17,9 +27,13 @@ export type AutomationTriggerType =
   | 'blocked'
   | 'unblocked'
   | 'blocker_added'
+  | 'iteration_card_added'
+  | 'iteration_card_removed'
   | 'due_date_on_date'
   | 'checklist_item_due_date_on_date'
   | 'custom_property_date_on_date'
+  | 'iteration_start_date_on_date'
+  | 'iteration_finish_date_on_date'
   | 'all_conditions_met';
 
 export interface AutomationTrigger {
