@@ -129,6 +129,26 @@ export type IterationsAddCardToIterationParams = Parameters<
   ReturnType<typeof createTimeResources>['iterations']['addCardToIteration']
 >;
 
+export interface IterationsAddCardsToIterationBody {
+  /** Between 1 and 500 distinct card UUIDs. */
+  card_uids: string[];
+}
+
+export interface IterationsAddCardsToIterationResponse {
+  /** Memberships added to the target iteration. */
+  added: IterationsAddCardToIterationResponse[];
+  /** Memberships removed from previous iterations. */
+  removed: IterationsRemoveCardFromIterationResponse[];
+  /** Memberships already in the target iteration. */
+  skipped: IterationsAddCardToIterationResponse[];
+  /** Card UIDs that became ineligible concurrently. */
+  ineligible: string[];
+}
+
+export type IterationsAddCardsToIterationParams = Parameters<
+  ReturnType<typeof createTimeResources>['iterations']['addCardsToIteration']
+>;
+
 export interface IterationsCreateIterationBody {
   title: string;
   goal?: string | null;
@@ -795,6 +815,41 @@ export const createTimeResources = (transport: HttpTransport) => ({
           pathSegment(iterationId) +
           '/cards',
         body: {card_uid: cardUid},
+        signal: options?.signal,
+      });
+    },
+    /**
+     * Adds 1 to 500 distinct active cards from the space's primary boards to a
+     * planned or active iteration in one request. Cards in another planned or
+     * active iteration move to the target iteration.
+     *
+     * Kaiten checks `iterationAddition` and `activeIterationRemoval` company
+     * restrictions for the entire request before writing. A refusal rejects
+     * the whole request with HTTP 400 and code 7. `KaitenHttpError.body`
+     * preserves the `restriction`, `card_id`, `card_uid`, and `card_uids`
+     * returned by Kaiten. Writes run in separate transactions of up to 100
+     * cards. A later error or concurrent change can leave earlier batches
+     * applied.
+     *
+     * @beta
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
+     * @see https://developers.kaiten.ru/iterations/add-card-to-iteration
+     */
+    addCardsToIteration: (
+      spaceUid: string,
+      iterationId: string,
+      body: IterationsAddCardsToIterationBody,
+      options?: OperationOptions,
+    ) => {
+      return transport.request<IterationsAddCardsToIterationResponse>({
+        method: 'POST',
+        path:
+          '/spaces/' +
+          pathSegment(spaceUid) +
+          '/iterations/' +
+          pathSegment(iterationId) +
+          '/cards',
+        body,
         signal: options?.signal,
       });
     },
