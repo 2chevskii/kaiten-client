@@ -29,6 +29,19 @@ export interface OperationOptions {
   signal?: AbortSignal | undefined;
 }
 
+export interface OffsetPageQuery {
+  /** Positive page size. The public endpoints default to 100 and allow at most 100. */
+  limit?: number;
+  /** Number of records to skip. Defaults to zero. */
+  offset?: number;
+}
+
+export interface OffsetPageOperationOptions<
+  Query extends OffsetPageQuery = OffsetPageQuery,
+> extends OperationOptions {
+  query?: Query;
+}
+
 export interface FileUploadOptions extends OperationOptions {
   filename?: string | undefined;
 }
