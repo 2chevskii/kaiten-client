@@ -209,7 +209,9 @@ test('generates signatures and invalidates or repairs the reference cache', asyn
       path.join(fixture, 'docs/reference/rest/cardComments.md'),
       'utf8',
     );
-    assert.match(
+    assert.match(comments, /OffsetPageOperationOptions/);
+    assert.match(comments, /Starting October 1, 2026/);
+    assert.doesNotMatch(
       comments,
       /This client method does not expose pagination parameters/,
     );

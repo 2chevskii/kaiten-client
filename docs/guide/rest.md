@@ -87,6 +87,19 @@ if (firstPage.result.length && firstPage.position) {
 
 The root package exports `SearchResponseV2<Result>`. Pass literal `1` or `2` so TypeScript infers the matching result type. A normal list call without `version: 2` returns an array.
 
+## Offset pages for card records
+
+Comments, child cards, card blockers, blockers assigned to the current user, and time logs accept `query.limit` and `query.offset` in the existing options argument. Kaiten defaults to 100 records at offset zero and caps pages at 100. Advance the offset by the page size until you receive a short page. Keep any filters unchanged between pages.
+
+```ts
+const comments = await client.cardComments.retrieveCardComments(cardId, {
+  query: {limit: 50, offset: 100},
+  signal,
+});
+```
+
+For child cards and card blockers, set `query.broken_api` to `false` to request numeric user IDs in user custom properties. For time logs, continue passing the date and personal filters positionally before options.
+
 ## Automatic pagination
 
 `cards.iterate`, `documents.iterate`, and `documentGroups.iterate` fetch version 2 search pages as you consume their items:
