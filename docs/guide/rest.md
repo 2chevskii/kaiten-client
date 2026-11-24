@@ -151,12 +151,13 @@ These iterators also snapshot their query and signal, support early exit and can
 
 ## Typed card filters
 
-Comma-separated card query fields also accept readonly arrays. Use numeric arrays for ID filters, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`:
+Comma-separated card query fields also accept readonly arrays. Use numeric IDs for filters such as `owner_ids` and `tag_ids`, UUID strings for `project_ids`, states `1 | 2 | 3`, and sorting directions `"asc" | "desc"`.
 
 ```ts
 const page = await client.cards.retrieveCardList({
   owner_ids: [123, 456],
   tag_ids: [10, 20],
+  project_ids: ['11111111-1111-4111-8111-111111111111'],
   states: [1, 2],
   additional_card_fields: ['description'],
   order_by: ['created', 'id'],

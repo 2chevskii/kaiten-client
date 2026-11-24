@@ -149,12 +149,13 @@ for await (const tag of client.tags.iterate({space_id: 10, limit: 50})) {
 
 ## Типизированные фильтры карточек
 
-Поля запроса карточек со списками через запятую также принимают readonly-массивы. Для ID используются числовые массивы, для состояний — значения `1 | 2 | 3`, для направлений сортировки — `"asc" | "desc"`:
+Поля запроса карточек со списками через запятую также принимают readonly-массивы. Для `owner_ids` и `tag_ids` передавайте числовые ID, для `project_ids` — строки UUID. Состояния принимают значения `1 | 2 | 3`, направления сортировки — `"asc" | "desc"`.
 
 ```ts
 const page = await client.cards.retrieveCardList({
   owner_ids: [123, 456],
   tag_ids: [10, 20],
+  project_ids: ['11111111-1111-4111-8111-111111111111'],
   states: [1, 2],
   additional_card_fields: ['description'],
   order_by: ['created', 'id'],
