@@ -1147,6 +1147,8 @@ export interface CardsRetrieveCardListQuery {
   version?: 1 | 2;
   tag?: string;
   tag_ids?: QueryList<number>;
+  /** Filter by project UUIDs as a comma-separated string or a readonly array. */
+  project_ids?: QueryList<string>;
   type_ids?: QueryList<number>;
   exclude_board_ids?: QueryList<number>;
   exclude_lane_ids?: QueryList<number>;
@@ -1996,6 +1998,7 @@ export const createCardsResources = (transport: HttpTransport) => {
       },
       /**
        * Get Card list filtered by query parameters. If version is omitted or set to 1, see the version=1 / default response. …
+       * Pass project UUIDs in project_ids as a comma-separated string or a readonly array.
        *
        * @warning Starting late August, /api/column and column schemas will only use card_hide_after_days. The months_to_hide_cards attribute is deprecated and will be removed — update your code to use card_hide_after_days only.
        * @see https://developers.kaiten.ru/cards/retrieve-card-list

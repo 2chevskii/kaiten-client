@@ -99,3 +99,68 @@ test('paged requests preserve in-flight cancellation', async context => {
   controller.abort();
   await assert.rejects(result, {name: 'AbortError'});
 });
+
+test('card searches forward project UUID filters and retain them across cursor pages', async context => {
+  const requests = [];
+  const client = await startFixture(context, (request, response) => {
+    const url = new URL(request.url, 'http://localhost');
+    requests.push({
+      method: request.method,
+      path: url.pathname,
+      query: Object.fromEntries(url.searchParams),
+    });
+    const page =
+      url.searchParams.get('version') !== '2'
+        ? []
+        : url.searchParams.has('start_position')
+          ? {result: [{id: 11}], position: ''}
+          : {result: [{id: 10}], position: 'next'};
+    response.writeHead(200, {'Content-Type': 'application/json'});
+    response.end(JSON.stringify(page));
+  });
+  const projectIds = Object.freeze([
+    '11111111-1111-4111-8111-111111111111',
+    '22222222-2222-4222-8222-222222222222',
+  ]);
+  const projectFilter = projectIds.join(',');
+  assert.deepEqual(
+    await client.cards.retrieveCardList({project_ids: projectFilter}),
+    [],
+  );
+  assert.deepEqual(
+    await client.cards.retrieveCardList({
+      version: 2,
+      project_ids: projectIds,
+      owner_ids: [10, 20],
+    }),
+    {result: [{id: 10}], position: 'next'},
+  );
+
+  const ids = [...projectIds];
+  const iterator = client.cards.iterate({project_ids: ids, board_id: 2});
+  ids.reverse();
+  assert.equal(requests.length, 2);
+  assert.deepEqual(
+    (await Array.fromAsync(iterator)).map(card => card.id),
+    [10, 11],
+  );
+
+  const base = {method: 'GET', path: '/api/v1/cards'};
+  assert.deepEqual(requests, [
+    {...base, query: {project_ids: projectFilter}},
+    {
+      ...base,
+      query: {version: '2', project_ids: projectFilter, owner_ids: '10,20'},
+    },
+    {...base, query: {version: '2', project_ids: projectFilter, board_id: '2'}},
+    {
+      ...base,
+      query: {
+        version: '2',
+        project_ids: projectFilter,
+        board_id: '2',
+        start_position: 'next',
+      },
+    },
+  ]);
+});
