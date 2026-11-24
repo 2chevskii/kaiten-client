@@ -241,6 +241,21 @@ export type IterationsRemoveCardFromIterationParams = Parameters<
   >['iterations']['removeCardFromIteration']
 >;
 
+export interface IterationsRemoveCardsFromIterationBody {
+  /** Between 1 and 500 unique card UIDs. */
+  card_uids: string[];
+}
+
+export interface IterationsRemoveCardsFromIterationResponse {
+  removed: IterationsRemoveCardFromIterationResponse[];
+}
+
+export type IterationsRemoveCardsFromIterationParams = Parameters<
+  ReturnType<
+    typeof createTimeResources
+  >['iterations']['removeCardsFromIteration']
+>;
+
 export interface IterationsRetrieveCardsInIterationQuery {
   status?: string;
 }
@@ -878,6 +893,36 @@ export const createTimeResources = (transport: HttpTransport) => ({
           pathSegment(iterationId) +
           '/cards/' +
           pathSegment(uid),
+        signal: options?.signal,
+      });
+    },
+    /**
+     * Bulk-remove manual memberships in an iteration. Provide 1–500 unique card
+     * UIDs. Cards outside the iteration are ignored.
+     *
+     * Kaiten checks removal restrictions for the entire request before writing.
+     * Writes run in separate transactions of up to 100 cards. A later error or
+     * concurrent change can leave earlier batches applied.
+     *
+     * @beta
+     * @warning This endpoint is currently under active development. Parameters, attributes, and response formats are subject to change. Iterations API is in beta and may change.
+     * @see https://developers.kaiten.ru/iterations/remove-cards-from-iteration
+     */
+    removeCardsFromIteration: (
+      spaceUid: string,
+      iterationId: string,
+      body: IterationsRemoveCardsFromIterationBody,
+      options?: OperationOptions,
+    ) => {
+      return transport.request<IterationsRemoveCardsFromIterationResponse>({
+        method: 'DELETE',
+        path:
+          '/spaces/' +
+          pathSegment(spaceUid) +
+          '/iterations/' +
+          pathSegment(iterationId) +
+          '/cards',
+        body,
         signal: options?.signal,
       });
     },
