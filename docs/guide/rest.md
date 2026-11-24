@@ -64,6 +64,20 @@ const automation: AutomationBody = {
 };
 ```
 
+## Updating a document with a selected schema
+
+Use `documentSchemas.getDocumentDataSchema('latest')` to retrieve the current schema and its concrete version. Prepare the full ProseMirror document against that schema, then save the content and version together.
+
+```ts
+const schema = await client.documentSchemas.getDocumentDataSchema('latest');
+await client.documents.updateDocument(documentUid, {
+  schema_version: schema.version,
+  data: fullDocument,
+});
+```
+
+Kaiten accepts the document's current schema or a supported newer one and validates the content before saving both together. Prepare any required content migration in your application. Omit `schema_version` to keep normal schema selection. Restore a backup with `backup_version` in a separate update without an explicit schema.
+
 ## Cursor based search
 
 Card and document search supports two response versions. `version: 1` returns an array, while `version: 2` returns `{ result, position }`.

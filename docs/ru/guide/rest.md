@@ -62,6 +62,20 @@ const automation: AutomationBody = {
 };
 ```
 
+## Обновление документа с выбранной схемой
+
+Вызовите `documentSchemas.getDocumentDataSchema('latest')`, чтобы получить актуальную схему и её конкретную версию. Подготовьте полный документ ProseMirror по этой схеме и отправьте его вместе с версией.
+
+```ts
+const schema = await client.documentSchemas.getDocumentDataSchema('latest');
+await client.documents.updateDocument(documentUid, {
+  schema_version: schema.version,
+  data: fullDocument,
+});
+```
+
+Kaiten принимает текущую схему документа или поддерживаемую более новую версию. Он проверяет содержимое и сохраняет его вместе с версией. Если содержимое нужно преобразовать, сделайте это в своём приложении. Без `schema_version` Kaiten выбирает схему по прежним правилам. Для восстановления из резервной версии передайте `backup_version` в отдельном запросе без явной схемы.
+
 ## Поиск с курсором
 
 Поиск карточек и документов поддерживает две версии ответа. При `version: 1` результат — массив, при `version: 2` — объект `{ result, position }`.
