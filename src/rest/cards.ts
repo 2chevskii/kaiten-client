@@ -796,9 +796,9 @@ export interface CardsBatchUpdateForCardsFields {
     external_id?: number | string | null;
   };
   order_by?: {
-    field_type?: 'cp' | 'size' | 'created' | 'due_date' | 'title';
+    field_type: 'cp' | 'size' | 'created' | 'due_date' | 'title';
     id?: number;
-    direction?: 'asc' | 'desc';
+    direction: 'asc' | 'desc';
   };
 }
 
@@ -1940,6 +1940,10 @@ export const createCardsResources = (transport: HttpTransport) => {
       },
       /**
        * Update multiple cards by criteria. Runs in the background and returns a job ID.
+       *
+       * To sort cards in a cell, supply `column_id`, `lane_id` and `order_by` with
+       * both `field_type` and `direction`. For an attribute update, supply a
+       * filter such as `board_id` and pass the changes in `attributes`.
        *
        * @see https://developers.kaiten.ru/cards/batch-update-for-cards
        */
