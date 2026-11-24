@@ -6,6 +6,8 @@ export type {
   ClientOptions,
   FileRedirectResponse,
   FileUploadOptions,
+  OffsetPageOperationOptions,
+  OffsetPageQuery,
   OperationOptions,
   QueryValue,
   RestClientOptions,

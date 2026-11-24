@@ -15,7 +15,11 @@ import type {
   QueryList,
   RequireAtLeastOne,
 } from '../types.ts';
-import type {HttpTransport, OperationOptions} from '../http.ts';
+import type {
+  HttpTransport,
+  OffsetPageOperationOptions,
+  OperationOptions,
+} from '../http.ts';
 
 import {pathSegment} from '../http.ts';
 
@@ -713,19 +717,23 @@ export const createTimeResources = (transport: HttpTransport) => ({
     },
     /**
      * @warning Starting October 1, 2026, public API requests return 100 time logs per request by default and at most 100. The response remains an array ordered by id ascending. Pass limit and offset to fetch successive pages; start with offset=0 and increase it by the applied limit until a page contains fewer time logs than that limit. The for_date parameter remains an optional filter and does not remove the page limit. The applied limit is returned in X-Pagination-Limit. Requests without pagination parameters also receive X-Pagination-Message.
-     * @warning Client limitation: This client method does not expose pagination parameters.
      * @see https://developers.kaiten.ru/card-time-logs/get-time-logs
      */
     getTimeLogs: (
       cardId: number,
       forDate?: string,
       personal?: boolean,
-      options?: OperationOptions,
+      options?: OffsetPageOperationOptions,
     ) => {
       return transport.request<CardTimeLogsGetTimeLogsResponse>({
         method: 'GET',
         path: '/cards/' + pathSegment(cardId) + '/time-logs',
-        query: {for_date: forDate, personal},
+        query: {
+          for_date: forDate,
+          personal,
+          limit: options?.query?.limit,
+          offset: options?.query?.offset,
+        },
         signal: options?.signal,
       });
     },
